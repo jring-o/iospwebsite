@@ -1,0 +1,208 @@
+/* Event Highlighting System */
+
+/* Primary highlights - Era transitions where ALL protocols rebuild */
+.event-dot.highlight-primary {
+  width: 20px;
+  height: 20px;
+  border: 3px solid white;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+              0 0 40px currentColor;
+  z-index: 10;
+  animation: pulse-primary 2s infinite;
+}
+
+@keyframes pulse-primary {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.8;
+  }
+}
+
+/* Secondary highlights - Individual protocol innovations */
+.event-dot.highlight-secondary {
+  width: 14px;
+  height: 14px;
+  border: 2px solid white;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  z-index: 5;
+}
+
+/* Era transition markers */
+.era-divider {
+  stroke: #666;
+  stroke-width: 2;
+  stroke-dasharray: 5, 5;
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+
+.era-divider.active {
+  stroke: #000;
+  stroke-width: 3;
+  stroke-dasharray: none;
+  opacity: 1;
+}
+
+/* Era cards with protocol details */
+.era-card-enhanced {
+  background: linear-gradient(135deg, #f5f5f5, #ffffff);
+  border: 2px solid #333;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 800px;
+  margin: 40px auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.era-card-enhanced h2 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  color: #1a1a1a;
+}
+
+.era-card-enhanced .era-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+/* Protocol breakdown within era cards */
+.protocol-breakdown {
+  display: grid;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.protocol-detail {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 16px;
+  padding: 16px;
+  border-left: 4px solid var(--protocol-color);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.protocol-detail:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateX(4px);
+}
+
+.protocol-detail .protocol-name {
+  font-weight: bold;
+  color: var(--protocol-color);
+  font-size: 1.1rem;
+}
+
+.protocol-detail .protocol-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  font-size: 0.9rem;
+}
+
+.protocol-detail .info-item {
+  padding: 8px;
+  background: #f8f8f8;
+  border-radius: 4px;
+}
+
+.protocol-detail .info-label {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 4px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.protocol-detail .info-text {
+  color: #333;
+  line-height: 1.4;
+}
+
+/* Failure indicators for current era */
+.failure-indicator {
+  background: #fee;
+  border-left-color: #dc2626;
+  color: #991b1b;
+}
+
+/* Success indicators for digital-native */
+.success-indicator {
+  background: #f0fdf4;
+  border-left-color: #059669;
+  color: #14532d;
+}
+
+/* In-progress indicators */
+.in-progress {
+  position: relative;
+  overflow: hidden;
+}
+
+.in-progress::before {
+  content: "IN PROGRESS";
+  position: absolute;
+  top: 8px;
+  right: -30px;
+  background: #ea580c;
+  color: white;
+  padding: 2px 40px;
+  font-size: 0.7rem;
+  transform: rotate(45deg);
+  font-weight: bold;
+}
+
+/* Timeline callout for key transitions */
+.timeline-callout {
+  position: absolute;
+  background: white;
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: 12px;
+  min-width: 200px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 20;
+}
+
+.timeline-callout::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid white;
+}
+
+.timeline-callout h4 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+  color: #1a1a1a;
+}
+
+.timeline-callout p {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Visual emphasis for transformation periods */
+.transformation-zone {
+  fill: url(#transformation-gradient);
+  opacity: 0.2;
+}
+
+#transformation-gradient {
+  /* Define in SVG defs */
+}

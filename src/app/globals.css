@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 199 85% 23%; /* IOSP Deep Blue */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 176 68% 38%; /* IOSP Teal */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 13% 95%; /* Cloud White */
+    --muted-foreground: 220 9% 60%; /* Slate Gray */
+    --accent: 193 99% 47%; /* IOSP Cyan */
+    --accent-foreground: 199 85% 23%;
+    --destructive: 346 83% 61%; /* Coral */
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 193 99% 47%;
+    --radius: 0.5rem;
+    --chart-1: 193 99% 47%;
+    --chart-2: 176 68% 38%;
+    --chart-3: 346 83% 61%;
+    --chart-4: 45 100% 70%;
+    --chart-5: 199 85% 23%;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 0 0% 100%;
+    --card: 222 47% 11%;
+    --card-foreground: 0 0% 100%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 193 99% 47%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 176 68% 38%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 9% 46%;
+    --muted-foreground: 220 13% 91%;
+    --accent: 199 85% 23%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 346 83% 61%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 9% 46%;
+    --input: 220 9% 46%;
+    --ring: 193 99% 47%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* IOSP Custom Styles - Darker Palette */
+@layer components {
+  .gradient-primary {
+    background: linear-gradient(135deg, #5B3A8F 0%, #083A52 50%, #5B3A8F 100%);
+  }
+
+  .gradient-accent {
+    background: linear-gradient(90deg, #177973 0%, #0191BD 100%);
+  }
+
+  .gradient-cyan {
+    background: linear-gradient(135deg, #0191BD 0%, #177973 50%, #0191BD 100%);
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-iosp-blue via-iosp-cyan to-iosp-teal bg-clip-text text-transparent;
+  }
+}
+
+/* Custom Animations */
+@layer utilities {
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 60s linear infinite;
+  }
+
+  .animate-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  .animate-scroll-fast {
+    animation: scroll 5s linear infinite;
+  }
+
+  .animate-scroll-fast:hover {
+    animation-play-state: paused;
+  }
+}

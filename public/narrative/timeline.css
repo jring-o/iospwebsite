@@ -1,0 +1,3675 @@
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-bg: #fafafa;
+  --color-text: #1a1a1a;
+  --color-text-light: #737373;
+  --color-accent: #2563eb;
+
+  /* Protocol Colors - Match Time to Build */
+  --color-inference: #083A52;    /* iosp-blue */
+  --color-quality: #177973;      /* iosp-teal */
+  --color-engagement: #5B3A8F;   /* iosp-purple */
+  --color-coordination: #C23555; /* iosp-coral */
+  --color-preservation: #0191BD; /* iosp-cyan */
+
+  --timeline-height: 220px; /* Increased for 5 tracks + labels */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+/* ===== Intro Section Wrapper - spans all intro moments ===== */
+.intro-section-wrapper {
+  position: relative;
+}
+
+/* ===== Narrative Moments - New Scrollytelling Structure ===== */
+.narrative-moment {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 2rem;
+}
+
+.moment-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  opacity: 0;
+}
+
+.moment-content h1 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  margin: 0 auto 1.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+.moment-content h2 {
+  font-size: clamp(1.75rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.moment-content p {
+  font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+  color: var(--color-text-light);
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Intro Dots Container - spans all intro moments */
+.intro-dots-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 1;
+}
+
+.intro-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  will-change: transform;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* Protocol Labels Container for Five Circles */
+.protocol-labels-container {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.protocol-label-wrapper {
+  position: absolute;
+  text-align: center;
+  width: 200px;
+  transform: translateX(-50%);
+}
+
+/* Position each label to match the circle positions */
+.protocol-label-wrapper[data-protocol="Inference"] {
+  left: calc(100vw / 6 * 1);
+}
+
+.protocol-label-wrapper[data-protocol="Quality"] {
+  left: calc(100vw / 6 * 2);
+}
+
+.protocol-label-wrapper[data-protocol="Engagement"] {
+  left: calc(100vw / 6 * 3);
+}
+
+.protocol-label-wrapper[data-protocol="Coordination"] {
+  left: calc(100vw / 6 * 4);
+}
+
+.protocol-label-wrapper[data-protocol="Preservation"] {
+  left: calc(100vw / 6 * 5);
+}
+
+.protocol-label-text {
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.protocol-label-subtext {
+  font-size: clamp(0.75rem, 1.5vw, 0.95rem);
+  color: var(--color-text-light);
+  font-style: italic;
+}
+
+/* Protocol-specific colors for labels */
+.protocol-label-wrapper[data-protocol="Inference"] .protocol-label-text {
+  color: var(--color-inference);
+}
+
+.protocol-label-wrapper[data-protocol="Quality"] .protocol-label-text {
+  color: var(--color-quality);
+}
+
+.protocol-label-wrapper[data-protocol="Engagement"] .protocol-label-text {
+  color: var(--color-engagement);
+}
+
+.protocol-label-wrapper[data-protocol="Coordination"] .protocol-label-text {
+  color: var(--color-coordination);
+}
+
+.protocol-label-wrapper[data-protocol="Preservation"] .protocol-label-text {
+  color: var(--color-preservation);
+}
+
+/* Visual containers */
+.visual-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  margin: 2rem auto 0;
+}
+
+/* Protocol Visual Styles */
+.protocol-visual {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Single Circle */
+.protocol-visual.single-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-ring {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid var(--color-accent);
+  position: relative;
+  animation: rotate-circle 20s linear infinite;
+}
+
+/* Protocol-specific colors */
+.circle-ring.inference { border-color: var(--color-inference); }
+.circle-ring.quality { border-color: var(--color-quality); }
+.circle-ring.engagement { border-color: var(--color-engagement); }
+.circle-ring.coordination { border-color: var(--color-coordination); }
+.circle-ring.preservation { border-color: var(--color-preservation); }
+
+@keyframes rotate-circle {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Five Circles Layout */
+.protocol-visual.five-circles {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.protocol-circle {
+  flex: 1;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.protocol-circle .circle-ring {
+  width: 120px;
+  height: 120px;
+}
+
+.protocol-label {
+  text-align: center;
+}
+
+.protocol-name {
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.protocol-subtext {
+  font-size: clamp(0.75rem, 1.5vw, 0.95rem);
+  color: var(--color-text-light);
+  font-style: italic;
+}
+
+/* Inference protocol */
+.protocol-circle[data-protocol="Inference"] .protocol-name {
+  color: var(--color-inference);
+}
+
+/* Quality protocol */
+.protocol-circle[data-protocol="Quality"] .protocol-name {
+  color: var(--color-quality);
+}
+
+/* Engagement protocol */
+.protocol-circle[data-protocol="Engagement"] .protocol-name {
+  color: var(--color-engagement);
+}
+
+/* Coordination protocol */
+.protocol-circle[data-protocol="Coordination"] .protocol-name {
+  color: var(--color-coordination);
+}
+
+/* Preservation protocol */
+.protocol-circle[data-protocol="Preservation"] .protocol-name {
+  color: var(--color-preservation);
+}
+
+/* Systems Visual Styles */
+.three-systems-visual {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 10;
+  opacity: 0; /* Controlled by GSAP */
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.system-label-wrapper {
+  position: absolute;
+  text-align: center;
+  width: 250px;
+  transform: translateX(-50%);
+}
+
+.system-label-wrapper .system-name {
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.system-label-wrapper .system-subtext {
+  font-size: clamp(0.75rem, 1.5vw, 0.95rem);
+  color: var(--color-text-light);
+  font-style: italic;
+}
+
+/* Color each system label */
+.system-label-wrapper[data-system="Corporate"] .system-name {
+  color: #ef4444;
+}
+
+.system-label-wrapper[data-system="Institutional"] .system-name {
+  color: #3b82f6;
+}
+
+.system-label-wrapper[data-system="Benefactor"] .system-name {
+  color: #10b981;
+}
+
+/* Position each label to match the circle positions */
+.system-label-wrapper[data-system="Corporate"] {
+  left: 25%; /* First third */
+}
+
+.system-label-wrapper[data-system="Institutional"] {
+  left: 50%; /* Middle */
+}
+
+.system-label-wrapper[data-system="Benefactor"] {
+  left: 75%; /* Last third */
+}
+
+/* Systems Phase Headers (above circles) */
+.systems-phase-header {
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 90%;
+  max-width: 800px;
+  z-index: 15;
+  opacity: 0; /* Controlled by GSAP */
+}
+
+.systems-header-configs,
+.systems-header-infra {
+  /* Both start hidden, GSAP controls visibility */
+}
+
+/* System Config and Infra Labels - positioned BELOW the dot circles */
+.system-config,
+.system-infra {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 25vh; /* Offset below the circle center */
+  width: max-content;
+  max-width: 220px;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  opacity: 0; /* Controlled by GSAP */
+  line-height: 1.4;
+  text-align: center;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+/* Infra labels use same styling as config labels */
+
+.system-circle {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.system-circle .circle-ring {
+  display: none; /* Hide solid circles - dots will form the circles */
+}
+
+.system-circle.corporate .circle-ring {
+  border-color: #ef4444;
+}
+
+.system-circle.institutional .circle-ring {
+  border-color: #3b82f6;
+}
+
+.system-circle.benefactor .circle-ring {
+  border-color: #10b981;
+}
+
+.system-label {
+  text-align: center;
+}
+
+.system-name {
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.system-subtext {
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  color: var(--color-text-light);
+  font-style: italic;
+}
+
+/* Convergence dot visual */
+.convergence-dot-visual {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  margin: 0 auto;
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.6);
+  animation: pulse-dot 2s ease-in-out infinite;
+  opacity: 0; /* Start hidden */
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.8;
+  }
+}
+
+/* Floating Cards Container (for scenes 8 & 9) */
+.floating-cards-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.floating-card {
+  position: absolute;
+  opacity: 0;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  max-width: 350px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  font-weight: 500;
+  line-height: 1.5;
+  pointer-events: none;
+}
+
+.floating-card.stressor {
+  background: rgba(254, 242, 242, 0.9);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  color: #991b1b;
+}
+
+.floating-card.achievement {
+  background: rgba(240, 253, 244, 0.9);
+  border: 1px solid rgba(5, 150, 105, 0.3);
+  color: #14532d;
+}
+
+.floating-card-year {
+  display: block;
+  font-size: 0.75em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.floating-card.stressor .floating-card-year {
+  color: #dc2626;
+}
+
+.floating-card.achievement .floating-card-year {
+  color: #059669;
+}
+
+/* Timeline reveal spacer */
+.timeline-reveal-spacer {
+  height: 20vh;
+}
+
+/* Alternative timeline spacer - gives space after alternative events */
+.alt-timeline-spacer {
+  height: 100vh; /* Just enough to let final scene complete */
+  background: var(--color-bg);
+}
+
+/* Scene-specific styles - backgrounds now controlled by JS */
+.scene-moment.scene-stress {
+  background: transparent;
+}
+
+.scene-moment.scene-breaking {
+  background: transparent;
+  min-height: 400vh; /* 3x longer than default 100vh */
+}
+
+.scene-moment.scene-achievements {
+  background: transparent;
+  min-height: 400vh; /* 4x longer than default 100vh */
+}
+
+/* Closing scenes (15-18) - white background */
+.scene-moment.scene-future,
+.scene-moment.scene-three-systems {
+  background: var(--color-bg);
+}
+
+/* Scene 18 - Extended for final scene */
+.scene-moment.scene-institute {
+  background: var(--color-bg);
+  min-height: 1200vh; /* 2x longer than default 100vh */
+}
+
+/* Scene 17 - Extended height for longer dot spawning */
+.scene-moment.scene-thousands {
+  background: var(--color-bg);
+  min-height: 200vh; /* Reduced from 1200vh */
+}
+
+/* Scene 17.5 - Each Connected via a Shared Technical Substrate */
+.scene-moment.scene-substrate {
+  background: var(--color-bg);
+  min-height: 200vh; /* Increased from 100vh */
+}
+
+/* Fixed background overlay for Act III scenes */
+.act-three-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--color-bg);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .narrative-moment {
+    padding: 2rem 1rem;
+  }
+
+  .protocol-labels-container {
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+  }
+
+  .protocol-label-wrapper {
+    min-width: 100%;
+  }
+
+  .protocol-visual.five-circles {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .protocol-circle {
+    min-width: 100%;
+  }
+
+  .three-systems-visual {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .system-circle {
+    min-width: 100%;
+  }
+
+  .floating-card {
+    max-width: 90%;
+    font-size: 0.85rem;
+    padding: 0.85rem 1.25rem;
+  }
+}
+
+/* ===== Animated Intro Section ===== */
+.intro-animation-section {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.intro-content-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Intro text phases */
+.intro-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.intro-text h1 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  margin: 0;
+  max-width: 800px;
+}
+
+/* Phase 1: Initial text */
+.intro-phase-1 {
+  opacity: 1;
+}
+
+/* Phase 2: Protocol labels (5 circles layout) */
+.intro-phase-2 {
+  opacity: 0;
+  width: 90%;
+  max-width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.protocol-label-container {
+  flex: 1;
+  min-width: 180px;
+  text-align: center;
+}
+
+.protocol-label-text {
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.protocol-label-subtext {
+  font-size: clamp(0.75rem, 1.5vw, 0.95rem);
+  color: var(--color-text-light);
+  font-style: italic;
+}
+
+/* Protocol-specific colors for labels */
+.protocol-label-container[data-protocol="Inference"] .protocol-label-text {
+  color: var(--color-inference);
+}
+
+.protocol-label-container[data-protocol="Quality"] .protocol-label-text {
+  color: var(--color-quality);
+}
+
+.protocol-label-container[data-protocol="Engagement"] .protocol-label-text {
+  color: var(--color-engagement);
+}
+
+.protocol-label-container[data-protocol="Coordination"] .protocol-label-text {
+  color: var(--color-coordination);
+}
+
+.protocol-label-container[data-protocol="Preservation"] .protocol-label-text {
+  color: var(--color-preservation);
+}
+
+/* Phase 3: Recombined text */
+.intro-phase-3 {
+  opacity: 0;
+}
+
+/* Phase 4: Institutional system text */
+.intro-phase-4 {
+  opacity: 0;
+}
+
+/* System labels for Scene 12 (similar to protocol labels) */
+.system-labels-container {
+  position: absolute;
+  width: 95%;
+  max-width: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0;
+  padding: 0 2rem;
+}
+
+.system-label-container {
+  flex: 1;
+  text-align: center;
+}
+
+.system-label-text {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* Intro dots container */
+#intro-dots-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Systems Animation Section (Scenes 11-13) - matches intro structure */
+.systems-animation-section {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+.systems-content-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Systems section wrapper - like intro-section-wrapper */
+.systems-section-wrapper {
+  position: relative;
+}
+
+/* Systems dots container (shared by all systems moments) */
+#systems-dots-container {
+  position: fixed; /* Fixed like intro-dots-container should be */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0; /* Start hidden */
+}
+
+/* Scene phases within systems section */
+.scene-phase-11a,
+.scene-phase-11b,
+.scene-phase-12,
+.scene-phase-13 {
+  opacity: 0;
+}
+
+/* Individual intro dots */
+.intro-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* Mobile adjustments for intro */
+@media (max-width: 768px) {
+  .intro-phase-2 {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .protocol-label-container {
+    min-width: 100%;
+  }
+
+  .intro-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .system-labels-container {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .system-label-container {
+    min-width: 100%;
+  }
+}
+
+/* ===== Event Sections ===== */
+.event-section, .alt-event-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  padding-bottom: calc(var(--timeline-height) + 2rem);
+  position: relative;
+}
+
+/* ===== Simple Events (just scroll past, no cards) ===== */
+.simple-event, .alt-simple-event {
+  min-height: 20vh;
+  padding: 2rem;
+  padding-bottom: calc(var(--timeline-height) + 2rem);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 4rem;
+}
+
+.simple-event-content {
+  width: 800px;
+  max-width: 800px;
+  margin: 0;
+  opacity: 0.7;
+}
+
+.simple-year {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.simple-title {
+  font-size: 1.1rem;
+  color: var(--color-text);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.simple-protocols {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.simple-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-light);
+  max-width: 600px;
+}
+
+.protocol-effects {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.protocol-effects-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.protocol-effect {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  display: block;
+}
+
+.protocol-effect-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
+}
+
+.protocol-effect-text {
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.simple-reference {
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  margin-top: 0.5rem;
+}
+
+.simple-reference a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  opacity: 0.7;
+}
+
+.simple-reference a:hover {
+  opacity: 1;
+}
+
+/* ===== Stressor Events (system failures) ===== */
+.stressor-event, .alt-stressor-event {
+  min-height: 20vh;
+  padding: 2rem;
+  padding-bottom: calc(var(--timeline-height) + 2rem);
+  display: flex;
+  align-items: flex-start;
+  padding-top: 4rem;
+  background: linear-gradient(to right, transparent, rgba(239, 68, 68, 0.03), transparent);
+}
+
+.stressor-event-content {
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0.85;
+  padding: 1.25rem;
+  border-left: 3px solid #ef4444;
+  background: linear-gradient(to right, #fef2f2, transparent);
+  border-radius: 4px;
+}
+
+.stressor-year {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #dc2626;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.stressor-title {
+  font-size: 1.1rem;
+  color: #991b1b;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.stressor-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  max-width: 600px;
+  margin-bottom: 0.5rem;
+}
+
+.stressor-reference {
+  font-size: 0.75rem;
+  color: #dc2626;
+  font-style: italic;
+}
+
+.stressor-reference a {
+  color: #dc2626;
+  text-decoration: underline;
+  opacity: 0.7;
+}
+
+.stressor-reference a:hover {
+  opacity: 1;
+}
+
+/* Stressor Era Card (inline within first stressor event) */
+.stressor-era-card {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.stressor-era-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #991b1b;
+  margin: 0 0 0.75rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stressor-era-title::before {
+  content: "⚠";
+  font-size: 1.25rem;
+}
+
+.stressor-era-overview {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #7f1d1d;
+  margin: 0;
+}
+
+/* Era cards - full width, professional, compact */
+.era-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  padding: 2rem 2.5rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+  position: relative;
+  transform-origin: center center;
+}
+
+/* System cards - professional styling */
+.system-card {
+  position: relative;
+  background: #fafbfc;
+  border-left: 3px solid #3b82f6;
+}
+
+.system-tagline {
+  font-size: 0.9rem;
+  color: #6b7280;
+  font-style: italic;
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.system-section-subtitle {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.system-configuration {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.config-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.config-item {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #4b5563;
+}
+
+.config-item strong {
+  color: #374151;
+  font-weight: 600;
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.system-tech-infra,
+.system-problem,
+.system-difference,
+.system-rebellion {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #4b5563;
+  margin-top: 1rem;
+}
+
+.system-tech-infra strong,
+.system-problem strong,
+.system-difference strong,
+.system-rebellion strong {
+  color: #374151;
+  font-weight: 600;
+}
+
+.system-policies {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.policy-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.policy-list li {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.policy-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #9ca3af;
+}
+
+.policy-list li strong {
+  color: #374151;
+  font-weight: 600;
+}
+
+/* Alternative Era Cards - REFACTORED to match main timeline quality */
+.alt-era-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  padding: 2.5rem 3rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.era-tagline {
+  font-size: 0.85rem;
+  color: #6b7280;
+  font-style: italic;
+  margin-top: 0.2rem;
+  margin-bottom: 0.65rem;
+}
+
+.era-meanwhile,
+.era-key-dev,
+.era-status,
+.era-inflection {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #4b5563;
+  margin-top: 0.85rem;
+}
+
+.era-meanwhile strong,
+.era-key-dev strong,
+.era-status strong,
+.era-inflection strong {
+  color: #374151;
+  font-weight: 600;
+}
+
+.alt-era-card .era-overview {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 0.85rem;
+}
+
+.alt-era-card .event-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.era-crisis-section {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.era-section-subtitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.65rem;
+}
+
+.era-crisis-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.era-crisis-list li {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.era-crisis-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #dc2626;
+}
+
+.era-crisis-list li strong {
+  color: #374151;
+  font-weight: 600;
+}
+
+/* Work Ahead Section (for 2025 Substrate card) - VERY COMPACT */
+.era-work-ahead {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.work-ahead-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem 2rem;
+  margin-top: 0.5rem;
+}
+
+.work-item {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #4b5563;
+}
+
+.work-component {
+  font-weight: 600;
+  color: #374151;
+}
+
+/* Additional era card fields */
+.era-emergence {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #6b7280;
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+.era-antifragility {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #4b5563;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #f9fafb;
+  border-radius: 4px;
+}
+
+.era-antifragility strong {
+  color: #059669;
+  font-weight: 600;
+}
+
+.era-emotional-tone {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #111827;
+  margin-top: 1.25rem;
+  font-style: italic;
+  font-weight: 500;
+  text-align: center;
+}
+
+.era-goal {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #4b5563;
+  margin-top: 1rem;
+}
+
+.era-goal strong {
+  color: #374151;
+  font-weight: 600;
+}
+
+/* System badge in top-right corner */
+.system-card::before {
+  content: 'SYSTEM';
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  border-radius: 6px;
+  z-index: 10;
+}
+
+/* Institutional system - blue tint */
+.system-section[data-system-name*="Institutional"] .system-card {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 2px solid #bfdbfe;
+}
+
+.system-section[data-system-name*="Institutional"] .system-card::before {
+  background: #2563eb;
+  color: white;
+}
+
+/* Corporate system - red tint */
+.system-section[data-system-name*="Corporate"] .system-card {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border: 2px solid #fecaca;
+}
+
+.system-section[data-system-name*="Corporate"] .system-card::before {
+  background: #ef4444;
+  color: white;
+}
+
+/* Benefactor system - green tint */
+.system-section[data-system-name*="Benefactor"] .system-card {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border: 2px solid #bbf7d0;
+}
+
+.system-section[data-system-name*="Benefactor"] .system-card::before {
+  background: #10b981;
+  color: white;
+}
+
+.era-card .event-year {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.era-card .event-title {
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
+}
+
+.era-card .event-description {
+  font-size: 1rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+/* Era Card Header - Professional Single Column Layout */
+.era-header-section {
+  margin-bottom: 2rem;
+}
+
+.era-header-left {
+  margin-bottom: 1.25rem;
+}
+
+.era-header-right {
+  /* No special styling needed */
+}
+
+/* Enhanced Era Substrate / Technical Foundation Display */
+.era-substrate-section {
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  background: rgba(124, 58, 237, 0.08);
+  border-left: 3px solid rgba(124, 58, 237, 0.5);
+  border-radius: 0 4px 4px 0;
+}
+
+.era-substrate-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: #7c3aed;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.substrate-icon {
+  font-size: 0.9rem;
+}
+
+.era-substrate-text {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #374151;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* Enhanced Era Status Section - for divergence warnings */
+.era-status-section {
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  background: rgba(234, 88, 12, 0.1);
+  border-left: 3px solid rgba(234, 88, 12, 0.6);
+  border-radius: 0 4px 4px 0;
+}
+
+.era-status-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: #ea580c;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-icon {
+  font-size: 0.9rem;
+}
+
+.era-status-text {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #374151;
+  line-height: 1.5;
+}
+
+/* Legacy class kept for backwards compatibility */
+.era-substrate {
+  font-size: 0.85rem;
+  color: #6b7280;
+  font-style: italic;
+  line-height: 1.5;
+  padding: 0.75rem 0;
+  border-top: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f3f4f6;
+  margin-bottom: 1rem;
+}
+
+.era-substrate strong {
+  font-weight: 600;
+  color: #374151;
+  font-style: normal;
+}
+
+.era-overview {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #374151;
+  margin-bottom: 1.25rem;
+}
+
+/* Protocol Details - Simplified Format */
+.protocol-details-container {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+}
+
+/* Protocol Functions Section - Professional & Compact */
+.protocol-functions-container {
+  margin-bottom: 1.25rem;
+}
+
+.protocol-section-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9ca3af;
+  margin-bottom: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.protocol-row-simple {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1.25rem;
+  margin-bottom: 0;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid #f9fafb;
+  align-items: baseline;
+}
+
+.protocol-row-simple:last-child {
+  border-bottom: none;
+}
+
+.protocol-name-badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6b7280;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-transform: capitalize;
+  letter-spacing: 0.01em;
+}
+
+.protocol-function-text {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: #374151;
+  flex: 1;
+}
+
+/* Success/Failure Section - Professional & Compact */
+.era-success-failure {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #e5e7eb;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.era-success,
+.era-failure {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+.era-success strong {
+  color: #059669;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  display: block;
+}
+
+.era-failure strong {
+  color: #dc2626;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  display: block;
+}
+
+
+/* Legacy table format (keep for backwards compatibility) */
+.protocols-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.protocols-table thead tr {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.protocol-header {
+  text-align: left;
+  padding: 0.75rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #52525b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.protocol-row {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: background-color 0.2s;
+}
+
+.protocol-row:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.protocol-row:last-child {
+  border-bottom: none;
+}
+
+.protocol-name-cell {
+  padding: 0.85rem;
+  width: 12%;
+}
+
+.protocol-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.protocol-subhead {
+  font-size: 0.7rem;
+  font-style: italic;
+  color: #737373;
+}
+
+.protocol-data-cell {
+  padding: 0.85rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #1a1a1a;
+  vertical-align: top;
+}
+
+.mechanism-cell {
+  width: 28%;
+}
+
+.success-cell {
+  width: 30%;
+}
+
+.failure-cell {
+  width: 30%;
+}
+
+.event-protocols-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.protocol-badge {
+  font-size: 0.7rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.event-year {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.event-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+.event-description {
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  line-height: 1.7;
+  color: var(--color-text-light);
+}
+
+/* ===== Outro Section ===== */
+.outro-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  padding-bottom: calc(var(--timeline-height) + 2rem);
+}
+
+.outro-content h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+.outro-content p {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: var(--color-text-light);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ===== Fixed Timeline ===== */
+.timeline-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--timeline-height);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid #e5e5e5;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0; /* Start hidden, fade in via GSAP */
+  pointer-events: none;
+}
+
+/* visible class no longer needed - GSAP handles opacity */
+.timeline-fixed.visible {
+  pointer-events: auto;
+}
+
+.timeline-svg {
+  width: 90%;
+  max-width: 1200px;
+  height: 180px; /* Increased for 5 protocol tracks */
+}
+
+/* ===== Year Axis ===== */
+.year-tick line {
+  stroke: #d4d4d4;
+  stroke-width: 1;
+}
+
+.year-tick text {
+  font-size: 0.75rem;
+  fill: var(--color-text-light);
+  font-weight: 500;
+}
+
+.year-tick.major line {
+  stroke: #a3a3a3;
+  stroke-width: 2;
+}
+
+.year-tick.major text {
+  font-size: 0.85rem;
+  fill: var(--color-text);
+  font-weight: 600;
+}
+
+/* ===== Timeline Axis Line ===== */
+.axis-line {
+  stroke: #d4d4d4;
+  stroke-width: 2;
+  fill: none;
+}
+
+/* ===== Protocol Tracks ===== */
+.protocol-track {
+  stroke-width: 2;
+  stroke-opacity: 0.3;
+  fill: none;
+}
+
+.protocol-track.Inference { stroke: var(--color-inference); }
+.protocol-track.Quality { stroke: var(--color-quality); }
+.protocol-track.Engagement { stroke: var(--color-engagement); }
+.protocol-track.Coordination { stroke: var(--color-coordination); }
+.protocol-track.Preservation { stroke: var(--color-preservation); }
+
+.protocol-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  fill: var(--color-text-light);
+}
+
+/* ===== Event Dots on Timeline ===== */
+.event-dot {
+  opacity: 0;
+  transform-origin: center;
+  cursor: pointer;
+}
+
+.event-dot.visible {
+  opacity: 1 !important; /* Force visible once added */
+}
+
+.event-dot circle {
+  stroke: white;
+  stroke-width: 2;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Protocol-specific dot colors */
+.event-dot.Inference circle { fill: var(--color-inference); }
+.event-dot.Quality circle { fill: var(--color-quality); }
+.event-dot.Engagement circle { fill: var(--color-engagement); }
+.event-dot.Coordination circle { fill: var(--color-coordination); }
+.event-dot.Preservation circle { fill: var(--color-preservation); }
+
+/* Stressor dots are always red, regardless of protocol */
+.event-dot.stressor-dot circle {
+  fill: #ef4444 !important;
+  stroke: #dc2626 !important;
+  stroke-width: 2.5;
+}
+
+.event-dot:hover circle {
+  r: 10;
+}
+
+.event-dot.stressor-dot:hover circle {
+  fill: #dc2626 !important;
+}
+
+/* ===== Floating Dots (for morph animation) ===== */
+#floating-dots {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1001; /* Above timeline (which is 1000) */
+}
+
+.floating-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  /* Background color will be set by JavaScript based on protocol */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 768px) {
+  .era-card {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+
+  .era-card .event-title {
+    font-size: 1.5rem;
+  }
+
+  .era-overview {
+    font-size: 0.95rem;
+  }
+
+  .era-substrate {
+    font-size: 0.8rem;
+  }
+
+  .protocol-header {
+    font-size: 0.75rem;
+    padding: 0.75rem 0.5rem;
+  }
+
+  .protocol-name-cell,
+  .protocol-data-cell {
+    padding: 1rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .protocol-name {
+    font-size: 0.9rem;
+  }
+
+  .protocol-subhead {
+    font-size: 0.7rem;
+  }
+
+  /* Simplified format mobile */
+  .protocol-row-simple {
+    grid-template-columns: 100px 1fr;
+    gap: 1rem;
+    padding: 0.4rem 0;
+  }
+
+  .protocol-name-badge {
+    font-size: 0.75rem;
+  }
+
+  .protocol-function-text {
+    font-size: 0.85rem;
+  }
+
+  .era-success-failure {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .era-success,
+  .era-failure {
+    font-size: 0.85rem;
+  }
+
+  .protocol-section-title {
+    font-size: 0.7rem;
+  }
+
+  /* Allow horizontal scroll on very small screens */
+  .protocol-details-container {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .timeline-fixed {
+    height: 100px;
+  }
+
+  .timeline-svg {
+    width: 95%;
+    height: 60px;
+  }
+
+  .year-tick text {
+    font-size: 0.65rem;
+  }
+}
+
+/* ===== ACT III: Individual Scene Sections ===== */
+.outro-scene-section {
+  position: relative;
+  min-height: 100vh;
+  background: var(--color-bg);
+  transition: background 0.5s ease;
+}
+
+.outro-scene-section.dark-bg {
+  background: #1a1a1a;
+}
+
+/* Individual scene styles - each scene is independent */
+.scene-5, .scene-6, .scene-7, .scene-8, .scene-9, .scene-10,
+.scene-vision-1, .scene-vision-2, .scene-vision-3, .scene-vision-4, .scene-vision-5,
+.scene-metaphor-1, .scene-metaphor-2, .scene-metaphor-3 {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 1;
+  z-index: 10;
+}
+
+/* Scene 14 wrapper contains both transition and all alternative timeline events */
+.scene-alternative-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Scene 14 transition moment (100vh only) */
+.scene-alternative {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 1;
+  z-index: 10;
+}
+
+.scene-5 h2, .scene-6 h2, .scene-7 h2, .scene-8 h2, .scene-9 h2, .scene-10 h2, .scene-alternative h2,
+.scene-vision-1 h2, .scene-vision-2 h2, .scene-vision-3 h2, .scene-vision-4 h2, .scene-vision-5 h2,
+.scene-metaphor-1 h2, .scene-metaphor-2 h2, .scene-metaphor-3 h2,
+.scene-phase-12 h2, .scene-phase-13 h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: var(--color-text);
+  line-height: 1.2;
+  position: relative;
+  z-index: 100;
+}
+
+.scene-5 p, .scene-6 p, .scene-7 p, .scene-8 p, .scene-9 p, .scene-10 p, .scene-alternative p,
+.scene-vision-1 p, .scene-vision-2 p, .scene-vision-3 p, .scene-vision-4 p, .scene-vision-5 p,
+.scene-metaphor-1 p, .scene-metaphor-2 p, .scene-metaphor-3 p,
+.scene-phase-12 p, .scene-phase-13 p {
+  font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+  color: var(--color-text-light);
+  max-width: 800px;
+  line-height: 1.6;
+  position: relative;
+  z-index: 100;
+}
+
+/* Timeline enlargement for Scene 5-7 */
+.timeline-fixed.enlarged {
+  height: 50vh !important;
+  bottom: 0 !important;
+  z-index: 1000 !important;
+}
+
+.timeline-fixed.enlarged .timeline-svg {
+  height: calc(50vh - 40px) !important;
+}
+
+/* CSS animations with 3 iterations */
+@keyframes pulse-protocol {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+    filter: drop-shadow(0 0 0px transparent);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 12px currentColor);
+  }
+}
+
+@keyframes pulse-protocol-track {
+  0%, 100% {
+    stroke-opacity: 0.3;
+    filter: drop-shadow(0 0 0px transparent);
+  }
+  50% {
+    stroke-opacity: 0.8;
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+}
+
+@keyframes pulse-event-dot {
+  0%, 100% {
+    r: 5;
+    filter: drop-shadow(0 0 0px transparent);
+  }
+  50% {
+    r: 6;
+    filter: drop-shadow(0 0 4px currentColor);
+  }
+}
+
+.protocol-label.pulsing {
+  animation: pulse-protocol 1s ease-in-out 3;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+.protocol-label.pulsing.playing {
+  animation-play-state: running;
+}
+
+.protocol-track.pulsing {
+  animation: pulse-protocol-track 1s ease-in-out 3;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+.protocol-track.pulsing.playing {
+  animation-play-state: running;
+}
+
+.event-dot.pulsing circle {
+  animation: pulse-event-dot 1s ease-in-out 3;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+.event-dot.pulsing.playing circle {
+  animation-play-state: running;
+}
+
+/* Era divider pulsing (3 iterations) */
+@keyframes pulse-era-divider {
+  0%, 100% {
+    opacity: 0.4;
+    stroke-width: 1.5;
+  }
+  50% {
+    opacity: 0.7;
+    stroke-width: 2;
+  }
+}
+
+@keyframes pulse-era-label {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.era-divider.pulsing {
+  animation: pulse-era-divider 1s ease-in-out 3;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+.era-divider.pulsing.playing {
+  animation-play-state: running;
+}
+
+.era-label.pulsing {
+  animation: pulse-era-label 1s ease-in-out 3;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+.era-label.pulsing.playing {
+  animation-play-state: running;
+}
+
+/* Shrink all dots during Scene 5 pulsing (stressor dots) and Scene 6 pulsing (all dots) */
+.event-dot.shrunk circle {
+  r: 3.5;
+  transition: r 0.3s ease;
+}
+
+/* Stressor dot pulsing for Scene 7 (3 iterations) */
+@keyframes pulse-stressor-dot {
+  0%, 100% {
+    r: 5;
+    opacity: 1;
+  }
+  50% {
+    r: 8;
+    opacity: 0.75;
+  }
+}
+
+.event-dot.stressor-dot.pulsing circle {
+  animation: pulse-stressor-dot 1s ease-in-out 3;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+.event-dot.stressor-dot.pulsing.playing circle {
+  animation-play-state: running;
+}
+
+/* Stressor dot emphasis (legacy - may not be used) */
+.event-dot.stressor-dot.emphasized circle {
+  r: 12;
+  animation: pulse-stressor 1s infinite;
+}
+
+@keyframes pulse-stressor {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Alternative timeline event dots - MUST start hidden like main timeline */
+.alt-event-dot {
+  opacity: 0;
+  transform-origin: center;
+  cursor: pointer;
+}
+
+.alt-event-dot.visible {
+  opacity: 1 !important;
+}
+
+.alt-event-dot circle {
+  stroke: white;
+  stroke-width: 2;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Protocol-specific colors for alternative timeline */
+.alt-event-dot.Inference circle { fill: var(--color-inference); }
+.alt-event-dot.Quality circle { fill: var(--color-quality); }
+.alt-event-dot.Engagement circle { fill: var(--color-engagement); }
+.alt-event-dot.Coordination circle { fill: var(--color-coordination); }
+.alt-event-dot.Preservation circle { fill: var(--color-preservation); }
+
+.alt-event-dot:hover circle {
+  r: 10;
+}
+
+/* System-based glows ONLY for founding events (1950, 1980, 2017) */
+.alt-event-dot[data-founding-event="true"][data-system="institutional"] circle {
+  filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
+}
+
+.alt-event-dot[data-founding-event="true"][data-system="corporate"] circle {
+  filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.8)) drop-shadow(0 0 10px rgba(239, 68, 68, 0.5));
+}
+
+.alt-event-dot[data-founding-event="true"][data-system="benefactor"] circle {
+  filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.8)) drop-shadow(0 0 10px rgba(16, 185, 129, 0.5));
+}
+
+/* No glow for pluralist/other system dots (not founding events) */
+
+.timeline-fixed.stress-mode {
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(254, 242, 242, 0.95));
+}
+
+/* Floating text for scenes 8-9 - BACKGROUND LAYER */
+#floating-stressor-text,
+#floating-achievement-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1; /* Behind scene text (which is z-index: 100) */
+  overflow: hidden;
+}
+
+/* Background overlay for depth */
+#floating-stressor-text::before,
+#floating-achievement-text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 0%, rgba(250, 250, 250, 0.6) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.floating-text-item {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  max-width: 400px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-weight: 500;
+  line-height: 1.5;
+  z-index: 1; /* Same as parent container, behind h2/p which are z-index: 100 */
+}
+
+.floating-text-item.stressor {
+  background: rgba(254, 242, 242, 0.85);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  color: #991b1b;
+}
+
+.floating-text-item .stressor-year {
+  display: inline-block;
+  font-size: 0.75em;
+  font-weight: 700;
+  color: #dc2626;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.floating-text-item.achievement {
+  background: rgba(240, 253, 244, 0.85);
+  border: 1px solid rgba(5, 150, 105, 0.3);
+  color: #14532d;
+}
+
+.floating-text-item .achievement-year {
+  display: inline-block;
+  font-size: 0.75em;
+  font-weight: 700;
+  color: #059669;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+/* Duplicate CSS removed - see line 673 for systems-dots-container */
+
+.multiplication-dot {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+/* Alternative Fixed Timeline (same style as main timeline) */
+.alt-timeline-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--timeline-height);
+  background: rgba(255, 255, 255, 1); /* Fully opaque background */
+  backdrop-filter: blur(10px);
+  border-top: 1px solid #e5e5e5;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.alt-timeline-fixed.visible {
+  opacity: 1; /* Can be overridden by GSAP */
+  pointer-events: auto;
+}
+
+/* Substrate Gap Section */
+.substrate-gap-section {
+  position: relative;
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+.substrate-gap-content {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.gap-phase-1, .gap-phase-2, .gap-phase-3, .gap-phase-4, .gap-phase-5 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  width: 90%;
+  max-width: 900px;
+}
+
+.gap-phase-1 h2, .gap-phase-2 h2, .gap-phase-3 h2, .gap-phase-4 h2, .gap-phase-5 h2 {
+  font-size: clamp(1.75rem, 4.5vw, 3rem);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.gap-phase-1 p, .gap-phase-2 p, .gap-phase-3 p {
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+.substrate-components {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.component-item {
+  font-size: 0.85rem;
+  padding: 0.65rem 0.85rem;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Vision & Substrate Demand Section */
+.vision-demand-section {
+  position: relative;
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+.vision-demand-content {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.vision-demand-phase-1,
+.vision-demand-phase-2,
+.vision-demand-phase-3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  width: 90%;
+  max-width: 1000px;
+}
+
+.vision-demand-phase-1 h2,
+.vision-demand-phase-2 h2,
+.vision-demand-phase-3 h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+#convergence-dots-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.convergence-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+/* Substrate Technologies Card Section */
+.substrate-card-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  padding: 2rem;
+}
+
+.substrate-card-container {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.substrate-tech-card {
+  border-left: 3px solid #3b82f6;
+}
+
+/* Final CTA Section */
+.final-cta-section {
+  position: relative;
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+.final-cta-content {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.cta-phase-1,
+.cta-phase-2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  width: 90%;
+  max-width: 900px;
+}
+
+.cta-phase-1 h2,
+.cta-phase-2 h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+/* Vision Section (keep existing for old scenes if needed) */
+.vision-section {
+  position: relative;
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.vision-content {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+}
+
+
+
+
+
+/* Timeline background shift for stress scene */
+.timeline-svg.stress-background {
+  background: linear-gradient(to top, transparent, rgba(254, 226, 226, 0.3));
+}
+
+/* Convergence center dot */
+.convergence-dot {
+  /* GSAP controls all animation - no CSS animation */
+  position: fixed;
+  border-radius: 50%;
+  z-index: 1500;
+  pointer-events: none;
+}
+
+/* Additional convergence dots - NO animation, controlled by GSAP */
+.additional-convergence-dot {
+  animation: none !important;
+}
+
+@keyframes pulse-convergence {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;  /* Changed to 0 - only show when explicitly enabled */
+    box-shadow: 0 0 30px rgba(37, 99, 235, 0.8);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.4);
+    opacity: 0;  /* Changed to 0 */
+    box-shadow: 0 0 50px rgba(37, 99, 235, 1);
+  }
+}
+
+/* Timeline Overlay Text - Fixed Position Over Timeline */
+.timeline-overlay-text {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  z-index: 1500; /* Above timeline (1000) and floating dots (1001) */
+  pointer-events: none;
+  width: 90%;
+  max-width: 1000px;
+}
+
+.timeline-overlay-text h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1.2;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Mobile adjustments for Act III */
+@media (max-width: 768px) {
+  .scene-5 h2, .scene-6 h2, .scene-7 h2, .scene-8 h2, .scene-9 h2, .scene-10 h2, .scene-alternative h2,
+  .scene-vision-1 h2, .scene-vision-2 h2, .scene-vision-3 h2, .scene-vision-4 h2, .scene-vision-5 h2,
+  .scene-metaphor-1 h2, .scene-metaphor-2 h2, .scene-metaphor-3 h2,
+  .scene-phase-12 h2, .scene-phase-13 h2 {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+
+  .scene-5 p, .scene-6 p, .scene-7 p, .scene-8 p, .scene-9 p, .scene-10 p, .scene-alternative p,
+  .scene-vision-1 p, .scene-vision-2 p, .scene-vision-3 p, .scene-vision-4 p, .scene-vision-5 p,
+  .scene-metaphor-1 p, .scene-metaphor-2 p, .scene-metaphor-3 p,
+  .scene-phase-12 p, .scene-phase-13 p {
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+  }
+
+  .timeline-fixed.enlarged {
+    height: 40vh;
+  }
+
+  .timeline-fixed.enlarged .timeline-svg {
+    height: 35vh;
+  }
+
+  .substrate-components {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .component-item {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.65rem;
+  }
+
+  .gap-phase-1 h2, .gap-phase-2 h2, .gap-phase-3 h2, .gap-phase-4 h2, .gap-phase-5 h2 {
+    font-size: clamp(1.5rem, 5vw, 2.25rem);
+  }
+
+  .work-ahead-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .work-item {
+    font-size: 0.75rem;
+  }
+}
+
+/* ===== Scroll Indicator ===== */
+.scroll-indicator {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.scroll-indicator.visible {
+  opacity: 1;
+}
+
+.scroll-indicator.hidden {
+  opacity: 0;
+}
+
+.scroll-indicator-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.scroll-indicator-mouse {
+  width: 26px;
+  height: 40px;
+  border: 2px solid var(--color-text);
+  border-radius: 13px;
+  position: relative;
+  opacity: 0.6;
+}
+
+.scroll-indicator-wheel {
+  width: 4px;
+  height: 8px;
+  background: var(--color-text);
+  border-radius: 2px;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scroll-wheel 1.5s ease-in-out infinite;
+}
+
+@keyframes scroll-wheel {
+  0%, 100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateX(-50%) translateY(8px);
+  }
+}
+
+.scroll-indicator-text {
+  font-size: 0.875rem;
+  color: var(--color-text-light);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.scroll-indicator-arrow {
+  color: var(--color-text-light);
+  opacity: 0.6;
+  animation: bounce-arrow 1.5s ease-in-out infinite;
+}
+
+@keyframes bounce-arrow {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 0.3;
+  }
+}
+
+/* ===== Scene Navigation Controls ===== */
+.scene-navigation-controls {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 2000;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.scene-navigation-controls.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scene-navigation-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.jump-to-last-event {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background: rgba(20, 184, 166, 0.95);
+  color: white;
+  border: 1px solid rgba(20, 184, 166, 1);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.jump-to-last-event:hover {
+  background: rgba(20, 184, 166, 1);
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+  transform: translateY(-1px);
+}
+
+.jump-to-last-event:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(20, 184, 166, 0.2);
+}
+
+.show-tutorial-btn {
+  display: none; /* Hidden by default, shown via JS when in timeline */
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  background: rgba(107, 114, 128, 0.1);
+  color: #6b7280;
+  border: 1px solid rgba(107, 114, 128, 0.3);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.show-tutorial-btn:hover {
+  background: rgba(107, 114, 128, 0.2);
+  color: #374151;
+  border-color: rgba(107, 114, 128, 0.5);
+}
+
+.show-tutorial-btn:active {
+  transform: translateY(0);
+}
+
+.show-tutorial-btn svg {
+  flex-shrink: 0;
+}
+
+.jump-to-act-three {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background: rgba(37, 99, 235, 0.95);
+  color: white;
+  border: 1px solid rgba(37, 99, 235, 1);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.jump-to-act-three:hover {
+  background: rgba(37, 99, 235, 1);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  transform: translateY(-1px);
+}
+
+.jump-to-act-three:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
+}
+
+.scene-label {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  max-width: 300px;
+  transition: opacity 0.3s ease;
+}
+
+.scene-label.updated {
+  animation: label-pulse 0.3s ease;
+}
+
+@keyframes label-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.scene-label-text {
+  font-size: 0.875rem;
+  color: var(--color-text);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+.scene-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Next Scene Preview */
+.next-scene-preview {
+  background: rgba(20, 184, 166, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(20, 184, 166, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  max-width: 300px;
+}
+
+.next-scene-text {
+  font-size: 0.875rem;
+  color: #0d9488;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+/* Navigation Rows */
+.nav-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.nav-row[style*="display: none"] {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.nav-row-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text);
+  opacity: 0.7;
+  min-width: 45px;
+  text-align: right;
+}
+
+/* Card label styles (same as scene label) */
+.card-label {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  max-width: 300px;
+  transition: opacity 0.3s ease;
+}
+
+.card-label.updated {
+  animation: label-pulse 0.3s ease;
+}
+
+.card-label-text {
+  font-size: 0.875rem;
+  color: var(--color-text);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+.card-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Position Indicators (X/total) */
+.nav-position {
+  background: rgba(37, 99, 235, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  min-width: 50px;
+  text-align: center;
+}
+
+.nav-position-text {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.scene-nav-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid #e5e5e5;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.scene-nav-button:hover:not(:disabled) {
+  background: white;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+.scene-nav-button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.scene-nav-button:disabled,
+.scene-nav-button.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.scene-nav-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .scene-navigation-controls {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .scene-label,
+  .card-label {
+    max-width: 150px;
+    padding: 0.4rem 0.75rem;
+  }
+
+  .scene-label-text,
+  .card-label-text {
+    font-size: 0.7rem;
+  }
+
+  .nav-row-label {
+    font-size: 0.65rem;
+    min-width: 38px;
+  }
+
+  .scene-nav-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nav-position {
+    padding: 0.3rem 0.5rem;
+    min-width: 42px;
+  }
+
+  .nav-position-text {
+    font-size: 0.7rem;
+  }
+
+  .scroll-indicator {
+    bottom: 60px;
+  }
+
+  .scroll-indicator-text {
+    font-size: 0.75rem;
+  }
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
+}
+
+/* Thousands Dots Container for Scene 17 */
+#thousands-dots-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.thousands-convergence-dot {
+  will-change: opacity, transform;
+}
+
+/* Network mesh nodes and edges for Scene 17 */
+.network-node {
+  will-change: opacity;
+}
+
+.network-mesh-svg {
+  overflow: visible;
+}
+
+.network-mesh-svg line {
+  will-change: stroke-opacity;
+}
+
+/* ===== Tutorial Overlay ===== */
+.tutorial-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.tutorial-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.tutorial-overlay.hiding {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tutorial-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.tutorial-content {
+  position: relative;
+  background: white;
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 680px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+  transform: translateY(20px);
+  transition: transform 0.4s ease;
+}
+
+.tutorial-overlay.visible .tutorial-content {
+  transform: translateY(0);
+}
+
+.tutorial-header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tutorial-header h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.tutorial-subtitle {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0;
+  font-style: italic;
+}
+
+.tutorial-body {
+  margin-bottom: 1.5rem;
+}
+
+.tutorial-intro {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #374151;
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+}
+
+.tutorial-section {
+  margin-bottom: 1.5rem;
+}
+
+.tutorial-section h3 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 1rem 0;
+}
+
+.tutorial-controls {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.tutorial-control {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.tutorial-control-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+  min-width: 70px;
+  justify-content: center;
+}
+
+.key-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 0.5rem;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #374151;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.key-badge-plus {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin: 0 0.1rem;
+}
+
+.button-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0.75rem;
+  background: rgba(20, 184, 166, 0.15);
+  border: 1px solid rgba(20, 184, 166, 0.4);
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #0d9488;
+}
+
+.scroll-icon {
+  color: #6b7280;
+}
+
+.scroll-icon .scroll-wheel {
+  animation: tutorial-scroll-anim 1.5s ease-in-out infinite;
+}
+
+@keyframes tutorial-scroll-anim {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(4px);
+    opacity: 0.4;
+  }
+}
+
+.tutorial-control-text {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #374151;
+}
+
+.tutorial-control-text strong {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.tutorial-hint {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* Era list */
+.tutorial-eras {
+  text-align: center;
+}
+
+.tutorial-era-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.tutorial-era {
+  display: inline-block;
+  padding: 0.35rem 0.65rem;
+  background: rgba(37, 99, 235, 0.1);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.tutorial-era-arrow {
+  color: #d1d5db;
+  font-size: 0.8rem;
+}
+
+/* Footer */
+.tutorial-footer {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.tutorial-dismiss-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 2rem;
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.tutorial-dismiss-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+}
+
+.tutorial-dismiss-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
+.tutorial-skip-hint {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin: 0.75rem 0 0 0;
+}
+
+/* Pointer arrows */
+.tutorial-nav-pointer,
+.tutorial-timeline-pointer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  opacity: 0.9;
+}
+
+.tutorial-nav-pointer {
+  top: -2.5rem;
+  right: 0;
+}
+
+.tutorial-timeline-pointer {
+  bottom: -3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: column;
+}
+
+.pointer-arrow {
+  font-size: 1.5rem;
+  animation: tutorial-pointer-bounce 1s ease-in-out infinite;
+}
+
+.tutorial-timeline-pointer .pointer-arrow {
+  animation: tutorial-pointer-bounce-down 1s ease-in-out infinite;
+}
+
+@keyframes tutorial-pointer-bounce {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(4px, -4px);
+  }
+}
+
+@keyframes tutorial-pointer-bounce-down {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.pointer-label {
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+/* Mobile adjustments for tutorial */
+@media (max-width: 768px) {
+  .tutorial-content {
+    padding: 1.75rem 1.25rem;
+    max-height: 90vh;
+    border-radius: 12px;
+  }
+
+  .tutorial-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .tutorial-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .tutorial-intro {
+    font-size: 0.9rem;
+  }
+
+  .tutorial-controls {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .tutorial-control {
+    padding: 0.85rem;
+  }
+
+  .tutorial-control-icon {
+    min-width: 60px;
+  }
+
+  .key-badge {
+    min-width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+  }
+
+  .tutorial-era-list {
+    gap: 0.25rem 0.35rem;
+  }
+
+  .tutorial-era {
+    font-size: 0.65rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .tutorial-era-arrow {
+    font-size: 0.7rem;
+  }
+
+  .tutorial-dismiss-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .tutorial-nav-pointer {
+    top: -2rem;
+    right: -0.5rem;
+  }
+
+  .tutorial-timeline-pointer {
+    bottom: -2.5rem;
+  }
+
+  .pointer-arrow {
+    font-size: 1.2rem;
+  }
+
+  .pointer-label {
+    font-size: 0.65rem;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 400px) {
+  .tutorial-content {
+    padding: 1.25rem 1rem;
+  }
+
+  .tutorial-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .tutorial-control {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .tutorial-control-icon {
+    justify-content: center;
+  }
+}
+
+/* ===== Progress Tracker ===== */
+.progress-tracker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1999; /* Below navigation buttons (z-index: 2000) */
+  padding: 0;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.progress-tracker.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.progress-tracker-inner {
+  position: relative;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 0.5rem 1rem 0.4rem;
+  /* Leave space on the right for navigation buttons */
+  padding-right: 220px;
+}
+
+.progress-bar-container {
+  position: relative;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 1.5px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899, #f59e0b, #10b981, #06b6d4);
+  background-size: 200% 100%;
+  border-radius: 1.5px;
+  transition: width 0.5s ease-out;
+}
+
+.progress-bar-glow {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  height: 7px;
+  width: 0%;
+  background: linear-gradient(90deg,
+    rgba(99, 102, 241, 0.4),
+    rgba(139, 92, 246, 0.4),
+    rgba(236, 72, 153, 0.4)
+  );
+  filter: blur(4px);
+  border-radius: 3px;
+  transition: width 0.5s ease-out;
+  opacity: 0.6;
+}
+
+.progress-milestones {
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  right: 220px; /* Match padding-right to avoid nav buttons */
+  height: 3px;
+  pointer-events: auto;
+}
+
+.progress-milestone-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -3.5px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.progress-milestone-dot:hover {
+  transform: translate(-50%, -3.5px) scale(1.3);
+  border-color: var(--phase-color, #6366f1);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.progress-milestone-dot.completed {
+  background: var(--phase-color, #6366f1);
+  border-color: var(--phase-color, #6366f1);
+}
+
+.progress-milestone-dot.current {
+  border-color: var(--phase-color, #6366f1);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+  animation: pulse-milestone 2s infinite;
+}
+
+.progress-milestone-dot.just-completed {
+  animation: milestone-complete 0.6s ease-out;
+}
+
+@keyframes pulse-milestone {
+  0%, 100% {
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.15);
+  }
+}
+
+@keyframes milestone-complete {
+  0% {
+    transform: translate(-50%, -3.5px) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -3.5px) scale(1.5);
+  }
+  100% {
+    transform: translate(-50%, -3.5px) scale(1);
+  }
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.progress-phase {
+  color: #6366f1;
+  letter-spacing: 0.02em;
+  transition: color 0.3s ease;
+}
+
+.progress-percent {
+  color: var(--color-text-light);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ===== Progress Tracker Responsive ===== */
+@media (max-width: 768px) {
+  .progress-tracker-inner {
+    padding: 0.4rem 0.75rem 0.35rem;
+    padding-right: 180px; /* Smaller right padding on mobile */
+  }
+
+  .progress-milestones {
+    left: 0.75rem;
+    right: 180px;
+  }
+
+  .progress-milestone-dot {
+    width: 8px;
+    height: 8px;
+    transform: translate(-50%, -2.5px);
+  }
+
+  .progress-milestone-dot:hover,
+  .progress-milestone-dot.current {
+    transform: translate(-50%, -2.5px) scale(1.2);
+  }
+
+  .progress-info {
+    font-size: 0.65rem;
+    margin-top: 0.35rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .progress-milestone-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .progress-info {
+    font-size: 0.6rem;
+  }
+}
