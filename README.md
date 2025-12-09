@@ -22,7 +22,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-- Website: [iosp.io](https://iosp.science)
+- Website: [iosp.science](https://iosp.science)
 
 ---
 
