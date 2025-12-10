@@ -5,6 +5,7 @@
 
 import { SCRUB_SPEEDS } from '../../config/scroll-config.js';
 import { timelineState } from '../../state/timeline-state.js';
+import { gsap } from "gsap";
 
 /**
  * Create floating cards from data

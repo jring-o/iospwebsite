@@ -5,6 +5,8 @@
 
 import { TRIGGER_POSITIONS, SCRUB_SPEEDS } from '../../config/scroll-config.js';
 import { centerFixedContent } from '../helpers/scene-content.js';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 /**
  * Toggle stress mode effects on timeline elements

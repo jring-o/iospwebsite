@@ -4,12 +4,11 @@
  * Uses core animation functions for shared logic
  */
 
-import { PROTOCOL_COLORS, ANIMATION_DURATIONS, DOT_SIZES } from '../config/constants.js';
-import { TRIGGER_POSITIONS, SCRUB_SPEEDS } from '../config/scroll-config.js';
+import { SCRUB_SPEEDS } from '../config/scroll-config.js';
 import { timelineState } from '../state/timeline-state.js';
-import { sceneManager } from '../utils/scene-manager.js';
-import { createSVGElement } from '../utils/dom-utils.js';
 import { MAIN_TIMELINE_CONFIG } from '../config/timeline-configs.js';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   morphEraCardToLine as coreMorephEraCardToLine,
   unmorphLineToEraCard as coreUnmorphLineToEraCard,

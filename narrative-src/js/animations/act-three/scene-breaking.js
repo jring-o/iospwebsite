@@ -1,29 +1,31 @@
 /**
- * Scene 9: The Achievements - Natural Scrollytelling Version
- * Pre-rendered achievement cards animate in/out based on scroll
+ * Scene 8: The Breaking - Natural Scrollytelling Version
+ * Pre-rendered stressor cards animate in/out based on scroll
  */
 
 import { TRIGGER_POSITIONS, SCRUB_SPEEDS } from '../../config/scroll-config.js';
 import { createFloatingCards, animateFloatingCards } from '../helpers/floating-cards.js';
 import { centerFixedContent } from '../helpers/scene-content.js';
+import { gsap } from "gsap";
 
 /**
- * Initialize Scene 9 animations
+ * Initialize Scene 8 animations
  */
-export function initScene9() {
-  const scene = document.querySelector('.scene-achievements');
+export function initScene8() {
+  const scene = document.querySelector('.scene-breaking');
   if (!scene) {
-    console.warn('Scene 9 (achievements) not found');
+    console.warn('Scene 8 (breaking) not found');
     return;
   }
 
   const content = scene.querySelector('.moment-content');
-  const cardsContainer = scene.querySelector('#achievement-cards');
+  const cardsContainer = scene.querySelector('#stressor-cards');
+  const scene9 = document.querySelector('.scene-achievements');
   const actThreeBg = document.getElementById('act-three-bg');
 
-  // Fade fixed background from red to green
+  // Fade fixed background to darker red
   gsap.to(actThreeBg, {
-    backgroundColor: 'rgba(240, 253, 244, 0.5)',
+    backgroundColor: 'rgba(254, 242, 242, 0.5)',
     scrollTrigger: {
       trigger: scene,
       start: TRIGGER_POSITIONS.ENTER_LOW,
@@ -32,10 +34,10 @@ export function initScene9() {
     }
   });
 
-  // Create achievement cards from timeline data
+  // Create stressor cards from timeline data
   createFloatingCards(cardsContainer, {
-    cardType: 'achievement',
-    filterFn: e => e.type !== 'stressor' && e.title,
+    cardType: 'stressor',
+    filterFn: e => e.type === 'stressor',
     maxCards: 32
   });
 
@@ -47,18 +49,19 @@ export function initScene9() {
     scrollTrigger: {
       trigger: scene,
       start: TRIGGER_POSITIONS.ENTER_LOW,
-      end: TRIGGER_POSITIONS.EXIT_HIGH,
+      endTrigger: scene9,
+      end: 'top 50%',
       scrub: SCRUB_SPEEDS.SMOOTH,
     }
   });
 
-  // Stay hidden until scene 8 fades out, then fade in, stay visible, fade out
+  // Stay hidden until scene 7 fades out, then fade in, stay visible, fade out
   textTimeline
     .to(content, { opacity: 0, duration: 3 })
     .fromTo(content, { opacity: 0 }, { opacity: 1, duration: 1 })
     .to(content, { opacity: 1, duration: 5 })
     .to(content, { opacity: 0, duration: 1 });
 
-  // Animate achievement cards
+  // Animate stressor cards in/out based on scroll
   animateFloatingCards(scene, cardsContainer);
 }

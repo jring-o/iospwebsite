@@ -3,11 +3,13 @@
  * Beautiful rotating dots with natural scroll progression (no pinning)
  */
 
-import { PROTOCOLS, PROTOCOL_COLORS, INTRO_CONFIG } from '../config/constants.js';
+import { PROTOCOLS, PROTOCOL_COLORS } from '../config/constants.js';
 import { TRIGGER_POSITIONS, SCRUB_SPEEDS } from '../config/scroll-config.js';
 import { timelineState } from '../state/timeline-state.js';
 import { sampleProportionally } from '../utils/math-utils.js';
 import { centerFixedContent } from './helpers/scene-content.js';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Animation state
 let introDots = [];

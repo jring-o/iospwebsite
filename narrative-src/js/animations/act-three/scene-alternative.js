@@ -4,14 +4,13 @@
  * Crossfade to alternative timeline, move convergence dots to timeline markers
  */
 
-import { PROTOCOLS, PROTOCOL_COLORS } from '../../config/constants.js';
 import { TRIGGER_POSITIONS, SCRUB_SPEEDS } from '../../config/scroll-config.js';
 import { timelineState } from '../../state/timeline-state.js';
 import { sceneManager } from '../../utils/scene-manager.js';
 import { ALT_TIMELINE_CONFIG } from '../../config/timeline-configs.js';
-import { generateTimeline } from '../../renderers/unified-timeline-renderer.js';
-import { generateAltEvents } from '../../renderers/alt-events-renderer.js';
 import { initAltScrollAnimations } from '../alt-scroll-animations.js';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 /**
  * Cleanup Scene 14

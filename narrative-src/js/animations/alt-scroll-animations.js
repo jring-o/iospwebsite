@@ -4,9 +4,7 @@
  * Uses core animation functions - NO CODE DUPLICATION
  */
 
-import { PROTOCOL_COLORS, ANIMATION_DURATIONS } from '../config/constants.js';
-import { TRIGGER_POSITIONS, SCRUB_SPEEDS } from '../config/scroll-config.js';
-import { sceneManager } from '../utils/scene-manager.js';
+import { SCRUB_SPEEDS } from '../config/scroll-config.js';
 import { ALT_TIMELINE_CONFIG } from '../config/timeline-configs.js';
 import { alternativeEventsData } from '../data/alternative-events.js';
 import {
@@ -15,6 +13,8 @@ import {
   animateEventDotsFalling as coreAnimateEventDotsFalling,
   animateEventDotsRising as coreAnimateEventDotsRising
 } from './core-scroll-animations.js';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 /**
  * Morph alternative era card to line

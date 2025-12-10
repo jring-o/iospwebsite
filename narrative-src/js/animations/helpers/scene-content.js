@@ -3,6 +3,8 @@
  * Shared logic for positioning and animating scene content
  */
 
+import { gsap } from "gsap";
+
 /**
  * Center content fixed on screen (used by multiple Act III scenes)
  * @param {HTMLElement} content - The content element to center

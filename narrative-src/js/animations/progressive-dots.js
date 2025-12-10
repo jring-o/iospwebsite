@@ -4,9 +4,6 @@
  * Simplified for natural scrollytelling
  */
 
-import { timelineState } from '../state/timeline-state.js';
-import { sceneManager } from '../utils/scene-manager.js';
-
 /**
  * Create additional convergence dots
  * Currently disabled in refactored version

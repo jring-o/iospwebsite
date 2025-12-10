@@ -22,9 +22,13 @@ import { navigationButtons } from './components/navigation-buttons.js';
 import { tutorialOverlay } from './components/tutorial-overlay.js';
 import { progressTracker } from './components/progress-tracker.js';
 import { MAIN_TIMELINE_CONFIG, ALT_TIMELINE_CONFIG } from './config/timeline-configs.js';
+import '../timeline.css'; 
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Debug mode flag - set to false for production
 const DEBUG = false;
+gsap.registerPlugin(ScrollTrigger);
 
 function log(...args) {
   if (DEBUG) console.log(...args);

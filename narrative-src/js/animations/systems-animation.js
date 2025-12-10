@@ -3,10 +3,12 @@
  * Rotating circle of dots with text fading in center
  */
 
-import { PROTOCOLS, PROTOCOL_COLORS } from '../config/constants.js';
-import { TRIGGER_POSITIONS, SCRUB_SPEEDS, STAGGER } from '../config/scroll-config.js';
+import { PROTOCOL_COLORS } from '../config/constants.js';
+import { TRIGGER_POSITIONS, SCRUB_SPEEDS } from '../config/scroll-config.js';
 import { timelineState } from '../state/timeline-state.js';
 import { sampleProportionally } from '../utils/math-utils.js';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Animation state
 let systemsDots = [];

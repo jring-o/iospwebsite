@@ -6,6 +6,8 @@
 
 import { PROTOCOL_COLORS } from '../config/constants.js';
 import { alternativeEventsData } from '../data/alternative-events.js';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 /**
  * Inject closing narrative scenes AFTER the alternative timeline wrapper

@@ -16,8 +16,6 @@
  * This file provides backup/supplementary initialization if needed
  */
 
-import { TRIGGER_POSITIONS, SCRUB_SPEEDS } from '../../config/scroll-config.js';
-
 /**
  * Initialize all closing scenes
  * Most animations are handled by alt-events-renderer.js when scenes are injected

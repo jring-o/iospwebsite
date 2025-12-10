@@ -4,7 +4,7 @@
  * Uses configuration objects to eliminate code duplication
  */
 
-import { PROTOCOLS, PROTOCOL_COLORS, TIMELINE_CONFIG } from '../config/constants.js';
+import { PROTOCOLS, TIMELINE_CONFIG } from '../config/constants.js';
 import { timelineState } from '../state/timeline-state.js';
 import { createSVGElement } from '../utils/dom-utils.js';
 

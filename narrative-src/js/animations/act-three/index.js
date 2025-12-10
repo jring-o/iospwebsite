@@ -12,7 +12,7 @@ export { initScene14 } from './scene-alternative.js';
 /**
  * Initialize all Act III scenes
  */
-export function initActThree() {
+export async function initActThree() {
   const { initScene7 } = await import('./scene-stress.js');
   const { initScene8 } = await import('./scene-breaking.js');
   const { initScene9 } = await import('./scene-achievements.js');

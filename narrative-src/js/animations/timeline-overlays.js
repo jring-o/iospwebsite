@@ -4,8 +4,6 @@
  * Simplified for natural scrollytelling
  */
 
-import { TRIGGER_POSITIONS, SCRUB_SPEEDS } from '../config/scroll-config.js';
-
 /**
  * Initialize timeline overlay animations
  * These are the fixed-position texts that appear over the timeline

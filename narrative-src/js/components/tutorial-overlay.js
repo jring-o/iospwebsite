@@ -4,7 +4,6 @@
  */
 
 import { sceneNavigation } from '../utils/scene-navigation.js';
-import { timelineState } from '../state/timeline-state.js';
 
 class TutorialOverlay {
   constructor() {
