@@ -1,32 +1,13 @@
 /**
- * Scene 7: The Stress - Natural Scrollytelling Version
- * Stressor dots pulse when scene is centered
+ * Scene 7: The Achievements - Natural Scrollytelling Version
+ * Shows achievement cards floating behind the text
  */
 
 import { TRIGGER_POSITIONS, SCRUB_SPEEDS } from '../../config/scroll-config.js';
+import { createFloatingCards, animateFloatingCards } from '../helpers/floating-cards.js';
 import { centerFixedContent } from '../helpers/scene-content.js';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-/**
- * Toggle stress mode effects on timeline elements
- * @param {boolean} enable - Whether to enable or disable stress mode
- */
-function toggleStressEffects(enable) {
-  const timeline = document.querySelector('.timeline-fixed');
-  const stressorDots = document.querySelectorAll('.event-dot.stressor-dot');
-  const regularDots = document.querySelectorAll('.event-dot:not(.stressor-dot)');
-
-  if (enable) {
-    timeline?.classList.add('stress-mode');
-    stressorDots.forEach(dot => dot.classList.add('pulsing', 'playing'));
-    regularDots.forEach(dot => dot.classList.add('shrunk'));
-  } else {
-    timeline?.classList.remove('stress-mode');
-    stressorDots.forEach(dot => dot.classList.remove('pulsing', 'playing'));
-    regularDots.forEach(dot => dot.classList.remove('shrunk'));
-  }
-}
 
 /**
  * Initialize Scene 7 animations
@@ -34,16 +15,17 @@ function toggleStressEffects(enable) {
 export function initScene7() {
   const scene = document.querySelector('.scene-stress');
   if (!scene) {
-    console.warn('Scene 7 (stress) not found');
+    console.warn('Scene 7 (achievements) not found');
     return;
   }
 
   const content = scene.querySelector('.moment-content');
+  const cardsContainer = scene.querySelector('#achievement-cards');
   const actThreeBg = document.getElementById('act-three-bg');
 
-  // Fade fixed background to light red
+  // Fade fixed background to light green (positive/achievements)
   gsap.to(actThreeBg, {
-    backgroundColor: 'rgba(254, 242, 242, 0.3)',
+    backgroundColor: 'rgba(240, 253, 244, 0.4)',
     scrollTrigger: {
       trigger: scene,
       start: TRIGGER_POSITIONS.ENTER_LOW,
@@ -51,6 +33,15 @@ export function initScene7() {
       scrub: SCRUB_SPEEDS.SMOOTH,
     }
   });
+
+  // Create achievement cards from timeline data
+  if (cardsContainer) {
+    createFloatingCards(cardsContainer, {
+      cardType: 'achievement',
+      filterFn: e => e.type !== 'stressor' && e.title,
+      maxCards: 32
+    });
+  }
 
   // Position content centered on screen
   centerFixedContent(content);
@@ -75,14 +66,10 @@ export function initScene7() {
     .to(content, { opacity: 1, duration: 8 })
     .to(content, { opacity: 0, duration: 1 });
 
-  // Timeline pulse effect
-  ScrollTrigger.create({
-    trigger: scene,
-    start: TRIGGER_POSITIONS.ENTER_HIGH,
-    end: TRIGGER_POSITIONS.EXIT_MID,
-    onEnter: () => toggleStressEffects(true),
-    onLeave: () => toggleStressEffects(false),
-    onEnterBack: () => toggleStressEffects(true),
-    onLeaveBack: () => toggleStressEffects(false)
-  });
+  // Animate floating cards
+  if (cardsContainer) {
+    animateFloatingCards(cardsContainer, scene, {
+      cardType: 'achievement'
+    });
+  }
 }

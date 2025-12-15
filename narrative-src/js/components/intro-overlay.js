@@ -10,16 +10,10 @@ class IntroOverlay {
   }
 
   /**
-   * Initialize the intro overlay - show immediately if not seen before
+   * Initialize the intro overlay - show every time on page load
    */
   init() {
-    // Check if intro was already seen
-    if (this.hasSeenIntro()) {
-      console.log('Intro already seen, skipping');
-      return;
-    }
-
-    // Show immediately on page load
+    // Always show on page load
     this.show();
     console.log('Intro overlay initialized');
   }
@@ -80,19 +74,33 @@ class IntroOverlay {
         <div class="intro-overlay-body">
           <p class="intro-overlay-narrative">
             The scientific system we inherited wasn't designed&mdash;it emerged. Over centuries,
-            through technological shifts and institutional accidents, a configuration took shape
+            through technological shifts and historical accidents, a configuration took shape
             that now strains under the weight of a world it wasn't built for.
           </p>
 
           <p class="intro-overlay-narrative intro-overlay-cta-text">
             This is the story of how we got here, and why the future demands something different.
           </p>
+
+          <div class="intro-overlay-instructions">
+            <p class="intro-overlay-instruction-text">
+              Scroll to experience the narrative, or use the <strong>navigator</strong> in the top right to move between scenes.
+            </p>
+
+            <div class="tutorial-nav-preview">
+              <span class="tutorial-nav-btn">‹</span>
+              <span class="tutorial-nav-btn tutorial-nav-btn-highlight">›</span>
+            </div>
+          </div>
         </div>
 
         <div class="intro-overlay-footer">
           <button class="intro-overlay-begin-btn" id="intro-overlay-begin">
             Begin
           </button>
+          <a href="https://github.com/jring-o/iospwebsite" target="_blank" rel="noopener noreferrer" class="intro-overlay-contribute">
+            Contribute to the story →
+          </a>
         </div>
       </div>
     `;

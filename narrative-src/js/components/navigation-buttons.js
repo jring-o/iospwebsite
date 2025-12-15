@@ -391,10 +391,17 @@ class NavigationButtons {
     // This handles edge cases where scroll position check might miss the first alt event
     const isAltTimelineScene = currentScene && currentScene.type === 'alternative-event';
 
+    // Check if current scene is a main timeline event (era card, simple event, or stressor)
+    const isMainTimelineScene = currentScene && (
+      currentScene.type === 'era' ||
+      currentScene.type === 'simple' ||
+      currentScene.type === 'stressor'
+    );
+
     // Always show event nav row (for prev/next buttons)
     if (eventNavRow) eventNavRow.style.display = 'flex';
 
-    if ((isInTimeline || isAltTimelineScene) && !nextIsActThree && !isPluralSystemsEra && !isClosingScene) {
+    if ((isInTimeline || isAltTimelineScene || isMainTimelineScene) && !nextIsActThree && !isPluralSystemsEra && !isClosingScene) {
       // In timeline: show era navigation, "Last Event" button, and help button, show "Event:" label
       if (cardNavRow) cardNavRow.style.display = 'flex';
       if (eventNavLabel) eventNavLabel.style.display = '';

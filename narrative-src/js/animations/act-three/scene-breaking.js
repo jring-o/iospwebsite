@@ -1,10 +1,9 @@
 /**
- * Scene 8: The Breaking - Natural Scrollytelling Version
- * Pre-rendered stressor cards animate in/out based on scroll
+ * Scene 8: The Context - Natural Scrollytelling Version
+ * Transitional scene: "emerged from a different world"
  */
 
 import { TRIGGER_POSITIONS, SCRUB_SPEEDS } from '../../config/scroll-config.js';
-import { createFloatingCards, animateFloatingCards } from '../helpers/floating-cards.js';
 import { centerFixedContent } from '../helpers/scene-content.js';
 import { gsap } from "gsap";
 
@@ -14,32 +13,12 @@ import { gsap } from "gsap";
 export function initScene8() {
   const scene = document.querySelector('.scene-breaking');
   if (!scene) {
-    console.warn('Scene 8 (breaking) not found');
+    console.warn('Scene 8 (context) not found');
     return;
   }
 
   const content = scene.querySelector('.moment-content');
-  const cardsContainer = scene.querySelector('#stressor-cards');
   const scene9 = document.querySelector('.scene-achievements');
-  const actThreeBg = document.getElementById('act-three-bg');
-
-  // Fade fixed background to darker red
-  gsap.to(actThreeBg, {
-    backgroundColor: 'rgba(254, 242, 242, 0.5)',
-    scrollTrigger: {
-      trigger: scene,
-      start: TRIGGER_POSITIONS.ENTER_LOW,
-      end: TRIGGER_POSITIONS.CENTER,
-      scrub: SCRUB_SPEEDS.SMOOTH,
-    }
-  });
-
-  // Create stressor cards from timeline data
-  createFloatingCards(cardsContainer, {
-    cardType: 'stressor',
-    filterFn: e => e.type === 'stressor',
-    maxCards: 32
-  });
 
   // Position content centered on screen
   centerFixedContent(content);
@@ -61,7 +40,4 @@ export function initScene8() {
     .fromTo(content, { opacity: 0 }, { opacity: 1, duration: 1 })
     .to(content, { opacity: 1, duration: 5 })
     .to(content, { opacity: 0, duration: 1 });
-
-  // Animate stressor cards in/out based on scroll
-  animateFloatingCards(scene, cardsContainer);
 }

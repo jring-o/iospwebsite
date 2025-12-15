@@ -128,6 +128,10 @@ function injectClosingScenesAfterAltTimeline() {
   scene23.innerHTML = `
     <div class="moment-content">
       <h1>The Institute of Open Science Practices</h1>
+      <p class="final-scene-subtitle">Part II coming with your help</p>
+      <a href="https://github.com/jring-o/iospwebsite" target="_blank" rel="noopener noreferrer" class="final-scene-cta">
+        Contribute to the story →
+      </a>
     </div>
   `;
   scene22.insertAdjacentElement('afterend', scene23);
