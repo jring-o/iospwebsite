@@ -3343,6 +3343,20 @@
     },
     {
       "year": 2013,
+      "title": "Gridcoin Cryptocurrency",
+      "affects": [
+        "Coordination",
+        "Inference"
+      ],
+      "description": "Gridcoin launches (October 16) as the first successful implementation tying electrical energy utilized for scientific computation to monetary value. Participants earn currency by contributing processing power to BOINC distributed science projects including protein folding, climate modeling, and astronomical data analysis.",
+      "protocolEffects": {
+        "Coordination": "Novel incentive mechanism aligned computational resources with scientific contribution—created economic infrastructure where energy expenditure directly advanced research through verifiable proof-of-research.",
+        "Inference": "Distributed computing gained sustainable funding model—researchers could access global volunteer processing power for computationally intensive analysis through aligned economic incentives."
+      },
+      "reference": "https://en.wikipedia.org/wiki/Gridcoin"
+    },
+    {
+      "year": 2013,
       "title": "Clinical Trials Unreported Crisis",
       "type": "stressor",
       "affects": [

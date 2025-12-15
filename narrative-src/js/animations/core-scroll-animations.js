@@ -4,6 +4,7 @@
  * Makes code DRY and eliminates duplication
  */
 
+import { gsap } from "gsap";
 import { PROTOCOL_COLORS, ANIMATION_DURATIONS } from '../config/constants.js';
 import { sceneManager } from '../utils/scene-manager.js';
 import { createSVGElement } from '../utils/dom-utils.js';

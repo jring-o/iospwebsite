@@ -3,6 +3,8 @@
  * Coordinates scene lifecycle, cleanup, and transitions
  */
 
+import { gsap } from "gsap";
+
 class SceneManager {
   constructor() {
     this.scenes = new Map();

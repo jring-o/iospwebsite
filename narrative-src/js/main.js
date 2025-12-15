@@ -20,6 +20,7 @@ import { initClosingScenes } from './animations/act-three/scene-closing.js';
 import { scrollIndicator } from './components/scroll-indicator.js';
 import { navigationButtons } from './components/navigation-buttons.js';
 import { tutorialOverlay } from './components/tutorial-overlay.js';
+import { introOverlay } from './components/intro-overlay.js';
 import { progressTracker } from './components/progress-tracker.js';
 import { MAIN_TIMELINE_CONFIG, ALT_TIMELINE_CONFIG } from './config/timeline-configs.js';
 import '../timeline.css'; 
@@ -65,6 +66,9 @@ async function init() {
   }
 
   try {
+    // Show intro overlay first (if not seen before)
+    introOverlay.init();
+
     // Load data
     await loadTimelineData();
 
@@ -205,6 +209,9 @@ window.resetTimeline = function() {
   }
   if (tutorialOverlay) {
     tutorialOverlay.destroy();
+  }
+  if (introOverlay) {
+    introOverlay.destroy();
   }
   if (progressTracker) {
     progressTracker.destroy();
