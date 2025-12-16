@@ -408,7 +408,7 @@ export default function HomePage() {
               <div className="md:col-span-3 border-l-2 border-iosp-teal/30 pl-8">
                 <div className="mb-6">
                   <p className="text-2xl font-heading font-semibold text-charcoal mb-4 leading-relaxed">
-                    An Event. A Community. A Unifying Institute.
+                    An Event. A Community. A Coordinating Institute.
                   </p>
                   <p className="text-xl text-charcoal leading-relaxed">
                     IOSP facilitates the advancement of critical technologies and infrastructures that enable
@@ -720,9 +720,12 @@ export default function HomePage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Storage & Preservation - MERGED */}
               <div className="bg-gradient-to-br from-iosp-cyan/5 to-transparent rounded-xl p-6 border-2 border-iosp-cyan/20 relative hover:border-iosp-cyan/40 hover:shadow-lg transition-all">
-                <div className="absolute top-3 right-3">
-                  <span className="text-[10px] font-semibold text-iosp-cyan bg-iosp-cyan/20 px-2 py-1 rounded-full border border-iosp-cyan/40">
+                <div className="absolute top-3 right-3 flex flex-col gap-1 items-end">
+                  <span className="text-[10px] font-bold text-iosp-cyan uppercase tracking-wide">
                     IOSP 2026 Focus
+                  </span>
+                  <span className="text-[10px] font-bold text-slate uppercase tracking-wide">
+                    IOSP 2025
                   </span>
                 </div>
                 <h4 className="font-heading text-xl font-semibold text-iosp-cyan mb-3 pr-24">Storage & Preservation</h4>
@@ -734,7 +737,7 @@ export default function HomePage() {
               {/* Compute & Execution */}
               <div className="bg-white rounded-xl p-6 border border-slate/10 hover:border-iosp-blue/30 hover:shadow-lg transition-all relative">
                 <div className="absolute top-3 right-3">
-                  <span className="text-[10px] font-semibold text-slate bg-slate/10 px-2 py-1 rounded-full border border-slate/20">
+                  <span className="text-[10px] font-bold text-slate uppercase tracking-wide">
                     IOSP 2025
                   </span>
                 </div>
@@ -746,8 +749,11 @@ export default function HomePage() {
 
               {/* Validation & Trust */}
               <div className="bg-white rounded-xl p-6 border border-slate/10 hover:border-iosp-teal/30 hover:shadow-lg transition-all relative">
-                <div className="absolute top-3 right-3">
-                  <span className="text-[10px] font-semibold text-slate bg-slate/10 px-2 py-1 rounded-full border border-slate/20">
+                <div className="absolute top-3 right-3 flex flex-col gap-1 items-end">
+                  <span className="text-[10px] font-bold text-iosp-cyan uppercase tracking-wide">
+                    IOSP 2026 Focus
+                  </span>
+                  <span className="text-[10px] font-bold text-slate uppercase tracking-wide">
                     IOSP 2025
                   </span>
                 </div>
@@ -760,7 +766,7 @@ export default function HomePage() {
               {/* Knowledge Graphs & Semantics - RENAMED from Modular Research */}
               <div className="bg-gradient-to-br from-iosp-purple/5 to-transparent rounded-xl p-6 border-2 border-iosp-purple/20 relative hover:border-iosp-purple/40 hover:shadow-lg transition-all">
                 <div className="absolute top-3 right-3">
-                  <span className="text-[10px] font-semibold text-iosp-cyan bg-iosp-cyan/20 px-2 py-1 rounded-full border border-iosp-cyan/40">
+                  <span className="text-[10px] font-bold text-iosp-cyan uppercase tracking-wide">
                     IOSP 2026 Focus
                   </span>
                 </div>
@@ -773,7 +779,7 @@ export default function HomePage() {
               {/* Discovery & Communication - MERGED */}
               <div className="bg-white rounded-xl p-6 border border-slate/10 hover:border-iosp-purple/30 hover:shadow-lg transition-all relative">
                 <div className="absolute top-3 right-3">
-                  <span className="text-[10px] font-semibold text-slate bg-slate/10 px-2 py-1 rounded-full border border-slate/20">
+                  <span className="text-[10px] font-bold text-slate uppercase tracking-wide">
                     IOSP 2025
                   </span>
                 </div>
@@ -786,7 +792,7 @@ export default function HomePage() {
               {/* Attribution & Credit */}
               <div className="bg-gradient-to-br from-iosp-coral/5 to-transparent rounded-xl p-6 border-2 border-iosp-coral/20 relative hover:border-iosp-coral/40 hover:shadow-lg transition-all">
                 <div className="absolute top-3 right-3">
-                  <span className="text-[10px] font-semibold text-iosp-cyan bg-iosp-cyan/20 px-2 py-1 rounded-full border border-iosp-cyan/40">
+                  <span className="text-[10px] font-bold text-iosp-cyan uppercase tracking-wide">
                     IOSP 2026 Focus
                   </span>
                 </div>
@@ -799,8 +805,8 @@ export default function HomePage() {
               {/* Identity & Authentication */}
               <div className="bg-gradient-to-br from-iosp-teal/5 to-transparent rounded-xl p-6 border-2 border-iosp-teal/20 relative hover:border-iosp-teal/40 hover:shadow-lg transition-all">
                 <div className="absolute top-3 right-3">
-                  <span className="text-[10px] font-semibold text-iosp-cyan bg-iosp-cyan/20 px-2 py-1 rounded-full border border-iosp-cyan/40">
-                    IOSP 2026 Focus
+                  <span className="text-[10px] font-bold text-slate uppercase tracking-wide">
+                    IOSP 2025
                   </span>
                 </div>
                 <h4 className="font-heading text-xl font-semibold text-iosp-teal mb-3 pr-24">Identity & Authentication</h4>
@@ -812,7 +818,7 @@ export default function HomePage() {
               {/* Funding Innovation */}
               <div className="bg-gradient-to-br from-iosp-blue/5 to-transparent rounded-xl p-6 border-2 border-iosp-blue/20 relative hover:border-iosp-blue/40 hover:shadow-lg transition-all">
                 <div className="absolute top-3 right-3">
-                  <span className="text-[10px] font-semibold text-iosp-cyan bg-iosp-cyan/20 px-2 py-1 rounded-full border border-iosp-cyan/40">
+                  <span className="text-[10px] font-bold text-iosp-cyan uppercase tracking-wide">
                     IOSP 2026 Focus
                   </span>
                 </div>
@@ -825,7 +831,7 @@ export default function HomePage() {
               {/* Collaboration Infrastructure */}
               <div className="bg-white rounded-xl p-6 border border-slate/10 hover:border-iosp-purple/30 hover:shadow-lg transition-all relative">
                 <div className="absolute top-3 right-3">
-                  <span className="text-[10px] font-semibold text-slate bg-slate/10 px-2 py-1 rounded-full border border-slate/20">
+                  <span className="text-[10px] font-bold text-slate uppercase tracking-wide">
                     IOSP 2025
                   </span>
                 </div>
