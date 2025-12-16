@@ -5,11 +5,12 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Calendar, ArrowRight, Target, Eye, Network, Sparkles, ChevronDown, ChevronLeft, ChevronRight, Zap, Users, BookOpen } from 'lucide-react'
+import { Calendar, ArrowRight, Target, Eye, Network, Sparkles, ChevronDown, ChevronLeft, ChevronRight, Zap, Users, BookOpen, X } from 'lucide-react'
 import { CycleLogo } from '@/components/cycle-logo'
 
 export default function HomePage() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
+  const [showSupportModal, setShowSupportModal] = useState(false)
   const timelineRef = useRef<HTMLDivElement>(null)
 
   // GSAP ScrollTrigger setup
@@ -947,11 +948,13 @@ export default function HomePage() {
                     <p className="text-sm text-white/80 mb-6 leading-relaxed flex-grow">
                       Funders—support travel grants and research honorariums to enable global participation—speakers, workshop leads, researchers, and attendees building the infrastructure.
                     </p>
-                    <Link href="/coming-soon" className="mt-auto">
-                      <Button size="lg" className="bg-white text-iosp-blue hover:bg-gray-100 font-semibold">
-                        Support IOSP
-                      </Button>
-                    </Link>
+                    <Button
+                      size="lg"
+                      className="bg-white text-iosp-blue hover:bg-gray-100 font-semibold mt-auto"
+                      onClick={() => setShowSupportModal(true)}
+                    >
+                      Support IOSP
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -959,7 +962,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      
+
       {/* IOSP 2025 - Past Event Success */}
       <section id="iosp-2025" className="py-20 md:py-28 bg-cloud">
         <div className="container px-4 mx-auto">
@@ -1535,6 +1538,37 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
+
+      {/* Support IOSP Modal */}
+      {showSupportModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={() => setShowSupportModal(false)}
+          />
+          <div className="relative bg-white rounded-2xl p-8 max-w-md mx-4 shadow-2xl">
+            <button
+              onClick={() => setShowSupportModal(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
+            >
+              <X className="h-6 w-6" />
+            </button>
+            <h3 className="font-heading text-2xl font-bold text-iosp-blue mb-4">
+              Support IOSP
+            </h3>
+            <p className="text-slate leading-relaxed">
+              Please email{' '}
+              <a
+                href="mailto:contact@scios.tech"
+                className="text-iosp-blue hover:underline font-semibold"
+              >
+                contact@scios.tech
+              </a>{' '}
+              to support rapid advancement and productionalization of open science infrastructure.
+            </p>
+          </div>
+        </div>
+      )}
 
     </div>
   )
