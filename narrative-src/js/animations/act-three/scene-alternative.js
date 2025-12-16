@@ -9,6 +9,7 @@ import { timelineState } from '../../state/timeline-state.js';
 import { sceneManager } from '../../utils/scene-manager.js';
 import { ALT_TIMELINE_CONFIG } from '../../config/timeline-configs.js';
 import { initAltScrollAnimations } from '../alt-scroll-animations.js';
+import { altTimelineOverlay } from '../../components/alt-timeline-overlay.js';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -55,6 +56,18 @@ export function initScene14() {
       console.log('🎬 Scene 14: Exit to', direction);
     },
     cleanup: cleanupSceneAlternative
+  });
+
+  // Show overlay when entering scene
+  ScrollTrigger.create({
+    trigger: scene,
+    start: 'top 80%',
+    onEnter: () => {
+      console.log('🎭 ScrollTrigger: Showing alt timeline overlay');
+      setTimeout(() => {
+        altTimelineOverlay.show();
+      }, 500);
+    }
   });
 
   // NO PINNING - Natural scroll crossfade

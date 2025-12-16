@@ -997,9 +997,14 @@ function generateAltEraCardHTML(eraData, eraName) {
     </div>
   ` : '';
 
+  // Goal card special treatment
+  const cardClass = eraData.isGoal ? 'alt-era-card goal-card' : 'alt-era-card';
+  const goalLabelHTML = eraData.isGoal ? `<div class="goal-label-text">Our Goal</div>` : '';
+
   return `
-    <div class="alt-era-card">
+    <div class="${cardClass}">
       <div class="era-header-section">
+        ${goalLabelHTML}
         <h2 class="event-title">${eraData.name}</h2>
         ${yearsHTML}
         ${taglineHTML}

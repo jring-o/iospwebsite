@@ -21,6 +21,7 @@ import { scrollIndicator } from './components/scroll-indicator.js';
 import { navigationButtons } from './components/navigation-buttons.js';
 import { tutorialOverlay } from './components/tutorial-overlay.js';
 import { introOverlay } from './components/intro-overlay.js';
+import { altTimelineOverlay } from './components/alt-timeline-overlay.js';
 import { progressTracker } from './components/progress-tracker.js';
 import { MAIN_TIMELINE_CONFIG, ALT_TIMELINE_CONFIG } from './config/timeline-configs.js';
 import '../timeline.css'; 
@@ -128,6 +129,7 @@ async function init() {
           navigationButtons.init();
           scrollIndicator.init();
           tutorialOverlay.init();
+          altTimelineOverlay.init();
           progressTracker.init();
           log('UI components initialized');
         }, 100);
@@ -212,6 +214,9 @@ window.resetTimeline = function() {
   }
   if (introOverlay) {
     introOverlay.destroy();
+  }
+  if (altTimelineOverlay) {
+    altTimelineOverlay.destroy();
   }
   if (progressTracker) {
     progressTracker.destroy();

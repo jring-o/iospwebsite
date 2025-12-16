@@ -4091,6 +4091,22 @@
         "Coordination": "Institutional commitment signals shift from journal prestige to research substance—researchers credited for outputs and contributions, not publication venue."
       },
       "reference": "https://www.asterainstitute.org/"
+    },
+    {
+      "year": 2025,
+      "title": "NSF Launches Tech Labs Initiative",
+      "affects": [
+        "Coordination",
+        "Engagement",
+        "Quality"
+      ],
+      "description": "National Science Foundation announces Tech Labs program—bold initiative to accelerate research translation through full-time teams with $10-50M/year funding. Milestone-based contracts support dedicated teams working outside traditional academic constraints, focused on 'outcomes beyond papers' and platform technologies with sector-wide impact.",
+      "protocolEffects": {
+        "Coordination": "Federal funding shifts from individual grants to sustained team support—multi-year contracts enable coordinated, interdisciplinary efforts previously impossible under standard mechanisms.",
+        "Engagement": "Explicit mandate for industry, nonprofit, and philanthropic partnerships—research teams structured for market adoption and technology transfer, not just publication.",
+        "Quality": "Success measured by technology readiness levels, startup ecosystems, and economic impact—concrete outcomes replace publication counts as primary evaluation metric."
+      },
+      "reference": "https://sam.gov/workspace/contract/opp/7332ade93217443ba8c9abb916904e03"
     }
   ]
 }

@@ -291,6 +291,7 @@ export const alternativeEventsData = [
     },
     startsEra: {
       name: 'Polyscientric Research System',
+      isGoal: true,
       years: '2035+',
       tagline: 'Unlimited Configurations Emerge on Shared Technical Substrate',
       overview: 'Unlimited new configurations of the scientific protocols emerge and are built with intentionality. Speed-optimized systems validate findings within hours. Tournament systems drive competitive replication. Citizen swarm systems coordinate millions of micro-contributors. AI-hybrid systems integrate human and machine reasoning. Commons systems make all outputs public goods from inception. Monastic systems pursue decade-scale deep investigation.',
@@ -305,7 +306,7 @@ export const alternativeEventsData = [
       name: 'The Digitalization Decade',
       years: '2025-2035',
       tagline: 'Building Digital-Native Infrastructure',
-      overview: 'The next decade is about building the shared technical substrate—the shared machine layer enabling multiple scientific systems to interoperate. The work ahead is vast: building the identifiers, schemas, provenance graphs, verification protocols, and execution standards that make interoperability possible. Some groups are already building pieces of this infrastructure across different contexts. Coordination of these efforts toward a unified vision is essential to completing the substrate. Once built, the substrate enables diverse systems to verify each other\'s claims, share provenance, and build on collective knowledge—even as each system configures the five protocols differently through distinct governance, incentives, and quality thresholds. This plurality creates antifragility: when one system stutters or fails, others carry the weight. As pressure increases on the whole, diversity emerges to meet it. Science becomes resilient through many systems, not one.',
+      overview: 'The next decade is about building the shared technical substrate—the shared machine layer enabling multiple scientific systems to interoperate. The work ahead is vast: building the identifiers, schemas, provenance graphs, verification protocols, and execution standards that make interoperability possible. Some groups are already building pieces of this infrastructure across different contexts. Coordination of these efforts toward a unified vision is essential to completing the substrate. Once built, the substrate enables diverse systems to verify each other\'s claims, share provenance, and build on collective knowledge—even as each system configures the five protocols differently through distinct governance, incentives, and quality thresholds. This plurality creates antifragility: when one system stutters or fails, others carry the weight. As pressure increases on the whole, variety emerges to meet it. Science becomes resilient through many systems, not one.',
       workAhead: {
         'Identifiers': 'Globally unique, resolvable PIDs for all artefacts, including data, code, models, claims, reviews, methods',
         'Schemas & Types': 'Canonical object models; content-addressed payloads; semantic registries',
