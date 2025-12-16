@@ -42,18 +42,18 @@ export const metadata: Metadata = {
     description: "Building the infrastructure for open science. Join the community advancing transparent, reproducible, and accessible scientific practice.",
     images: [
       {
-        url: "/iosp-logo.png",
-        width: 512,
-        height: 512,
+        url: "/og-image-main.png",
+        width: 1200,
+        height: 630,
         alt: "IOSP - Institute of Open Science Practices",
       },
     ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "IOSP - Institute of Open Science Practices",
     description: "Building the infrastructure for open science.",
-    images: ["/iosp-logo.png"],
+    images: ["/og-image-main.png"],
     creator: "@iosp",
   },
   robots: {
