@@ -305,7 +305,7 @@ function initScene22DigitalizationCard() {
 
   // Find Digitalization Decade data from alternative events
   const digitalizationEraData = alternativeEventsData.find(
-    event => event.startsEra && (event.startsEra.name === 'The Digitalization Decade' || event.startsEra.name === 'The Digitalization Era')
+    event => event.startsEra && (event.startsEra.name === 'The Decade of Digitalization' || event.startsEra.name === 'The Digitalization Era')
   );
 
   if (!digitalizationEraData) {
@@ -1059,7 +1059,7 @@ export function generateAltEvents() {
 
         // SPECIAL: Skip Digitalization Decade card entirely
         // (It will become Scene 18, injected after the alt timeline wrapper)
-        if (event.startsEra.name === 'The Digitalization Decade' || event.startsEra.name === 'The Digitalization Era') {
+        if (event.startsEra.name === 'The Decade of Digitalization' || event.startsEra.name === 'The Digitalization Era') {
           return;
         }
 

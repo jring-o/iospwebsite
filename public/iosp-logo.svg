@@ -1,0 +1,17 @@
+<svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+  <g transform="rotate(30 75 75)">
+    <!-- Circle centered at 75,75 with gap on right side -->
+    <path
+      d="M 120 100 A 55 55 0 1 1 120 50"
+      fill="none"
+      stroke="#083A52"
+      stroke-width="8"
+      stroke-linecap="round"
+    />
+    <!-- Arrow in the gap - pointing downward -->
+    <path
+      d="M 120 70 L 125 80 L 130 70 Z"
+      fill="#177973"
+    />
+  </g>
+</svg>

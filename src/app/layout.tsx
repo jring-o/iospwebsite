@@ -25,35 +25,35 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "IOSP - Institute of Open Science Practice",
+    default: "IOSP - Institute of Open Science Practices",
     template: "%s | IOSP",
   },
   description: "Building the infrastructure for open science. IOSP brings together researchers, technologists, and funders to advance transparent, reproducible, and accessible scientific practice.",
   keywords: ["open science", "research infrastructure", "scientific collaboration", "reproducibility", "transparency", "open access"],
   authors: [{ name: "IOSP" }],
-  creator: "Institute of Open Science Practice",
-  metadataBase: new URL("https://iosp.io"),
+  creator: "Institute of Open Science Practices",
+  metadataBase: new URL("https://iosp.science"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://iosp.io",
+    url: "https://iosp.science",
     siteName: "IOSP",
-    title: "IOSP - Institute of Open Science Practice",
+    title: "IOSP - Institute of Open Science Practices",
     description: "Building the infrastructure for open science. Join the community advancing transparent, reproducible, and accessible scientific practice.",
     images: [
       {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "IOSP - Building the Infrastructure for Open Science",
+        url: "/iosp-logo.png",
+        width: 512,
+        height: 512,
+        alt: "IOSP - Institute of Open Science Practices",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "IOSP - Institute of Open Science Practice",
+    card: "summary",
+    title: "IOSP - Institute of Open Science Practices",
     description: "Building the infrastructure for open science.",
-    images: ["/og-image.png"],
+    images: ["/iosp-logo.png"],
     creator: "@iosp",
   },
   robots: {

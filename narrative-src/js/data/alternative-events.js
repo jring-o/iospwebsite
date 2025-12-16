@@ -303,7 +303,7 @@ export const alternativeEventsData = [
     year: 2025,
     type: 'era',
     startsEra: {
-      name: 'The Digitalization Decade',
+      name: 'The Decade of Digitalization',
       years: '2025-2035',
       tagline: 'Building Digital-Native Infrastructure',
       overview: 'The next decade is about building the shared technical substrate—the shared machine layer enabling multiple scientific systems to interoperate. The work ahead is vast: building the identifiers, schemas, provenance graphs, verification protocols, and execution standards that make interoperability possible. Some groups are already building pieces of this infrastructure across different contexts. Coordination of these efforts toward a unified vision is essential to completing the substrate. Once built, the substrate enables diverse systems to verify each other\'s claims, share provenance, and build on collective knowledge—even as each system configures the five protocols differently through distinct governance, incentives, and quality thresholds. This plurality creates antifragility: when one system stutters or fails, others carry the weight. As pressure increases on the whole, variety emerges to meet it. Science becomes resilient through many systems, not one.',

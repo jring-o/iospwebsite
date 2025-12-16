@@ -11,6 +11,9 @@ import { CycleLogo } from '@/components/cycle-logo'
 export default function HomePage() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
   const [showSupportModal, setShowSupportModal] = useState(false)
+  const [showNewsletterModal, setShowNewsletterModal] = useState(false)
+  const [showGetFeaturedModal, setShowGetFeaturedModal] = useState(false)
+  const [showSubmitProposalModal, setShowSubmitProposalModal] = useState(false)
   const timelineRef = useRef<HTMLDivElement>(null)
 
   // GSAP ScrollTrigger setup
@@ -918,11 +921,13 @@ export default function HomePage() {
                     <p className="text-sm text-white/80 mb-6 leading-relaxed flex-grow">
                       Working groups, technologists, infrastructure providers, researchers, and labs—get in touch so we can showcase your progress and tools at IOSP 2026.
                     </p>
-                    <Link href="/coming-soon" className="mt-auto">
-                      <Button size="lg" className="bg-white text-iosp-blue hover:bg-gray-100 font-semibold">
-                        Get Featured
-                      </Button>
-                    </Link>
+                    <Button
+                      size="lg"
+                      className="bg-white text-iosp-blue hover:bg-gray-100 font-semibold mt-auto"
+                      onClick={() => setShowGetFeaturedModal(true)}
+                    >
+                      Get Featured
+                    </Button>
                   </div>
 
                   {/* Researchers CTA */}
@@ -933,11 +938,13 @@ export default function HomePage() {
                     <p className="text-sm text-white/80 mb-6 leading-relaxed flex-grow">
                       Researchers—submit any research that utilizes the infrastructure powering IOSP 2026. Honorariums available for accepted proposals.
                     </p>
-                    <Link href="/coming-soon" className="mt-auto">
-                      <Button size="lg" className="bg-white text-iosp-blue hover:bg-gray-100 font-semibold">
-                        Submit Proposal
-                      </Button>
-                    </Link>
+                    <Button
+                      size="lg"
+                      className="bg-white text-iosp-blue hover:bg-gray-100 font-semibold mt-auto"
+                      onClick={() => setShowSubmitProposalModal(true)}
+                    >
+                      Submit Proposal
+                    </Button>
                   </div>
 
                   {/* Funders CTA */}
@@ -1530,12 +1537,14 @@ export default function HomePage() {
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
             Be the first to know about IOSP 2026 updates, new resources, and community events
           </p>
-          <Link href="/coming-soon">
-            <Button size="lg" className="bg-white text-iosp-blue hover:bg-gray-100 font-semibold">
-              Join Newsletter
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
+          <Button
+            size="lg"
+            className="bg-white text-iosp-blue hover:bg-gray-100 font-semibold"
+            onClick={() => setShowNewsletterModal(true)}
+          >
+            Join Newsletter
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
         </div>
       </section>
 
@@ -1557,7 +1566,7 @@ export default function HomePage() {
               Support IOSP
             </h3>
             <p className="text-slate leading-relaxed">
-              Please email{' '}
+              We&apos;re working on building this. For now, please email{' '}
               <a
                 href="mailto:contact@scios.tech"
                 className="text-iosp-blue hover:underline font-semibold"
@@ -1565,6 +1574,99 @@ export default function HomePage() {
                 contact@scios.tech
               </a>{' '}
               to support rapid advancement and productionalization of open science infrastructure.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Newsletter Modal */}
+      {showNewsletterModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={() => setShowNewsletterModal(false)}
+          />
+          <div className="relative bg-white rounded-2xl p-8 max-w-md mx-4 shadow-2xl">
+            <button
+              onClick={() => setShowNewsletterModal(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
+            >
+              <X className="h-6 w-6" />
+            </button>
+            <h3 className="font-heading text-2xl font-bold text-iosp-blue mb-4">
+              Join Our Newsletter
+            </h3>
+            <p className="text-slate leading-relaxed">
+              We&apos;re working on building this. For now, please email{' '}
+              <a
+                href="mailto:contact@scios.tech"
+                className="text-iosp-blue hover:underline font-semibold"
+              >
+                contact@scios.tech
+              </a>{' '}
+              to subscribe to our newsletter and stay updated on IOSP 2026 news, resources, and community events.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Get Featured Modal */}
+      {showGetFeaturedModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={() => setShowGetFeaturedModal(false)}
+          />
+          <div className="relative bg-white rounded-2xl p-8 max-w-md mx-4 shadow-2xl">
+            <button
+              onClick={() => setShowGetFeaturedModal(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
+            >
+              <X className="h-6 w-6" />
+            </button>
+            <h3 className="font-heading text-2xl font-bold text-iosp-blue mb-4">
+              Get Featured
+            </h3>
+            <p className="text-slate leading-relaxed">
+              We&apos;re working on building this. For now, please email{' '}
+              <a
+                href="mailto:contact@scios.tech"
+                className="text-iosp-blue hover:underline font-semibold"
+              >
+                contact@scios.tech
+              </a>{' '}
+              to showcase your work at IOSP 2026. We welcome working groups, technologists, infrastructure providers, researchers, and labs.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Submit Proposal Modal */}
+      {showSubmitProposalModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={() => setShowSubmitProposalModal(false)}
+          />
+          <div className="relative bg-white rounded-2xl p-8 max-w-md mx-4 shadow-2xl">
+            <button
+              onClick={() => setShowSubmitProposalModal(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
+            >
+              <X className="h-6 w-6" />
+            </button>
+            <h3 className="font-heading text-2xl font-bold text-iosp-blue mb-4">
+              Submit Research Proposal
+            </h3>
+            <p className="text-slate leading-relaxed">
+              We&apos;re working on building this. For now, please email{' '}
+              <a
+                href="mailto:contact@scios.tech"
+                className="text-iosp-blue hover:underline font-semibold"
+              >
+                contact@scios.tech
+              </a>{' '}
+              to submit research that utilizes the infrastructure powering IOSP 2026. Honorariums are available for accepted proposals.
             </p>
           </div>
         </div>

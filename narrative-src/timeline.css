@@ -32,6 +32,44 @@ body {
   overflow-x: hidden;
 }
 
+/* ===== Return to Website Button ===== */
+.return-to-website-btn {
+  position: fixed;
+  top: 70px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.return-to-website-btn:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateX(-2px);
+}
+
+.return-to-website-btn svg {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.return-to-website-btn:hover svg {
+  transform: translateX(-3px);
+}
+
 /* ===== Intro Section Wrapper - spans all intro moments ===== */
 .intro-section-wrapper {
   position: relative;
@@ -2747,7 +2785,7 @@ body {
 /* ===== Scene Navigation Controls ===== */
 .scene-navigation-controls {
   position: fixed;
-  top: 2rem;
+  top: 70px;
   right: 2rem;
   z-index: 2000;
   opacity: 0;
@@ -3024,7 +3062,7 @@ body {
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .scene-navigation-controls {
-    top: 1rem;
+    top: 70px;
     right: 1rem;
   }
 

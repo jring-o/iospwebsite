@@ -1,0 +1,36 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#f8fafc"/>
+
+  <!-- Logo -->
+  <g transform="translate(500, 140) scale(1.5)">
+    <g transform="rotate(30 75 75)">
+      <path
+        d="M 120 100 A 55 55 0 1 1 120 50"
+        fill="none"
+        stroke="#083A52"
+        stroke-width="8"
+        stroke-linecap="round"
+      />
+      <path
+        d="M 120 70 L 125 80 L 130 70 Z"
+        fill="#177973"
+      />
+    </g>
+  </g>
+
+  <!-- Title -->
+  <text x="600" y="420" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="700" fill="#083A52">
+    A Theory of Change for Science
+  </text>
+
+  <!-- Subtitle -->
+  <text x="600" y="480" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#64748b">
+    Institute of Open Science Practices
+  </text>
+
+  <!-- Tagline -->
+  <text x="600" y="540" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#177973">
+    1,200 years of scientific evolution. A case for plurality.
+  </text>
+</svg>
