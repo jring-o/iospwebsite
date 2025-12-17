@@ -92,6 +92,10 @@ class IntroOverlay {
               <span class="tutorial-nav-btn tutorial-nav-btn-highlight">›</span>
             </div>
           </div>
+
+          <div class="intro-overlay-mobile-warning">
+            <p>This narrative is not intended for mobile devices and may not work properly on smaller screens.</p>
+          </div>
         </div>
 
         <div class="intro-overlay-footer">
