@@ -3,17 +3,13 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Calendar, ArrowRight, Target, Eye, Network, Sparkles, ChevronDown, ChevronLeft, ChevronRight, Zap, Users, BookOpen, X } from 'lucide-react'
+import { Card, CardContent } from '@/components/ui/card'
+import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { CycleLogo } from '@/components/cycle-logo'
 
 export default function HomePage() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
-  const [showSupportModal, setShowSupportModal] = useState(false)
   const [showNewsletterModal, setShowNewsletterModal] = useState(false)
-  const [showGetFeaturedModal, setShowGetFeaturedModal] = useState(false)
-  const [showSubmitProposalModal, setShowSubmitProposalModal] = useState(false)
   const timelineRef = useRef<HTMLDivElement>(null)
 
   // GSAP ScrollTrigger setup
@@ -292,26 +288,9 @@ export default function HomePage() {
               By coordinating collaborations, serving as first users, and sharing what we learn,
               we advance the technologies that enable open-by-default scientific practice.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            <div className="flex flex-col items-center gap-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
               <Button
-                size="lg"
-                className="bg-white text-iosp-blue hover:bg-gray-100 font-semibold hover:scale-105 transition-transform"
-                onClick={() => {
-                  const element = document.getElementById('iosp-2025');
-                  if (element) {
-                    const offset = 80;
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - offset;
-                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                  }
-                }}
-              >
-                IOSP 2025 - Recap
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
-                size="lg"
-                className="bg-white text-iosp-blue hover:bg-gray-100 font-semibold hover:scale-105 transition-transform"
+                className="bg-white text-iosp-blue hover:bg-gray-100 font-bold hover:scale-105 transition-transform h-14 px-10 text-lg rounded-md"
                 onClick={() => {
                   const element = document.getElementById('iosp-2026');
                   if (element) {
@@ -322,8 +301,25 @@ export default function HomePage() {
                   }
                 }}
               >
-                IOSP 2026 - Get Involved
+                IOSP 2026, October 12&ndash;15
                 <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button
+                size="sm"
+                variant="ghost"
+                className="text-white/90 hover:text-white hover:bg-white/10 font-medium"
+                onClick={() => {
+                  const element = document.getElementById('iosp-2025');
+                  if (element) {
+                    const offset = 80;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - offset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                  }
+                }}
+              >
+                IOSP 2025 Recap
+                <ArrowRight className="ml-1 h-4 w-4" />
               </Button>
             </div>
 
@@ -338,7 +334,7 @@ export default function HomePage() {
             <div
               className="block mt-6"
               onClick={() => {
-                const element = document.getElementById('iosp-2026-banner');
+                const element = document.getElementById('iosp-2026');
                 if (element) {
                   const offset = 80; // Height of navbar
                   const elementPosition = element.getBoundingClientRect().top;
@@ -359,37 +355,95 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* IOSP 2026 Announcement Banner */}
-      <div id="iosp-2026-banner" className="bg-gradient-to-r from-iosp-cyan to-iosp-teal py-6 border-y-4 border-iosp-coral">
-        <div className="container px-4 mx-auto">
-          <div className="max-w-5xl mx-auto text-center">
-            <p className="text-white font-bold text-xl mb-2">
-              IOSP 2026 coming Q3/Q4 2026
-            </p>
-            <p className="text-white/90 text-sm mb-4">
-              Storage & Preservation • Knowledge Graphs & Semantics • Attribution & Credit • Identity Systems • Funding Innovation
-            </p>
-            <button
-              onClick={() => {
-                const element = document.getElementById('iosp-2026');
-                if (element) {
-                  const offset = 80; // Height of navbar
-                  const elementPosition = element.getBoundingClientRect().top;
-                  const offsetPosition = elementPosition + window.pageYOffset - offset;
+      {/* IOSP 2026 - Announcement */}
+      <section id="iosp-2026" className="py-20 md:py-28 gradient-cyan text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white rounded-full blur-3xl animate-pulse"></div>
+        </div>
+        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle, white 2px, transparent 2px)', backgroundSize: '40px 40px' }}></div>
 
-                  window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                  });
-                }
-              }}
-              className="inline-flex items-center gap-2 text-white font-semibold hover:text-white/80 transition-colors cursor-pointer"
-            >
-              Learn More <ArrowRight className="h-4 w-4" />
-            </button>
+        <div className="container px-4 mx-auto relative z-10">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <div className="inline-block text-sm font-semibold text-white/80 tracking-widest uppercase mb-4">
+                IOSP 2026
+              </div>
+              <h2 className="font-heading text-5xl md:text-6xl font-bold mb-6 drop-shadow-lg">
+                Leiden &middot; October 12&ndash;15, 2026
+              </h2>
+              <p className="text-xl text-white/95 leading-relaxed max-w-3xl mx-auto">
+                We&apos;ll be at the Portgebouw, University of Leiden on October 12, 13, and 15.
+                On October 14, we field-trip to the National Open Science Festival in Delft, then reconvene for the final day.
+              </p>
+            </div>
+
+            {/* Production-driven framing */}
+            <div className="max-w-3xl mx-auto mb-12">
+              <div className="bg-white/5 border-l-4 border-white/60 rounded-r-lg px-6 py-5">
+                <p className="text-white/95 text-base md:text-lg leading-relaxed">
+                  IOSP is a curated, production-driven event &mdash; talks and panels are capped at{' '}
+                  <span className="font-bold text-white">25% of the time</span>.
+                  The rest is focused production work: bringing tool-builders and researchers together and actively building solutions across the four themes below.
+                </p>
+              </div>
+            </div>
+
+            {/* Four Themes */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-white/20 mb-12">
+              <h3 className="font-heading text-2xl font-bold text-white mb-6 text-center">Four Themes</h3>
+              <div className="grid md:grid-cols-2 gap-x-10 gap-y-6">
+                <div>
+                  <div className="font-heading font-semibold text-white mb-1">Modular Research Components</div>
+                  <p className="text-sm text-white/80 leading-relaxed">The tools and frameworks for composable research.</p>
+                </div>
+                <div>
+                  <div className="font-heading font-semibold text-white mb-1">Funding Open Science and Open Source</div>
+                  <p className="text-sm text-white/80 leading-relaxed">How money moves through the open ecosystem.</p>
+                </div>
+                <div>
+                  <div className="font-heading font-semibold text-white mb-1">Resilient Data and PID Infrastructure</div>
+                  <p className="text-sm text-white/80 leading-relaxed">How research data gets stored, found, and accessed &mdash; persistent identifiers, content addressing, and distributed preservation.</p>
+                </div>
+                <div>
+                  <div className="font-heading font-semibold text-white mb-1">Assessment, Evaluation, and Insights</div>
+                  <p className="text-sm text-white/80 leading-relaxed">How we measure, verify, and understand the impact of research and the infrastructure supporting it.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* CTAs */}
+            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="bg-white/5 rounded-xl p-6 border border-white/10 flex flex-col">
+                <h4 className="font-heading text-xl font-bold text-white mb-3">Building a Tool?</h4>
+                <p className="text-sm text-white/80 mb-6 leading-relaxed flex-grow">
+                  Working on tooling or infrastructure for one of the four themes? Submit it to the production showcase so we can stress-test and build on it in Leiden.
+                </p>
+                <Button asChild size="lg" className="bg-white text-iosp-blue hover:bg-gray-100 font-semibold mt-auto">
+                  <a href="mailto:contact@scios.tech?subject=IOSP%202026%20Showcase%20Submission">Submit to the Showcase</a>
+                </Button>
+              </div>
+              <div className="bg-white/5 rounded-xl p-6 border border-white/10 flex flex-col">
+                <h4 className="font-heading text-xl font-bold text-white mb-3">Help Organize</h4>
+                <p className="text-sm text-white/80 mb-6 leading-relaxed flex-grow">
+                  We&apos;re opening the organizing committee &mdash; programming, logistics, outreach. The first open organizing call is May 4.
+                </p>
+                <Button asChild size="lg" className="bg-white text-iosp-blue hover:bg-gray-100 font-semibold mt-auto">
+                  <a href="mailto:contact@scios.tech?subject=IOSP%202026%20Organizing">Get in Touch</a>
+                </Button>
+              </div>
+              <div className="bg-white/5 rounded-xl p-6 border border-white/10 flex flex-col">
+                <h4 className="font-heading text-xl font-bold text-white mb-3">Become a Sponsor</h4>
+                <p className="text-sm text-white/80 mb-6 leading-relaxed flex-grow">
+                  IOSP is free to attend. Sponsorship goes solely to travel grants so researchers and technologists can join us in Leiden.
+                </p>
+                <Button asChild size="lg" className="bg-white text-iosp-blue hover:bg-gray-100 font-semibold mt-auto">
+                  <a href="mailto:contact@scios.tech?subject=IOSP%202026%20Sponsorship">Sponsor IOSP</a>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Section 1: What is IOSP */}
       <section id="what-is-iosp" className="py-20 md:py-28 bg-white relative" style={{ overflowX: 'hidden', overflowY: 'visible' }}>
@@ -724,15 +778,12 @@ export default function HomePage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Storage & Preservation - MERGED */}
               <div className="bg-gradient-to-br from-iosp-cyan/5 to-transparent rounded-xl p-6 border-2 border-iosp-cyan/20 relative hover:border-iosp-cyan/40 hover:shadow-lg transition-all">
-                <div className="absolute top-3 right-3 flex flex-col gap-1 items-end">
-                  <span className="text-[10px] font-bold text-iosp-cyan uppercase tracking-wide">
-                    IOSP 2026 Focus
-                  </span>
+                <div className="absolute top-3 right-3">
                   <span className="text-[10px] font-bold text-slate uppercase tracking-wide">
                     IOSP 2025
                   </span>
                 </div>
-                <h4 className="font-heading text-xl font-semibold text-iosp-cyan mb-3 pr-24">Storage & Preservation</h4>
+                <h4 className="font-heading text-xl font-semibold text-iosp-cyan mb-3 pr-20">Storage & Preservation</h4>
                 <p className="text-slate text-sm leading-relaxed">
                   Persistent, FAIR-compliant storage with content addressing (CIDs) • distributed archives • automated metadata • long-term preservation protocols.
                 </p>
@@ -753,10 +804,7 @@ export default function HomePage() {
 
               {/* Validation & Trust */}
               <div className="bg-white rounded-xl p-6 border border-slate/10 hover:border-iosp-teal/30 hover:shadow-lg transition-all relative">
-                <div className="absolute top-3 right-3 flex flex-col gap-1 items-end">
-                  <span className="text-[10px] font-bold text-iosp-cyan uppercase tracking-wide">
-                    IOSP 2026 Focus
-                  </span>
+                <div className="absolute top-3 right-3">
                   <span className="text-[10px] font-bold text-slate uppercase tracking-wide">
                     IOSP 2025
                   </span>
@@ -769,12 +817,7 @@ export default function HomePage() {
 
               {/* Knowledge Graphs & Semantics - RENAMED from Modular Research */}
               <div className="bg-gradient-to-br from-iosp-purple/5 to-transparent rounded-xl p-6 border-2 border-iosp-purple/20 relative hover:border-iosp-purple/40 hover:shadow-lg transition-all">
-                <div className="absolute top-3 right-3">
-                  <span className="text-[10px] font-bold text-iosp-cyan uppercase tracking-wide">
-                    IOSP 2026 Focus
-                  </span>
-                </div>
-                <h4 className="font-heading text-xl font-semibold text-iosp-purple mb-3 pr-24">Knowledge Graphs & Semantics</h4>
+                <h4 className="font-heading text-xl font-semibold text-iosp-purple mb-3">Knowledge Graphs & Semantics</h4>
                 <p className="text-slate text-sm leading-relaxed">
                   Semantic registries • knowledge graphs • composable research objects • cross-platform data schemas.
                 </p>
@@ -795,12 +838,7 @@ export default function HomePage() {
 
               {/* Attribution & Credit */}
               <div className="bg-gradient-to-br from-iosp-coral/5 to-transparent rounded-xl p-6 border-2 border-iosp-coral/20 relative hover:border-iosp-coral/40 hover:shadow-lg transition-all">
-                <div className="absolute top-3 right-3">
-                  <span className="text-[10px] font-bold text-iosp-cyan uppercase tracking-wide">
-                    IOSP 2026 Focus
-                  </span>
-                </div>
-                <h4 className="font-heading text-xl font-semibold text-iosp-coral mb-3 pr-24">Attribution & Credit</h4>
+                <h4 className="font-heading text-xl font-semibold text-iosp-coral mb-3">Attribution & Credit</h4>
                 <p className="text-slate text-sm leading-relaxed">
                   Contribution graphs • portable reputation • micro-attribution • transparent governance records.
                 </p>
@@ -821,12 +859,7 @@ export default function HomePage() {
 
               {/* Funding Innovation */}
               <div className="bg-gradient-to-br from-iosp-blue/5 to-transparent rounded-xl p-6 border-2 border-iosp-blue/20 relative hover:border-iosp-blue/40 hover:shadow-lg transition-all">
-                <div className="absolute top-3 right-3">
-                  <span className="text-[10px] font-bold text-iosp-cyan uppercase tracking-wide">
-                    IOSP 2026 Focus
-                  </span>
-                </div>
-                <h4 className="font-heading text-xl font-semibold text-iosp-blue mb-3 pr-24">Funding Innovation</h4>
+                <h4 className="font-heading text-xl font-semibold text-iosp-blue mb-3">Funding Innovation</h4>
                 <p className="text-slate text-sm leading-relaxed">
                   Alternative funding models • retroactive public goods • quadratic funding • granular funding.
                 </p>
@@ -848,128 +881,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      {/* IOSP 2026 - Upcoming Event Highlight */}
-      <section id="iosp-2026" className="py-20 md:py-28 gradient-cyan text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white rounded-full blur-3xl animate-pulse"></div>
-        </div>
-
-        {/* Decorative dots pattern - More visible */}
-        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle, white 2px, transparent 2px)', backgroundSize: '40px 40px' }}></div>
-
-        {/* Floating elements */}
-        <div className="absolute top-10 left-10 w-20 h-20 border-2 border-white/20 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-32 h-32 border-2 border-white/20 rotate-45 animate-pulse" style={{ animationDelay: '1s' }}></div>
-
-        <div className="container px-4 mx-auto relative z-10">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="font-heading text-5xl md:text-6xl font-bold mb-6 drop-shadow-lg">
-                IOSP 2026
-              </h2>
-              <p className="text-lg text-white/90 mb-6">
-                Q3/Q4 2026 • Co-located outside the US • Always free
-              </p>
-              <p className="text-xl text-white/95 leading-relaxed max-w-3xl mx-auto">
-                Building on the momentum from IOSP 2025, we continue the cycle—identifying bottlenecks,
-                coordinating solutions, and advancing the infrastructure that makes open science practical.
-              </p>
-            </div>
-
-            {/* Single Combined Block */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-10 border border-white/20 max-w-5xl mx-auto">
-              <div className="text-center mb-10">
-                <h3 className="font-heading text-3xl font-bold text-white mb-6">
-                  Let's Build IOSP 2026
-                </h3>
-                <p className="text-lg text-white/90 leading-relaxed max-w-3xl mx-auto">
-                  We're exploring these themes—reach out if you're building, working, or interested in supporting in one of these areas.
-                </p>
-              </div>
-
-              {/* Potential Themes - Compact List */}
-              <div className="grid md:grid-cols-2 gap-x-12 gap-y-4 text-white/90 mb-10 max-w-3xl mx-auto">
-                <div>
-                  <span className="font-semibold text-white">Data Infrastructure</span>
-                  <p className="text-sm text-white/70 mt-1">Access mechanisms, identity management, automated metadata</p>
-                </div>
-                <div>
-                  <span className="font-semibold text-white">Coordination Mechanisms</span>
-                  <p className="text-sm text-white/70 mt-1">Cross-scale communication, reducing information loss</p>
-                </div>
-                <div>
-                  <span className="font-semibold text-white">Research Modularity</span>
-                  <p className="text-sm text-white/70 mt-1">Knowledge graphs, modular collaborative systems</p>
-                </div>
-                <div>
-                  <span className="font-semibold text-white">Collaboration Infrastructure</span>
-                  <p className="text-sm text-white/70 mt-1">Research cooperatives, FROs, novel legal structures</p>
-                </div>
-                <div className="md:col-span-2">
-                  <span className="font-semibold text-white">Funding & Recognition</span>
-                  <p className="text-sm text-white/70 mt-1">Alternative funding models, mechanisms for rewarding research</p>
-                </div>
-              </div>
-
-              <div className="border-t border-white/20 pt-8">
-                <div className="grid md:grid-cols-3 gap-6">
-                  {/* Infrastructure Builders CTA */}
-                  <div className="text-center bg-white/5 rounded-xl p-6 border border-white/10 flex flex-col">
-                    <h4 className="font-heading text-xl font-bold text-white mb-3">
-                      Showcase Your Work
-                    </h4>
-                    <p className="text-sm text-white/80 mb-6 leading-relaxed flex-grow">
-                      Working groups, technologists, infrastructure providers, researchers, and labs—get in touch so we can showcase your progress and tools at IOSP 2026.
-                    </p>
-                    <Button
-                      size="lg"
-                      className="bg-white text-iosp-blue hover:bg-gray-100 font-semibold mt-auto"
-                      onClick={() => setShowGetFeaturedModal(true)}
-                    >
-                      Get Featured
-                    </Button>
-                  </div>
-
-                  {/* Researchers CTA */}
-                  <div className="text-center bg-white/5 rounded-xl p-6 border border-white/10 flex flex-col">
-                    <h4 className="font-heading text-xl font-bold text-white mb-3">
-                      Submit Research
-                    </h4>
-                    <p className="text-sm text-white/80 mb-6 leading-relaxed flex-grow">
-                      Researchers—submit any research that utilizes the infrastructure powering IOSP 2026. Honorariums available for accepted proposals.
-                    </p>
-                    <Button
-                      size="lg"
-                      className="bg-white text-iosp-blue hover:bg-gray-100 font-semibold mt-auto"
-                      onClick={() => setShowSubmitProposalModal(true)}
-                    >
-                      Submit Proposal
-                    </Button>
-                  </div>
-
-                  {/* Funders CTA */}
-                  <div className="text-center bg-white/5 rounded-xl p-6 border border-white/10 flex flex-col">
-                    <h4 className="font-heading text-xl font-bold text-white mb-3">
-                      Fund Participation
-                    </h4>
-                    <p className="text-sm text-white/80 mb-6 leading-relaxed flex-grow">
-                      Funders—support travel grants and research honorariums to enable global participation—speakers, workshop leads, researchers, and attendees building the infrastructure.
-                    </p>
-                    <Button
-                      size="lg"
-                      className="bg-white text-iosp-blue hover:bg-gray-100 font-semibold mt-auto"
-                      onClick={() => setShowSupportModal(true)}
-                    >
-                      Support IOSP
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* IOSP 2025 - Past Event Success */}
       <section id="iosp-2025" className="py-20 md:py-28 bg-cloud">
         <div className="container px-4 mx-auto">
@@ -1548,37 +1459,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Support IOSP Modal */}
-      {showSupportModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
-          <div
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-            onClick={() => setShowSupportModal(false)}
-          />
-          <div className="relative bg-white rounded-2xl p-8 max-w-md mx-4 shadow-2xl">
-            <button
-              onClick={() => setShowSupportModal(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
-            >
-              <X className="h-6 w-6" />
-            </button>
-            <h3 className="font-heading text-2xl font-bold text-iosp-blue mb-4">
-              Support IOSP
-            </h3>
-            <p className="text-slate leading-relaxed">
-              We&apos;re working on building this. For now, please email{' '}
-              <a
-                href="mailto:contact@scios.tech"
-                className="text-iosp-blue hover:underline font-semibold"
-              >
-                contact@scios.tech
-              </a>{' '}
-              to support rapid advancement and productionalization of open science infrastructure.
-            </p>
-          </div>
-        </div>
-      )}
-
       {/* Newsletter Modal */}
       {showNewsletterModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -1605,68 +1485,6 @@ export default function HomePage() {
                 contact@scios.tech
               </a>{' '}
               to subscribe to our newsletter and stay updated on IOSP 2026 news, resources, and community events.
-            </p>
-          </div>
-        </div>
-      )}
-
-      {/* Get Featured Modal */}
-      {showGetFeaturedModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
-          <div
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-            onClick={() => setShowGetFeaturedModal(false)}
-          />
-          <div className="relative bg-white rounded-2xl p-8 max-w-md mx-4 shadow-2xl">
-            <button
-              onClick={() => setShowGetFeaturedModal(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
-            >
-              <X className="h-6 w-6" />
-            </button>
-            <h3 className="font-heading text-2xl font-bold text-iosp-blue mb-4">
-              Get Featured
-            </h3>
-            <p className="text-slate leading-relaxed">
-              We&apos;re working on building this. For now, please email{' '}
-              <a
-                href="mailto:contact@scios.tech"
-                className="text-iosp-blue hover:underline font-semibold"
-              >
-                contact@scios.tech
-              </a>{' '}
-              to showcase your work at IOSP 2026. We welcome working groups, technologists, infrastructure providers, researchers, and labs.
-            </p>
-          </div>
-        </div>
-      )}
-
-      {/* Submit Proposal Modal */}
-      {showSubmitProposalModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
-          <div
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-            onClick={() => setShowSubmitProposalModal(false)}
-          />
-          <div className="relative bg-white rounded-2xl p-8 max-w-md mx-4 shadow-2xl">
-            <button
-              onClick={() => setShowSubmitProposalModal(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
-            >
-              <X className="h-6 w-6" />
-            </button>
-            <h3 className="font-heading text-2xl font-bold text-iosp-blue mb-4">
-              Submit Research Proposal
-            </h3>
-            <p className="text-slate leading-relaxed">
-              We&apos;re working on building this. For now, please email{' '}
-              <a
-                href="mailto:contact@scios.tech"
-                className="text-iosp-blue hover:underline font-semibold"
-              >
-                contact@scios.tech
-              </a>{' '}
-              to submit research that utilizes the infrastructure powering IOSP 2026. Honorariums are available for accepted proposals.
             </p>
           </div>
         </div>
