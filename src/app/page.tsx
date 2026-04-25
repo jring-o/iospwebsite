@@ -486,7 +486,7 @@ export default function HomePage() {
                         title: 'Work that lives past Leiden',
                         body: (
                           <>
-                            Leave with concrete collaborations, happily facilitated by SciOS.{' '}
+                            Leave with concrete collaborations.{' '}
                             <a href="https://mira.science" target="_blank" rel="noopener noreferrer" className="text-iosp-amber hover:underline font-semibold">
                               mira.science
                             </a>{' '}
