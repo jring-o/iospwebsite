@@ -6,10 +6,12 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { CycleLogo } from '@/components/cycle-logo'
+import { IospSignupModal, type SignupKind } from '@/components/iosp-2026-signup-modal'
 
 export default function HomePage() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
   const [showNewsletterModal, setShowNewsletterModal] = useState(false)
+  const [signupKind, setSignupKind] = useState<SignupKind>(null)
   const timelineRef = useRef<HTMLDivElement>(null)
 
   // GSAP ScrollTrigger setup
@@ -356,93 +358,379 @@ export default function HomePage() {
       </section>
 
       {/* IOSP 2026 - Announcement */}
-      <section id="iosp-2026" className="py-20 md:py-28 gradient-cyan text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white rounded-full blur-3xl animate-pulse"></div>
-        </div>
-        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle, white 2px, transparent 2px)', backgroundSize: '40px 40px' }}></div>
+      <section id="iosp-2026" className="py-20 md:py-28 relative overflow-hidden bg-iosp-blue text-white">
+        {/* Architectural hairline grid */}
+        <div
+          className="absolute inset-0 opacity-[0.05] pointer-events-none"
+          style={{
+            backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.6) 1px, transparent 1px)',
+            backgroundSize: '88px 100%',
+          }}
+        />
+        {/* Corner atmospheric glows */}
+        <div
+          className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full blur-[100px] opacity-50 pointer-events-none"
+          style={{ background: 'radial-gradient(circle, rgba(1,145,189,0.6), transparent 70%)' }}
+        />
+        <div
+          className="absolute -bottom-32 -left-32 w-[400px] h-[400px] rounded-full blur-[100px] opacity-40 pointer-events-none"
+          style={{ background: 'radial-gradient(circle, rgba(23,121,115,0.5), transparent 70%)' }}
+        />
 
         <div className="container px-4 mx-auto relative z-10">
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <div className="inline-block text-sm font-semibold text-white/80 tracking-widest uppercase mb-4">
-                IOSP 2026
-              </div>
-              <h2 className="font-heading text-5xl md:text-6xl font-bold mb-6 drop-shadow-lg">
-                Leiden &middot; October 12&ndash;15, 2026
-              </h2>
-              <p className="text-xl text-white/95 leading-relaxed max-w-3xl mx-auto">
-                We&apos;ll be at the Portgebouw, University of Leiden on October 12, 13, and 15.
-                On October 14, we field-trip to the National Open Science Festival in Delft, then reconvene for the final day.
-              </p>
+            {/* Editorial masthead strip */}
+            <div className="flex flex-wrap items-center justify-between gap-y-2 pb-5 mb-12 border-b border-white/15 font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/60">
+              <span className="flex items-center gap-2">
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-iosp-amber animate-pulse" />
+                IOSP &mdash; Edition 02
+              </span>
+              <span className="hidden md:inline">Portgebouw &amp; GoFAIR, Leiden</span>
+              <span>Oct 12&ndash;15, 2026</span>
             </div>
 
-            {/* Production-driven framing */}
-            <div className="max-w-3xl mx-auto mb-12">
-              <div className="bg-white/5 border-l-4 border-white/60 rounded-r-lg px-6 py-5">
-                <p className="text-white/95 text-base md:text-lg leading-relaxed">
-                  IOSP is a curated, production-driven event &mdash; talks and panels are capped at{' '}
-                  <span className="font-bold text-white">25% of the time</span>.
-                  The rest is focused production work: bringing tool-builders and researchers together and actively building solutions across the four themes below.
+            {/* HERO */}
+            <div className="grid md:grid-cols-12 gap-x-8 gap-y-8 mb-14">
+              <div className="md:col-span-7">
+                <div className="font-mono text-[10px] md:text-xs uppercase tracking-[0.32em] text-iosp-amber mb-5 flex items-center gap-3">
+                  <span className="block w-8 h-px bg-iosp-amber" />
+                  Institute of Open Science Practices
+                </div>
+                <h2 className="font-heading font-bold tracking-tight leading-[0.95] text-5xl md:text-7xl">
+                  Leiden
+                </h2>
+                <div className="mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2 font-mono">
+                  <div className="text-2xl md:text-3xl text-white tracking-tight">
+                    12 <span className="text-iosp-amber">&rarr;</span> 15
+                  </div>
+                  <div className="text-xs md:text-sm uppercase tracking-[0.3em] text-white/70">
+                    October 2026
+                  </div>
+                </div>
+              </div>
+              <div className="md:col-span-5 md:pl-8 md:border-l md:border-white/15 flex flex-col justify-end">
+                <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/50 mb-3">
+                  Venue
+                </div>
+                <p className="text-base leading-relaxed text-white/85">
+                  <span className="text-white font-semibold">Portgebouw, University of Leiden, and GoFAIR</span>{' '}
+                  host us on Oct 12, 13, and 15. On Oct 14 we field-trip to the National Open Science Festival in Delft, then reconvene for the final day.
                 </p>
               </div>
             </div>
 
-            {/* Four Themes */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-white/20 mb-12">
-              <h3 className="font-heading text-2xl font-bold text-white mb-6 text-center">Four Themes</h3>
-              <div className="grid md:grid-cols-2 gap-x-10 gap-y-6">
-                <div>
-                  <div className="font-heading font-semibold text-white mb-1">Modular Research Components</div>
-                  <p className="text-sm text-white/80 leading-relaxed">The tools and frameworks for composable research.</p>
+            {/* PRODUCTION-DRIVEN */}
+            <div className="border-t border-white/15 pt-10 mb-14">
+              <div className="grid md:grid-cols-12 gap-x-8 gap-y-6 items-center">
+                <div className="md:col-span-4">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber mb-4">
+                    Production-driven
+                  </div>
+
+                  {/* Stacked proportional stats — size IS the visualization */}
+                  <div className="space-y-4">
+                    <div className="leading-none">
+                      <div className="font-heading font-bold text-xl text-white/55 tracking-tight">
+                        10<span className="text-iosp-amber/60">%</span>
+                      </div>
+                      <div className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.3em] text-white/45 leading-snug">
+                        Presentations and Panels
+                      </div>
+                    </div>
+
+                    <div className="leading-none">
+                      <div className="font-heading font-bold text-3xl text-white/75 tracking-tight">
+                        15<span className="text-iosp-amber/80">%</span>
+                      </div>
+                      <div className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.3em] text-white/55 leading-snug">
+                        Tooling Showcase
+                      </div>
+                    </div>
+
+                    <div className="leading-none pt-1">
+                      <div className="font-heading font-bold text-6xl md:text-7xl text-white tracking-tight">
+                        75<span className="text-iosp-amber">%</span>
+                      </div>
+                      <div className="mt-2.5 font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/65">
+                        Hands-on building
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <div className="font-heading font-semibold text-white mb-1">Funding Open Science and Open Source</div>
-                  <p className="text-sm text-white/80 leading-relaxed">How money moves through the open ecosystem.</p>
-                </div>
-                <div>
-                  <div className="font-heading font-semibold text-white mb-1">Resilient Data and PID Infrastructure</div>
-                  <p className="text-sm text-white/80 leading-relaxed">How research data gets stored, found, and accessed &mdash; persistent identifiers, content addressing, and distributed preservation.</p>
-                </div>
-                <div>
-                  <div className="font-heading font-semibold text-white mb-1">Assessment, Evaluation, and Insights</div>
-                  <p className="text-sm text-white/80 leading-relaxed">How we measure, verify, and understand the impact of research and the infrastructure supporting it.</p>
+                <div className="md:col-span-8 md:pl-8 md:border-l md:border-white/15">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber mb-3">
+                    Less talking. More building. More collaboration.
+                  </div>
+                  <p className="text-base md:text-lg leading-relaxed text-white/90">
+                    IOSP is a curated event designed around hands-on work, bringing tool-builders and researchers together to actively build solutions across four core themes. We cap talks at 10% of the runtime and tooling showcases at 15%, leaving the remaining 75% for hands-on production.
+                  </p>
+
+                  {/* 3 compact evidence cards under the prose — subgrid keeps dividers aligned */}
+                  <div className="mt-8 mb-3 font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber flex items-center gap-3">
+                    <span className="block w-6 h-px bg-iosp-amber" />
+                    Outcomes
+                  </div>
+                  <div className="grid sm:grid-cols-3 sm:grid-rows-[auto_1fr_auto] gap-3">
+                    {[
+                      {
+                        title: 'People you couldn’t meet anywhere else',
+                        body: 'Researchers and tool-builders shoulder-to-shoulder for four days. The people building infrastructure side-by-side with those using it.',
+                        evidence: <><span className="text-iosp-amber font-semibold">87%</span> of participants cited connections as a core value.</>,
+                      },
+                      {
+                        title: 'Tools and projects you didn’t know existed',
+                        body: 'Discover novel infrastructure being built across the open-science ecosystem — both the high-level concepts and the technical details for putting them to work.',
+                        evidence: <span className="italic">&ldquo;Exposed to novel efforts I was not previously aware of.&rdquo;</span>,
+                      },
+                      {
+                        title: 'Work that lives past Leiden',
+                        body: (
+                          <>
+                            Leave with concrete collaborations, happily facilitated by SciOS.{' '}
+                            <a href="https://mira.science" target="_blank" rel="noopener noreferrer" className="text-iosp-amber hover:underline font-semibold">
+                              mira.science
+                            </a>{' '}
+                            is one direct example of a project that grew out of work begun at IOSP.
+                          </>
+                        ),
+                        evidence: <><span className="text-iosp-amber font-semibold">80%</span> wanted to continue the work they started in workshops.</>,
+                      },
+                    ].map((c) => (
+                      <div key={c.title} className="bg-white/5 border border-white/10 rounded-md p-4 sm:row-span-3 sm:grid sm:grid-rows-subgrid">
+                        <div className="font-heading font-semibold text-white text-sm leading-snug">
+                          {c.title}
+                        </div>
+                        <p className="text-xs text-white/75 leading-relaxed mt-2">
+                          {c.body}
+                        </p>
+                        <div className="border-t border-white/10 pt-2.5 mt-3">
+                          <div className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/40 mb-1">
+                            From IOSP 2025
+                          </div>
+                          <div className="text-[11px] text-white/75 leading-relaxed">
+                            {c.evidence}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
 
+            {/* FOUR THEMES */}
+            <div className="border-t border-white/15 pt-10 mb-14">
+              <div className="flex items-end justify-between mb-8 gap-4">
+                <div>
+                  <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/50 mb-2">
+                    Programme
+                  </div>
+                  <h3 className="font-heading text-2xl md:text-3xl font-bold tracking-tight">
+                    Four themes
+                  </h3>
+                </div>
+                <span className="font-mono text-xs uppercase tracking-[0.3em] text-white/40">
+                  Parallel tracks
+                </span>
+              </div>
+              <div className="grid md:grid-cols-2 gap-px bg-white/15 rounded-lg overflow-hidden">
+                {[
+                  { n: '01', title: 'Modular Research Components', desc: 'The tools and frameworks for composable research.' },
+                  { n: '02', title: 'Funding Open Science & Open Source', desc: 'How money moves through the open ecosystem.' },
+                  { n: '03', title: 'Resilient Data & PID Infrastructure', desc: 'How research data gets stored, found, and accessed — persistent identifiers, content addressing, and distributed preservation.' },
+                  { n: '04', title: 'Assessment, Evaluation & Insights', desc: 'How we measure, verify, and understand the impact of research and the infrastructure supporting it.' },
+                ].map((t) => (
+                  <div
+                    key={t.n}
+                    className="bg-iosp-blue p-6 group transition-colors duration-300 hover:bg-[#0a4a68]"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="font-mono text-iosp-amber text-sm tracking-wider pt-1 min-w-[24px]">
+                        {t.n}
+                      </div>
+                      <div>
+                        <div className="font-heading font-semibold text-white text-lg mb-2 leading-snug">
+                          {t.title}
+                        </div>
+                        <p className="text-sm text-white/75 leading-relaxed">
+                          {t.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Foundation layer — the stack beneath the four themes */}
+              <div className="mt-3 relative bg-iosp-blue border border-white/15 rounded-lg overflow-hidden group transition-colors duration-300 hover:bg-[#0a4a68]">
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-iosp-amber/70 to-transparent" />
+                <div className="p-5 md:p-6 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+                  <div className="md:min-w-[180px]">
+                    <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber mb-2">
+                      Foundation
+                    </div>
+                    <div className="font-heading font-semibold text-white text-xl leading-none">
+                      Theory
+                    </div>
+                  </div>
+                  <div className="md:border-l md:border-white/15 md:pl-8 flex-1">
+                    <p className="text-sm text-white/75 leading-relaxed">
+                      The conceptual thread running beneath all four themes &mdash; the questions, frameworks, and critiques that ground production work in deeper understanding of open science as a system.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
             {/* CTAs */}
-            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              <div className="bg-white/5 rounded-xl p-6 border border-white/10 flex flex-col">
-                <h4 className="font-heading text-xl font-bold text-white mb-3">Building a Tool?</h4>
-                <p className="text-sm text-white/80 mb-6 leading-relaxed flex-grow">
-                  Working on tooling or infrastructure for one of the four themes? Submit it to the production showcase so we can stress-test and build on it in Leiden.
-                </p>
-                <Button asChild size="lg" className="bg-white text-iosp-blue hover:bg-gray-100 font-semibold mt-auto">
-                  <a href="mailto:contact@scios.tech?subject=IOSP%202026%20Showcase%20Submission">Submit to the Showcase</a>
-                </Button>
+            <div className="border-t border-white/15 pt-10">
+              <div className="flex items-end justify-between mb-8 gap-4">
+                <div>
+                  <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/50 mb-2">
+                    Action
+                  </div>
+                  <h3 className="font-heading text-2xl md:text-3xl font-bold tracking-tight">
+                    Get involved
+                  </h3>
+                </div>
+                <span className="font-mono text-xs uppercase tracking-[0.3em] text-white/40">
+                  Open calls
+                </span>
               </div>
-              <div className="bg-white/5 rounded-xl p-6 border border-white/10 flex flex-col">
-                <h4 className="font-heading text-xl font-bold text-white mb-3">Help Organize</h4>
-                <p className="text-sm text-white/80 mb-6 leading-relaxed flex-grow">
-                  We&apos;re opening the organizing committee &mdash; programming, logistics, outreach. The first open organizing call is May 4.
-                </p>
-                <Button asChild size="lg" className="bg-white text-iosp-blue hover:bg-gray-100 font-semibold mt-auto">
-                  <a href="mailto:contact@scios.tech?subject=IOSP%202026%20Organizing">Get in Touch</a>
-                </Button>
+              <div className="grid md:grid-cols-3 gap-px bg-white/15 rounded-lg overflow-hidden">
+                {[
+                  {
+                    kind: 'showcase' as const,
+                    tag: 'Showcase',
+                    title: 'Building a tool?',
+                    desc: 'Working on tooling or infrastructure for one of the four themes? Submit it to the production showcase so we can stress-test and build on it in Leiden.',
+                    action: 'Submit to the showcase',
+                  },
+                  {
+                    kind: 'committee' as const,
+                    tag: 'Committee',
+                    title: 'Help organize',
+                    desc: "We're opening the organizing committee — programming, logistics, outreach. The first open organizing call is May 4.",
+                    action: 'Get in touch',
+                  },
+                  {
+                    kind: 'sponsor' as const,
+                    tag: 'Sponsor',
+                    title: 'Become a sponsor',
+                    desc: 'IOSP is free to join. Sponsorship goes solely to travel grants so researchers and technologists can participate in Leiden.',
+                    action: 'Sponsor IOSP',
+                  },
+                ].map((cta) => (
+                  <button
+                    type="button"
+                    key={cta.kind}
+                    onClick={() => setSignupKind(cta.kind)}
+                    className="bg-iosp-blue p-6 group flex flex-col text-left transition-colors duration-300 hover:bg-[#0a4a68] focus:outline-none focus-visible:ring-2 focus-visible:ring-iosp-amber"
+                  >
+                    <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber mb-4">
+                      [ {cta.tag} ]
+                    </div>
+                    <div className="font-heading text-lg md:text-xl font-bold mb-3 leading-tight">
+                      {cta.title}
+                    </div>
+                    <p className="text-sm text-white/75 leading-relaxed flex-grow mb-6">
+                      {cta.desc}
+                    </p>
+                    <div className="flex items-center justify-between border-t border-white/10 pt-4">
+                      <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-white">
+                        {cta.action}
+                      </span>
+                      <ArrowRight className="h-4 w-4 text-iosp-amber transition-transform duration-300 group-hover:translate-x-1.5" />
+                    </div>
+                  </button>
+                ))}
               </div>
-              <div className="bg-white/5 rounded-xl p-6 border border-white/10 flex flex-col">
-                <h4 className="font-heading text-xl font-bold text-white mb-3">Become a Sponsor</h4>
-                <p className="text-sm text-white/80 mb-6 leading-relaxed flex-grow">
-                  IOSP is free to attend. Sponsorship goes solely to travel grants so researchers and technologists can join us in Leiden.
-                </p>
-                <Button asChild size="lg" className="bg-white text-iosp-blue hover:bg-gray-100 font-semibold mt-auto">
-                  <a href="mailto:contact@scios.tech?subject=IOSP%202026%20Sponsorship">Sponsor IOSP</a>
-                </Button>
+            </div>
+
+            {/* REGISTER YOUR INTEREST */}
+            <div className="border-t border-white/15 pt-10 mt-14">
+              <div className="flex items-end justify-between mb-8 gap-4">
+                <div>
+                  <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/50 mb-2">
+                    Participate
+                  </div>
+                  <h3 className="font-heading text-2xl md:text-3xl font-bold tracking-tight">
+                    Register your interest
+                  </h3>
+                </div>
+                <span className="font-mono text-xs uppercase tracking-[0.3em] text-white/40">
+                  Curated &middot; limited
+                </span>
+              </div>
+
+              <div className="relative bg-iosp-blue border border-white/15 rounded-lg overflow-hidden">
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-iosp-amber/70 to-transparent" />
+                <div className="p-6 md:p-8 grid md:grid-cols-12 gap-x-8 gap-y-6 items-start">
+                  {/* Quiet sidebar facts — last year & this year capacity */}
+                  <div className="md:col-span-3 md:border-r md:border-white/15 md:pr-8 space-y-5">
+                    <div>
+                      <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/50 mb-3">
+                        Last year
+                      </div>
+                      <div className="flex items-end gap-2 leading-none">
+                        <div className="flex flex-col items-start">
+                          <div className="font-mono text-2xl md:text-3xl text-white/90 tracking-tight">
+                            425
+                          </div>
+                          <div className="mt-2 font-mono text-[9px] uppercase tracking-[0.2em] text-white/50">
+                            Registered
+                          </div>
+                        </div>
+                        <div className="font-mono text-2xl md:text-3xl text-iosp-amber tracking-tight pb-[18px]">
+                          /
+                        </div>
+                        <div className="flex flex-col items-start">
+                          <div className="font-mono text-2xl md:text-3xl text-white/90 tracking-tight">
+                            80
+                          </div>
+                          <div className="mt-2 font-mono text-[9px] uppercase tracking-[0.2em] text-white/50">
+                            Capacity
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="pt-5 border-t border-white/10">
+                      <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber mb-2">
+                        This year
+                      </div>
+                      <div className="font-mono text-2xl md:text-3xl text-white tracking-tight leading-none">
+                        100
+                      </div>
+                      <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.3em] text-white/50">
+                        Capacity &mdash; Leiden
+                      </div>
+                    </div>
+                  </div>
+                  {/* Copy + CTA */}
+                  <div className="md:col-span-9 flex flex-col gap-5">
+                    <p className="text-base md:text-lg leading-relaxed text-white/90">
+                      IOSP is a curated event &mdash; registering does <span className="text-white font-semibold">not</span> guarantee a seat. Last year we received 425 registrations for an 80-person room, and we expect similar interest in Leiden.
+                    </p>
+                    <p className="text-base md:text-lg leading-relaxed text-white/90">
+                      The good news: <span className="text-white font-semibold">IOSP is free to join</span>, and every sponsorship dollar goes directly to travel grants so as many participants as possible can join us in Leiden, regardless of their financials and geographic location. Tell us you&apos;d like to participate and we&apos;ll be in touch as we work through the list.
+                    </p>
+                    <div>
+                      <button
+                        type="button"
+                        onClick={() => setSignupKind('participant')}
+                        className="inline-flex items-center gap-2 bg-iosp-amber text-iosp-blue hover:bg-iosp-amber/90 font-semibold rounded-md py-3 px-5 transition-colors group focus:outline-none focus-visible:ring-2 focus-visible:ring-iosp-amber focus-visible:ring-offset-2 focus-visible:ring-offset-iosp-blue"
+                      >
+                        Register interest
+                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        <IospSignupModal kind={signupKind} onClose={() => setSignupKind(null)} />
       </section>
 
       {/* Section 1: What is IOSP */}
@@ -914,7 +1202,7 @@ export default function HomePage() {
 
                     <div>
                       <div className="text-6xl font-heading font-bold text-iosp-blue mb-1">80</div>
-                      <div className="text-sm uppercase tracking-wide text-slate font-semibold">Curated Invitations to Attend</div>
+                      <div className="text-sm uppercase tracking-wide text-slate font-semibold">Curated Invitations to Participate</div>
                     </div>
                   </div>
 
@@ -1094,9 +1382,9 @@ export default function HomePage() {
                     <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
                     <div className="relative z-10">
                       <div className="text-8xl md:text-9xl font-heading font-bold mb-4">95%</div>
-                      <div className="text-2xl font-heading font-semibold mb-2">Would Attend Again</div>
+                      <div className="text-2xl font-heading font-semibold mb-2">Would Participate Again</div>
                       <p className="text-white/90 text-lg mb-4">
-                        Nearly every single respondent said they would attend the next IOSP
+                        Nearly every single respondent said they would participate in the next IOSP
                       </p>
                       <blockquote className="text-white/80 italic text-base border-l-4 border-white/40 pl-4">
                         "I would pay to attend this event. $100 minimum."
