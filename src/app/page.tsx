@@ -475,12 +475,12 @@ export default function HomePage() {
                       {
                         title: 'People you couldn’t meet anywhere else',
                         body: 'Researchers and tool-builders shoulder-to-shoulder for four days. The people building infrastructure side-by-side with those using it.',
-                        evidence: <><span className="text-iosp-amber font-semibold">87%</span> of participants cited connections as a core value.</>,
+                        evidence: <><span className="text-iosp-amber font-semibold">87%</span> of participants cited facilitated networking as a core value, meeting researchers and tool-builders they otherwise wouldn’t.</>,
                       },
                       {
                         title: 'Tools and projects you didn’t know existed',
                         body: 'Discover novel infrastructure being built across the open-science ecosystem — both the high-level concepts and the technical details for putting them to work.',
-                        evidence: <span className="italic">&ldquo;Exposed to novel efforts I was not previously aware of.&rdquo;</span>,
+                        evidence: <span className="italic">&ldquo;I was exposed to novel technologically based efforts to support open science needs that I was not previously aware of.&rdquo;</span>,
                       },
                       {
                         title: 'Work that lives past Leiden',
@@ -493,7 +493,7 @@ export default function HomePage() {
                             is one direct example of a project that grew out of work begun at IOSP.
                           </>
                         ),
-                        evidence: <><span className="text-iosp-amber font-semibold">80%</span> wanted to continue the work they started in workshops.</>,
+                        evidence: <><span className="text-iosp-amber font-semibold">80%</span> wanted to continue the work they started in workshops, taking collaborations, prototypes, and direction back to their teams.</>,
                       },
                     ].map((c) => (
                       <div key={c.title} className="bg-white/5 border border-white/10 rounded-md p-4 sm:row-span-3 sm:grid sm:grid-rows-subgrid">

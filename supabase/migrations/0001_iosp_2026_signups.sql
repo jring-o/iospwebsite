@@ -34,7 +34,7 @@ begin
     select conname from pg_constraint
     where conrelid = 'public.iosp_2026_signups'::regclass
       and contype = 'c'
-      and pg_get_constraintdef(oid) ilike '%kind%in%'
+      and pg_get_constraintdef(oid) ilike '%kind%'
   loop
     execute format('alter table public.iosp_2026_signups drop constraint %I', cn);
   end loop;
