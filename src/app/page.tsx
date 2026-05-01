@@ -7,11 +7,71 @@ import { Card, CardContent } from '@/components/ui/card'
 import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { CycleLogo } from '@/components/cycle-logo'
 import { IospSignupModal, type SignupKind } from '@/components/iosp-2026-signup-modal'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
+
+type ThemeKey = '01' | '02' | '03' | '04'
+
+type Theme = {
+  n: ThemeKey
+  title: string
+  desc: string
+  body: string[]
+  inLeiden: string
+}
+
+const THEMES: readonly Theme[] = [
+  {
+    n: '01',
+    title: 'Modular Research Components',
+    desc: 'The tools and frameworks for composable research.',
+    body: [
+      'Today’s research ships as monoliths: figure, method, claim, dataset, and software all welded into one PDF. Modular research components break the paper apart — every method, dataset, model, claim, and review becomes a first-class object with its own identifier, schema, and version history.',
+    ],
+    inLeiden: 'We’ll highlight, hack on, and extend the work already pushing this vision forward.',
+  },
+  {
+    n: '02',
+    title: 'Funding Open Science & Open Source',
+    desc: 'How money moves through the open ecosystem.',
+    body: [
+      'Open infrastructure runs on a starvation diet. Grants reward novelty, not maintenance. Institutions reward publications, not protocols. This theme asks how money should actually move through an open ecosystem so the substrate gets built — and stays built.',
+    ],
+    inLeiden:
+      'We’ll dig into core and satellite (funders evaluating slow, accountable cores rather than thousands of individual projects, with funds routed through cores into the satellites in their orbit), transitive funding (money that flows downstream through the dependency graph to the libraries, datasets, and methods your work actually relies on), and what funding looks like when science itself becomes modular — when the unit of work isn’t a paper but a reusable component.',
+  },
+  {
+    n: '03',
+    title: 'Resilient Data & PID Infrastructure',
+    desc: 'How research data gets stored, found, and accessed — persistent identifiers, content addressing, and distributed preservation.',
+    body: [
+      'The substrate of open science is its identifiers, its addressing, and its preservation guarantees. When a PID rots, a dataset moves, or a registry shuts down, the citation graph silently breaks. Resilient infrastructure assumes failure: content-addressed payloads, distributed mirroring, append-only provenance, and resolvers that fall back instead of 404.',
+    ],
+    inLeiden:
+      'We’ll convene the people already maintaining this layer, stress-test where it breaks under modular research workloads, and push the projects extending it forward.',
+  },
+  {
+    n: '04',
+    title: 'Assessment, Evaluation & Insights',
+    desc: 'How we measure, verify, and understand the impact of research and the infrastructure supporting it.',
+    body: [
+      'JIF, h-index, and citation counts measure papers — not the things science actually depends on: replications, methods that hold up, datasets that get reused, software that doesn’t break, reviews that catch errors. As research itself becomes modular, the question gets harder: how do you evaluate a method, a dataset, a claim, or a review on its own terms?',
+    ],
+    inLeiden:
+      'We’ll work alongside the projects rethinking assessment for a modular science world — trust signals, attestations, and verification that travel with the artifact instead of the paper around it.',
+  },
+]
 
 export default function HomePage() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
   const [showNewsletterModal, setShowNewsletterModal] = useState(false)
   const [signupKind, setSignupKind] = useState<SignupKind>(null)
+  const [activeTheme, setActiveTheme] = useState<ThemeKey | null>(null)
+  const activeThemeData = activeTheme ? THEMES.find((t) => t.n === activeTheme) ?? null : null
   const timelineRef = useRef<HTMLDivElement>(null)
 
   // GSAP ScrollTrigger setup
@@ -359,14 +419,6 @@ export default function HomePage() {
 
       {/* IOSP 2026 - Announcement */}
       <section id="iosp-2026" className="py-20 md:py-28 relative overflow-hidden bg-iosp-blue text-white">
-        {/* Architectural hairline grid */}
-        <div
-          className="absolute inset-0 opacity-[0.05] pointer-events-none"
-          style={{
-            backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.6) 1px, transparent 1px)',
-            backgroundSize: '88px 100%',
-          }}
-        />
         {/* Corner atmospheric glows */}
         <div
           className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full blur-[100px] opacity-50 pointer-events-none"
@@ -534,30 +586,29 @@ export default function HomePage() {
                 </span>
               </div>
               <div className="grid md:grid-cols-2 gap-px bg-white/15 rounded-lg overflow-hidden">
-                {[
-                  { n: '01', title: 'Modular Research Components', desc: 'The tools and frameworks for composable research.' },
-                  { n: '02', title: 'Funding Open Science & Open Source', desc: 'How money moves through the open ecosystem.' },
-                  { n: '03', title: 'Resilient Data & PID Infrastructure', desc: 'How research data gets stored, found, and accessed — persistent identifiers, content addressing, and distributed preservation.' },
-                  { n: '04', title: 'Assessment, Evaluation & Insights', desc: 'How we measure, verify, and understand the impact of research and the infrastructure supporting it.' },
-                ].map((t) => (
-                  <div
+                {THEMES.map((t) => (
+                  <button
                     key={t.n}
-                    className="bg-iosp-blue p-6 group transition-colors duration-300 hover:bg-[#0a4a68]"
+                    type="button"
+                    onClick={() => setActiveTheme(t.n)}
+                    aria-label={`Read more about ${t.title}`}
+                    className="bg-iosp-blue p-6 group transition-colors duration-300 hover:bg-[#0a4a68] text-left focus:outline-none focus-visible:bg-[#0a4a68] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-iosp-amber/60"
                   >
                     <div className="flex items-start gap-4">
                       <div className="font-mono text-iosp-amber text-sm tracking-wider pt-1 min-w-[24px]">
                         {t.n}
                       </div>
-                      <div>
-                        <div className="font-heading font-semibold text-white text-lg mb-2 leading-snug">
-                          {t.title}
+                      <div className="flex-1 min-w-0">
+                        <div className="font-heading font-semibold text-white text-lg mb-2 leading-snug flex items-start justify-between gap-3">
+                          <span>{t.title}</span>
+                          <ArrowRight className="h-4 w-4 text-white/40 group-hover:text-iosp-amber transition-all duration-300 group-hover:translate-x-1 mt-1.5 flex-shrink-0" />
                         </div>
                         <p className="text-sm text-white/75 leading-relaxed">
                           {t.desc}
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </button>
                 ))}
               </div>
 
@@ -731,6 +782,42 @@ export default function HomePage() {
         </div>
 
         <IospSignupModal kind={signupKind} onClose={() => setSignupKind(null)} />
+
+        <Dialog
+          open={activeThemeData !== null}
+          onOpenChange={(o) => {
+            if (!o) setActiveTheme(null)
+          }}
+        >
+          <DialogContent>
+            {activeThemeData && (
+              <>
+                <DialogHeader>
+                  <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber flex items-center gap-3">
+                    <span className="block w-6 h-px bg-iosp-amber" />
+                    Theme {activeThemeData.n}
+                  </div>
+                  <DialogTitle>{activeThemeData.title}</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-5">
+                  {activeThemeData.body.map((p, i) => (
+                    <p key={i} className="text-base text-white/85 leading-relaxed">
+                      {p}
+                    </p>
+                  ))}
+                  <div className="border-t border-white/15 pt-5">
+                    <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber mb-3">
+                      In Leiden
+                    </div>
+                    <p className="text-base text-white/85 leading-relaxed">
+                      {activeThemeData.inLeiden}
+                    </p>
+                  </div>
+                </div>
+              </>
+            )}
+          </DialogContent>
+        </Dialog>
       </section>
 
       {/* Section 1: What is IOSP */}
