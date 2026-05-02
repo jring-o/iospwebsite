@@ -72,6 +72,7 @@ export default function HomePage() {
   const [signupKind, setSignupKind] = useState<SignupKind>(null)
   const [activeTheme, setActiveTheme] = useState<ThemeKey | null>(null)
   const activeThemeData = activeTheme ? THEMES.find((t) => t.n === activeTheme) ?? null : null
+  const [theoryOpen, setTheoryOpen] = useState(false)
   const timelineRef = useRef<HTMLDivElement>(null)
 
   // GSAP ScrollTrigger setup
@@ -613,15 +614,21 @@ export default function HomePage() {
               </div>
 
               {/* Foundation layer — the stack beneath the four themes */}
-              <div className="mt-3 relative bg-iosp-blue border border-white/15 rounded-lg overflow-hidden group transition-colors duration-300 hover:bg-[#0a4a68]">
+              <button
+                type="button"
+                onClick={() => setTheoryOpen(true)}
+                aria-label="Read our theory of change"
+                className="mt-3 relative w-full bg-iosp-blue border border-white/15 rounded-lg overflow-hidden group transition-colors duration-300 hover:bg-[#0a4a68] text-left focus:outline-none focus-visible:bg-[#0a4a68] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-iosp-amber/60"
+              >
                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-iosp-amber/70 to-transparent" />
                 <div className="p-5 md:p-6 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
                   <div className="md:min-w-[180px]">
                     <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber mb-2">
                       Foundation
                     </div>
-                    <div className="font-heading font-semibold text-white text-xl leading-none">
-                      Theory
+                    <div className="font-heading font-semibold text-white text-xl leading-none flex items-center gap-3">
+                      <span>Theory</span>
+                      <ArrowRight className="h-4 w-4 text-white/40 group-hover:text-iosp-amber transition-all duration-300 group-hover:translate-x-1" />
                     </div>
                   </div>
                   <div className="md:border-l md:border-white/15 md:pl-8 flex-1">
@@ -630,7 +637,7 @@ export default function HomePage() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </button>
             </div>
             {/* CTAs */}
             <div className="border-t border-white/15 pt-10">
@@ -816,6 +823,39 @@ export default function HomePage() {
                 </div>
               </>
             )}
+          </DialogContent>
+        </Dialog>
+
+        <Dialog open={theoryOpen} onOpenChange={setTheoryOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber flex items-center gap-3">
+                <span className="block w-6 h-px bg-iosp-amber" />
+                Foundation
+              </div>
+              <DialogTitle>Theory of change</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-5">
+              <p className="text-base text-white/85 leading-relaxed">
+                How modern science gets funded, conducted, published, evaluated, and preserved was never engineered. It emerged.
+              </p>
+              <p className="text-base text-white/85 leading-relaxed">
+                Inference, quality, engagement, coordination, and preservation are the five protocols every system of science configures on whatever substrate an era can provide. When the substrate shifts, the protocols reconfigure around it. Each new substrate, from vellum to movable type to the post to the web, has reshaped how science got funded, validated, and preserved.
+              </p>
+              <p className="text-base text-white/85 leading-relaxed">
+                The next substrate is already being built &mdash; persistent identifiers, schemas, provenance graphs, verification protocols, execution standards, registries, funding protocols &mdash; in pieces, across many communities. The work ahead is to align efforts, and to configure their outputs so multiple systems of science can run in parallel and absorb each other&rsquo;s failures.
+              </p>
+              <div className="border-t border-white/15 pt-5">
+                <Link
+                  href="/theory"
+                  className="inline-flex items-center gap-2 bg-iosp-amber text-iosp-blue hover:bg-iosp-amber/90 font-semibold px-4 py-2.5 rounded-md transition-colors group"
+                  onClick={() => setTheoryOpen(false)}
+                >
+                  Read the full theory of change
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+              </div>
+            </div>
           </DialogContent>
         </Dialog>
       </section>
