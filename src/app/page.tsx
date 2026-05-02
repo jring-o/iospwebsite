@@ -433,9 +433,9 @@ export default function HomePage() {
         <div className="container px-4 mx-auto relative z-10">
           <div className="max-w-5xl mx-auto">
             {/* Editorial masthead strip */}
-            <div className="flex flex-wrap items-center justify-between gap-y-2 pb-5 mb-12 border-b border-white/15 font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/60">
+            <div className="flex flex-wrap items-center justify-between gap-y-2 pb-5 mb-12 border-b border-white/25 font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/65">
               <span className="flex items-center gap-2">
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-iosp-amber animate-pulse" />
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-iosp-amber animate-pulse motion-reduce:animate-none" />
                 IOSP &mdash; Edition 02
               </span>
               <span className="hidden md:inline">Portgebouw &amp; GoFAIR, Leiden</span>
@@ -456,13 +456,13 @@ export default function HomePage() {
                   <div className="text-2xl md:text-3xl text-white tracking-tight">
                     12 <span className="text-iosp-amber">&rarr;</span> 15
                   </div>
-                  <div className="text-xs md:text-sm uppercase tracking-[0.3em] text-white/70">
+                  <div className="text-xs md:text-sm uppercase tracking-[0.3em] text-white/65">
                     October 2026
                   </div>
                 </div>
               </div>
-              <div className="md:col-span-5 md:pl-8 md:border-l md:border-white/15 flex flex-col justify-end">
-                <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/50 mb-3">
+              <div className="md:col-span-5 md:pl-8 md:border-l md:border-white/25 flex flex-col justify-end">
+                <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/65 mb-3">
                   Venue
                 </div>
                 <p className="text-base leading-relaxed text-white/85">
@@ -473,7 +473,7 @@ export default function HomePage() {
             </div>
 
             {/* PRODUCTION-DRIVEN */}
-            <div className="border-t border-white/15 pt-10 mb-14">
+            <div className="border-t border-white/25 pt-10 mb-14">
               <div className="grid md:grid-cols-12 gap-x-8 gap-y-6 items-center">
                 <div className="md:col-span-4">
                   <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber mb-4">
@@ -483,19 +483,19 @@ export default function HomePage() {
                   {/* Stacked proportional stats — size IS the visualization */}
                   <div className="space-y-4">
                     <div className="leading-none">
-                      <div className="font-heading font-bold text-xl text-white/55 tracking-tight">
-                        10<span className="text-iosp-amber/60">%</span>
+                      <div className="font-heading font-bold text-xl text-white/65 tracking-tight">
+                        10<span className="text-iosp-amber">%</span>
                       </div>
-                      <div className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.3em] text-white/45 leading-snug">
+                      <div className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.3em] text-white/65 leading-snug">
                         Presentations and Panels
                       </div>
                     </div>
 
                     <div className="leading-none">
-                      <div className="font-heading font-bold text-3xl text-white/75 tracking-tight">
-                        15<span className="text-iosp-amber/80">%</span>
+                      <div className="font-heading font-bold text-3xl text-white/85 tracking-tight">
+                        15<span className="text-iosp-amber">%</span>
                       </div>
-                      <div className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.3em] text-white/55 leading-snug">
+                      <div className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.3em] text-white/65 leading-snug">
                         Tooling Showcase
                       </div>
                     </div>
@@ -510,11 +510,11 @@ export default function HomePage() {
                     </div>
                   </div>
                 </div>
-                <div className="md:col-span-8 md:pl-8 md:border-l md:border-white/15">
+                <div className="md:col-span-8 md:pl-8 md:border-l md:border-white/25">
                   <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber mb-3">
                     Less talking. More building. More collaboration.
                   </div>
-                  <p className="text-base md:text-lg leading-relaxed text-white/90">
+                  <p className="text-base md:text-lg leading-relaxed text-white/85">
                     IOSP is a curated event designed around hands-on work, bringing tool-builders and researchers together to actively build solutions across four core themes. We cap talks at 10% of the runtime and tooling showcases at 15%, leaving the remaining 75% for hands-on production.
                   </p>
 
@@ -553,14 +553,14 @@ export default function HomePage() {
                         <div className="font-heading font-semibold text-white text-sm leading-snug">
                           {c.title}
                         </div>
-                        <p className="text-xs text-white/75 leading-relaxed mt-2">
+                        <p className="text-xs text-white/85 leading-relaxed mt-2">
                           {c.body}
                         </p>
                         <div className="border-t border-white/10 pt-2.5 mt-3">
-                          <div className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/40 mb-1">
+                          <div className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/65 mb-1">
                             From IOSP 2025
                           </div>
-                          <div className="text-[11px] text-white/75 leading-relaxed">
+                          <div className="text-[11px] text-white/85 leading-relaxed">
                             {c.evidence}
                           </div>
                         </div>
@@ -572,28 +572,28 @@ export default function HomePage() {
             </div>
 
             {/* FOUR THEMES */}
-            <div className="border-t border-white/15 pt-10 mb-14">
+            <div className="border-t border-white/25 pt-10 mb-14">
               <div className="flex items-end justify-between mb-8 gap-4">
                 <div>
-                  <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/50 mb-2">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/65 mb-2">
                     Programme
                   </div>
                   <h3 className="font-heading text-2xl md:text-3xl font-bold tracking-tight">
                     Four themes
                   </h3>
                 </div>
-                <span className="font-mono text-xs uppercase tracking-[0.3em] text-white/40">
+                <span className="font-mono text-xs uppercase tracking-[0.3em] text-white/65">
                   Parallel tracks
                 </span>
               </div>
-              <div className="grid md:grid-cols-2 gap-px bg-white/15 rounded-lg overflow-hidden">
+              <div className="grid md:grid-cols-2 gap-px bg-white/25 rounded-lg overflow-hidden">
                 {THEMES.map((t) => (
                   <button
                     key={t.n}
                     type="button"
                     onClick={() => setActiveTheme(t.n)}
                     aria-label={`Read more about ${t.title}`}
-                    className="bg-iosp-blue p-6 group transition-colors duration-300 hover:bg-[#0a4a68] text-left focus:outline-none focus-visible:bg-[#0a4a68] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-iosp-amber/60"
+                    className="bg-iosp-blue p-6 group transition-colors duration-300 hover:bg-[#0e5174] text-left focus:outline-none focus-visible:bg-[#0e5174] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-iosp-amber"
                   >
                     <div className="flex items-start gap-4">
                       <div className="font-mono text-iosp-amber text-sm tracking-wider pt-1 min-w-[24px]">
@@ -602,9 +602,9 @@ export default function HomePage() {
                       <div className="flex-1 min-w-0">
                         <div className="font-heading font-semibold text-white text-lg mb-2 leading-snug flex items-start justify-between gap-3">
                           <span>{t.title}</span>
-                          <ArrowRight className="h-4 w-4 text-white/40 group-hover:text-iosp-amber transition-all duration-300 group-hover:translate-x-1 mt-1.5 flex-shrink-0" />
+                          <ArrowRight className="h-4 w-4 text-white/65 group-hover:text-iosp-amber transition-all duration-300 group-hover:translate-x-1 mt-1.5 flex-shrink-0" />
                         </div>
-                        <p className="text-sm text-white/75 leading-relaxed">
+                        <p className="text-sm text-white/85 leading-relaxed">
                           {t.desc}
                         </p>
                       </div>
@@ -618,9 +618,9 @@ export default function HomePage() {
                 type="button"
                 onClick={() => setTheoryOpen(true)}
                 aria-label="Read our theory of change"
-                className="mt-3 relative w-full bg-iosp-blue border border-white/15 rounded-lg overflow-hidden group transition-colors duration-300 hover:bg-[#0a4a68] text-left focus:outline-none focus-visible:bg-[#0a4a68] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-iosp-amber/60"
+                className="mt-3 relative w-full bg-iosp-blue border border-white/25 rounded-lg overflow-hidden group transition-colors duration-300 hover:bg-[#0e5174] text-left focus:outline-none focus-visible:bg-[#0e5174] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-iosp-amber"
               >
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-iosp-amber/70 to-transparent" />
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-iosp-amber to-transparent" />
                 <div className="p-5 md:p-6 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
                   <div className="md:min-w-[180px]">
                     <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber mb-2">
@@ -628,11 +628,11 @@ export default function HomePage() {
                     </div>
                     <div className="font-heading font-semibold text-white text-xl leading-none flex items-center gap-3">
                       <span>Theory</span>
-                      <ArrowRight className="h-4 w-4 text-white/40 group-hover:text-iosp-amber transition-all duration-300 group-hover:translate-x-1" />
+                      <ArrowRight className="h-4 w-4 text-white/65 group-hover:text-iosp-amber transition-all duration-300 group-hover:translate-x-1" />
                     </div>
                   </div>
-                  <div className="md:border-l md:border-white/15 md:pl-8 flex-1">
-                    <p className="text-sm text-white/75 leading-relaxed">
+                  <div className="md:border-l md:border-white/25 md:pl-8 flex-1">
+                    <p className="text-sm text-white/85 leading-relaxed">
                       The conceptual thread running beneath all four themes &mdash; the questions, frameworks, and critiques that ground production work in deeper understanding of open science as a system.
                     </p>
                   </div>
@@ -640,21 +640,21 @@ export default function HomePage() {
               </button>
             </div>
             {/* CTAs */}
-            <div className="border-t border-white/15 pt-10">
+            <div className="border-t border-white/25 pt-10">
               <div className="flex items-end justify-between mb-8 gap-4">
                 <div>
-                  <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/50 mb-2">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/65 mb-2">
                     Action
                   </div>
                   <h3 className="font-heading text-2xl md:text-3xl font-bold tracking-tight">
                     Get involved
                   </h3>
                 </div>
-                <span className="font-mono text-xs uppercase tracking-[0.3em] text-white/40">
+                <span className="font-mono text-xs uppercase tracking-[0.3em] text-white/65">
                   Open calls
                 </span>
               </div>
-              <div className="grid md:grid-cols-3 gap-px bg-white/15 rounded-lg overflow-hidden">
+              <div className="grid md:grid-cols-3 gap-px bg-white/25 rounded-lg overflow-hidden">
                 {[
                   {
                     kind: 'showcase' as const,
@@ -682,7 +682,7 @@ export default function HomePage() {
                     type="button"
                     key={cta.kind}
                     onClick={() => setSignupKind(cta.kind)}
-                    className="bg-iosp-blue p-6 group flex flex-col text-left transition-colors duration-300 hover:bg-[#0a4a68] focus:outline-none focus-visible:ring-2 focus-visible:ring-iosp-amber"
+                    className="bg-iosp-blue p-6 group flex flex-col text-left transition-colors duration-300 hover:bg-[#0e5174] focus:outline-none focus-visible:ring-2 focus-visible:ring-iosp-amber"
                   >
                     <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber mb-4">
                       [ {cta.tag} ]
@@ -690,7 +690,7 @@ export default function HomePage() {
                     <div className="font-heading text-lg md:text-xl font-bold mb-3 leading-tight">
                       {cta.title}
                     </div>
-                    <p className="text-sm text-white/75 leading-relaxed flex-grow mb-6">
+                    <p className="text-sm text-white/85 leading-relaxed flex-grow mb-6">
                       {cta.desc}
                     </p>
                     <div className="flex items-center justify-between border-t border-white/10 pt-4">
@@ -705,36 +705,36 @@ export default function HomePage() {
             </div>
 
             {/* REGISTER YOUR INTEREST */}
-            <div className="border-t border-white/15 pt-10 mt-14">
+            <div className="border-t border-white/25 pt-10 mt-14">
               <div className="flex items-end justify-between mb-8 gap-4">
                 <div>
-                  <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/50 mb-2">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/65 mb-2">
                     Participate
                   </div>
                   <h3 className="font-heading text-2xl md:text-3xl font-bold tracking-tight">
                     Register your interest
                   </h3>
                 </div>
-                <span className="font-mono text-xs uppercase tracking-[0.3em] text-white/40">
+                <span className="font-mono text-xs uppercase tracking-[0.3em] text-white/65">
                   Curated &middot; limited
                 </span>
               </div>
 
-              <div className="relative bg-iosp-blue border border-white/15 rounded-lg overflow-hidden">
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-iosp-amber/70 to-transparent" />
+              <div className="relative bg-iosp-blue border border-white/25 rounded-lg overflow-hidden">
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-iosp-amber to-transparent" />
                 <div className="p-6 md:p-8 grid md:grid-cols-12 gap-x-8 gap-y-6 items-start">
                   {/* Quiet sidebar facts — last year & this year capacity */}
-                  <div className="md:col-span-3 md:border-r md:border-white/15 md:pr-8 space-y-5">
+                  <div className="md:col-span-3 md:border-r md:border-white/25 md:pr-8 space-y-5">
                     <div>
-                      <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/50 mb-3">
+                      <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/65 mb-3">
                         Last year
                       </div>
                       <div className="flex items-end gap-2 leading-none">
                         <div className="flex flex-col items-start">
-                          <div className="font-mono text-2xl md:text-3xl text-white/90 tracking-tight">
+                          <div className="font-mono text-2xl md:text-3xl text-white/85 tracking-tight">
                             425
                           </div>
-                          <div className="mt-2 font-mono text-[9px] uppercase tracking-[0.2em] text-white/50">
+                          <div className="mt-2 font-mono text-[9px] uppercase tracking-[0.2em] text-white/65">
                             Registered
                           </div>
                         </div>
@@ -742,10 +742,10 @@ export default function HomePage() {
                           /
                         </div>
                         <div className="flex flex-col items-start">
-                          <div className="font-mono text-2xl md:text-3xl text-white/90 tracking-tight">
+                          <div className="font-mono text-2xl md:text-3xl text-white/85 tracking-tight">
                             80
                           </div>
-                          <div className="mt-2 font-mono text-[9px] uppercase tracking-[0.2em] text-white/50">
+                          <div className="mt-2 font-mono text-[9px] uppercase tracking-[0.2em] text-white/65">
                             Capacity
                           </div>
                         </div>
@@ -758,17 +758,17 @@ export default function HomePage() {
                       <div className="font-mono text-2xl md:text-3xl text-white tracking-tight leading-none">
                         100
                       </div>
-                      <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.3em] text-white/50">
+                      <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.3em] text-white/65">
                         Capacity &mdash; Leiden
                       </div>
                     </div>
                   </div>
                   {/* Copy + CTA */}
                   <div className="md:col-span-9 flex flex-col gap-5">
-                    <p className="text-base md:text-lg leading-relaxed text-white/90">
+                    <p className="text-base md:text-lg leading-relaxed text-white/85">
                       IOSP is a curated event &mdash; registering does <span className="text-white font-semibold">not</span> guarantee a seat. Last year we received 425 registrations for an 80-person room, and we expect similar interest in Leiden.
                     </p>
-                    <p className="text-base md:text-lg leading-relaxed text-white/90">
+                    <p className="text-base md:text-lg leading-relaxed text-white/85">
                       The good news: <span className="text-white font-semibold">IOSP is free to join</span>, and every sponsorship dollar goes directly to travel grants so as many participants as possible can join us in Leiden, regardless of their financials and geographic location. Tell us you&apos;d like to participate and we&apos;ll be in touch as we work through the list.
                     </p>
                     <div>
@@ -812,7 +812,7 @@ export default function HomePage() {
                       {p}
                     </p>
                   ))}
-                  <div className="border-t border-white/15 pt-5">
+                  <div className="border-t border-white/25 pt-5">
                     <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber mb-3">
                       In Leiden
                     </div>
@@ -845,7 +845,7 @@ export default function HomePage() {
               <p className="text-base text-white/85 leading-relaxed">
                 The next substrate is already being built &mdash; persistent identifiers, schemas, provenance graphs, verification protocols, execution standards, registries, funding protocols &mdash; in pieces, across many communities. The work ahead is to align efforts, and to configure their outputs so multiple systems of science can run in parallel and absorb each other&rsquo;s failures.
               </p>
-              <div className="border-t border-white/15 pt-5">
+              <div className="border-t border-white/25 pt-5">
                 <Link
                   href="/theory"
                   className="inline-flex items-center gap-2 bg-iosp-amber text-iosp-blue hover:bg-iosp-amber/90 font-semibold px-4 py-2.5 rounded-md transition-colors group"
