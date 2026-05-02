@@ -75,6 +75,14 @@ export default function HomePage() {
   const [theoryOpen, setTheoryOpen] = useState(false)
   const timelineRef = useRef<HTMLDivElement>(null)
 
+  const scrollToIosp2025 = () => {
+    const element = document.getElementById('iosp-2025')
+    if (!element) return
+    const offset = 80
+    const top = element.getBoundingClientRect().top + window.pageYOffset - offset
+    window.scrollTo({ top, behavior: 'smooth' })
+  }
+
   // GSAP ScrollTrigger setup
   useEffect(() => {
     if (typeof window !== 'undefined' && timelineRef.current) {
@@ -540,7 +548,7 @@ export default function HomePage() {
                         body: (
                           <>
                             Leave with concrete collaborations.{' '}
-                            <a href="https://mira.science" target="_blank" rel="noopener noreferrer" className="text-iosp-amber hover:underline font-semibold">
+                            <a href="https://mira.science" target="_blank" rel="noopener noreferrer" className="text-iosp-amber hover:underline font-semibold pointer-events-auto">
                               mira.science
                             </a>{' '}
                             is one direct example of a project that grew out of work begun at IOSP.
@@ -549,14 +557,27 @@ export default function HomePage() {
                         evidence: <><span className="text-iosp-amber font-semibold">80%</span> wanted to continue the work they started in workshops, taking collaborations, prototypes, and direction back to their teams.</>,
                       },
                     ].map((c) => (
-                      <div key={c.title} className="bg-white/5 border border-white/10 rounded-md p-4 sm:row-span-3 sm:grid sm:grid-rows-subgrid">
-                        <div className="font-heading font-semibold text-white text-sm leading-snug">
-                          {c.title}
+                      <div
+                        key={c.title}
+                        className="relative bg-white/5 border border-white/10 rounded-md p-4 sm:row-span-3 sm:grid sm:grid-rows-subgrid group transition-colors hover:bg-white/[0.08] hover:border-white/25"
+                      >
+                        <a
+                          href="#iosp-2025"
+                          onClick={(e) => {
+                            e.preventDefault()
+                            scrollToIosp2025()
+                          }}
+                          aria-label={`View IOSP 2025 evidence: ${c.title}`}
+                          className="absolute inset-0 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-iosp-amber"
+                        />
+                        <div className="relative pointer-events-none font-heading font-semibold text-white text-sm leading-snug flex items-start justify-between gap-2">
+                          <span>{c.title}</span>
+                          <ArrowRight className="h-3.5 w-3.5 text-white/65 group-hover:text-iosp-amber group-hover:translate-x-1 transition-all flex-shrink-0 mt-0.5" />
                         </div>
-                        <p className="text-xs text-white/85 leading-relaxed mt-2">
+                        <p className="relative pointer-events-none text-xs text-white/85 leading-relaxed mt-2">
                           {c.body}
                         </p>
-                        <div className="border-t border-white/10 pt-2.5 mt-3">
+                        <div className="relative pointer-events-none border-t border-white/10 pt-2.5 mt-3">
                           <div className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/65 mb-1">
                             From IOSP 2025
                           </div>
