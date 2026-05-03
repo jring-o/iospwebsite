@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, Suspense } from 'react'
 import Link from 'next/link'
+import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, X } from 'lucide-react'
@@ -67,6 +68,18 @@ const THEMES: readonly Theme[] = [
 ]
 
 export default function HomePage() {
+  return (
+    <Suspense fallback={null}>
+      <HomePageContent />
+    </Suspense>
+  )
+}
+
+function HomePageContent() {
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const pathname = usePathname()
+
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
   const [showNewsletterModal, setShowNewsletterModal] = useState(false)
   const [signupKind, setSignupKind] = useState<SignupKind>(null)
@@ -74,6 +87,37 @@ export default function HomePage() {
   const activeThemeData = activeTheme ? THEMES.find((t) => t.n === activeTheme) ?? null : null
   const [theoryOpen, setTheoryOpen] = useState(false)
   const timelineRef = useRef<HTMLDivElement>(null)
+
+  // URL → modal state. URL is the source of truth for which modal is open.
+  useEffect(() => {
+    const signup = searchParams.get('signup')
+    setSignupKind(
+      signup === 'showcase' ||
+        signup === 'committee' ||
+        signup === 'sponsor' ||
+        signup === 'participant'
+        ? signup
+        : null,
+    )
+    const theme = searchParams.get('theme')
+    setActiveTheme(
+      theme === '01' || theme === '02' || theme === '03' || theme === '04' ? theme : null,
+    )
+    setTheoryOpen(searchParams.get('modal') === 'theory')
+  }, [searchParams])
+
+  // Set/clear a modal param. Only one modal can be open at a time, so opening
+  // a new one clears the others.
+  const setModalParam = (key: 'signup' | 'theme' | 'modal', value: string | null) => {
+    const params = new URLSearchParams(searchParams.toString())
+    ;(['signup', 'theme', 'modal'] as const).forEach((k) => {
+      if (k !== key) params.delete(k)
+    })
+    if (value === null) params.delete(key)
+    else params.set(key, value)
+    const qs = params.toString()
+    router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false })
+  }
 
   const scrollToIosp2025 = () => {
     const element = document.getElementById('iosp-2025')
@@ -612,7 +656,7 @@ export default function HomePage() {
                   <button
                     key={t.n}
                     type="button"
-                    onClick={() => setActiveTheme(t.n)}
+                    onClick={() => setModalParam('theme', t.n)}
                     aria-label={`Read more about ${t.title}`}
                     className="bg-iosp-blue p-6 group transition-colors duration-300 hover:bg-[#0e5174] text-left focus:outline-none focus-visible:bg-[#0e5174] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-iosp-amber"
                   >
@@ -637,7 +681,7 @@ export default function HomePage() {
               {/* Foundation layer — the stack beneath the four themes */}
               <button
                 type="button"
-                onClick={() => setTheoryOpen(true)}
+                onClick={() => setModalParam('modal', 'theory')}
                 aria-label="Read our theory of change"
                 className="mt-3 relative w-full bg-iosp-blue border border-white/25 rounded-lg overflow-hidden group transition-colors duration-300 hover:bg-[#0e5174] text-left focus:outline-none focus-visible:bg-[#0e5174] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-iosp-amber"
               >
@@ -702,7 +746,7 @@ export default function HomePage() {
                   <button
                     type="button"
                     key={cta.kind}
-                    onClick={() => setSignupKind(cta.kind)}
+                    onClick={() => setModalParam('signup', cta.kind)}
                     className="bg-iosp-blue p-6 group flex flex-col text-left transition-colors duration-300 hover:bg-[#0e5174] focus:outline-none focus-visible:ring-2 focus-visible:ring-iosp-amber"
                   >
                     <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber mb-4">
@@ -795,7 +839,7 @@ export default function HomePage() {
                     <div>
                       <button
                         type="button"
-                        onClick={() => setSignupKind('participant')}
+                        onClick={() => setModalParam('signup', 'participant')}
                         className="inline-flex items-center gap-2 bg-iosp-amber text-iosp-blue hover:bg-iosp-amber/90 font-semibold rounded-md py-3 px-5 transition-colors group focus:outline-none focus-visible:ring-2 focus-visible:ring-iosp-amber focus-visible:ring-offset-2 focus-visible:ring-offset-iosp-blue"
                       >
                         Register interest
@@ -809,12 +853,12 @@ export default function HomePage() {
           </div>
         </div>
 
-        <IospSignupModal kind={signupKind} onClose={() => setSignupKind(null)} />
+        <IospSignupModal kind={signupKind} onClose={() => setModalParam('signup', null)} />
 
         <Dialog
           open={activeThemeData !== null}
           onOpenChange={(o) => {
-            if (!o) setActiveTheme(null)
+            if (!o) setModalParam('theme', null)
           }}
         >
           <DialogContent>
@@ -847,7 +891,12 @@ export default function HomePage() {
           </DialogContent>
         </Dialog>
 
-        <Dialog open={theoryOpen} onOpenChange={setTheoryOpen}>
+        <Dialog
+          open={theoryOpen}
+          onOpenChange={(o) => {
+            if (!o) setModalParam('modal', null)
+          }}
+        >
           <DialogContent>
             <DialogHeader>
               <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber flex items-center gap-3">
@@ -870,7 +919,7 @@ export default function HomePage() {
                 <Link
                   href="/theory"
                   className="inline-flex items-center gap-2 bg-iosp-amber text-iosp-blue hover:bg-iosp-amber/90 font-semibold px-4 py-2.5 rounded-md transition-colors group"
-                  onClick={() => setTheoryOpen(false)}
+                  onClick={() => setModalParam('modal', null)}
                 >
                   Read the full theory of change
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
