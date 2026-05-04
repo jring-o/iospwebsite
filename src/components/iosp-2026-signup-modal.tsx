@@ -327,7 +327,6 @@ function ShowcaseFields({ control, register, errors }: FieldsProps) {
         options={THEMES}
         error={errors.themes?.message}
       />
-      <AudienceFields control={control} />
       <Field label="Short pitch" htmlFor="pitch" error={errors.pitch?.message}>
         <Textarea
           id="pitch"
@@ -359,7 +358,6 @@ function CommitteeFields({ control, register, errors }: FieldsProps) {
         label="Which themes interest you most? (optional)"
         options={THEMES}
       />
-      <AudienceFields control={control} />
       <Field label="Bandwidth & notes (optional)" htmlFor="bandwidth" error={errors.bandwidth?.message}>
         <Textarea
           id="bandwidth"
