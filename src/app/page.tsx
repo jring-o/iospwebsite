@@ -748,8 +748,8 @@ function HomePageContent() {
                     kind: 'sponsor' as const,
                     tag: 'Sponsor',
                     title: 'Become a sponsor',
-                    desc: 'IOSP is free to join. Sponsorship goes solely to travel grants so researchers and technologists can participate in Leiden.',
-                    action: 'Sponsor IOSP',
+                    desc: 'IOSP is free to join. Every sponsor dollar funds a travel grant — last year in Denver, sponsors brought 10 people from 5 countries.',
+                    action: 'Send a participant to Leiden',
                   },
                 ].map((cta) => (
                   <button

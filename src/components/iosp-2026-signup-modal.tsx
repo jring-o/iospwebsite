@@ -33,13 +33,15 @@ const THEMES = [
 
 const INTEREST_AREAS = ['Programming', 'Logistics', 'Outreach', 'Sponsorship', 'Other']
 
-const SPONSORSHIP_RANGES = [
-  'Under $1,000',
-  '$1,000 – $5,000',
-  '$5,000 – $15,000',
-  '$15,000 – $50,000',
-  '$50,000+',
-  'Let’s talk',
+// Tier labels are stored as the `range` value. Subtitles are display-only.
+// All math anchors on $2,000/person travel grant.
+const SPONSORSHIP_TIERS: ReadonlyArray<{ label: string; dollars: string; seats: string }> = [
+  { label: 'Co-fund a participant', dollars: 'Under $2,000', seats: 'partial seat' },
+  { label: 'Send a participant', dollars: '$2,000', seats: '1 person' },
+  { label: 'Send a group', dollars: '$6,000', seats: '3 participants' },
+  { label: 'Send a cohort', dollars: '$20,000', seats: '10 participants' },
+  { label: 'Anchor the room', dollars: '$50,000+', seats: '25+ participants' },
+  { label: 'Let’s talk', dollars: 'Flexible', seats: '—' },
 ]
 
 const AUDIENCE_ROLES = [
@@ -94,8 +96,8 @@ const COPY = {
     eyebrow: 'Sponsor',
     title: 'Sponsor IOSP 2026',
     description:
-      'Sponsorship goes solely to travel grants so researchers and technologists can join us in Leiden. Tell us a bit about your organization and we’ll reply with options.',
-    submit: 'Send sponsorship inquiry',
+      'Every sponsor dollar funds a travel grant. Last year in Denver, sponsorship brought 10 people from 5 countries to IOSP. Jon and Ellie will respond directly within one business day to discuss how we can help you reach the right audiences as a champion of open science.',
+    submit: 'Talk to us',
   },
   participant: {
     eyebrow: 'Participate',
@@ -201,7 +203,7 @@ function SignupForm({
       {kind === 'sponsor' && <SponsorFields control={control} register={register} errors={fieldErrors} />}
       {kind === 'participant' && <ParticipantFields control={control} register={register} errors={fieldErrors} />}
 
-      <ConsentField control={control} />
+      {kind !== 'sponsor' && <ConsentField control={control} />}
 
       {serverError && (
         <div className="text-sm text-iosp-coral border border-iosp-coral/40 bg-iosp-coral/10 rounded-md px-3 py-2">
@@ -275,6 +277,8 @@ function defaultsFor(kind: Exclude<SignupKind, null>): SignupInput {
       range: '',
       themes: [],
       message: '',
+      publicRecognition: true,
+      interestedInServices: false,
       // Sponsors don't fill audience fields, but consent applies to them too.
       statsConsent: true,
     }
@@ -433,28 +437,75 @@ function SponsorFields({ control, register, errors }: FieldsProps) {
         control={control}
         name="range"
         render={({ field }) => (
-          <Field label="Sponsorship range" htmlFor="range" error={errors.range?.message}>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-              {SPONSORSHIP_RANGES.map((r) => {
-                const selected = field.value === r
+          <div className="space-y-2">
+            <Label>Send participants to IOSP.</Label>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {SPONSORSHIP_TIERS.map((tier) => {
+                const selected = field.value === tier.label
                 return (
                   <button
                     type="button"
-                    key={r}
-                    onClick={() => field.onChange(r)}
+                    key={tier.label}
+                    onClick={() => field.onChange(tier.label)}
                     className={cn(
-                      'text-left text-xs font-mono uppercase tracking-wider px-3 py-2 rounded-md border transition-colors',
+                      'text-left px-4 py-3 rounded-md border transition-colors flex flex-col gap-1',
                       selected
-                        ? 'border-iosp-amber bg-iosp-amber/15 text-iosp-amber'
-                        : 'border-white/15 bg-white/5 text-white/80 hover:border-white/30',
+                        ? 'border-iosp-amber bg-iosp-amber/15'
+                        : 'border-white/15 bg-white/5 hover:border-white/30',
                     )}
                   >
-                    {r}
+                    <span
+                      className={cn(
+                        'font-heading text-sm font-semibold leading-tight',
+                        selected ? 'text-iosp-amber' : 'text-white',
+                      )}
+                    >
+                      {tier.label}
+                    </span>
+                    <span
+                      className={cn(
+                        'font-mono text-[10px] uppercase tracking-[0.2em]',
+                        selected ? 'text-iosp-amber/80' : 'text-white/60',
+                      )}
+                    >
+                      {tier.dollars} · {tier.seats}
+                    </span>
                   </button>
                 )
               })}
             </div>
-          </Field>
+            <p className="text-xs text-white/55 leading-relaxed">
+              ~$2,000 covers travel + accommodation per person, on average. 100% of sponsorship goes directly to travel grants — SciOS keeps IOSP free year after year through{' '}
+              <a
+                href="https://scios.tech/?lab=resilient-data-futures"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-white/40 underline-offset-2 hover:decoration-iosp-amber hover:text-iosp-amber transition-colors"
+              >
+                consulting
+              </a>
+              ,{' '}
+              <a
+                href="https://mira.science"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-white/40 underline-offset-2 hover:decoration-iosp-amber hover:text-iosp-amber transition-colors"
+              >
+                workshops
+              </a>
+              ,{' '}
+              <a
+                href="https://scios.tech/picoding"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-white/40 underline-offset-2 hover:decoration-iosp-amber hover:text-iosp-amber transition-colors"
+              >
+                training
+              </a>
+              , and partnership engagements with organizations building open science infrastructure. Every paid engagement helps keep future IOSPs free.
+            </p>
+            {errors.range?.message && <p className="text-xs text-iosp-coral">{errors.range.message}</p>}
+          </div>
         )}
       />
       <CheckboxGroupField
@@ -464,7 +515,7 @@ function SponsorFields({ control, register, errors }: FieldsProps) {
         options={THEMES}
         error={errors.themes?.message}
       />
-      <Field label="Message" htmlFor="message" error={errors.message?.message}>
+      <Field label="Message (optional)" htmlFor="message" error={errors.message?.message}>
         <Textarea
           id="message"
           rows={3}
@@ -472,6 +523,44 @@ function SponsorFields({ control, register, errors }: FieldsProps) {
           {...register('message')}
         />
       </Field>
+      <Controller
+        control={control}
+        name="publicRecognition"
+        render={({ field }) => (
+          <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-white/15 bg-white/5 cursor-pointer hover:border-white/30 transition-colors">
+            <Checkbox
+              checked={field.value !== false}
+              onCheckedChange={(v) => field.onChange(!!v)}
+              className="mt-0.5"
+            />
+            <span className="text-sm text-white/90 leading-relaxed">
+              OK to list us publicly as an IOSP 2026 sponsor.
+              <span className="block mt-1 text-xs text-white/60 leading-relaxed">
+                We&apos;ll add your name and logo to the sponsor section of the IOSP site. Uncheck to keep your support private.
+              </span>
+            </span>
+          </label>
+        )}
+      />
+      <Controller
+        control={control}
+        name="interestedInServices"
+        render={({ field }) => (
+          <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-white/10 bg-white/[0.03] cursor-pointer hover:border-white/20 transition-colors">
+            <Checkbox
+              checked={!!field.value}
+              onCheckedChange={(v) => field.onChange(!!v)}
+              className="mt-0.5"
+            />
+            <span className="text-sm text-white/90 leading-relaxed">
+              Also interested in SciOS services for our team.
+              <span className="block mt-1 text-xs text-white/60 leading-relaxed">
+                We&apos;ll send a short overview of what consulting, workshops, training, or partnership engagements could look like for your organization.
+              </span>
+            </span>
+          </label>
+        )}
+      />
     </>
   )
 }

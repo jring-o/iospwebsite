@@ -29,6 +29,10 @@ export const signupSchema = z
     role: z.string().trim().max(120).optional().default(''),
     range: z.string().max(120).optional().default(''),
     message: z.string().trim().max(1500).optional().default(''),
+    // Default true: pre-checked. Stored in details JSONB.
+    publicRecognition: z.boolean().optional().default(true),
+    // Lead-gen: sponsor opts in to learning more about SciOS services. Default false (explicit opt-in).
+    interestedInServices: z.boolean().optional().default(false),
     // participant
     needsTravelSupport: z.boolean().optional().default(false),
     notes: z.string().trim().max(800).optional().default(''),
@@ -72,9 +76,6 @@ export const signupSchema = z
       if (data.themes.length === 0) {
         ctx.addIssue({ code: 'custom', path: ['themes'], message: 'Pick at least one theme.' })
       }
-      if (!data.message.trim()) {
-        ctx.addIssue({ code: 'custom', path: ['message'], message: 'A short message is required.' })
-      }
     }
   })
 
@@ -93,6 +94,6 @@ export type SignupResult =
 export const DETAIL_FIELDS: Record<SignupParsed['kind'], readonly string[]> = {
   showcase: ['projectName', 'projectUrl', 'pitch'],
   committee: ['interestAreas', 'bandwidth'],
-  sponsor: ['role', 'range', 'message'],
+  sponsor: ['role', 'range', 'message', 'publicRecognition', 'interestedInServices'],
   participant: ['notes'],
 }
