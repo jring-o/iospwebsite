@@ -203,7 +203,7 @@ function SignupForm({
       {kind === 'sponsor' && <SponsorFields control={control} register={register} errors={fieldErrors} />}
       {kind === 'participant' && <ParticipantFields control={control} register={register} errors={fieldErrors} />}
 
-      {kind !== 'sponsor' && <ConsentField control={control} />}
+      {kind === 'participant' && <ConsentField control={control} />}
 
       {serverError && (
         <div className="text-sm text-iosp-coral border border-iosp-coral/40 bg-iosp-coral/10 rounded-md px-3 py-2">
