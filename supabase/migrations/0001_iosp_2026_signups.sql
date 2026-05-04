@@ -12,6 +12,13 @@ create table if not exists public.iosp_2026_signups (
   organization text,
   themes text[] not null default '{}',
   needs_travel_support boolean not null default false,
+  -- Audience-fingerprint fields used to produce aggregate stats for sponsors.
+  -- Optional; null when the submitter skipped them or for kinds that don't ask.
+  roles text[] not null default '{}',
+  sector text,
+  region text,
+  -- Default true: the consent checkbox in the form is pre-checked.
+  stats_consent boolean not null default true,
   details jsonb not null default '{}'::jsonb
 );
 
@@ -20,6 +27,10 @@ alter table public.iosp_2026_signups
   add column if not exists organization text,
   add column if not exists themes text[] not null default '{}',
   add column if not exists needs_travel_support boolean not null default false,
+  add column if not exists roles text[] not null default '{}',
+  add column if not exists sector text,
+  add column if not exists region text,
+  add column if not exists stats_consent boolean not null default true,
   add column if not exists details jsonb not null default '{}'::jsonb;
 
 -- 2b. Migrate any rows previously stored under kind='attendee' to kind='participant'.

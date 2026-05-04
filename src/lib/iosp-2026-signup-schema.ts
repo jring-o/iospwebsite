@@ -10,6 +10,13 @@ export const signupSchema = z
     organization: z.string().trim().max(200).optional().default(''),
     // shared across kinds — top-level `themes` column. Required for showcase, optional otherwise.
     themes: z.array(z.string()).optional().default([]),
+    // Audience-fingerprint — optional on participant/showcase/committee; ignored on sponsor.
+    // Roles is multi-select (people wear multiple hats); sector and region are single.
+    audienceRoles: z.array(z.string()).optional().default([]),
+    sector: z.string().trim().max(120).optional().default(''),
+    region: z.string().trim().max(120).optional().default(''),
+    // Pre-checked consent to include this response in aggregate stats shared with sponsors.
+    statsConsent: z.boolean().optional().default(true),
     // showcase
     projectName: z.string().trim().max(200).optional().default(''),
     projectUrl: z.string().trim().max(500).optional().default(''),

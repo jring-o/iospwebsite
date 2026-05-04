@@ -42,6 +42,39 @@ const SPONSORSHIP_RANGES = [
   'Let’s talk',
 ]
 
+const AUDIENCE_ROLES = [
+  'Researcher (faculty / PI)',
+  'Postdoc / research staff',
+  'Student / early-career',
+  'Engineer / developer',
+  'Infrastructure / platform operator',
+  'Librarian / data steward',
+  'Funder / program officer',
+  'Publisher / editor',
+  'Policy / advocacy',
+  'Other',
+]
+
+const SECTORS = [
+  'Academia / university',
+  'Research institute or national lab',
+  'Nonprofit / NGO',
+  'Industry / company',
+  'Government / public sector',
+  'Funder / philanthropy',
+  'Independent',
+  'Other',
+]
+
+const REGIONS = [
+  'Africa',
+  'Asia & Pacific',
+  'Europe',
+  'Latin America & Caribbean',
+  'Middle East & North Africa',
+  'North America',
+]
+
 const COPY = {
   showcase: {
     eyebrow: 'Showcase',
@@ -168,6 +201,8 @@ function SignupForm({
       {kind === 'sponsor' && <SponsorFields control={control} register={register} errors={fieldErrors} />}
       {kind === 'participant' && <ParticipantFields control={control} register={register} errors={fieldErrors} />}
 
+      <ConsentField control={control} />
+
       {serverError && (
         <div className="text-sm text-iosp-coral border border-iosp-coral/40 bg-iosp-coral/10 rounded-md px-3 py-2">
           {serverError}
@@ -198,6 +233,13 @@ function SignupForm({
 }
 
 function defaultsFor(kind: Exclude<SignupKind, null>): SignupInput {
+  // Shared across all kinds — audience-fingerprint fields are optional, consent is pre-checked.
+  const audience = {
+    audienceRoles: [] as string[],
+    sector: '',
+    region: '',
+    statsConsent: true,
+  }
   if (kind === 'showcase') {
     return {
       kind: 'showcase',
@@ -208,6 +250,7 @@ function defaultsFor(kind: Exclude<SignupKind, null>): SignupInput {
       projectUrl: '',
       themes: [],
       pitch: '',
+      ...audience,
     }
   }
   if (kind === 'committee') {
@@ -219,6 +262,7 @@ function defaultsFor(kind: Exclude<SignupKind, null>): SignupInput {
       interestAreas: [],
       themes: [],
       bandwidth: '',
+      ...audience,
     }
   }
   if (kind === 'sponsor') {
@@ -231,6 +275,8 @@ function defaultsFor(kind: Exclude<SignupKind, null>): SignupInput {
       range: '',
       themes: [],
       message: '',
+      // Sponsors don't fill audience fields, but consent applies to them too.
+      statsConsent: true,
     }
   }
   return {
@@ -241,6 +287,7 @@ function defaultsFor(kind: Exclude<SignupKind, null>): SignupInput {
     themes: [],
     needsTravelSupport: false,
     notes: '',
+    ...audience,
   }
 }
 
@@ -276,6 +323,7 @@ function ShowcaseFields({ control, register, errors }: FieldsProps) {
         options={THEMES}
         error={errors.themes?.message}
       />
+      <AudienceFields control={control} />
       <Field label="Short pitch" htmlFor="pitch" error={errors.pitch?.message}>
         <Textarea
           id="pitch"
@@ -307,6 +355,7 @@ function CommitteeFields({ control, register, errors }: FieldsProps) {
         label="Which themes interest you most? (optional)"
         options={THEMES}
       />
+      <AudienceFields control={control} />
       <Field label="Bandwidth & notes (optional)" htmlFor="bandwidth" error={errors.bandwidth?.message}>
         <Textarea
           id="bandwidth"
@@ -331,6 +380,7 @@ function ParticipantFields({ control, register, errors }: FieldsProps) {
         label="Which themes are you most interested in? (optional)"
         options={THEMES}
       />
+      <AudienceFields control={control} />
 
       {/* Travel-support priority — top-level boolean column, used to prioritize grants. */}
       <div className="space-y-2">
@@ -426,6 +476,54 @@ function SponsorFields({ control, register, errors }: FieldsProps) {
   )
 }
 
+function AudienceFields({ control }: { control: FieldsProps['control'] }) {
+  return (
+    <>
+      <CheckboxGroupField
+        control={control}
+        name="audienceRoles"
+        label="Which best describes you? (optional, pick any that apply)"
+        options={AUDIENCE_ROLES}
+      />
+      <SelectField
+        control={control}
+        name="sector"
+        label="Sector (optional)"
+        options={SECTORS}
+        columns={2}
+      />
+      <SelectField
+        control={control}
+        name="region"
+        label="Region (optional)"
+        options={REGIONS}
+        columns={3}
+      />
+    </>
+  )
+}
+
+function ConsentField({ control }: { control: FieldsProps['control'] }) {
+  return (
+    <Controller
+      control={control}
+      name="statsConsent"
+      render={({ field }) => (
+        <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-white/10 bg-white/[0.03] cursor-pointer hover:border-white/20 transition-colors">
+          <Checkbox
+            checked={field.value !== false}
+            onCheckedChange={(v) => field.onChange(!!v)}
+            className="mt-0.5"
+          />
+          <span className="text-xs text-white/70 leading-relaxed">
+            OK to include my response in aggregated, non-identifying stats shared with sponsors and partners.
+          </span>
+        </label>
+      )}
+    />
+  )
+}
+
 /* --- shared building blocks --- */
 
 function Field({
@@ -445,6 +543,61 @@ function Field({
       {children}
       {error && <p className="text-xs text-iosp-coral">{error}</p>}
     </div>
+  )
+}
+
+function SelectField({
+  control,
+  name,
+  label,
+  options,
+  columns = 2,
+  error,
+}: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  control: any
+  name: string
+  label: string
+  options: readonly string[]
+  columns?: 2 | 3
+  error?: string
+}) {
+  return (
+    <Controller
+      control={control}
+      name={name}
+      render={({ field }) => (
+        <div className="space-y-2">
+          <Label>{label}</Label>
+          <div
+            className={cn(
+              'grid gap-2',
+              columns === 3 ? 'grid-cols-2 sm:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2',
+            )}
+          >
+            {options.map((opt) => {
+              const selected = field.value === opt
+              return (
+                <button
+                  type="button"
+                  key={opt}
+                  onClick={() => field.onChange(selected ? '' : opt)}
+                  className={cn(
+                    'text-left text-xs font-mono uppercase tracking-wider px-3 py-2 rounded-md border transition-colors',
+                    selected
+                      ? 'border-iosp-amber bg-iosp-amber/15 text-iosp-amber'
+                      : 'border-white/15 bg-white/5 text-white/80 hover:border-white/30',
+                  )}
+                >
+                  {opt}
+                </button>
+              )
+            })}
+          </div>
+          {error && <p className="text-xs text-iosp-coral">{error}</p>}
+        </div>
+      )}
+    />
   )
 }
 

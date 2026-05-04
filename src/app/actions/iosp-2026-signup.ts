@@ -35,6 +35,12 @@ export async function submitIospSignup(input: unknown): Promise<SignupResult> {
       : data.organization
   const organization = organizationSource?.trim() || null
 
+  // Audience-fingerprint fields are only collected on non-sponsor forms.
+  const audienceRoles =
+    data.kind !== 'sponsor' ? (data.audienceRoles ?? []) : []
+  const sector = data.kind !== 'sponsor' ? data.sector?.trim() || null : null
+  const region = data.kind !== 'sponsor' ? data.region?.trim() || null : null
+
   try {
     const supabase = getSupabaseServerClient()
     const { error } = await supabase.from('iosp_2026_signups').insert({
@@ -44,6 +50,10 @@ export async function submitIospSignup(input: unknown): Promise<SignupResult> {
       organization,
       themes: data.themes ?? [],
       needs_travel_support: data.kind === 'participant' ? Boolean(data.needsTravelSupport) : false,
+      roles: audienceRoles,
+      sector,
+      region,
+      stats_consent: data.statsConsent !== false,
       details,
     })
     if (error) {

@@ -519,7 +519,16 @@ function HomePageContent() {
                 </div>
                 <p className="text-base leading-relaxed text-white/85">
                   <span className="text-white font-semibold">Portgebouw, University of Leiden, and GoFAIR</span>{' '}
-                  host us on Oct 12, 13, and 15. On Oct 14 we field-trip to the National Open Science Festival in Delft, then reconvene for the final day.
+                  host us on Oct 12, 13, and 15. On Oct 14 we field-trip to the{' '}
+                  <a
+                    href="https://opensciencefestival.nl/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white underline decoration-white/40 underline-offset-4 hover:decoration-iosp-amber hover:text-iosp-amber transition-colors"
+                  >
+                    National Open Science Festival
+                  </a>{' '}
+                  in Delft, then reconvene for the final day.
                 </p>
               </div>
             </div>
