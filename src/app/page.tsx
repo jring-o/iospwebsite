@@ -47,10 +47,11 @@ const THEMES: readonly Theme[] = [
   },
   {
     n: '03',
-    title: 'Resilient Data & PID Infrastructure',
-    desc: 'How research data gets stored, found, and accessed — persistent identifiers, content addressing, and distributed preservation.',
+    title: 'Resilient Data & Sovereign Infrastructure',
+    desc: 'How research data and infrastructure stay alive — persistent identifiers, distributed preservation, and systems that don’t depend on a single host.',
     body: [
       'The substrate of open science is its identifiers, its addressing, and its preservation guarantees. When a PID rots, a dataset moves, or a registry shuts down, the citation graph silently breaks. Resilient infrastructure assumes failure: content-addressed payloads, distributed mirroring, append-only provenance, and resolvers that fall back instead of 404.',
+      'Sovereign infrastructure adds the question of control — who decides whether a service stays up, who can pull the plug, and what happens to the data if they do. Local-first systems, self-hosted nodes, and decentralized preservation networks turn “someone else’s server” into infrastructure the people who depend on it actually own.',
     ],
     inLeiden:
       'We’ll convene the people already maintaining this layer, stress-test where it breaks under modular research workloads, and push the projects extending it forward.',
