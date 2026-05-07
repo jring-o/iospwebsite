@@ -535,7 +535,7 @@ function HomePageContent() {
 
             {/* PRODUCTION-DRIVEN */}
             <div className="border-t border-white/25 pt-10 mb-14">
-              <div className="grid md:grid-cols-12 gap-x-8 gap-y-6 items-center">
+              <div className="grid md:grid-cols-12 gap-x-8 gap-y-6 items-start">
                 <div className="md:col-span-4">
                   <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber mb-4">
                     Production-driven
@@ -548,7 +548,7 @@ function HomePageContent() {
                         10<span className="text-iosp-amber">%</span>
                       </div>
                       <div className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.3em] text-white/65 leading-snug">
-                        Presentations and Panels
+                        Talks + panels
                       </div>
                     </div>
 
@@ -557,7 +557,7 @@ function HomePageContent() {
                         15<span className="text-iosp-amber">%</span>
                       </div>
                       <div className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.3em] text-white/65 leading-snug">
-                        Tooling Showcase
+                        Showcase + survey
                       </div>
                     </div>
 
@@ -566,81 +566,105 @@ function HomePageContent() {
                         75<span className="text-iosp-amber">%</span>
                       </div>
                       <div className="mt-2.5 font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/65">
-                        Hands-on building
+                        Co-design + build
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="md:col-span-8 md:pl-8 md:border-l md:border-white/25">
                   <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber mb-3">
-                    Less talking. More building. More collaboration.
+                    Less talking. More collaboration. More building.
                   </div>
                   <p className="text-base md:text-lg leading-relaxed text-white/85">
-                    IOSP is a curated event designed around hands-on work, bringing tool-builders and researchers together to actively build solutions across four core themes. We cap talks at 10% of the runtime and tooling showcases at 15%, leaving the remaining 75% for hands-on production.
+                    IOSP is built on a single working principle: the people who depend on open-science infrastructure and the people building it should be in the same room, on the same problems, long enough to do real work together. The event runs in three frames: context, landscape, and co-working.
                   </p>
+                  <p className="mt-5 text-base md:text-lg leading-relaxed text-white/85">
+                    Tool-builders bring methods and prototypes; researchers bring the domain knowledge and problems that put those tools to real use.
+                  </p>
+                </div>
+              </div>
 
-                  {/* 3 compact evidence cards under the prose — subgrid keeps dividers aligned */}
-                  <div className="mt-8 mb-3 font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber flex items-center gap-3">
-                    <span className="block w-6 h-px bg-iosp-amber" />
-                    Outcomes
-                  </div>
-                  <div className="grid sm:grid-cols-3 sm:grid-rows-[auto_1fr_auto] gap-3">
-                    {[
-                      {
-                        title: 'People you couldn’t meet anywhere else',
-                        body: 'Researchers and tool-builders shoulder-to-shoulder for four days. The people building infrastructure side-by-side with those using it.',
-                        evidence: <><span className="text-iosp-amber font-semibold">87%</span> of participants cited facilitated networking as a core value, meeting researchers and tool-builders they otherwise wouldn’t.</>,
-                      },
-                      {
-                        title: 'Tools and projects you didn’t know existed',
-                        body: 'Discover novel infrastructure being built across the open-science ecosystem — both the high-level concepts and the technical details for putting them to work.',
-                        evidence: <span className="italic">&ldquo;I was exposed to novel technologically based efforts to support open science needs that I was not previously aware of.&rdquo;</span>,
-                      },
-                      {
-                        title: 'Work that lives past Leiden',
-                        body: (
-                          <>
-                            Leave with concrete collaborations.{' '}
-                            <a href="https://mira.science" target="_blank" rel="noopener noreferrer" className="text-iosp-amber hover:underline font-semibold pointer-events-auto">
-                              mira.science
-                            </a>{' '}
-                            is one direct example of a project that grew out of work begun at IOSP.
-                          </>
-                        ),
-                        evidence: <><span className="text-iosp-amber font-semibold">80%</span> wanted to continue the work they started in workshops, taking collaborations, prototypes, and direction back to their teams.</>,
-                      },
-                    ].map((c) => (
-                      <div
-                        key={c.title}
-                        className="relative bg-white/5 border border-white/10 rounded-md p-4 sm:row-span-3 sm:grid sm:grid-rows-subgrid group transition-colors hover:bg-white/[0.08] hover:border-white/25"
-                      >
-                        <a
-                          href="#iosp-2025"
-                          onClick={(e) => {
-                            e.preventDefault()
-                            scrollToIosp2025()
-                          }}
-                          aria-label={`View IOSP 2025 evidence: ${c.title}`}
-                          className="absolute inset-0 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-iosp-amber"
-                        />
-                        <div className="relative pointer-events-none font-heading font-semibold text-white text-sm leading-snug flex items-start justify-between gap-2">
-                          <span>{c.title}</span>
-                          <ArrowRight className="h-3.5 w-3.5 text-white/65 group-hover:text-iosp-amber group-hover:translate-x-1 transition-all flex-shrink-0 mt-0.5" />
+              {/* TAKEAWAYS — 4 cards, full-width band below the grid */}
+              <div className="mt-12">
+                <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber flex items-center gap-3">
+                  <span className="block w-6 h-px bg-iosp-amber" />
+                  Takeaways
+                </div>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-[auto_1fr_auto] gap-3">
+                  {[
+                    {
+                      title: 'People you couldn’t meet elsewhere',
+                      body: 'Researchers and tool-builders shoulder-to-shoulder for four days. The people building open-science infrastructure side-by-side with those who depend on it.',
+                      evidence: <><span className="text-iosp-amber font-semibold">87%</span> of participants cited facilitated networking as a core value, meeting researchers and tool-builders they otherwise wouldn’t.</>,
+                    },
+                    {
+                      title: 'Working knowledge of new tools and infrastructure',
+                      body: 'Discover novel infrastructure being built across the open-science ecosystem — leave with the high-level concepts, the technical details, and a path to put them to work.',
+                      evidence: (
+                        <>
+                          <span className="italic">&ldquo;I was exposed to novel technologically based efforts to support open science needs that I was not previously aware of.&rdquo;</span>
+                          <span className="not-italic block mt-1.5 font-mono text-[9px] uppercase tracking-[0.2em] text-white/65">&mdash; Doug Schuster, NSF NCAR</span>
+                        </>
+                      ),
+                    },
+                    {
+                      title: 'A clearer picture of what researchers actually need built',
+                      body: 'Four days alongside the researchers who depend on what’s being built — leave with sharper requirements, validated approaches, and a list of dead-ends to stop pursuing.',
+                      evidence: (
+                        <>
+                          <span className="italic">&ldquo;Expert opinion on challenges research libraries face when sharing data, and useful guidelines for rolling out new research technologies.&rdquo;</span>
+                          <span className="not-italic block mt-1.5 font-mono text-[9px] uppercase tracking-[0.2em] text-white/65">&mdash; Martin Karlsson, Coordination Network</span>
+                        </>
+                      ),
+                    },
+                    {
+                      title: 'Work that lives past Leiden',
+                      body: (
+                        <>
+                          Methods and prototypes stress-tested in Leiden become the seed of post-event collaboration.{' '}
+                          <a href="https://mira.science" target="_blank" rel="noopener noreferrer" className="text-iosp-amber hover:underline font-semibold pointer-events-auto">
+                            MIRA
+                          </a>
+                          {' and '}
+                          <a href="https://kairos-research.org/" target="_blank" rel="noopener noreferrer" className="text-iosp-amber hover:underline font-semibold pointer-events-auto">
+                            Kairos
+                          </a>
+                          {' '}both grew out of work begun at IOSP.
+                        </>
+                      ),
+                      evidence: <><span className="text-iosp-amber font-semibold">80%</span> wanted to continue the work they started in workshops, taking collaborations, prototypes, and direction back to their teams.</>,
+                    },
+                  ].map((c) => (
+                    <div
+                      key={c.title}
+                      className="relative bg-white/5 border border-white/10 rounded-md p-4 lg:row-span-3 lg:grid lg:grid-rows-subgrid group transition-colors hover:bg-white/[0.08] hover:border-white/25"
+                    >
+                      <a
+                        href="#iosp-2025"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          scrollToIosp2025()
+                        }}
+                        aria-label={`View IOSP 2025 evidence: ${c.title}`}
+                        className="absolute inset-0 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-iosp-amber"
+                      />
+                      <div className="relative pointer-events-none font-heading font-semibold text-white text-sm leading-snug flex items-start justify-between gap-2">
+                        <span>{c.title}</span>
+                        <ArrowRight className="h-3.5 w-3.5 text-white/65 group-hover:text-iosp-amber group-hover:translate-x-1 transition-all flex-shrink-0 mt-0.5" />
+                      </div>
+                      <p className="relative pointer-events-none text-xs text-white/85 leading-relaxed mt-2">
+                        {c.body}
+                      </p>
+                      <div className="relative pointer-events-none border-t border-white/10 pt-2.5 mt-3">
+                        <div className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/65 mb-1">
+                          From IOSP 2025
                         </div>
-                        <p className="relative pointer-events-none text-xs text-white/85 leading-relaxed mt-2">
-                          {c.body}
-                        </p>
-                        <div className="relative pointer-events-none border-t border-white/10 pt-2.5 mt-3">
-                          <div className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/65 mb-1">
-                            From IOSP 2025
-                          </div>
-                          <div className="text-[11px] text-white/85 leading-relaxed">
-                            {c.evidence}
-                          </div>
+                        <div className="text-[11px] text-white/85 leading-relaxed">
+                          {c.evidence}
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
