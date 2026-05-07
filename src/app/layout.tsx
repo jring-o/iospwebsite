@@ -68,6 +68,14 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  icons: {
+    icon: [
+      { url: "/iosp-logo.svg", type: "image/svg+xml" },
+      { url: "/iosp-logo.png", type: "image/png" },
+    ],
+    shortcut: "/iosp-logo.png",
+    apple: "/iosp-logo.png",
+  },
 };
 
 export default function RootLayout({

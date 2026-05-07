@@ -875,10 +875,10 @@ function HomePageContent() {
                   {/* Copy + CTA */}
                   <div className="md:col-span-9 flex flex-col gap-5">
                     <p className="text-base md:text-lg leading-relaxed text-white/85">
-                      IOSP is a curated event &mdash; registering does <span className="text-white font-semibold">not</span> guarantee a seat. Last year we received 425 registrations for an 80-person room, and we expect similar interest in Leiden.
+                      IOSP is a curated event &mdash; registering does <span className="text-white font-semibold">not</span> guarantee a seat. Last year we received 425 registrations for an 80-person room.
                     </p>
                     <p className="text-base md:text-lg leading-relaxed text-white/85">
-                      The good news: <span className="text-white font-semibold">IOSP is free to join</span>, and every sponsorship dollar goes directly to travel grants so as many participants as possible can join us in Leiden, regardless of their financials and geographic location. Tell us you&apos;d like to participate and we&apos;ll be in touch as we work through the list.
+                      The good news: <span className="text-white font-semibold">IOSP is free to join</span>, and every sponsorship dollar goes directly to travel grants so as many participants from around the world as possible can join us in Leiden, regardless of their financials and geographic location. Tell us you&apos;d like to participate and we&apos;ll be in touch as we work through the list.
                     </p>
                     <div>
                       <button
