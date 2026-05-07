@@ -545,7 +545,7 @@ function HomePageContent() {
                   {/* Stacked proportional stats — size IS the visualization */}
                   <div className="space-y-4">
                     <div className="leading-none">
-                      <div className="font-heading font-bold text-xl text-white/65 tracking-tight">
+                      <div className="font-heading font-bold text-base text-white/65 tracking-tight">
                         10<span className="text-iosp-amber">%</span>
                       </div>
                       <div className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.3em] text-white/65 leading-snug">
@@ -554,7 +554,7 @@ function HomePageContent() {
                     </div>
 
                     <div className="leading-none">
-                      <div className="font-heading font-bold text-3xl text-white/85 tracking-tight">
+                      <div className="font-heading font-bold text-2xl text-white/85 tracking-tight">
                         15<span className="text-iosp-amber">%</span>
                       </div>
                       <div className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.3em] text-white/65 leading-snug">
@@ -563,7 +563,7 @@ function HomePageContent() {
                     </div>
 
                     <div className="leading-none pt-1">
-                      <div className="font-heading font-bold text-6xl md:text-7xl text-white tracking-tight">
+                      <div className="font-heading font-bold text-4xl md:text-5xl text-white tracking-tight">
                         75<span className="text-iosp-amber">%</span>
                       </div>
                       <div className="mt-2.5 font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/65">
@@ -596,7 +596,12 @@ function HomePageContent() {
                     {
                       title: 'People you couldn’t meet elsewhere',
                       body: 'Researchers and tool-builders shoulder-to-shoulder for four days. The people building open-science infrastructure side-by-side with those who depend on it.',
-                      evidence: <><span className="text-iosp-amber font-semibold">87%</span> of participants cited facilitated networking as a core value, meeting researchers and tool-builders they otherwise wouldn’t.</>,
+                      evidence: (
+                        <>
+                          <span className="italic">&ldquo;Great discussions and valuable connections that would be really hard to have in traditional academic conferences.&rdquo;</span>
+                          <span className="not-italic block mt-1.5 font-mono text-[9px] uppercase tracking-[0.2em] text-white/65">&mdash; Ronen Tamari, Renaissance Philanthropy BiTS Fellow</span>
+                        </>
+                      ),
                     },
                     {
                       title: 'Working knowledge of new tools and infrastructure',
@@ -633,7 +638,12 @@ function HomePageContent() {
                           {' '}both grew out of work begun at IOSP.
                         </>
                       ),
-                      evidence: <><span className="text-iosp-amber font-semibold">80%</span> wanted to continue the work they started in workshops, taking collaborations, prototypes, and direction back to their teams.</>,
+                      evidence: (
+                        <>
+                          <span className="italic">&ldquo;It felt like we started a movement! This put us in a better position to build the next system for science and publishing.&rdquo;</span>
+                          <span className="not-italic block mt-1.5 font-mono text-[9px] uppercase tracking-[0.2em] text-white/65">&mdash; Matthew Akamatsu, University of Washington</span>
+                        </>
+                      ),
                     },
                   ].map((c) => (
                     <div
