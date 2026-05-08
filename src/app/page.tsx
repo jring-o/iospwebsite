@@ -23,6 +23,7 @@ type Theme = {
   desc: string
   body: string[]
   inLeiden: string
+  workshops?: string[]
 }
 
 const THEMES: readonly Theme[] = [
@@ -55,6 +56,7 @@ const THEMES: readonly Theme[] = [
     ],
     inLeiden:
       'We’ll convene the people already maintaining this layer, stress-test where it breaks under modular research workloads, and push the projects extending it forward.',
+    workshops: ['Save your discipline’s at-risk data — Cornelius Ihle, University of Göttingen'],
   },
   {
     n: '04',
@@ -596,32 +598,23 @@ function HomePageContent() {
                     {
                       title: 'People you couldn’t meet elsewhere',
                       body: 'Researchers and tool-builders shoulder-to-shoulder for four days. The people building open-science infrastructure side-by-side with those who depend on it.',
-                      evidence: (
-                        <>
-                          <span className="italic">&ldquo;Great discussions and valuable connections that would be really hard to have in traditional academic conferences.&rdquo;</span>
-                          <span className="not-italic block mt-1.5 font-mono text-[9px] uppercase tracking-[0.2em] text-white/65">&mdash; Ronen Tamari, Renaissance Philanthropy BiTS Fellow</span>
-                        </>
-                      ),
+                      quote: 'Great discussions and valuable connections that would be really hard to have in traditional academic conferences.',
+                      name: 'Ronen Tamari',
+                      role: 'Renaissance Philanthropy BiTS Fellow',
                     },
                     {
                       title: 'Working knowledge of new tools and infrastructure',
                       body: 'Discover novel infrastructure being built across the open-science ecosystem — leave with the high-level concepts, the technical details, and a path to put them to work.',
-                      evidence: (
-                        <>
-                          <span className="italic">&ldquo;I was exposed to novel technologically based efforts to support open science needs that I was not previously aware of.&rdquo;</span>
-                          <span className="not-italic block mt-1.5 font-mono text-[9px] uppercase tracking-[0.2em] text-white/65">&mdash; Doug Schuster, NSF NCAR</span>
-                        </>
-                      ),
+                      quote: 'I was exposed to novel technologically based efforts to support open science needs that I was not previously aware of.',
+                      name: 'Doug Schuster',
+                      role: 'NSF NCAR',
                     },
                     {
                       title: 'A clearer picture of what researchers actually need built',
                       body: 'Four days alongside the researchers who depend on what’s being built — leave with sharper requirements, validated approaches, and a list of dead-ends to stop pursuing.',
-                      evidence: (
-                        <>
-                          <span className="italic">&ldquo;Expert opinion on challenges research libraries face when sharing data, and useful guidelines for rolling out new research technologies.&rdquo;</span>
-                          <span className="not-italic block mt-1.5 font-mono text-[9px] uppercase tracking-[0.2em] text-white/65">&mdash; Martin Karlsson, Coordination Network</span>
-                        </>
-                      ),
+                      quote: 'Expert opinion on challenges research libraries face when sharing data, and useful guidelines for rolling out new research technologies.',
+                      name: 'Martin Karlsson',
+                      role: 'Coordination Network',
                     },
                     {
                       title: 'Work that lives past Leiden',
@@ -631,19 +624,20 @@ function HomePageContent() {
                           <a href="https://mira.science" target="_blank" rel="noopener noreferrer" className="text-iosp-amber hover:underline font-semibold pointer-events-auto">
                             MIRA
                           </a>
-                          {' and '}
+                          {', '}
                           <a href="https://kairos-research.org/" target="_blank" rel="noopener noreferrer" className="text-iosp-amber hover:underline font-semibold pointer-events-auto">
                             Kairos
                           </a>
-                          {' '}both grew out of work begun at IOSP.
+                          {', and '}
+                          <a href="https://prsm.network" target="_blank" rel="noopener noreferrer" className="text-iosp-amber hover:underline font-semibold pointer-events-auto">
+                            PRSM
+                          </a>
+                          {' '}all grew out of work begun at IOSP.
                         </>
                       ),
-                      evidence: (
-                        <>
-                          <span className="italic">&ldquo;It felt like we started a movement! This put us in a better position to build the next system for science and publishing.&rdquo;</span>
-                          <span className="not-italic block mt-1.5 font-mono text-[9px] uppercase tracking-[0.2em] text-white/65">&mdash; Matthew Akamatsu, University of Washington</span>
-                        </>
-                      ),
+                      quote: 'It felt like we started a movement! This put us in a better position to build the next system for science and publishing.',
+                      name: 'Matthew Akamatsu',
+                      role: 'University of Washington',
                     },
                   ].map((c) => (
                     <div
@@ -666,13 +660,24 @@ function HomePageContent() {
                       <p className="relative pointer-events-none text-xs text-white/85 leading-relaxed mt-2">
                         {c.body}
                       </p>
-                      <div className="relative pointer-events-none border-t border-white/10 pt-2.5 mt-3">
-                        <div className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/65 mb-1">
+                      <div className="relative pointer-events-none border-t border-white/10 pt-3 mt-3">
+                        <div className="font-mono text-[9px] uppercase tracking-[0.3em] text-iosp-amber/80 mb-2.5">
                           From IOSP 2025
                         </div>
-                        <div className="text-[11px] text-white/85 leading-relaxed">
-                          {c.evidence}
+                        <div className="flex items-stretch gap-2.5 mb-3">
+                          <span aria-hidden className="block w-px bg-iosp-amber shrink-0 group-hover:bg-iosp-amber transition-colors" />
+                          <div className="min-w-0">
+                            <div className="font-heading font-bold text-white text-sm leading-tight tracking-tight">
+                              {c.name}
+                            </div>
+                            <div className="font-mono text-[11px] text-white/80 mt-1 leading-snug">
+                              {c.role}
+                            </div>
+                          </div>
                         </div>
+                        <p className="text-[11px] text-white/65 italic leading-relaxed min-h-[4lh]">
+                          &ldquo;{c.quote}&rdquo;
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -685,7 +690,7 @@ function HomePageContent() {
               <div className="flex items-end justify-between mb-8 gap-4">
                 <div>
                   <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/65 mb-2">
-                    Programme
+                    Structure
                   </div>
                   <h3 className="font-heading text-2xl md:text-3xl font-bold tracking-tight">
                     Four themes
@@ -747,6 +752,78 @@ function HomePageContent() {
                   </div>
                 </div>
               </button>
+            </div>
+
+            {/* WORKSHOPS */}
+            <div className="border-t border-white/25 pt-10 mb-14">
+              <div className="flex items-end justify-between mb-8 gap-4">
+                <div>
+                  <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/65 mb-2">
+                    Programme
+                  </div>
+                  <h3 className="font-heading text-2xl md:text-3xl font-bold tracking-tight">
+                    Workshops
+                  </h3>
+                </div>
+                <span className="font-mono text-xs uppercase tracking-[0.3em] text-white/65">
+                  Hands-on
+                </span>
+              </div>
+
+              {/* Themed workshop cards */}
+              <div className="grid grid-cols-1 gap-3">
+                <div className="relative bg-white/5 border border-white/10 rounded-md p-5 md:p-6 transition-colors hover:bg-white/[0.08] hover:border-white/25">
+                  <div className="flex items-start gap-4">
+                    <div className="font-mono text-iosp-amber text-sm tracking-wider pt-1 min-w-[24px]">
+                      03
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber/70 mb-2">
+                        Resilient Data &amp; Sovereign Infrastructure
+                      </div>
+                      <div className="font-heading font-semibold text-white text-lg leading-snug mb-2">
+                        Save your discipline&rsquo;s at-risk data
+                      </div>
+                      <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/65 mb-4">
+                        Cornelius Ihle &middot; University of Göttingen
+                      </div>
+                      <p className="text-sm md:text-base text-white/85 leading-relaxed">
+                        Bring the data your field is closest to losing &mdash; orphaned datasets, vanishing journals, repositories on borrowed time. We&rsquo;ll crawl the source, content-address the payloads, and replicate them on IPFS through D-LOCKSS. You leave with that data verifiably preserved on a decentralized network, beyond any single host&rsquo;s lifespan.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* PICoding marquee strip — continuous track */}
+              <div className="mt-3 relative w-full bg-iosp-blue border border-white/25 rounded-lg overflow-hidden">
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-iosp-amber to-transparent" />
+                <div className="p-5 md:p-6 flex flex-col md:flex-row gap-4 md:gap-8">
+                  <div className="md:min-w-[220px]">
+                    <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber mb-2">
+                      Continuous &middot; All themes
+                    </div>
+                    <div className="font-heading font-semibold text-white text-xl leading-tight mb-2">
+                      PICoding
+                    </div>
+                    <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/65">
+                      Jonathan Starr &middot; SciOS
+                    </div>
+                  </div>
+                  <div className="md:border-l md:border-white/25 md:pl-8 flex-1">
+                    <p className="text-sm md:text-base text-white/85 leading-relaxed">
+                      A live build line for the gaps the event surfaces. When the four themes turn up open-science tooling that&rsquo;s missing, broken, or stuck on a wishlist, we&rsquo;ll spec it with the group and build a working prototype on the spot &mdash; using a multi-agent software-development harness. Drop in across the four days; leave with real code addressing real gaps.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Status note */}
+              <div className="mt-8 flex items-center justify-center gap-3 font-mono text-[10px] uppercase tracking-[0.3em] text-white/55">
+                <span className="block w-6 h-px bg-white/25" />
+                Programme in active planning &middot; Check back for updates
+                <span className="block w-6 h-px bg-white/25" />
+              </div>
             </div>
             {/* CTAs */}
             <div className="border-t border-white/25 pt-10">
@@ -929,6 +1006,21 @@ function HomePageContent() {
                       {activeThemeData.inLeiden}
                     </p>
                   </div>
+                  {activeThemeData.workshops && activeThemeData.workshops.length > 0 && (
+                    <div className="border-t border-white/25 pt-5">
+                      <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber mb-3">
+                        Workshops
+                      </div>
+                      <ul className="space-y-2">
+                        {activeThemeData.workshops.map((w, i) => (
+                          <li key={i} className="flex items-start gap-3 text-base text-white/85 leading-relaxed">
+                            <span aria-hidden="true" className="text-iosp-amber font-mono shrink-0 mt-1 leading-none">&rarr;</span>
+                            <span>{w}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </>
             )}
