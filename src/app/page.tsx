@@ -909,7 +909,7 @@ function HomePageContent() {
                 </span>
               </div>
 
-              <div className="group relative bg-iosp-blue border border-white/25 rounded-lg overflow-hidden transition-colors duration-300 has-[button:hover]:border-white/40">
+              <div className="group relative bg-iosp-blue border border-white/25 rounded-lg overflow-hidden transition-all duration-300 ease-out has-[button:hover]:border-white/40 has-[button:hover]:scale-[1.03]">
                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-iosp-amber to-transparent opacity-70 transition-opacity duration-300 group-has-[button:hover]:opacity-100" />
                 <div className="p-6 md:p-8 flex flex-col gap-5">
                   <p className="text-base md:text-lg leading-relaxed text-white/85">
@@ -922,7 +922,7 @@ function HomePageContent() {
                     <button
                       type="button"
                       onClick={() => setModalParam('signup', 'participant')}
-                      className="inline-flex items-center gap-2 bg-iosp-amber text-iosp-blue hover:bg-iosp-amber/90 font-semibold rounded-md py-3 px-5 transition-all duration-300 ease-out hover:scale-[1.03] group/cta focus:outline-none focus-visible:ring-2 focus-visible:ring-iosp-amber focus-visible:ring-offset-2 focus-visible:ring-offset-iosp-blue"
+                      className="inline-flex items-center gap-2 bg-iosp-amber text-iosp-blue hover:bg-iosp-amber/90 font-semibold rounded-md py-3 px-5 transition-all duration-300 ease-out group/cta focus:outline-none focus-visible:ring-2 focus-visible:ring-iosp-amber focus-visible:ring-offset-2 focus-visible:ring-offset-iosp-blue"
                     >
                       Register interest
                       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/cta:translate-x-1.5" />
