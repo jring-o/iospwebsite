@@ -122,14 +122,6 @@ function HomePageContent() {
     router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false })
   }
 
-  const scrollToIosp2025 = () => {
-    const element = document.getElementById('iosp-2025')
-    if (!element) return
-    const offset = 80
-    const top = element.getBoundingClientRect().top + window.pageYOffset - offset
-    window.scrollTo({ top, behavior: 'smooth' })
-  }
-
   // GSAP ScrollTrigger setup
   useEffect(() => {
     if (typeof window !== 'undefined' && timelineRef.current) {
@@ -635,37 +627,27 @@ function HomePageContent() {
                           {' '}all grew out of work begun at IOSP.
                         </>
                       ),
-                      quote: 'It felt like we started a movement! This put us in a better position to build the next system for science and publishing.',
+                      quote: 'This put us in a better position to build the next system for science and publishing.',
                       name: 'Matthew Akamatsu',
                       role: 'University of Washington',
                     },
                   ].map((c) => (
                     <div
                       key={c.title}
-                      className="relative bg-white/5 border border-white/10 rounded-md p-4 lg:row-span-3 lg:grid lg:grid-rows-subgrid group transition-colors hover:bg-white/[0.08] hover:border-white/25"
+                      className="relative bg-white/5 border border-white/10 rounded-md p-4 lg:row-span-3 lg:grid lg:grid-rows-subgrid transition-all duration-300 ease-out hover:bg-white/[0.08] hover:border-white/30 hover:scale-[1.03] hover:z-10"
                     >
-                      <a
-                        href="#iosp-2025"
-                        onClick={(e) => {
-                          e.preventDefault()
-                          scrollToIosp2025()
-                        }}
-                        aria-label={`View IOSP 2025 evidence: ${c.title}`}
-                        className="absolute inset-0 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-iosp-amber"
-                      />
-                      <div className="relative pointer-events-none font-heading font-semibold text-white text-sm leading-snug flex items-start justify-between gap-2">
-                        <span>{c.title}</span>
-                        <ArrowRight className="h-3.5 w-3.5 text-white/65 group-hover:text-iosp-amber group-hover:translate-x-1 transition-all flex-shrink-0 mt-0.5" />
+                      <div className="font-heading font-semibold text-white text-sm leading-snug">
+                        {c.title}
                       </div>
-                      <p className="relative pointer-events-none text-xs text-white/85 leading-relaxed mt-2">
+                      <p className="text-xs text-white/85 leading-relaxed mt-2">
                         {c.body}
                       </p>
-                      <div className="relative pointer-events-none border-t border-white/10 pt-3 mt-3">
+                      <div className="border-t border-white/10 pt-3 mt-3">
                         <div className="font-mono text-[9px] uppercase tracking-[0.3em] text-iosp-amber/80 mb-2.5">
                           From IOSP 2025
                         </div>
                         <div className="flex items-stretch gap-2.5 mb-3">
-                          <span aria-hidden className="block w-px bg-iosp-amber shrink-0 group-hover:bg-iosp-amber transition-colors" />
+                          <span aria-hidden className="block w-px bg-iosp-amber shrink-0" />
                           <div className="min-w-0">
                             <div className="font-heading font-bold text-white text-sm leading-tight tracking-tight">
                               {c.name}
@@ -700,14 +682,25 @@ function HomePageContent() {
                   Parallel tracks
                 </span>
               </div>
-              <div className="grid md:grid-cols-2 gap-px bg-white/25 rounded-lg overflow-hidden">
-                {THEMES.map((t) => (
+              <div className="grid md:grid-cols-2 gap-px bg-white/25 rounded-lg">
+                {THEMES.map((t, i) => {
+                  // Match the parent's rounded-lg shape so corner cards have the right outer radius.
+                  // Removed overflow-hidden on the parent so scale-up isn't clipped; cards round themselves instead.
+                  const cornerRadius =
+                    i === 0
+                      ? 'rounded-t-lg md:rounded-tr-none'
+                      : i === 1
+                        ? 'md:rounded-tr-lg'
+                        : i === 2
+                          ? 'md:rounded-bl-lg'
+                          : 'rounded-b-lg md:rounded-bl-none'
+                  return (
                   <button
                     key={t.n}
                     type="button"
                     onClick={() => setModalParam('theme', t.n)}
                     aria-label={`Read more about ${t.title}`}
-                    className="bg-iosp-blue p-6 group transition-colors duration-300 hover:bg-[#0e5174] text-left focus:outline-none focus-visible:bg-[#0e5174] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-iosp-amber"
+                    className={`relative bg-iosp-blue p-6 group transition-all duration-300 ease-out hover:bg-[#0e5174] hover:scale-[1.03] hover:z-10 text-left focus:outline-none focus-visible:bg-[#0e5174] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-iosp-amber ${cornerRadius}`}
                   >
                     <div className="flex items-start gap-4">
                       <div className="font-mono text-iosp-amber text-sm tracking-wider pt-1 min-w-[24px]">
@@ -724,7 +717,8 @@ function HomePageContent() {
                       </div>
                     </div>
                   </button>
-                ))}
+                  )
+                })}
               </div>
 
               {/* Foundation layer — the stack beneath the four themes */}
@@ -732,7 +726,7 @@ function HomePageContent() {
                 type="button"
                 onClick={() => setModalParam('modal', 'theory')}
                 aria-label="Read our theory of change"
-                className="mt-3 relative w-full bg-iosp-blue border border-white/25 rounded-lg overflow-hidden group transition-colors duration-300 hover:bg-[#0e5174] text-left focus:outline-none focus-visible:bg-[#0e5174] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-iosp-amber"
+                className="mt-3 relative w-full bg-iosp-blue border border-white/25 rounded-lg overflow-hidden group transition-all duration-300 ease-out hover:bg-[#0e5174] hover:border-white/40 hover:scale-[1.03] hover:z-10 text-left focus:outline-none focus-visible:bg-[#0e5174] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-iosp-amber"
               >
                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-iosp-amber to-transparent" />
                 <div className="p-5 md:p-6 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
@@ -772,7 +766,7 @@ function HomePageContent() {
 
               {/* Themed workshop cards */}
               <div className="grid grid-cols-1 gap-3">
-                <div className="relative bg-white/5 border border-white/10 rounded-md p-5 md:p-6 transition-colors hover:bg-white/[0.08] hover:border-white/25">
+                <div className="relative bg-white/5 border border-white/10 rounded-md p-5 md:p-6 transition-all duration-300 ease-out hover:bg-white/[0.08] hover:border-white/30 hover:scale-[1.03] hover:z-10">
                   <div className="flex items-start gap-4">
                     <div className="font-mono text-iosp-amber text-sm tracking-wider pt-1 min-w-[24px]">
                       03
@@ -796,7 +790,7 @@ function HomePageContent() {
               </div>
 
               {/* PICoding marquee strip — continuous track */}
-              <div className="mt-3 relative w-full bg-iosp-blue border border-white/25 rounded-lg overflow-hidden">
+              <div className="mt-3 relative w-full bg-iosp-blue border border-white/25 rounded-lg overflow-hidden transition-all duration-300 ease-out hover:bg-[#0e5174] hover:border-white/40 hover:scale-[1.03] hover:z-10">
                 <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-iosp-amber to-transparent" />
                 <div className="p-5 md:p-6 flex flex-col md:flex-row gap-4 md:gap-8">
                   <div className="md:min-w-[220px]">
@@ -840,7 +834,7 @@ function HomePageContent() {
                   Open calls
                 </span>
               </div>
-              <div className="grid md:grid-cols-3 gap-px bg-white/25 rounded-lg overflow-hidden">
+              <div className="grid md:grid-cols-3 gap-px bg-white/25 rounded-lg">
                 {[
                   {
                     kind: 'showcase' as const,
@@ -863,12 +857,20 @@ function HomePageContent() {
                     desc: 'IOSP is free to join. Every sponsor dollar funds a travel grant — last year in Denver, sponsors brought 10 people from 5 countries.',
                     action: 'Send a participant to Leiden',
                   },
-                ].map((cta) => (
+                ].map((cta, i) => {
+                  // Corner radii so cards form the parent's rounded shape without overflow-hidden (which would clip scale).
+                  const cornerRadius =
+                    i === 0
+                      ? 'rounded-tl-lg rounded-tr-lg md:rounded-tr-none md:rounded-bl-lg'
+                      : i === 2
+                        ? 'rounded-bl-lg rounded-br-lg md:rounded-bl-none md:rounded-tr-lg'
+                        : ''
+                  return (
                   <button
                     type="button"
                     key={cta.kind}
                     onClick={() => setModalParam('signup', cta.kind)}
-                    className="bg-iosp-blue p-6 group flex flex-col text-left transition-colors duration-300 hover:bg-[#0e5174] focus:outline-none focus-visible:ring-2 focus-visible:ring-iosp-amber"
+                    className={`relative bg-iosp-blue p-6 group flex flex-col text-left transition-all duration-300 ease-out hover:bg-[#0e5174] hover:scale-[1.03] hover:z-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-iosp-amber ${cornerRadius}`}
                   >
                     <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber mb-4">
                       [ {cta.tag} ]
@@ -883,10 +885,11 @@ function HomePageContent() {
                       <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-white">
                         {cta.action}
                       </span>
-                      <ArrowRight className="h-4 w-4 text-iosp-amber transition-transform duration-300 group-hover:translate-x-1.5" />
+                      <ArrowRight className="h-4 w-4 text-white/65 group-hover:text-iosp-amber transition-all duration-300 group-hover:translate-x-1.5" />
                     </div>
                   </button>
-                ))}
+                  )
+                })}
               </div>
             </div>
 
@@ -906,67 +909,24 @@ function HomePageContent() {
                 </span>
               </div>
 
-              <div className="relative bg-iosp-blue border border-white/25 rounded-lg overflow-hidden">
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-iosp-amber to-transparent" />
-                <div className="p-6 md:p-8 grid md:grid-cols-12 gap-x-8 gap-y-6 items-start">
-                  {/* Quiet sidebar facts — last year & this year capacity */}
-                  <div className="md:col-span-3 md:border-r md:border-white/25 md:pr-8 space-y-5">
-                    <div>
-                      <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/65 mb-3">
-                        Last year
-                      </div>
-                      <div className="flex items-end gap-2 leading-none">
-                        <div className="flex flex-col items-start">
-                          <div className="font-mono text-2xl md:text-3xl text-white/85 tracking-tight">
-                            425
-                          </div>
-                          <div className="mt-2 font-mono text-[9px] uppercase tracking-[0.2em] text-white/65">
-                            Registered
-                          </div>
-                        </div>
-                        <div className="font-mono text-2xl md:text-3xl text-iosp-amber tracking-tight pb-[18px]">
-                          /
-                        </div>
-                        <div className="flex flex-col items-start">
-                          <div className="font-mono text-2xl md:text-3xl text-white/85 tracking-tight">
-                            80
-                          </div>
-                          <div className="mt-2 font-mono text-[9px] uppercase tracking-[0.2em] text-white/65">
-                            Capacity
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="pt-5 border-t border-white/10">
-                      <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber mb-2">
-                        This year
-                      </div>
-                      <div className="font-mono text-2xl md:text-3xl text-white tracking-tight leading-none">
-                        100
-                      </div>
-                      <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.3em] text-white/65">
-                        Capacity &mdash; Leiden
-                      </div>
-                    </div>
-                  </div>
-                  {/* Copy + CTA */}
-                  <div className="md:col-span-9 flex flex-col gap-5">
-                    <p className="text-base md:text-lg leading-relaxed text-white/85">
-                      IOSP is a curated event &mdash; registering does <span className="text-white font-semibold">not</span> guarantee a seat. Last year we received 425 registrations for an 80-person room.
-                    </p>
-                    <p className="text-base md:text-lg leading-relaxed text-white/85">
-                      The good news: <span className="text-white font-semibold">IOSP is free to join</span>, and every sponsorship dollar goes directly to travel grants so as many participants from around the world as possible can join us in Leiden, regardless of their financials and geographic location. Tell us you&apos;d like to participate and we&apos;ll be in touch as we work through the list.
-                    </p>
-                    <div>
-                      <button
-                        type="button"
-                        onClick={() => setModalParam('signup', 'participant')}
-                        className="inline-flex items-center gap-2 bg-iosp-amber text-iosp-blue hover:bg-iosp-amber/90 font-semibold rounded-md py-3 px-5 transition-colors group focus:outline-none focus-visible:ring-2 focus-visible:ring-iosp-amber focus-visible:ring-offset-2 focus-visible:ring-offset-iosp-blue"
-                      >
-                        Register interest
-                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
-                      </button>
-                    </div>
+              <div className="group relative bg-iosp-blue border border-white/25 rounded-lg overflow-hidden transition-colors duration-300 has-[button:hover]:border-white/40">
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-iosp-amber to-transparent opacity-70 transition-opacity duration-300 group-has-[button:hover]:opacity-100" />
+                <div className="p-6 md:p-8 flex flex-col gap-5">
+                  <p className="text-base md:text-lg leading-relaxed text-white/85">
+                    IOSP is a curated, highly facilitated event &mdash; we aim to convene a balanced mix of researchers, technologists, librarians, funders, and others across the global research ecosystem. Last year we received 425 registrations for an 80-person room; this year we have space for 100. Registering does <span className="text-white font-semibold">not</span> guarantee a seat.
+                  </p>
+                  <p className="text-base md:text-lg leading-relaxed text-white/85">
+                    <span className="text-white font-semibold">IOSP is free to join</span>, and every sponsorship dollar goes directly to travel grants so finances and location aren&rsquo;t a barrier. Tell us you&rsquo;d like to participate and we&rsquo;ll be in touch as we work through the list.
+                  </p>
+                  <div>
+                    <button
+                      type="button"
+                      onClick={() => setModalParam('signup', 'participant')}
+                      className="inline-flex items-center gap-2 bg-iosp-amber text-iosp-blue hover:bg-iosp-amber/90 font-semibold rounded-md py-3 px-5 transition-all duration-300 ease-out hover:scale-[1.03] group/cta focus:outline-none focus-visible:ring-2 focus-visible:ring-iosp-amber focus-visible:ring-offset-2 focus-visible:ring-offset-iosp-blue"
+                    >
+                      Register interest
+                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/cta:translate-x-1.5" />
+                    </button>
                   </div>
                 </div>
               </div>
