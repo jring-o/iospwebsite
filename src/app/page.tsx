@@ -485,7 +485,7 @@ function HomePageContent() {
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-iosp-amber animate-pulse motion-reduce:animate-none" />
                 IOSP &mdash; Edition 02
               </span>
-              <span className="hidden md:inline">Portgebouw &amp; GoFAIR, Leiden</span>
+              <span className="hidden md:inline">Poortgebouw &amp; GO FAIR, Leiden</span>
               <span>Oct 12&ndash;15, 2026</span>
             </div>
 
@@ -513,7 +513,7 @@ function HomePageContent() {
                   Venue
                 </div>
                 <p className="text-base leading-relaxed text-white/85">
-                  <span className="text-white font-semibold">Portgebouw, University of Leiden, and GoFAIR</span>{' '}
+                  <span className="text-white font-semibold">Poortgebouw, University of Leiden, and GO FAIR</span>{' '}
                   host us on Oct 12, 13, and 15. On Oct 14 we field-trip to the{' '}
                   <a
                     href="https://opensciencefestival.nl/"
@@ -1916,7 +1916,7 @@ function HomePageContent() {
                 </div>
                 <div className="text-center">
                   <div className="text-sm font-semibold text-iosp-blue">Erik Schultes</div>
-                  <div className="text-xs text-slate">GoFAIR Foundation</div>
+                  <div className="text-xs text-slate">GO FAIR Foundation</div>
                 </div>
                 <div className="text-center">
                   <div className="text-sm font-semibold text-iosp-blue">Isabel Abedrapo</div>
@@ -2000,7 +2000,7 @@ function HomePageContent() {
                   </div>
                   <div className="text-center">
                     <div className="text-sm font-semibold text-iosp-blue">Erik Schultes</div>
-                    <div className="text-xs text-slate">GoFAIR Foundation</div>
+                    <div className="text-xs text-slate">GO FAIR Foundation</div>
                   </div>
                   <div className="text-center">
                     <div className="text-sm font-semibold text-iosp-blue">Chris Erdmann</div>
