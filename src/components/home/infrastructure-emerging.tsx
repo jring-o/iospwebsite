@@ -53,7 +53,7 @@ export function InfrastructureEmerging() {
       <div className="wrap">
         <div className="s-head">
           <div className="meta">
-            <div className="kicker">Substrate</div>
+            <div className="kicker">The Substrate</div>
           </div>
           <div>
             <h2>Independent teams. One substrate.</h2>

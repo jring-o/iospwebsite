@@ -7,31 +7,31 @@ import { TheoryModal } from "@/components/theory-modal";
 
 const TAKEAWAYS = [
   {
-    title: "People you couldn't meet elsewhere",
-    body: "Researchers and tool-builders shoulder-to-shoulder for four days. The people building open-science infrastructure side-by-side with those who depend on it.",
+    title: "Meet people you couldn't meet elsewhere",
+    body: "Researchers and tool-builders shoulder-to-shoulder for four days. The people building open science infrastructure side-by-side with those who depend on it.",
     name: "Ronen Tamari",
     role: "Renaissance Philanthropy BiTS Fellow",
     quote:
       "Great discussions and valuable connections that would be really hard to have in traditional academic conferences.",
   },
   {
-    title: "Working knowledge of new tools and infrastructure",
-    body: "Discover novel infrastructure being built across the open-science ecosystem — leave with the high-level concepts, the technical details, and a path to put them to work.",
+    title: "Gain a working knowledge of new tools and infrastructure",
+    body: "Discover novel infrastructure being built across the open science ecosystem — leave with the high-level concepts, the technical details, and a path to put them to work.",
     name: "Doug Schuster",
     role: "NSF NCAR",
     quote:
       "I was exposed to novel technologically based efforts to support open science needs that I was not previously aware of.",
   },
   {
-    title: "A clearer picture of what researchers actually need built",
-    body: "Four days alongside the researchers who depend on what's being built — leave with sharper requirements, validated approaches, and a list of dead-ends to stop pursuing.",
+    title: "Form a clearer picture of what researchers actually need built",
+    body: "Four days alongside the researchers who depend on what's being built. Leave with sharper requirements, validated approaches, and a list of dead-ends to stop pursuing.",
     name: "Martin Karlsson",
     role: "Coordination Network",
     quote:
       "Expert opinion on challenges research libraries face when sharing data, and useful guidelines for rolling out new research technologies.",
   },
   {
-    title: "Work that lives beyond the event",
+    title: "Start work that lives beyond the event",
     body: (
       <>
         Methods and prototypes stress-tested in Leiden become the seed of
@@ -141,9 +141,9 @@ export function Iosp2026() {
 
         {/* production-driven */}
         <div className="pd">
-          <div className="kick mono">Production-driven</div>
           <div className="pd-grid">
             <div className="pd-stats">
+              <div className="kick mono">Production-driven</div>
               <div className="row-1">
                 <div className="pct">
                   10<span className="accent">%</span>
@@ -169,7 +169,7 @@ export function Iosp2026() {
               </p>
               <p>
                 IOSP is built on a single working principle: the people who
-                depend on open-science infrastructure and the people building
+                depend on open cience infrastructure and the people building
                 it should be in the same room, working on the same problems, long
                 enough to do real work together.
               </p>
@@ -184,7 +184,7 @@ export function Iosp2026() {
 
         {/* takeaways */}
         <div className="takeaways">
-          <div className="kick mono">Takeaways</div>
+          <div className="kick mono">Goals</div>
           <div className="ta-grid">
             {TAKEAWAYS.map((t) => (
               <div className="ta-card" key={t.title}>
@@ -300,7 +300,7 @@ export function Iosp2026() {
               <div className="by">Jonathan Starr · SciOS</div>
               <p>
                 A live build line for the gaps the event surfaces. When the
-                four themes turn up open-science tooling that's missing,
+                four themes turn up open science tooling that's missing,
                 broken, or stuck on a wishlist, we'll spec it with the group
                 and build a working prototype on the spot — using a
                 multi-agent software-development harness. Drop in across the
@@ -384,7 +384,12 @@ export function Iosp2026() {
           </div>
 
           {/* register interest */}
-          <div className="reg">
+          <button
+            type="button"
+            className="reg"
+            onClick={() => setSignup("participant")}
+            aria-label="Register your interest"
+          >
             <div className="kick">Participate</div>
             <h3>Register your interest</h3>
             <p>
@@ -402,14 +407,8 @@ export function Iosp2026() {
               Actively pushing open science forward? Register and we'll do our
               best to find a way to get you in the room.
             </p>
-            <button
-              type="button"
-              className="btn"
-              onClick={() => setSignup("participant")}
-            >
-              Register interest →
-            </button>
-          </div>
+            <span className="btn">Register interest →</span>
+          </button>
         </div>
       </div>
 

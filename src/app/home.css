@@ -23,7 +23,7 @@
 .mast-strip-inner {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   padding: 14px 0;
   gap: 16px;
   flex-wrap: wrap;
@@ -215,8 +215,8 @@ section.iosp26 a { color: var(--i-ink); }
 
 .i26 .hero {
   display: grid;
-  grid-template-columns: 7fr 5fr;
-  gap: 56px;
+  grid-template-columns: 4fr 5fr;
+  gap: 24px;
   padding: 48px 0 56px;
   border-bottom: 1px solid var(--i-rule);
 }
@@ -258,7 +258,7 @@ section.iosp26 a { color: var(--i-ink); }
 .i26 .venue {
   border-left: 1px solid var(--i-rule);
   padding-left: 36px;
-  align-self: end;
+  align-self: center;
 }
 .i26 .venue h6 {
   font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
@@ -291,31 +291,32 @@ section.iosp26 a { color: var(--i-ink); }
 }
 .i26 .pd .kick {
   font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
-  font-size: 11px;
+  font-size: 13px;
+  font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--i-royal);
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 }
-.i26 .pd-stats > div { padding: 0 0 18px; }
+.i26 .pd-stats > div { padding: 0 0 12px; }
 .i26 .pd-stats .pct {
   font-family: var(--font-newsreader), "Newsreader", Georgia, serif;
   font-weight: 400;
   line-height: 0.95;
   letter-spacing: -0.02em;
 }
-.i26 .pd-stats .pct .accent { color: var(--i-royal); }
+.i26 .pd-stats .pct .accent { color: var(--i-ink); }
 .i26 .pd-stats .lbl {
-  margin-top: 10px;
+  margin-top: 8px;
   font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
-  font-size: 11px;
+  font-size: 9px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--i-ink-soft);
+  color: var(--i-royal);
 }
-.i26 .pd-stats .row-1 .pct { font-size: 16px; color: var(--i-ink-soft); }
-.i26 .pd-stats .row-2 .pct { font-size: 24px; color: var(--i-ink); }
-.i26 .pd-stats .row-3 .pct { font-size: 48px; color: var(--i-ink); }
+.i26 .pd-stats .row-1 .pct { font-size: 14px; color: var(--i-ink); }
+.i26 .pd-stats .row-2 .pct { font-size: 20px; color: var(--i-ink); }
+.i26 .pd-stats .row-3 .pct { font-size: 36px; color: var(--i-ink); }
 
 .i26 .pd-body {
   border-left: 1px solid var(--i-rule);
@@ -695,7 +696,15 @@ section.iosp26 a { color: var(--i-ink); }
   border: 1px solid var(--i-rule);
   padding: 36px 36px 36px;
   position: relative;
+  display: block;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: background 0.15s ease;
 }
+.i26 .reg:hover { background: var(--i-paper-hover); }
 .i26 .reg::before {
   content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
   background: linear-gradient(to right, transparent, var(--i-royal), transparent);
@@ -731,9 +740,8 @@ section.iosp26 a { color: var(--i-ink); }
   font-weight: 500;
   transition: transform 0.2s ease;
   border: 0;
-  cursor: pointer;
 }
-.i26 .reg .btn:hover { transform: translateX(4px); }
+.i26 .reg:hover .btn { transform: translateX(4px); }
 
 /* ─── 03 HOW IT WORKS ─────────────────────────────── */
 .how-cols {

@@ -60,11 +60,7 @@ export function TimeToBuild() {
       <div className="wrap">
         <div className="s-head">
           <div className="meta">
-            <div className="kicker">
-              Five protocols
-              <br />
-              Four eras
-            </div>
+            <div className="kicker">Theory</div>
           </div>
           <div>
             <h2>It's time to build the digital-native substrate.</h2>
