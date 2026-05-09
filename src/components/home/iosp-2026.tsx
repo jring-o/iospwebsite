@@ -168,10 +168,13 @@ export function Iosp2026() {
                 Less talking. More collaboration. More building.
               </p>
               <p>
-                IOSP is built on a single working principle: the people who
-                depend on open cience infrastructure and the people building
-                it should be in the same room, working on the same problems, long
-                enough to do real work together.
+                IOSP is built on a single working principle:{" "}
+                <em>
+                  the people who depend on open science infrastructure and the
+                  people building it should be in the same room
+                </em>
+                , working on the same problems, long enough to do real work
+                together.
               </p>
               <p>
                 Tool-builders bring methods and prototypes; researchers bring

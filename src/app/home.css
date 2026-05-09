@@ -332,6 +332,7 @@ section.iosp26 a { color: var(--i-ink); }
 }
 .i26 .pd-body p { margin: 0 0 14px; font-size: 16px; line-height: 1.6; color: var(--i-ink-soft); }
 .i26 .pd-body p strong { color: var(--i-ink); font-weight: 500; }
+.i26 .pd-body p em { color: var(--i-royal); font-style: italic; font-weight: 500; }
 
 /* takeaways */
 .i26 .takeaways { padding: 56px 0; border-bottom: 1px solid var(--i-rule); }
