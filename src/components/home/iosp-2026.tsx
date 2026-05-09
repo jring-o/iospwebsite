@@ -104,7 +104,7 @@ export function Iosp2026() {
       <div className="wrap i26">
         <div className="strip mono">
           <span>
-            <span className="dot" /> IOSP — Edition 02
+            <span className="dot" /> IOSP 2026 — Edition 02
           </span>
           <span>Oct 12–15, 2026</span>
         </div>
