@@ -916,7 +916,7 @@ function HomePageContent() {
                     IOSP is a curated, highly facilitated event &mdash; we aim to convene a balanced mix of researchers, technologists, librarians, funders, and others across the global research ecosystem. Last year we received 425 registrations for an 80-person room; this year we have space for 100. Registering does <span className="text-white font-semibold">not</span> guarantee a seat.
                   </p>
                   <p className="text-base md:text-lg leading-relaxed text-white/85">
-                    <span className="text-white font-semibold">IOSP is free to join</span>, and every sponsorship dollar goes directly to travel grants so finances and location aren&rsquo;t a barrier. Tell us you&rsquo;d like to participate and we&rsquo;ll be in touch as we work through the list.
+                    <span className="text-white font-semibold">IOSP is free to join</span>, and every sponsorship dollar goes <span className="text-white font-semibold">directly to travel grants</span> so finances and location aren&rsquo;t a barrier for participants. Actively pushing open science forward? Register and we&rsquo;ll do our best to find a way to get you in the room.
                   </p>
                   <div>
                     <button
