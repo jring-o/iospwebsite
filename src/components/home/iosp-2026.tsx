@@ -177,9 +177,9 @@ export function Iosp2026() {
                 together.
               </p>
               <p>
-                Tool-builders bring methods and prototypes; researchers bring
-                the domain knowledge and challenges that put those tools to real
-                use.
+                Researchers bring the domain knowledge and challenges that
+                shape what's worth building; tool-builders bring the systems
+                and expertise to build it.
               </p>
             </div>
           </div>
