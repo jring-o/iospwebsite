@@ -14,30 +14,50 @@
 
 /* ─── 01 MASTHEAD ─────────────────────────────── */
 .masthead {
-  border-top: 3px solid var(--ink);
-  padding-top: 14px;
+  border-top: 3px solid var(--royal);
 }
 .mast-strip {
-  display: flex; justify-content: space-between; align-items: baseline;
-  padding: 0 0 12px;
-  border-bottom: 1px solid var(--ink);
-  color: var(--ink-soft);
+  background: var(--ink-soft);
+  color: var(--paper);
+}
+.mast-strip-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 0;
   gap: 16px;
   flex-wrap: wrap;
 }
-.mast-strip .ox-mark { color: var(--royal); }
 .mast-strip-lockup { display: inline-flex; align-items: center; gap: 8px; }
 .mast-strip-mark { flex-shrink: 0; }
-.mast-strip a { text-decoration: none; }
+.mast-strip a { text-decoration: none; color: inherit; }
 .mast-strip a:hover { color: var(--royal); }
+/* Theme toggle inside the dark strip needs paper-tinted chrome */
+.mast-strip-inner button[aria-label="Toggle theme"] {
+  color: var(--paper);
+  border-color: rgba(247, 247, 245, 0.3);
+}
+.mast-strip-inner button[aria-label="Toggle theme"]:hover {
+  border-color: var(--royal);
+  color: var(--royal);
+}
 
 .mast-title {
   padding: 56px 0 24px;
-  border-bottom: 1px solid var(--rule);
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;
   column-gap: 48px;
+  position: relative;
+}
+.mast-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--royal), transparent);
 }
 .mast-mark {
   grid-column: 2;
@@ -70,7 +90,7 @@
   max-width: 56ch;
   margin: 0;
 }
-.mast-title .lede em { color: var(--ink); font-style: normal; font-weight: 500; }
+.mast-title .lede em { color: var(--royal); font-style: italic; font-weight: 500; }
 
 .mast-grid {
   display: grid;
@@ -337,6 +357,11 @@ section.iosp26 a { color: var(--i-ink); }
   display: grid;
   grid-template-rows: subgrid;
   grid-row: span 5;
+  position: relative;
+}
+.i26 .ta-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, var(--i-royal), transparent);
 }
 .i26 .ta-card h4 {
   font-family: var(--font-newsreader), "Newsreader", Georgia, serif;
@@ -414,12 +439,17 @@ section.iosp26 a { color: var(--i-ink); }
   display: block;
   cursor: pointer;
   transition: background 0.15s ease;
+  position: relative;
   /* button reset (since .th-card is rendered as a <button>) */
   border: 0;
   font: inherit;
   color: inherit;
   text-align: left;
   width: 100%;
+}
+.i26 .th-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, var(--i-royal), transparent);
 }
 .i26 .th-card:hover { background: var(--i-paper-hover); }
 .i26 .th-card .num {
@@ -495,6 +525,11 @@ section.iosp26 a { color: var(--i-ink); }
   padding: 24px 28px;
   margin-bottom: 12px;
   display: grid; grid-template-columns: 32px 1fr; gap: 16px;
+  position: relative;
+}
+.i26 .ws-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, var(--i-royal), transparent);
 }
 .i26 .ws-card .num {
   font-family: var(--font-newsreader), "Newsreader", Georgia, serif;
@@ -567,6 +602,11 @@ section.iosp26 a { color: var(--i-ink); }
   font: inherit;
   color: inherit;
   width: 100%;
+  position: relative;
+}
+.i26 .cta-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, var(--i-royal), transparent);
 }
 .i26 .cta-card:hover { background: var(--i-paper-hover); }
 .i26 .cta-card .tag {
