@@ -608,6 +608,46 @@ section.iosp26 a { color: var(--i-ink); }
   content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
   background: linear-gradient(to right, transparent, var(--i-royal), transparent);
 }
+
+/* Hover shimmer — sweeps a bright highlight across the royal line on every
+   IOSP-2026 card. Only the card's own ::before is animated; the static
+   gradient is preserved everywhere else. */
+/* On hover the royal gradient slides within the element. Only the two
+   extremes (peak-at-left, peak-at-right) are keyframed; ease-in-out alone
+   produces a continuous pendulum without pausing at center. The negative
+   animation-delay starts the cycle at its midpoint — where ease-in-out has
+   maximum velocity and bg-position is 50% (centered). So hover entry shows
+   the peak centered and already moving rightward. */
+@keyframes card-shimmer {
+  from { background-position: 100% 0; }  /* peak at left edge  */
+  to   { background-position: 0%   0; }  /* peak at right edge */
+}
+.i26 .ta-card:hover::before,
+.i26 .th-card:hover::before,
+.i26 .ws-card:hover::before,
+.i26 .cta-card:hover::before,
+.i26 .theory-card:hover::before,
+.i26 .reg:hover::before {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 25%,
+    var(--i-royal) 50%,
+    transparent 75%,
+    transparent 100%
+  ) 50% 0 / 200% 100% no-repeat;
+  animation: card-shimmer 2s ease-in-out -1s infinite alternate;
+}
+@media (prefers-reduced-motion: reduce) {
+  .i26 .ta-card:hover::before,
+  .i26 .th-card:hover::before,
+  .i26 .ws-card:hover::before,
+  .i26 .cta-card:hover::before,
+  .i26 .theory-card:hover::before,
+  .i26 .reg:hover::before {
+    animation: none;
+  }
+}
 .i26 .cta-card:hover { background: var(--i-paper-hover); }
 .i26 .cta-card .tag {
   font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;

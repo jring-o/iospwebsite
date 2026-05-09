@@ -170,13 +170,12 @@ export function Iosp2026() {
               <p>
                 IOSP is built on a single working principle: the people who
                 depend on open-science infrastructure and the people building
-                it should be in the same room, on the same problems, long
-                enough to do real work together. The event runs in three
-                frames: <strong>context, landscape, and co-working</strong>.
+                it should be in the same room, working on the same problems, long
+                enough to do real work together.
               </p>
               <p>
                 Tool-builders bring methods and prototypes; researchers bring
-                the domain knowledge and problems that put those tools to real
+                the domain knowledge and challenges that put those tools to real
                 use.
               </p>
             </div>

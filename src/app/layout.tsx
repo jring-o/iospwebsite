@@ -92,6 +92,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${newsreader.variable} ${plexSans.variable} ${plexMono.variable}`}
+      suppressHydrationWarning
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
