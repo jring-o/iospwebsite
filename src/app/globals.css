@@ -20,6 +20,7 @@
     /* inverted palette for the IOSP-2026 section + alternating cards */
     --i-paper: #EDEDEB;
     --i-paper-hover: #E2E2DF;
+    --i-card-bg: #F7F7F5;
     --i-ink: #0E1018;
     --i-ink-soft: #4A4D57;
     --i-rule: rgba(14, 16, 24, 0.18);
@@ -43,6 +44,7 @@
 
     --i-paper: #1A1C24;
     --i-paper-hover: #22242E;
+    --i-card-bg: #2A2D38;
     --i-ink: #F7F7F5;
     --i-ink-soft: #B5B7BD;
     --i-rule: rgba(247, 247, 245, 0.18);
@@ -67,6 +69,7 @@
 
       --i-paper: #1A1C24;
       --i-paper-hover: #22242E;
+      --i-card-bg: #2A2D38;
       --i-ink: #F7F7F5;
       --i-ink-soft: #B5B7BD;
       --i-rule: rgba(247, 247, 245, 0.18);

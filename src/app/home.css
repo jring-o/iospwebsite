@@ -332,7 +332,7 @@ section.iosp26 a { color: var(--i-ink); }
   border: 1px solid var(--i-rule);
 }
 .i26 .ta-card {
-  background: var(--i-paper);
+  background: var(--i-card-bg);
   padding: 22px 22px 26px;
   display: grid;
   grid-template-rows: subgrid;
@@ -409,7 +409,7 @@ section.iosp26 a { color: var(--i-ink); }
   background: var(--i-rule); border: 1px solid var(--i-rule);
 }
 .i26 .th-card {
-  background: var(--i-paper);
+  background: var(--i-card-bg);
   padding: 28px 28px 32px;
   display: block;
   cursor: pointer;
@@ -444,7 +444,7 @@ section.iosp26 a { color: var(--i-ink); }
 .i26 .th-card p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--i-ink-soft); }
 
 .i26 .theory-card {
-  background: var(--i-paper);
+  background: var(--i-card-bg);
   border: 1px solid var(--i-rule);
   margin-top: 1px;
   padding: 24px 28px;
@@ -490,7 +490,7 @@ section.iosp26 a { color: var(--i-ink); }
 /* workshops */
 .i26 .ws { padding: 56px 0; border-bottom: 1px solid var(--i-rule); }
 .i26 .ws-card {
-  background: var(--i-paper);
+  background: var(--i-card-bg);
   border: 1px solid var(--i-rule);
   padding: 24px 28px;
   margin-bottom: 12px;
@@ -529,7 +529,7 @@ section.iosp26 a { color: var(--i-ink); }
 }
 .i26 .ws-card p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--i-ink-soft); }
 .i26 .ws-card.cont {
-  background: var(--i-paper);
+  background: var(--i-card-bg);
   position: relative;
 }
 .i26 .ws-card.cont::before {
@@ -557,7 +557,7 @@ section.iosp26 a { color: var(--i-ink); }
   background: var(--i-rule); border: 1px solid var(--i-rule);
 }
 .i26 .cta-card {
-  background: var(--i-paper);
+  background: var(--i-card-bg);
   padding: 28px 28px 32px;
   display: flex; flex-direction: column;
   cursor: pointer;
@@ -599,6 +599,7 @@ section.iosp26 a { color: var(--i-ink); }
 
 .i26 .reg {
   margin-top: 56px;
+  background: var(--i-card-bg);
   border: 1px solid var(--i-rule);
   padding: 36px 36px 36px;
   position: relative;
