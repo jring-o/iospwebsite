@@ -618,7 +618,7 @@ function HomePageContent() {
                           </a>
                           {', '}
                           <a href="https://kairos-research.org/" target="_blank" rel="noopener noreferrer" className="text-iosp-amber hover:underline font-semibold pointer-events-auto">
-                            Kairos
+                            Cairos
                           </a>
                           {', and '}
                           <a href="https://prsm.network" target="_blank" rel="noopener noreferrer" className="text-iosp-amber hover:underline font-semibold pointer-events-auto">
