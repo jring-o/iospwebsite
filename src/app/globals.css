@@ -17,6 +17,10 @@
     --royal-deep: #13205F;
     --royal-soft: #E7EAF6;
 
+    /* Card shadow per brand spec. Disabled in dark mode (cards lift via
+       tonal contrast there). */
+    --shadow-card: 0 8px 28px rgba(14, 16, 24, 0.16);
+
     /* inverted palette for the IOSP-2026 section + alternating cards */
     --i-paper: #EDEDEB;
     --i-paper-hover: #E2E2DF;
@@ -41,6 +45,7 @@
     --royal: #8A9BFF;
     --royal-deep: #6677D6;
     --royal-soft: #232A5A;
+    --shadow-card: none;
 
     --i-paper: #1A1C24;
     --i-paper-hover: #22242E;
@@ -66,6 +71,7 @@
       --royal: #8A9BFF;
       --royal-deep: #6677D6;
       --royal-soft: #232A5A;
+      --shadow-card: none;
 
       --i-paper: #1A1C24;
       --i-paper-hover: #22242E;

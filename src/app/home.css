@@ -609,6 +609,18 @@ section.iosp26 a { color: var(--i-ink); }
   background: linear-gradient(to right, transparent, var(--i-royal), transparent);
 }
 
+/* Soft card shadow on grid containers + standalone cards. Skips individual
+   grid cells (.ta-card / .th-card / .cta-card) so adjacent-card shadows don't
+   compound through the 1px gap. */
+.i26 .ta-grid,
+.i26 .th-grid,
+.i26 .cta-grid,
+.i26 .theory-card,
+.i26 .ws-card,
+.i26 .reg {
+  box-shadow: var(--shadow-card);
+}
+
 /* Hover shimmer — sweeps a bright highlight across the royal line on every
    IOSP-2026 card. Only the card's own ::before is animated; the static
    gradient is preserved everywhere else. */
