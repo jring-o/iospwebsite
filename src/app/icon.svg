@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150">
+  <style>
+    .arc { stroke: #0E1018; }
+    .arrow { fill: #1D2D8E; }
+    @media (prefers-color-scheme: dark) {
+      .arc { stroke: #F7F7F5; }
+      .arrow { fill: #8A9BFF; }
+    }
+  </style>
+  <g transform="rotate(30 75 75)">
+    <path class="arc" d="M 120 100 A 55 55 0 1 1 120 50" fill="none" stroke-width="9" stroke-linecap="round"/>
+    <path class="arrow" d="M 116 68 L 122 80 L 130 68 Z"/>
+  </g>
+</svg>

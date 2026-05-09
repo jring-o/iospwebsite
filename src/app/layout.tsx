@@ -1,36 +1,50 @@
 import type { Metadata } from "next";
-import { Inter, Source_Sans_3, JetBrains_Mono } from "next/font/google";
+import { Newsreader, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { Analytics } from '@vercel/analytics/next';
-import { Toaster } from 'sonner';
+import { Analytics } from "@vercel/analytics/next";
+import { Toaster } from "sonner";
 
-const inter = Inter({
+const newsreader = Newsreader({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
   display: "swap",
+  variable: "--font-newsreader",
 });
 
-const sourceSans = Source_Sans_3({
+const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
-  variable: "--font-source-sans",
+  weight: ["400", "500", "600", "700"],
   display: "swap",
+  variable: "--font-plex-sans",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
+  weight: ["400", "500", "600"],
   display: "swap",
+  variable: "--font-plex-mono",
 });
+
+// Inline script: read localStorage["iosp-theme"] and apply data-theme on <html>
+// before paint, so the page never flashes the wrong theme on load.
+const themeScript = `(function(){try{var t=localStorage.getItem('iosp-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();`;
 
 export const metadata: Metadata = {
   title: {
-    default: "IOSP - Institute of Open Science Practices",
+    default: "Institute of Open Science Practices",
     template: "%s | IOSP",
   },
-  description: "Building the infrastructure for open science. IOSP brings together researchers, technologists, and funders to advance transparent, reproducible, and accessible scientific practice.",
-  keywords: ["open science", "research infrastructure", "scientific collaboration", "reproducibility", "transparency", "open access"],
+  description:
+    "An event, a community, and a coordinating institute for the people building the infrastructure open science depends on.",
+  keywords: [
+    "open science",
+    "research infrastructure",
+    "scientific collaboration",
+    "reproducibility",
+    "transparency",
+    "open access",
+  ],
   authors: [{ name: "IOSP" }],
   creator: "Institute of Open Science Practices",
   metadataBase: new URL("https://iosp.science"),
@@ -39,22 +53,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://iosp.science",
     siteName: "IOSP",
-    title: "IOSP - Institute of Open Science Practices",
-    description: "Building the infrastructure for open science. Join the community advancing transparent, reproducible, and accessible scientific practice.",
-    images: [
-      {
-        url: "/og-image-main.png",
-        width: 1200,
-        height: 630,
-        alt: "IOSP - Institute of Open Science Practices",
-      },
-    ],
+    title: "Institute of Open Science Practices",
+    description:
+      "Build the substrate open science depends on. An event, a community, and a coordinating institute.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "IOSP - Institute of Open Science Practices",
-    description: "Building the infrastructure for open science.",
-    images: ["/og-image-main.png"],
+    title: "Institute of Open Science Practices",
+    description: "Build the substrate open science depends on.",
     creator: "@iosp",
   },
   robots: {
@@ -68,14 +74,13 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  icons: {
-    icon: [
-      { url: "/iosp-logo.svg", type: "image/svg+xml" },
-      { url: "/iosp-logo.png", type: "image/png" },
-    ],
-    shortcut: "/iosp-logo.png",
-    apple: "/iosp-logo.png",
-  },
+};
+
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F7F7F5" },
+    { media: "(prefers-color-scheme: dark)", color: "#0E1018" },
+  ],
 };
 
 export default function RootLayout({
@@ -84,19 +89,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${sourceSans.variable} ${jetbrainsMono.variable} scroll-smooth`}>
-      <body className="font-sans antialiased flex flex-col min-h-screen">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+    <html
+      lang="en"
+      className={`${newsreader.variable} ${plexSans.variable} ${plexMono.variable}`}
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="bg-paper text-ink antialiased">
+        <main>{children}</main>
         <Toaster
-          theme="dark"
           position="bottom-right"
           toastOptions={{
-            style: {
-              background: '#083A52',
-              border: '1px solid rgba(255,255,255,0.15)',
-              color: '#ffffff',
+            unstyled: false,
+            classNames: {
+              toast:
+                "border border-rule bg-paper-card text-ink rounded-none shadow-md",
+              title: "font-serif text-ink",
+              description: "text-ink-soft",
             },
           }}
         />

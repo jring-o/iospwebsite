@@ -2,127 +2,142 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── IOSP design tokens ─────────────────────────────── */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 199 85% 23%; /* IOSP Deep Blue */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 176 68% 38%; /* IOSP Teal */
-    --secondary-foreground: 0 0% 100%;
-    --muted: 220 13% 95%; /* Cloud White */
-    --muted-foreground: 220 9% 60%; /* Slate Gray */
-    --accent: 193 99% 47%; /* IOSP Cyan */
-    --accent-foreground: 199 85% 23%;
-    --destructive: 346 83% 61%; /* Coral */
-    --destructive-foreground: 0 0% 100%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 193 99% 47%;
-    --radius: 0.5rem;
-    --chart-1: 193 99% 47%;
-    --chart-2: 176 68% 38%;
-    --chart-3: 346 83% 61%;
-    --chart-4: 45 100% 70%;
-    --chart-5: 199 85% 23%;
+    --paper: #F7F7F5;
+    --paper-deep: #EDEDEB;
+    --paper-card: #FFFFFF;
+    --ink: #0E1018;
+    --ink-soft: #4A4D57;
+    --ink-mute: #7A7D86;
+    --rule: rgba(14, 16, 24, 0.18);
+    --rule-strong: rgba(14, 16, 24, 0.45);
+    --royal: #1D2D8E;
+    --royal-deep: #13205F;
+    --royal-soft: #E7EAF6;
+
+    /* inverted palette for the IOSP-2026 section + alternating cards */
+    --i-paper: #EDEDEB;
+    --i-paper-hover: #E2E2DF;
+    --i-ink: #0E1018;
+    --i-ink-soft: #4A4D57;
+    --i-rule: rgba(14, 16, 24, 0.18);
+    --i-royal: #1D2D8E;
+
+    --radius: 0;
   }
 
-  .dark {
-    --background: 222 47% 11%;
-    --foreground: 0 0% 100%;
-    --card: 222 47% 11%;
-    --card-foreground: 0 0% 100%;
-    --popover: 222 47% 11%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 193 99% 47%;
-    --primary-foreground: 222 47% 11%;
-    --secondary: 176 68% 38%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 220 9% 46%;
-    --muted-foreground: 220 13% 91%;
-    --accent: 199 85% 23%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 346 83% 61%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 220 9% 46%;
-    --input: 220 9% 46%;
-    --ring: 193 99% 47%;
+  html[data-theme="dark"] {
+    --paper: #0E1018;
+    --paper-deep: #14161F;
+    --paper-card: #181A24;
+    --ink: #F7F7F5;
+    --ink-soft: #B5B7BD;
+    --ink-mute: #7A7D86;
+    --rule: rgba(247, 247, 245, 0.18);
+    --rule-strong: rgba(247, 247, 245, 0.45);
+    --royal: #8A9BFF;
+    --royal-deep: #6677D6;
+    --royal-soft: #232A5A;
+
+    --i-paper: #1A1C24;
+    --i-paper-hover: #22242E;
+    --i-ink: #F7F7F5;
+    --i-ink-soft: #B5B7BD;
+    --i-rule: rgba(247, 247, 245, 0.18);
+    --i-royal: #8A9BFF;
+
+    color-scheme: dark;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html:not([data-theme="light"]) {
+      --paper: #0E1018;
+      --paper-deep: #14161F;
+      --paper-card: #181A24;
+      --ink: #F7F7F5;
+      --ink-soft: #B5B7BD;
+      --ink-mute: #7A7D86;
+      --rule: rgba(247, 247, 245, 0.18);
+      --rule-strong: rgba(247, 247, 245, 0.45);
+      --royal: #8A9BFF;
+      --royal-deep: #6677D6;
+      --royal-soft: #232A5A;
+
+      --i-paper: #1A1C24;
+      --i-paper-hover: #22242E;
+      --i-ink: #F7F7F5;
+      --i-ink-soft: #B5B7BD;
+      --i-rule: rgba(247, 247, 245, 0.18);
+      --i-royal: #8A9BFF;
+
+      color-scheme: dark;
+    }
   }
 }
 
+/* ─── base ─────────────────────────────── */
 @layer base {
   * {
-    @apply border-border;
+    box-sizing: border-box;
   }
+
+  html,
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-plex-sans), "IBM Plex Sans", system-ui, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  ::selection {
+    background: var(--royal-soft);
+    color: var(--ink);
   }
 }
 
-/* IOSP Custom Styles - Darker Palette */
+/* ─── typography helpers ─────────────────────────────── */
 @layer components {
-  .gradient-primary {
-    background: linear-gradient(135deg, #5B3A8F 0%, #083A52 50%, #5B3A8F 100%);
+  .iosp-mono {
+    font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
   }
 
-  .gradient-accent {
-    background: linear-gradient(90deg, #177973 0%, #0191BD 100%);
+  .iosp-serif {
+    font-family: var(--font-newsreader), "Newsreader", Georgia, serif;
   }
 
-  .gradient-cyan {
-    background: linear-gradient(135deg, #0191BD 0%, #177973 50%, #0191BD 100%);
+  .iosp-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 56px;
   }
 
-  .text-gradient {
-    @apply bg-gradient-to-r from-iosp-blue via-iosp-cyan to-iosp-teal bg-clip-text text-transparent;
+  .iosp-wrap-narrow {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 56px;
   }
 }
 
-/* Custom Animations */
-@layer utilities {
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-fade-in {
-    animation: fade-in 0.8s ease-out forwards;
-    opacity: 0;
-  }
-
-  @keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  .animate-scroll {
-    animation: scroll 60s linear infinite;
-  }
-
-  .animate-scroll:hover {
-    animation-play-state: paused;
-  }
-
-  .animate-scroll-fast {
-    animation: scroll 5s linear infinite;
-  }
-
-  .animate-scroll-fast:hover {
-    animation-play-state: paused;
+/* ─── responsive overrides preserved from the design HTML ─────── */
+@media (max-width: 880px) {
+  .iosp-wrap,
+  .iosp-wrap-narrow {
+    padding: 0 28px;
   }
 }

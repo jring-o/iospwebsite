@@ -1,44 +1,23 @@
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { ArrowLeft, Search } from 'lucide-react'
-
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-iosp-cyan/5 via-white to-iosp-teal/5 flex items-center justify-center px-4">
-      <div className="max-w-md mx-auto text-center">
-        {/* 404 Display */}
-        <div className="mb-8">
-          <div className="text-8xl font-heading font-bold bg-gradient-to-r from-iosp-cyan to-iosp-teal bg-clip-text text-transparent">
-            404
-          </div>
+    <div className="min-h-screen bg-paper text-ink flex items-center justify-center px-7">
+      <div className="max-w-md w-full">
+        <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-royal mb-6">
+          404
         </div>
-
-        {/* Icon */}
-        <div className="mb-6 flex justify-center">
-          <div className="p-4 bg-slate-100 rounded-full">
-            <Search className="h-8 w-8 text-slate-400" />
-          </div>
-        </div>
-
-        {/* Message */}
-        <h1 className="font-heading text-2xl font-bold mb-3 text-slate-900">
-          Page Not Found
+        <h1 className="font-serif font-normal text-4xl md:text-5xl leading-tight tracking-tight mb-4">
+          Page not found.
         </h1>
-        <p className="text-slate-600 mb-8">
-          The page you're looking for doesn't exist or has been moved.
+        <p className="text-ink-soft text-base leading-relaxed mb-8">
+          The page you&apos;re looking for doesn&apos;t exist. IOSP lives at the home page.
         </p>
-
-        {/* Actions */}
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Link href="/">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-iosp-cyan to-iosp-teal text-white hover:shadow-lg transition-all"
-            >
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
-            </Button>
-          </Link>
+        <div className="border-t border-rule pt-6">
+          <a
+            href="/"
+            className="font-mono text-[11px] uppercase tracking-[0.18em] bg-ink text-paper px-4 py-2 inline-block hover:bg-royal-deep transition-colors"
+          >
+            ← Back to home
+          </a>
         </div>
       </div>
     </div>

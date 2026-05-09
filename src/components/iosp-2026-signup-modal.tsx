@@ -182,7 +182,7 @@ function SignupForm({
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <DialogHeader>
-        <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-iosp-amber">
+        <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-royal">
           [ {copy.eyebrow} ]
         </div>
         <DialogTitle>{copy.title}</DialogTitle>
@@ -206,16 +206,16 @@ function SignupForm({
       {kind === 'participant' && <ConsentField control={control} />}
 
       {serverError && (
-        <div className="text-sm text-iosp-coral border border-iosp-coral/40 bg-iosp-coral/10 rounded-md px-3 py-2">
+        <div className="text-sm text-destructive border border-destructive/40 bg-destructive/10 rounded-md px-3 py-2">
           {serverError}
         </div>
       )}
 
-      <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:items-center gap-3 pt-2 border-t border-white/10">
+      <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:items-center gap-3 pt-2 border-t border-rule">
         <Button
           type="submit"
           disabled={isPending}
-          className="bg-iosp-amber text-iosp-blue hover:bg-iosp-amber/90 font-semibold gap-2"
+          className="bg-royal text-paper hover:bg-royal-deep font-mono text-[11px] uppercase tracking-[0.18em] gap-2 px-5 py-3 h-auto"
         >
           {isPending ? (
             <>
@@ -391,15 +391,15 @@ function ParticipantFields({ control, register, errors }: FieldsProps) {
           control={control}
           name="needsTravelSupport"
           render={({ field }) => (
-            <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-white/15 bg-white/5 cursor-pointer hover:border-white/30 transition-colors">
+            <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-rule bg-paper cursor-pointer hover:border-rule-strong transition-colors">
               <Checkbox
                 checked={!!field.value}
                 onCheckedChange={(v) => field.onChange(!!v)}
                 className="mt-0.5"
               />
-              <span className="text-sm text-white/90 leading-relaxed">
+              <span className="text-sm text-ink leading-relaxed">
                 My participation depends on financial support.
-                <span className="block mt-1 text-xs text-white/60 leading-relaxed">
+                <span className="block mt-1 text-xs text-ink-soft leading-relaxed">
                   In an ideal world, sponsorship will cover travel and accommodation for all 100 participants. If we can&apos;t reach that, this helps us prioritize who needs it most.
                 </span>
               </span>
@@ -448,14 +448,14 @@ function SponsorFields({ control, register, errors }: FieldsProps) {
                     className={cn(
                       'text-left px-4 py-3 rounded-md border transition-colors flex flex-col gap-1',
                       selected
-                        ? 'border-iosp-amber bg-iosp-amber/15'
-                        : 'border-white/15 bg-white/5 hover:border-white/30',
+                        ? 'border-royal bg-royal-soft'
+                        : 'border-rule bg-paper hover:border-rule-strong',
                     )}
                   >
                     <span
                       className={cn(
-                        'font-heading text-sm font-semibold leading-tight',
-                        selected ? 'text-iosp-amber' : 'text-white',
+                        'font-serif text-base font-medium leading-tight',
+                        selected ? 'text-royal' : 'text-ink',
                       )}
                     >
                       {tier.label}
@@ -463,7 +463,7 @@ function SponsorFields({ control, register, errors }: FieldsProps) {
                     <span
                       className={cn(
                         'font-mono text-[10px] uppercase tracking-[0.2em]',
-                        selected ? 'text-iosp-amber/80' : 'text-white/60',
+                        selected ? 'text-royal/80' : 'text-ink-soft',
                       )}
                     >
                       {tier.dollars} · {tier.seats}
@@ -472,13 +472,13 @@ function SponsorFields({ control, register, errors }: FieldsProps) {
                 )
               })}
             </div>
-            <p className="text-xs text-white/55 leading-relaxed">
+            <p className="text-xs text-ink-soft leading-relaxed">
               ~$2,000 covers travel + accommodation per person, on average. 100% of sponsorship goes directly to travel grants — SciOS keeps IOSP free year after year through{' '}
               <a
                 href="https://scios.tech/?lab=resilient-data-futures"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline decoration-white/40 underline-offset-2 hover:decoration-iosp-amber hover:text-iosp-amber transition-colors"
+                className="underline decoration-rule underline-offset-2 hover:decoration-royal hover:text-royal transition-colors"
               >
                 consulting
               </a>
@@ -487,7 +487,7 @@ function SponsorFields({ control, register, errors }: FieldsProps) {
                 href="https://mira.science"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline decoration-white/40 underline-offset-2 hover:decoration-iosp-amber hover:text-iosp-amber transition-colors"
+                className="underline decoration-rule underline-offset-2 hover:decoration-royal hover:text-royal transition-colors"
               >
                 workshops
               </a>
@@ -496,13 +496,13 @@ function SponsorFields({ control, register, errors }: FieldsProps) {
                 href="https://scios.tech/picoding"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline decoration-white/40 underline-offset-2 hover:decoration-iosp-amber hover:text-iosp-amber transition-colors"
+                className="underline decoration-rule underline-offset-2 hover:decoration-royal hover:text-royal transition-colors"
               >
                 training
               </a>
               , and partnership engagements with organizations building open science infrastructure. Every paid engagement helps keep future IOSPs free.
             </p>
-            {errors.range?.message && <p className="text-xs text-iosp-coral">{errors.range.message}</p>}
+            {errors.range?.message && <p className="text-xs text-destructive">{errors.range.message}</p>}
           </div>
         )}
       />
@@ -525,15 +525,15 @@ function SponsorFields({ control, register, errors }: FieldsProps) {
         control={control}
         name="publicRecognition"
         render={({ field }) => (
-          <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-white/15 bg-white/5 cursor-pointer hover:border-white/30 transition-colors">
+          <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-rule bg-paper cursor-pointer hover:border-rule-strong transition-colors">
             <Checkbox
               checked={field.value !== false}
               onCheckedChange={(v) => field.onChange(!!v)}
               className="mt-0.5"
             />
-            <span className="text-sm text-white/90 leading-relaxed">
+            <span className="text-sm text-ink leading-relaxed">
               OK to list us publicly as an IOSP 2026 sponsor.
-              <span className="block mt-1 text-xs text-white/60 leading-relaxed">
+              <span className="block mt-1 text-xs text-ink-soft leading-relaxed">
                 We&apos;ll add your name and logo to the sponsor section of the IOSP site. Uncheck to keep your support private.
               </span>
             </span>
@@ -544,15 +544,15 @@ function SponsorFields({ control, register, errors }: FieldsProps) {
         control={control}
         name="interestedInServices"
         render={({ field }) => (
-          <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-white/10 bg-white/[0.03] cursor-pointer hover:border-white/20 transition-colors">
+          <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-rule bg-paper cursor-pointer hover:border-royal transition-colors">
             <Checkbox
               checked={!!field.value}
               onCheckedChange={(v) => field.onChange(!!v)}
               className="mt-0.5"
             />
-            <span className="text-sm text-white/90 leading-relaxed">
+            <span className="text-sm text-ink leading-relaxed">
               Also interested in SciOS services for our team.
-              <span className="block mt-1 text-xs text-white/60 leading-relaxed">
+              <span className="block mt-1 text-xs text-ink-soft leading-relaxed">
                 We&apos;ll send a short overview of what consulting, workshops, training, or partnership engagements could look like for your organization.
               </span>
             </span>
@@ -596,13 +596,13 @@ function ConsentField({ control }: { control: FieldsProps['control'] }) {
       control={control}
       name="statsConsent"
       render={({ field }) => (
-        <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-white/10 bg-white/[0.03] cursor-pointer hover:border-white/20 transition-colors">
+        <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-rule bg-paper cursor-pointer hover:border-royal transition-colors">
           <Checkbox
             checked={field.value !== false}
             onCheckedChange={(v) => field.onChange(!!v)}
             className="mt-0.5"
           />
-          <span className="text-xs text-white/70 leading-relaxed">
+          <span className="text-xs text-ink-soft leading-relaxed">
             OK to include my response in aggregated, non-identifying stats shared with sponsors and partners.
           </span>
         </label>
@@ -628,7 +628,7 @@ function Field({
     <div className="space-y-2">
       <Label htmlFor={htmlFor}>{label}</Label>
       {children}
-      {error && <p className="text-xs text-iosp-coral">{error}</p>}
+      {error && <p className="text-xs text-destructive">{error}</p>}
     </div>
   )
 }
@@ -672,8 +672,8 @@ function SelectField({
                   className={cn(
                     'text-left text-xs font-mono uppercase tracking-wider px-3 py-2 rounded-md border transition-colors',
                     selected
-                      ? 'border-iosp-amber bg-iosp-amber/15 text-iosp-amber'
-                      : 'border-white/15 bg-white/5 text-white/80 hover:border-white/30',
+                      ? 'border-royal bg-royal-soft text-royal'
+                      : 'border-rule bg-paper text-ink-soft hover:border-rule-strong',
                   )}
                 >
                   {opt}
@@ -681,7 +681,7 @@ function SelectField({
               )
             })}
           </div>
-          {error && <p className="text-xs text-iosp-coral">{error}</p>}
+          {error && <p className="text-xs text-destructive">{error}</p>}
         </div>
       )}
     />
@@ -727,8 +727,8 @@ function CheckboxGroupField({
                     className={cn(
                       'flex items-start gap-3 px-3 py-2 rounded-md border cursor-pointer transition-colors',
                       checked
-                        ? 'border-iosp-amber/60 bg-iosp-amber/10'
-                        : 'border-white/15 bg-white/5 hover:border-white/30',
+                        ? 'border-royal bg-royal-soft'
+                        : 'border-rule bg-paper hover:border-rule-strong',
                     )}
                   >
                     <Checkbox
@@ -736,12 +736,12 @@ function CheckboxGroupField({
                       onCheckedChange={() => toggle(opt)}
                       className="mt-0.5"
                     />
-                    <span className="text-sm text-white/90 leading-snug">{opt}</span>
+                    <span className="text-sm text-ink leading-snug">{opt}</span>
                   </label>
                 )
               })}
             </div>
-            {error && <p className="text-xs text-iosp-coral">{error}</p>}
+            {error && <p className="text-xs text-destructive">{error}</p>}
           </div>
         )
       }}
