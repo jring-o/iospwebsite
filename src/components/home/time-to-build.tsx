@@ -4,6 +4,7 @@ const ROWS: Array<{
   organized: string;
   professional: string;
   institutional: string;
+  digitized: string;
   digitalNative: string;
 }> = [
   {
@@ -12,7 +13,9 @@ const ROWS: Array<{
     organized: "Hand calculations · lab notebooks",
     professional: "Institutionalized labs · standardized methods",
     institutional:
-      "Unreproducible local computations · personal digital notebooks",
+      "Federal grant-funded hypothesis-driven research · university labs",
+    digitized:
+      "Personal digital notebooks · unreproducible local computations · proprietary analysis software",
     digitalNative:
       "Executable narratives · reproducible containers · live computational environments",
   },
@@ -22,7 +25,8 @@ const ROWS: Array<{
     organized: "Witnessed demos · society meetings",
     professional: "University seminars · laboratory replication",
     institutional:
-      "Manuscript peer review · citation databases · impact factors",
+      "Anonymous pre-publication peer review · journal prestige hierarchy",
+    digitized: "Citation databases · Impact Factor · paywalled review pipelines",
     digitalNative: "Computational verification · trust attestation",
   },
   {
@@ -30,7 +34,9 @@ const ROWS: Array<{
     verbs: "Connect · share · discover",
     organized: "Letters & libraries · society proceedings",
     professional: "Academic journals · university presses",
-    institutional: "Journal consolidation · digital subscriptions",
+    institutional:
+      "Academic journals · disciplinary conferences · journal consolidation",
+    digitized: "PDFs · digital subscriptions · publisher platforms",
     digitalNative:
       "Object graphs · curation over open research · open by default",
   },
@@ -39,7 +45,9 @@ const ROWS: Array<{
     verbs: "Credit · fund · collaborate",
     organized: "Private patronage · named discoveries",
     professional: "University positions · institutional funding",
-    institutional: "Grant funding · tenure system · h-index & citations",
+    institutional:
+      "Grant cycles · tenure system · citation-based credit",
+    digitized: "h-index · altmetrics · ORCID as paper trail",
     digitalNative:
       "Contribution graphs · micro-attribution · community-specific metrics",
   },
@@ -48,7 +56,8 @@ const ROWS: Array<{
     verbs: "Store · access · archive",
     organized: "Physical archives · manual copying",
     professional: "Library systems · catalog standards",
-    institutional: "DOI system · siloed repositories · lossy digital archives",
+    institutional: "University libraries · journal archives · microfilm",
+    digitized: "DOI system · siloed repositories · lossy digital archives",
     digitalNative:
       "Content addressing · distributed data hosting · redundant archives",
   },
@@ -65,13 +74,16 @@ export function TimeToBuild() {
           <div>
             <h2>It's time to build the digital-native substrate.</h2>
             <p className="dek">
-              The modern implementation of the scientific protocols was
-              designed in a pre-digital era. Each protocol —{" "}
-              <em>
-                inference, quality, engagement, coordination, preservation
-              </em>{" "}
-              — has a configuration in every era. The last column is the one
-              we're filling in now.
+              Each era reconfigures the five protocols. Scientific societies
+              and the first journals shaped the Organized era. Research
+              universities, professionalization, and formalized peer review
+              shaped the Professional one. Federal funding, peer review,
+              tenure, grant cycles, and citation-based credit built the
+              Institutional era. What we live in now is that configuration
+              stretched onto digital tools: PDFs as journals, h-indexes as
+              memory, citation databases as card catalogs. The next era is
+              the first one we get to design on the digital substrate,
+              instead of retrofitting onto it.
             </p>
           </div>
         </div>
@@ -89,8 +101,12 @@ export function TimeToBuild() {
                 <span className="era">Professional</span>
               </th>
               <th>
-                <span className="yrs">1950 — Present</span>
+                <span className="yrs">1950 — 2000</span>
                 <span className="era">Institutional</span>
+              </th>
+              <th>
+                <span className="yrs">2000 — Present</span>
+                <span className="era">Digitized</span>
               </th>
               <th className="now">
                 <span className="yrs">Building Now</span>
@@ -108,6 +124,7 @@ export function TimeToBuild() {
                 <td>{r.organized}</td>
                 <td>{r.professional}</td>
                 <td>{r.institutional}</td>
+                <td>{r.digitized}</td>
                 <td className="now">{r.digitalNative}</td>
               </tr>
             ))}
