@@ -121,9 +121,9 @@ export function TimeToBuild() {
               operate side by side —{" "}
               <em>institutional, benefactor, and corporate</em> —{" "}
               each operating on the same technical substrate, and each with
-              their sets of values, incentives, and governance processes. No one
+              their own sets of values, incentives, and governance processes. No one
               designed any of these systems. They emerged through a series of
-              events, accidents, and actions meant to fulfill immediate
+              events, accidents, and actions intended to fulfill immediate
               needs.
             </p>
             <p className="dek">
