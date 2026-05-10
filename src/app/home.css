@@ -947,15 +947,15 @@ section.ssb {
 .ptable thead th.now .yrs { color: var(--royal); }
 
 .ptable tbody td {
-  padding: 18px 16px;
+  padding: 14px 14px;
   border-bottom: 1px solid var(--rule);
   vertical-align: top;
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.4;
   color: var(--ink-soft);
 }
 .ptable tbody td.proto {
-  width: 18%;
+  width: 14%;
   color: var(--ink);
 }
 .ptable tbody td.proto .name {
@@ -977,6 +977,38 @@ section.ssb {
   background: var(--royal-soft);
   color: var(--ink);
   font-weight: 500;
+}
+
+/* per-cell bulleted list */
+.ptable .cell-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ptable .cell-list li {
+  position: relative;
+  padding-left: 12px;
+  margin-bottom: 4px;
+}
+.ptable .cell-list li:last-child {
+  margin-bottom: 0;
+}
+.ptable .cell-list li::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--royal);
+  font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
+  font-weight: 500;
+}
+
+/* row hover: subtle band so eyes can track across an era row */
+.ptable tbody tr:hover td {
+  background: rgba(14, 16, 24, 0.025);
+}
+.ptable tbody tr:hover td.now {
+  background: var(--royal-soft);
 }
 
 /* theory link (replaces the previous disclosure; routes to /theory) */

@@ -59,10 +59,7 @@ export function InfrastructureEmerging() {
             <h2>Independent teams. One substrate.</h2>
             <p className="dek">
               Across the ecosystem, independent teams are building components
-              of a shared technical substrate for science. Marked components
-              were the focus areas of IOSP 2025 — brought into the room,
-              stress-tested in production, and carried out as ongoing
-              collaborations.
+              of a shared technical substrate for science. Science needs them to work together.
             </p>
           </div>
         </div>

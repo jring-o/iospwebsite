@@ -1,65 +1,101 @@
 const ROWS: Array<{
   name: string;
   verbs: string;
-  organized: string;
-  professional: string;
-  institutional: string;
-  digitized: string;
-  digitalNative: string;
+  organized: string[];
+  professional: string[];
+  institutional: string[];
+  digitized: string[];
+  digitalNative: string[];
 }> = [
   {
     name: "Inference",
     verbs: "Generate · analyze · experiment",
-    organized: "Hand calculations · lab notebooks",
-    professional: "Institutionalized labs · standardized methods",
-    institutional:
-      "Federal grant-funded hypothesis-driven research · university labs",
-    digitized:
-      "Personal digital notebooks · unreproducible local computations · proprietary analysis software",
-    digitalNative:
-      "Executable narratives · reproducible containers · live computational environments",
+    organized: ["Society-funded experiments", "Collective witnessing"],
+    professional: ["University laboratories", "Graduate student workforce"],
+    institutional: ["Federal grants", "University labs"],
+    digitized: [
+      "Personal digital notebooks",
+      "Local computations",
+      "Proprietary software",
+    ],
+    digitalNative: [
+      "Executable narratives",
+      "Reproducible containers",
+      "Live computational environments",
+      "Atomic contributions",
+    ],
   },
   {
     name: "Quality",
     verbs: "Verify · replicate · trust",
-    organized: "Witnessed demos · society meetings",
-    professional: "University seminars · laboratory replication",
-    institutional:
-      "Anonymous pre-publication peer review · journal prestige hierarchy",
-    digitized: "Citation databases · Impact Factor · paywalled review pipelines",
-    digitalNative: "Computational verification · trust attestation",
+    organized: ["Witnessed demos", "Society meetings"],
+    professional: ["Formalized peer review", "Specialized journals"],
+    institutional: ["Anonymous peer review", "Journal prestige"],
+    digitized: ["Citation databases", "Impact Factor", "Paywalled review"],
+    digitalNative: [
+      "Computational verification",
+      "Trust attestation",
+      "Portable verification",
+      "Modular peer review",
+      "Linter-as-review",
+      "Topological validation",
+    ],
   },
   {
     name: "Engagement",
     verbs: "Connect · share · discover",
-    organized: "Letters & libraries · society proceedings",
-    professional: "Academic journals · university presses",
-    institutional:
-      "Academic journals · disciplinary conferences · journal consolidation",
-    digitized: "PDFs · digital subscriptions · publisher platforms",
-    digitalNative:
-      "Object graphs · curation over open research · open by default",
+    organized: ["Letters", "Scientific journals", "Society proceedings"],
+    professional: [
+      "Specialized journals",
+      "International conferences",
+      "Telegraph",
+    ],
+    institutional: [
+      "Academic journals",
+      "Conference circuits",
+      "Email",
+      "Journal consolidation",
+    ],
+    digitized: ["PDFs", "Digital subscriptions", "Publisher platforms"],
+    digitalNative: [
+      "Object graphs",
+      "Overlay journals",
+      "Open by default",
+      "Generative narratives",
+    ],
   },
   {
     name: "Coordination",
     verbs: "Credit · fund · collaborate",
-    organized: "Private patronage · named discoveries",
-    professional: "University positions · institutional funding",
-    institutional:
-      "Grant cycles · tenure system · citation-based credit",
-    digitized: "h-index · altmetrics · ORCID as paper trail",
-    digitalNative:
-      "Contribution graphs · micro-attribution · community-specific metrics",
+    organized: ["Scientific societies", "Royal/noble patronage"],
+    professional: [
+      "University salaries",
+      "Foundation funding",
+      "Nobel prize hierarchy",
+    ],
+    institutional: ["Grant cycles", "Tenure system", "Citation-based credit"],
+    digitized: ["h-index", "Altmetrics", "ORCID as paper trail"],
+    digitalNative: [
+      "Contribution graphs",
+      "Micro-attribution",
+      "Open impact algorithms",
+      "Transitive / modular funding",
+    ],
   },
   {
     name: "Preservation",
     verbs: "Store · access · archive",
-    organized: "Physical archives · manual copying",
-    professional: "Library systems · catalog standards",
-    institutional: "University libraries · journal archives · microfilm",
-    digitized: "DOI system · siloed repositories · lossy digital archives",
-    digitalNative:
-      "Content addressing · distributed data hosting · redundant archives",
+    organized: ["Journal archives", "Multiplying libraries"],
+    professional: ["University libraries", "Catalog standards", "Microfilm"],
+    institutional: ["University libraries", "Journal archives"],
+    digitized: ["DOI system", "Siloed repositories", "Lossy digital archives"],
+    digitalNative: [
+      "Content addressing",
+      "Distributed hosting",
+      "Redundant archives",
+      "Append-only provenance",
+      "Sovereign infrastructure",
+    ],
   },
 ];
 
@@ -74,17 +110,48 @@ export function TimeToBuild() {
           <div>
             <h2>It's time to build the digital-native substrate.</h2>
             <p className="dek">
-              Each era reconfigures the five protocols. Scientific societies
-              and the first journals shaped the Organized era. Research
-              universities, professionalization, and formalized peer review
-              shaped the Professional one. Federal funding, peer review,
-              tenure, grant cycles, and citation-based credit built the
-              Institutional era. What we live in now is that configuration
-              stretched onto digital tools: PDFs as journals, h-indexes as
-              memory, citation databases as card catalogs. The next era is
-              the first one we get to design on the digital substrate,
-              instead of retrofitting onto it.
+              A system of science is a complete configuration of five
+              protocols —{" "}
+              <em>
+                inference, quality, engagement, coordination, and preservation
+              </em>{" "}
+              — enabled by the technical substrate of an era. Value,
+              incentive, and governance processes guide the configuration of
+              each protocol within a system. Today, three systems of science
+              operate side by side —{" "}
+              <em>institutional, benefactor, and corporate</em> —{" "}
+              each operating on the same technical substrate, and each with
+              their sets of values, incentives, and governance processes. No one
+              designed any of these systems. They emerged through a series of
+              events, accidents, and actions meant to fulfill immediate
+              needs.
             </p>
+            <p className="dek">
+              The technical substrate of science has moved through five
+              distinct eras over hundreds of years, each opening new
+              processes for the systems built on top. Scientific societies
+              and the first journals emerged from letterpress, postal
+              networks, and the telegraph to define the Organized Era of
+              science. Research universities, professionalization, and
+              formalized peer review took shape as the Professional Era
+              embraced typewriters, telephone networks, and microfilm.
+              Typewriters, telephone networks, and microfilm led to federal
+              funding, peer review, tenure, grant cycles, and the
+              citation-based credit of the Institutional Era we still
+              inhabit. Today we've wrapped the Instituional Era's processes
+              in digital tools: PDFs as journals, h-indexes as memory,
+              citation databases as card catalogs — though the primitives of
+              these tools enable so much more.
+            </p>
+            <p className="dek">
+              The technical substrate of the next era will be digital-native,
+              built by the global research community and designed
+              intentionally from the ground up. From this substrate, a
+              pluralistic era of scientific systems that amplify each other's
+              strengths, make up for one another's failures, and grow
+              stronger under stress will thrive.
+            </p>
+            <p className="dek">The next era of science is antifragile.</p>
           </div>
         </div>
 
@@ -115,29 +182,42 @@ export function TimeToBuild() {
             </tr>
           </thead>
           <tbody>
-            {ROWS.map((r) => (
-              <tr key={r.name}>
-                <td className="proto">
-                  <span className="name">{r.name}</span>
-                  <span className="verbs">{r.verbs}</span>
-                </td>
-                <td>{r.organized}</td>
-                <td>{r.professional}</td>
-                <td>{r.institutional}</td>
-                <td>{r.digitized}</td>
-                <td className="now">{r.digitalNative}</td>
-              </tr>
-            ))}
+            {ROWS.map((r) => {
+              const cells: Array<{ items: string[]; now?: boolean }> = [
+                { items: r.organized },
+                { items: r.professional },
+                { items: r.institutional },
+                { items: r.digitized },
+                { items: r.digitalNative, now: true },
+              ];
+              return (
+                <tr key={r.name}>
+                  <td className="proto">
+                    <span className="name">{r.name}</span>
+                    <span className="verbs">{r.verbs}</span>
+                  </td>
+                  {cells.map((cell, i) => (
+                    <td key={i} className={cell.now ? "now" : undefined}>
+                      <ul className="cell-list">
+                        {cell.items.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </td>
+                  ))}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
 
         <div className="theory-block">
           <a className="theory-link" href="/theory">
             <span className="marker">→</span>
-            Experience our theory of change
+            Engage with our complete theory of change
           </a>
           <p className="theory-link-note">
-            An interactive expression in lieu of a paper. In development.
+            An interactive expression. In development.
           </p>
         </div>
       </div>
