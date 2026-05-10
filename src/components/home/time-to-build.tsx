@@ -135,10 +135,10 @@ export function TimeToBuild() {
               science. Research universities, professionalization, and
               formalized peer review took shape as the Professional Era
               embraced typewriters, telephone networks, and microfilm.
-              Typewriters, telephone networks, and microfilm led to federal
+              Mainframes, photocopiers, and citation indexes led to federal
               funding, peer review, tenure, grant cycles, and the
               citation-based credit of the Institutional Era we still
-              inhabit. Today we've wrapped the Instituional Era's processes
+              inhabit. Today we've wrapped the Institutional Era's processes
               in digital tools: PDFs as journals, h-indexes as memory,
               citation databases as card catalogs — though the primitives of
               these tools enable so much more.
