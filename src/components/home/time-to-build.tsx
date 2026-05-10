@@ -129,7 +129,7 @@ export function TimeToBuild() {
             <p className="dek">
               The technical substrate of science has moved through five
               distinct eras over hundreds of years, each opening new
-              processes for the systems built on top. Scientific societies
+              primitives for the systems built on top. Scientific societies
               and the first journals emerged from letterpress, postal
               networks, and the telegraph to define the Organized Era of
               science. Research universities, professionalization, and
