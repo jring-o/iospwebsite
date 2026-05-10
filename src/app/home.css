@@ -565,6 +565,29 @@ section.iosp26 a { color: var(--i-ink); }
   margin-bottom: 12px;
 }
 .i26 .ws-card p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--i-ink-soft); }
+.i26 .ws-facets {
+  margin: 18px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--i-rule);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px 28px;
+}
+.i26 .ws-facet { margin: 0; }
+.i26 .ws-facet dt {
+  font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--i-royal);
+  margin-bottom: 5px;
+}
+.i26 .ws-facet dd {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--i-ink);
+}
 .i26 .ws-card.cont {
   background: var(--i-card-bg);
   position: relative;
@@ -574,7 +597,7 @@ section.iosp26 a { color: var(--i-ink); }
   background: linear-gradient(to right, transparent, var(--i-royal), transparent);
 }
 .i26 .ws-status {
-  margin-top: 24px;
+  margin: 0 0 20px;
   text-align: center;
   font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
   font-size: 10px;
@@ -984,6 +1007,14 @@ section.ssb {
   transition: transform 0.2s ease;
 }
 .theory-link:hover .marker { transform: translateX(4px); }
+.theory-link-note {
+  margin: 8px 0 0 28px;
+  font-family: var(--font-newsreader), "Newsreader", Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
 
 /* ─── 06 SUBSTRATE GRID ─────────────────────────────── */
 .sub-grid {

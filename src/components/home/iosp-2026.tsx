@@ -8,7 +8,7 @@ import { TheoryModal } from "@/components/theory-modal";
 const TAKEAWAYS = [
   {
     title: "Meet people you couldn't meet elsewhere",
-    body: "Researchers and tool-builders shoulder-to-shoulder for four days. The people building open science infrastructure side-by-side with those who depend on it.",
+    body: "Researchers and builders shoulder-to-shoulder for four days in a facilitated environment. The people building open science infrastructure side-by-side with those who depend on it.",
     name: "Ronen Tamari",
     role: "Renaissance Philanthropy BiTS Fellow",
     quote:
@@ -16,7 +16,7 @@ const TAKEAWAYS = [
   },
   {
     title: "Gain a working knowledge of new tools and infrastructure",
-    body: "Discover novel infrastructure being built across the open science ecosystem — leave with the high-level concepts, the technical details, and a path to put them to work.",
+    body: "Discover novel infrastructure being built across the open science ecosystem. Leave with the high-level concepts, the technical details, and a path to put them to work.",
     name: "Doug Schuster",
     role: "NSF NCAR",
     quote:
@@ -24,7 +24,7 @@ const TAKEAWAYS = [
   },
   {
     title: "Form a clearer picture of what researchers actually need built",
-    body: "Four days alongside the researchers who depend on what's being built. Leave with sharper requirements, validated approaches, and a list of dead-ends to stop pursuing.",
+    body: "Four days alongside the researchers who depend on what's being built. Leave with sharper requirements, validated user-stories, and a list of dead-ends to stop pursuing.",
     name: "Martin Karlsson",
     role: "Coordination Network",
     quote:
@@ -34,8 +34,8 @@ const TAKEAWAYS = [
     title: "Start work that lives beyond the event",
     body: (
       <>
-        Methods and prototypes stress-tested in Leiden become the seed of
-        post-event collaboration.{" "}
+        Projects and collaborations started, sharpened, and stress-tested
+        at IOSP seed work that continues after.{" "}
         <a href="https://mira.science" target="_blank" rel="noopener">
           MIRA
         </a>
@@ -173,8 +173,7 @@ export function Iosp2026() {
                   the people who depend on open science infrastructure and the
                   people building it should be in the same room
                 </em>
-                , working on the same problems, long enough to do real work
-                together.
+                , working on the same problems, long enough to make real progress.
               </p>
               <p>
                 Researchers bring the domain knowledge and challenges that
@@ -276,22 +275,62 @@ export function Iosp2026() {
             <div className="right">Hands-on</div>
           </div>
 
+          <div className="ws-status">
+            Programme in active planning · Check back for updates
+          </div>
+
           <div className="ws-card">
             <div className="num">03</div>
             <div>
               <div className="kick">
                 Resilient Data &amp; Sovereign Infrastructure
               </div>
-              <h4>Save your discipline's at-risk data</h4>
+              <h4>
+                Save your discipline's at-risk data — on infrastructure you
+                control
+              </h4>
               <div className="by">Cornelius Ihle · University of Göttingen</div>
               <p>
-                Bring the data your field is closest to losing — orphaned
-                datasets, vanishing journals, repositories on borrowed time.
-                We'll crawl the source, content-address the payloads, and
-                replicate them on IPFS through D-LOCKSS. You leave with that
-                data verifiably preserved on a decentralized network, beyond
-                any single host's lifespan.
+                Bring any data repositories you know of. We'll crawl them for
+                open-access content. Separately, bring any specific at-risk
+                datasets you want preserved. We'll content-address every
+                payload and replicate it across D-LOCKSS, a modern successor
+                to LOCKSS built on IPFS. D-LOCKSS adds signed research
+                objects, per-shard CRDT replication, and on-demand pinning
+                contributed upstream to IPFS Kubo. Custody stays with the
+                institutions. You leave with that data verifiably preserved on a
+                decentralized network, plus a path to run a node on a single
+                server, VM, or Raspberry Pi at your institution.
               </p>
+              <dl className="ws-facets">
+                <div className="ws-facet">
+                  <dt>Technology</dt>
+                  <dd>
+                    D-LOCKSS · IPFS Kubo · content addressing · CRDT
+                    replication · on-demand pinning
+                  </dd>
+                </div>
+                <div className="ws-facet">
+                  <dt>Researchers bring</dt>
+                  <dd>
+                    Data repositories for us to crawl for open-access content.
+                    Separately, any specific at-risk datasets you want
+                    preserved
+                  </dd>
+                </div>
+                <div className="ws-facet">
+                  <dt>Leave with</dt>
+                  <dd>
+                    Your data verifiably preserved on a decentralized network,
+                    plus a path to run resilient, sovereign storage at your
+                    institution on hardware as small as a Raspberry Pi
+                  </dd>
+                </div>
+                <div className="ws-facet">
+                  <dt>Format</dt>
+                  <dd>TBD</dd>
+                </div>
+              </dl>
             </div>
           </div>
 
@@ -305,15 +344,71 @@ export function Iosp2026() {
                 A live build line for the gaps the event surfaces. When the
                 four themes turn up open science tooling that's missing,
                 broken, or stuck on a wishlist, we'll spec it with the group
-                and build a working prototype on the spot — using a
+                and build a working prototype on the spot, using a
                 multi-agent software-development harness. Drop in across the
                 four days; leave with real code addressing real gaps.
               </p>
+              <dl className="ws-facets">
+                <div className="ws-facet">
+                  <dt>Technology</dt>
+                  <dd>Multi-agent software-development harness</dd>
+                </div>
+                <div className="ws-facet">
+                  <dt>Researchers bring</dt>
+                  <dd>
+                    Tooling pain points and missing pieces from your own work
+                  </dd>
+                </div>
+                <div className="ws-facet">
+                  <dt>Leave with</dt>
+                  <dd>Working prototype code addressing a real gap</dd>
+                </div>
+                <div className="ws-facet">
+                  <dt>Format</dt>
+                  <dd>Continuous · drop in across the four days</dd>
+                </div>
+              </dl>
             </div>
           </div>
 
-          <div className="ws-status">
-            Programme in active planning · Check back for updates
+          <div className="ws-card cont">
+            <div className="num">00</div>
+            <div>
+              <div className="kick">Foundational · All themes</div>
+              <h4>Theory crafting</h4>
+              <div className="by">Ellie DeSota and the IOSP community</div>
+              <p>
+                Each year we revisit the theory of change behind IOSP. We'll
+                look at what's actually been built since last year, where this
+                year's workshops fit into the picture, what gaps still exist,
+                and priorities for the coming year. Leave with a shared read
+                on the substrate's current shape, and a call for action in the
+                year ahead.
+              </p>
+              <dl className="ws-facets">
+                <div className="ws-facet">
+                  <dt>Technology</dt>
+                  <dd>IOSP's theory-of-change framework</dd>
+                </div>
+                <div className="ws-facet">
+                  <dt>Researchers bring</dt>
+                  <dd>
+                    Observations from the year's themes and your own domain
+                  </dd>
+                </div>
+                <div className="ws-facet">
+                  <dt>Leave with</dt>
+                  <dd>
+                    A shared list of priorities and named gaps for the year
+                    ahead
+                  </dd>
+                </div>
+                <div className="ws-facet">
+                  <dt>Format</dt>
+                  <dd>Half-day · all participants</dd>
+                </div>
+              </dl>
+            </div>
           </div>
         </div>
 
@@ -407,6 +502,8 @@ export function Iosp2026() {
               <strong>IOSP is free to join</strong>, and every sponsorship
               dollar goes <strong>directly to travel grants</strong> so
               finances and location aren't a barrier for participants.
+            </p>
+            <p>
               Actively pushing open science forward? Register and we'll do our
               best to find a way to get you in the room.
             </p>

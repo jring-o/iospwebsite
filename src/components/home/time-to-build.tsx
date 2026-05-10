@@ -117,8 +117,11 @@ export function TimeToBuild() {
         <div className="theory-block">
           <a className="theory-link" href="/theory">
             <span className="marker">→</span>
-            How we think about science
+            Experience our theory of change
           </a>
+          <p className="theory-link-note">
+            An interactive expression in lieu of a paper. In development.
+          </p>
         </div>
       </div>
     </section>

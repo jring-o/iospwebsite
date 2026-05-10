@@ -41,10 +41,25 @@ export function TheoryModal({ open, onClose }: Props) {
             The next substrate is already being built — persistent
             identifiers, schemas, provenance graphs, verification protocols,
             execution standards, registries, funding protocols — in pieces,
-            across many communities. The work ahead is to align efforts, and
-            to configure their outputs so multiple systems of science can run
-            in parallel and absorb each other&rsquo;s failures.
+            across countless communities. The work ahead is to align efforts, and
+            to configure their outputs toward the production of a shared technical substrate that endables
+            a plurality of scientific systems — governance, incentive, assessment — to run in
+            parallel, amplifying one another&rsquo;s strengths, and absorbing one another&rsquo;'s failures.
           </p>
+          <p className="text-[15px] text-ink-soft leading-relaxed">The future is antifragile.</p>
+
+          <div className="pt-4 mt-2 border-t border-rule">
+            <a
+              href="#build"
+              onClick={onClose}
+              className="inline-flex items-baseline gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-royal no-underline"
+            >
+              <span className="font-serif italic text-[16px] tracking-normal normal-case transition-transform duration-200 group-hover:translate-x-1">
+                →
+              </span>
+              Read more about our theory
+            </a>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
