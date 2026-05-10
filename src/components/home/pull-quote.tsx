@@ -4,10 +4,9 @@ export function PullQuote() {
       <div className="wrap-narrow">
         <blockquote className="bigq">
           A thousand coordinated people, collaborating on small, achievable
-          outputs, can raise cities.<sup>1</sup>
+          outputs, can raise cities.
         </blockquote>
         <div className="quote-foot">
-          <div className="fn">[1]</div>
           <div>
             Between 1855 and 1872, Chicago raised the entire grade of its
             downtown — buildings and streets — by up to fourteen feet.

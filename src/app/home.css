@@ -846,29 +846,13 @@ blockquote.bigq {
   color: var(--ink);
   max-width: 22ch;
 }
-blockquote.bigq sup {
-  font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
-  font-size: 0.32em;
-  color: var(--royal);
-  vertical-align: super;
-  margin-left: 4px;
-  font-weight: 500;
-}
 .quote-foot {
   margin-top: 56px;
   padding-top: 14px;
   max-width: 56ch;
   border-top: 1px solid var(--rule);
-  display: grid; grid-template-columns: 32px 1fr; gap: 16px;
   font-size: 14px;
   color: var(--ink-soft);
-}
-.quote-foot .fn {
-  font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  color: var(--royal);
-  padding-top: 2px;
 }
 .quote-foot a { color: var(--royal); text-decoration: none; border-bottom: 1px solid currentColor; }
 
