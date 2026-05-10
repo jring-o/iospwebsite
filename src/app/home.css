@@ -876,15 +876,7 @@ blockquote.bigq sup {
 section.ssb {
   padding: 120px 0;
   border-top: 2px solid var(--ink);
-  text-align: center;
-}
-.ssb-kicker {
-  font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--royal);
-  margin-bottom: 32px;
+  text-align: left;
 }
 .ssb-h {
   font-family: var(--font-newsreader), "Newsreader", Georgia, serif;
@@ -892,32 +884,38 @@ section.ssb {
   font-size: clamp(40px, 5.6vw, 76px);
   line-height: 1.04;
   letter-spacing: -0.02em;
-  margin: 0 0 36px;
-  color: var(--ink);
-}
-.ssb-list {
-  list-style: none;
   margin: 0;
-  padding: 0;
-  display: inline-grid;
-  gap: 8px;
-  text-align: left;
+  color: var(--ink);
+  max-width: 14ch;
 }
-.ssb-list li {
+.ssb-rule .ssb-h { margin-bottom: 56px; }
+.ssb-rule .ssb-rule-line {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+.ssb-rule .ssb-rule-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+}
+.ssb-rule .ssb-rule-item .value {
   font-family: var(--font-newsreader), "Newsreader", Georgia, serif;
-  font-weight: 400;
   font-style: italic;
-  font-size: clamp(34px, 4vw, 56px);
-  line-height: 1.15;
+  font-size: clamp(20px, 2.6vw, 34px);
+  line-height: 1;
   letter-spacing: -0.02em;
   color: var(--ink);
 }
-.ssb-list li::before {
-  content: "— ";
-  color: var(--royal);
-  font-style: normal;
-  letter-spacing: 0;
-  margin-right: 4px;
+.ssb-rule .ssb-rule-item .rule {
+  display: block;
+  width: clamp(24px, 3vw, 48px);
+  height: 1px;
+  background: var(--royal);
+  flex-shrink: 0;
 }
 
 /* ─── 05 PROTOCOL TABLE ─────────────────────────────── */
