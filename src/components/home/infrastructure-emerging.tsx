@@ -56,7 +56,7 @@ export function InfrastructureEmerging() {
             <div className="kicker">The Substrate</div>
           </div>
           <div>
-            <h2>Independent teams. One substrate.</h2>
+            <h2>Independent teams.<br />One substrate.</h2>
             <p className="dek">
               Across the ecosystem, independent teams are building components
               of a shared technical substrate for science. Science needs them to work together.

@@ -138,8 +138,8 @@
 
 .mast-grid {
   display: grid;
-  grid-template-columns: 260px 1fr 1fr;
-  gap: 56px;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 48px;
   padding: 28px 0 32px;
 }
 .mast-grid .col:last-child { text-align: right; }
@@ -177,6 +177,78 @@
 }
 .mast-cta .arr { color: var(--royal); }
 .mast-cta + .mast-cta { margin-left: 24px; }
+
+.mast-actions {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) 2fr;
+  gap: 16px;
+  align-items: stretch;
+  padding: 28px 0 8px;
+  border-top: 1px solid var(--rule);
+}
+
+.mast-cta-primary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 22px 28px;
+  background: var(--royal);
+  color: var(--paper);
+  text-decoration: none;
+  transition: background 120ms ease, transform 120ms ease;
+}
+.mast-cta-primary:hover { background: var(--ink); transform: translateY(-1px); }
+.mast-cta-primary .t {
+  font-family: var(--font-newsreader), "Newsreader", Georgia, serif;
+  font-weight: 500;
+  font-size: 32px;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+.mast-cta-primary .d {
+  font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.mast-sub-ctas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  align-items: stretch;
+}
+.mast-sub-ctas li { display: flex; }
+.mast-cta-secondary {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  text-decoration: none;
+  transition: background 120ms ease, color 120ms ease;
+}
+.mast-cta-secondary .arr { color: var(--royal); transition: color 120ms ease; }
+.mast-cta-secondary:hover { background: var(--ink); color: var(--paper); }
+.mast-cta-secondary:hover .arr { color: var(--paper); }
+
+#cta-showcase,
+#cta-sponsor,
+#cta-register { scroll-margin-top: 80px; }
 
 /* ─── section frame ─────────────────────────────── */
 section.s {
@@ -1312,4 +1384,6 @@ footer.foot .colophon {
   .mast-title h1 { grid-row: 2; }
   .mast-title .lede { grid-row: 3; }
   details.theory .body { grid-template-columns: 1fr; }
+  .mast-actions { grid-template-columns: 1fr; gap: 12px; }
+  .mast-sub-ctas { grid-template-columns: 1fr; }
 }

@@ -430,6 +430,7 @@ export function Iosp2026() {
           <div className="cta-grid">
             <button
               type="button"
+              id="cta-showcase"
               className="cta-card"
               onClick={() => setSignup("showcase")}
             >
@@ -464,6 +465,7 @@ export function Iosp2026() {
             </button>
             <button
               type="button"
+              id="cta-sponsor"
               className="cta-card"
               onClick={() => setSignup("sponsor")}
             >
@@ -484,6 +486,7 @@ export function Iosp2026() {
           {/* register interest */}
           <button
             type="button"
+            id="cta-register"
             className="reg"
             onClick={() => setSignup("participant")}
             aria-label="Register your interest"
