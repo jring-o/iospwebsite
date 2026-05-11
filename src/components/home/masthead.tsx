@@ -1,46 +1,8 @@
-import { ThemeToggle } from "@/components/theme-toggle";
 import { Mark } from "@/components/mark";
 
 export function Masthead() {
   return (
     <header className="masthead" data-screen-label="01 Masthead">
-      <div className="mast-strip">
-        <div className="wrap">
-          <div className="mast-strip-inner mono">
-            <span className="mast-strip-lockup">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 32 32"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                className="mast-strip-mark"
-              >
-                <g transform="rotate(30 16 16)">
-                  <path
-                    d="M 25 21 A 11 11 0 1 1 25 11"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="3.5"
-                    strokeLinecap="round"
-                  />
-                  <path
-                    d="M 24.75 14.5 L 26 17 L 27.75 14.5 Z"
-                    fill="var(--royal)"
-                  />
-                </g>
-              </svg>
-              Institute of Open Science Practices
-            </span>
-            <span>Since 2024</span>
-            <span>
-              <a href="#how">How it works ↓</a>
-            </span>
-            <ThemeToggle />
-          </div>
-        </div>
-      </div>
-
       <div className="wrap">
         <div className="mast-title">
         <h1>Institute of Open Science Practices</h1>

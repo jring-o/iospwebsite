@@ -19,6 +19,9 @@
 .mast-strip {
   background: var(--ink-soft);
   color: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 .mast-strip-inner {
   display: flex;
@@ -32,6 +35,47 @@
 .mast-strip-mark { flex-shrink: 0; }
 .mast-strip a { text-decoration: none; color: inherit; }
 .mast-strip a:hover { color: var(--royal); }
+
+.nav-menu { position: relative; display: inline-flex; align-items: center; }
+.nav-menu-trigger {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-menu-trigger:hover { color: var(--royal); }
+.nav-menu-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 220px;
+  margin: 0;
+  padding: 6px 0;
+  list-style: none;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 51;
+}
+.nav-menu-panel li { margin: 0; }
+.nav-menu-panel a {
+  display: block;
+  padding: 8px 14px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.nav-menu-panel a:hover {
+  background: var(--paper-deep);
+  color: var(--royal);
+}
 /* Theme toggle inside the dark strip needs paper-tinted chrome */
 .mast-strip-inner button[aria-label="Toggle theme"] {
   color: var(--paper);
@@ -233,7 +277,7 @@ section.iosp26 a { color: var(--i-ink); }
 .i26 .hero h2 {
   font-family: var(--font-newsreader), "Newsreader", Georgia, serif;
   font-weight: 400;
-  font-size: clamp(64px, 9vw, 132px);
+  font-size: clamp(48px, 6vw, 96px);
   line-height: 0.92;
   letter-spacing: -0.035em;
   margin: 0;

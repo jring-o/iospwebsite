@@ -112,7 +112,7 @@ export function Iosp2026() {
         <div className="hero">
           <div>
             <div className="kick">Institute of Open Science Practices</div>
-            <h2>Leiden</h2>
+            <h2 style={{ whiteSpace: "nowrap" }}>IOSP&nbsp;2026</h2>
             <div className="dates">
               <div className="num">
                 12 <span className="arr">→</span> 15

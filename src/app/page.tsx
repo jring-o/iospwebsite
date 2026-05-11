@@ -1,4 +1,5 @@
 import "./home.css";
+import { TopNav } from "@/components/top-nav";
 import { Masthead } from "@/components/home/masthead";
 import { Iosp2026 } from "@/components/home/iosp-2026";
 import { HowItWorks } from "@/components/home/how-it-works";
@@ -14,6 +15,7 @@ import { SiteFooter } from "@/components/home/site-footer";
 export default function HomePage() {
   return (
     <>
+      <TopNav />
       <Masthead />
       <Iosp2026 />
       <HowItWorks />
