@@ -20,31 +20,9 @@ export function Masthead() {
         </p>
       </div>
 
-      <div className="mast-grid">
-        <div className="col">
-          <h6>For</h6>
-          <p>
-            The people building the infrastructure open science
-            depends on, and the researchers, librarians, funders, and
-            publishers who depend on it.
-          </p>
-        </div>
-        <div className="col">
-          <h6>What we do</h6>
-          <p>
-            Connect researchers and technologists working on critical open
-            science infrastructure. Coordinate collaborations, serve as first
-            users, and share what we learn — advancing the technologies that
-            make open-by-default scientific practice easy.
-          </p>
-        </div>
-        <div className="col">
-          <h6>Working principle</h6>
-          <p className="mast-tagline">
-            “Build the infrastructure that makes open easy to practice.”
-          </p>
-        </div>
-      </div>
+      <p className="mast-tagline">
+        “Build the infrastructure that makes open easy to practice.”
+      </p>
 
       <div className="mast-actions">
         <a className="mast-cta-primary" href="#iosp2026">

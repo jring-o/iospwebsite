@@ -13,8 +13,18 @@ const SECTIONS: Array<{ href: string; label: string }> = [
   { href: "#stay", label: "Newsletter" },
 ];
 
+const NAV_OFFSET = 56;
+
+function formatScreenLabel(raw: string | null): string {
+  if (!raw) return "Since 2024";
+  if (/masthead/i.test(raw)) return "Since 2024";
+  const stripped = raw.replace(/^\d+\s+/, "");
+  return stripped.toUpperCase();
+}
+
 export function TopNav() {
   const [open, setOpen] = useState(false);
+  const [currentLabel, setCurrentLabel] = useState<string | null>(null);
   const wrapRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -34,6 +44,40 @@ export function TopNav() {
       document.removeEventListener("keydown", onKey);
     };
   }, [open]);
+
+  useEffect(() => {
+    const els = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-screen-label]"),
+    );
+    if (els.length === 0) return;
+
+    let raf = 0;
+
+    function update() {
+      raf = 0;
+      let active: HTMLElement = els[0];
+      for (const el of els) {
+        const top = el.getBoundingClientRect().top;
+        if (top - NAV_OFFSET <= 0) active = el;
+        else break;
+      }
+      setCurrentLabel(active.getAttribute("data-screen-label"));
+    }
+
+    function onScroll() {
+      if (raf) return;
+      raf = requestAnimationFrame(update);
+    }
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
 
   return (
     <div className="mast-strip">
@@ -64,7 +108,7 @@ export function TopNav() {
             </svg>
             Institute of Open Science Practices
           </span>
-          <span>Since 2024</span>
+          <span className="nav-current">{formatScreenLabel(currentLabel)}</span>
           <span className="nav-menu" ref={wrapRef}>
             <button
               type="button"

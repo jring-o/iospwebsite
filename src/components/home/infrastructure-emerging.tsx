@@ -48,7 +48,7 @@ export function InfrastructureEmerging() {
     <section
       className="s"
       id="substrate"
-      data-screen-label="06 Infrastructure Emerging"
+      data-screen-label="Emerging infrastructure"
     >
       <div className="wrap">
         <div className="s-head">

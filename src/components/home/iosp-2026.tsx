@@ -99,7 +99,7 @@ export function Iosp2026() {
     <section
       className="iosp26"
       id="iosp2026"
-      data-screen-label="02 IOSP 2026 Leiden"
+      data-screen-label="IOSP 2026"
     >
       <div className="wrap i26">
         <div className="strip mono">

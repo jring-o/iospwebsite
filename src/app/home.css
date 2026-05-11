@@ -35,6 +35,13 @@
 .mast-strip-mark { flex-shrink: 0; }
 .mast-strip a { text-decoration: none; color: inherit; }
 .mast-strip a:hover { color: var(--royal); }
+.nav-current {
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  width: 30ch;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
 
 .nav-menu { position: relative; display: inline-flex; align-items: center; }
 .nav-menu-trigger {
@@ -136,37 +143,14 @@
 }
 .mast-title .lede em { color: var(--royal); font-style: italic; font-weight: 500; }
 
-.mast-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 48px;
-  padding: 28px 0 32px;
-}
-.mast-grid .col:last-child { text-align: right; }
-.mast-grid .col:last-child .mast-cta + .mast-cta { margin-left: 0; margin-right: 0; }
-.mast-grid .col:last-child p:has(.mast-cta) {
-  display: flex;
-  justify-content: flex-end;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-.mast-grid .col h6 {
-  font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin: 0 0 8px;
-  font-weight: 500;
-}
-.mast-grid .col p { margin: 0; font-size: 15px; }
-.mast-grid .col p + p { margin-top: 10px; }
-.mast-grid .col strong { font-weight: 600; }
 .mast-tagline {
   font-family: var(--font-newsreader), "Newsreader", Georgia, serif;
   font-style: italic;
-  font-size: 18px;
+  font-size: 22px;
   color: var(--royal);
+  margin: 0;
+  padding: 36px 0 28px;
+  text-align: center;
 }
 .mast-cta {
   display: inline-flex; align-items: baseline; gap: 8px;
@@ -184,7 +168,16 @@
   gap: 16px;
   align-items: stretch;
   padding: 28px 0 64px;
-  border-top: 1px solid var(--rule);
+  position: relative;
+}
+.mast-actions::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--royal), transparent);
 }
 
 .mast-cta-primary {
@@ -1372,7 +1365,7 @@ footer.foot .colophon {
 /* ─── responsive ─────────────────────────────── */
 @media (max-width: 880px) {
   .wrap, .wrap-narrow { padding: 0 28px; }
-  .mast-grid, .s-head, .how-cols, .recap-grid, .i26 .hero, .i26 .pd-grid, .i26 .theory-card, .how-repeat, .mast-title { grid-template-columns: 1fr; gap: 24px; }
+  .s-head, .how-cols, .recap-grid, .i26 .hero, .i26 .pd-grid, .i26 .theory-card, .how-repeat, .mast-title { grid-template-columns: 1fr; gap: 24px; }
   .i26 .ta-grid, .i26 .cta-grid, .sub-grid, .spk-grid, .stat-band { grid-template-columns: repeat(2, 1fr); }
   .i26 .th-grid { grid-template-columns: 1fr; }
   .voices li { grid-template-columns: 28px 1fr; }

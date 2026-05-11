@@ -1,6 +1,6 @@
 export function PullQuote() {
   return (
-    <section className="quote" id="quote" data-screen-label="04 Pull Quote">
+    <section className="quote" id="quote" data-screen-label="We can raise cities">
       <div className="wrap-narrow">
         <blockquote className="bigq">
           A thousand coordinated people, collaborating on small, achievable
