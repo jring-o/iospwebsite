@@ -53,7 +53,7 @@ export function Masthead() {
         />
         <p className="lede">
           An <em>event</em>, a <em>community</em>, and a{" "}
-          <em>coordinating institute</em> for the people building the
+          <em>coordinating institute</em> for the people building, using, and advancing the
           infrastructure open science depends on.
         </p>
       </div>
@@ -62,7 +62,7 @@ export function Masthead() {
         <div className="col">
           <h6>For</h6>
           <p>
-            The people <strong>building the infrastructure</strong> open science
+            The people building the infrastructure open science
             depends on, and the researchers, librarians, funders, and
             publishers who depend on it.
           </p>
