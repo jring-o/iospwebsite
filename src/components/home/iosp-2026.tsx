@@ -284,7 +284,7 @@ export function Iosp2026() {
               >
                 Structure
               </div>
-              <h3>Four themes</h3>
+              <h3>IOSP 2026 Themes</h3>
             </div>
             <div className="right">Parallel tracks</div>
           </div>
