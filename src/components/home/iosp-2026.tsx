@@ -90,10 +90,76 @@ const THEME_CARDS: Array<{ key: ThemeKey; title: string; body: string }> = [
 // consumed by ThemeModal.
 void THEMES;
 
+const WORKSHOPS = [
+  {
+    num: "01",
+    theme: "Modular Research Components",
+    title: "Map your research to MIRA — and reshape how your lab builds knowledge",
+    by: "Matthew Akamatsu · University of Washington",
+    body: "The June 2026 MIRA workshop refined the schema and built initial tool implementations. Now we bring it to researchers across disciplines. You'll decompose a real piece of your own work into MIRA's atomic elements — Question, Claim, Evidence, Study, Protocol — surfacing where the schema holds and where it breaks for your domain. Then we flip the frame: instead of writing papers and decomposing after the fact, how do you build research as MIRA elements from day one? You'll leave with both.",
+    facets: [
+      { dt: "Technology", dd: "MIRA schema · modular research components · composable research objects · attribution" },
+      { dt: "Researchers bring", dd: "A piece of ongoing or published work — a paper, a notebook, an experiment series. The messier and harder to attribute, the better." },
+      { dt: "Leave with", dd: "Your research decomposed into shareable, attributable MIRA modules; a practical workflow for generating MIRA elements as you work so you never need to decompose a paper after the fact" },
+      { dt: "Format", dd: "Half-day" },
+    ],
+    format: "Half-day",
+  },
+  {
+    num: "03",
+    theme: "Resilient Data & Sovereign Infrastructure",
+    title: "Save your discipline's at-risk data — on infrastructure you control",
+    by: "Cornelius Ihle · University of Göttingen",
+    body: "Bring any data repositories you know of. We'll crawl them for open-access content. Separately, bring any specific at-risk datasets you want preserved. We'll content-address every payload and replicate it across D-LOCKSS, a modern successor to LOCKSS built on IPFS. D-LOCKSS adds signed research objects, per-shard CRDT replication, and on-demand pinning contributed upstream to IPFS Kubo. Custody stays with the institutions. You leave with that data verifiably preserved on a decentralized network, plus a path to run a node on a single server, VM, or Raspberry Pi at your institution.",
+    facets: [
+      { dt: "Technology", dd: "D-LOCKSS · IPFS Kubo · content addressing · CRDT replication · on-demand pinning" },
+      { dt: "Researchers bring", dd: "Data repositories for us to crawl for open-access content. Separately, any specific at-risk datasets you want preserved" },
+      { dt: "Leave with", dd: "Your data verifiably preserved on a decentralized network, plus a path to run resilient, sovereign storage at your institution on hardware as small as a Raspberry Pi" },
+      { dt: "Format", dd: "Half-day" },
+    ],
+    format: "Half-day",
+  },
+  {
+    num: "∞",
+    theme: "Continuous · All themes",
+    title: "PICoding",
+    by: "Jonathan Starr · SciOS",
+    body: "A live build line for the gaps the event surfaces. When the four themes turn up open science tooling that's missing, broken, or stuck on a wishlist, we'll spec it with the group and build a working prototype on the spot, using a multi-agent software-development harness. Drop in across the four days; leave with real code addressing real gaps.",
+    facets: [
+      { dt: "Technology", dd: "Multi-agent software-development harness" },
+      { dt: "Researchers bring", dd: "Tooling pain points and missing pieces from your own work" },
+      { dt: "Leave with", dd: "Working prototype code addressing a real gap" },
+      { dt: "Format", dd: "Continuous · drop in across the four days" },
+    ],
+    format: "Continuous",
+  },
+  {
+    num: "00",
+    theme: "Foundational · All themes",
+    title: "Theory crafting",
+    by: "Ellie DeSota and the IOSP community",
+    body: "Each year we revisit the theory of change behind IOSP. We'll look at what's actually been built since last year, where this year's workshops fit into the picture, what gaps still exist, and priorities for the coming year. Leave with a shared read on the substrate's current shape, and a call for action in the year ahead.",
+    facets: [
+      { dt: "Technology", dd: "IOSP's theory-of-change framework" },
+      { dt: "Researchers bring", dd: "Observations from the year's themes and your own domain" },
+      { dt: "Leave with", dd: "A shared list of priorities and named gaps for the year ahead" },
+      { dt: "Format", dd: "Half-day · all participants" },
+    ],
+    format: "Half-day",
+  },
+];
+
 export function Iosp2026() {
   const [signup, setSignup] = useState<SignupKind>(null);
   const [activeTheme, setActiveTheme] = useState<ThemeKey | null>(null);
   const [theoryOpen, setTheoryOpen] = useState(false);
+  const [openWs, setOpenWs] = useState<Set<string>>(new Set());
+  const toggleWs = (num: string) =>
+    setOpenWs((prev) => {
+      const next = new Set(prev);
+      next.has(num) ? next.delete(num) : next.add(num);
+      return next;
+    });
 
   return (
     <section
@@ -279,136 +345,43 @@ export function Iosp2026() {
             Programme in active planning · Check back for updates
           </div>
 
-          <div className="ws-card">
-            <div className="num">03</div>
-            <div>
-              <div className="kick">
-                Resilient Data &amp; Sovereign Infrastructure
-              </div>
-              <h4>
-                Save your discipline's at-risk data — on infrastructure you
-                control
-              </h4>
-              <div className="by">Cornelius Ihle · University of Göttingen</div>
-              <p>
-                Bring any data repositories you know of. We'll crawl them for
-                open-access content. Separately, bring any specific at-risk
-                datasets you want preserved. We'll content-address every
-                payload and replicate it across D-LOCKSS, a modern successor
-                to LOCKSS built on IPFS. D-LOCKSS adds signed research
-                objects, per-shard CRDT replication, and on-demand pinning
-                contributed upstream to IPFS Kubo. Custody stays with the
-                institutions. You leave with that data verifiably preserved on a
-                decentralized network, plus a path to run a node on a single
-                server, VM, or Raspberry Pi at your institution.
-              </p>
-              <dl className="ws-facets">
-                <div className="ws-facet">
-                  <dt>Technology</dt>
-                  <dd>
-                    D-LOCKSS · IPFS Kubo · content addressing · CRDT
-                    replication · on-demand pinning
-                  </dd>
+          <div className="ws-acc">
+            {WORKSHOPS.map((w) => {
+              const isOpen = openWs.has(w.num);
+              return (
+                <div className="ws-acc-item" key={w.num}>
+                  <button
+                    type="button"
+                    className="ws-acc-trigger"
+                    onClick={() => toggleWs(w.num)}
+                    aria-expanded={isOpen}
+                  >
+                    <span className="ws-acc-main">
+                      <span className="ws-acc-theme">{w.theme}</span>
+                      <span className="ws-acc-title">{w.title}</span>
+                      <span className="ws-acc-by">{w.by}</span>
+                    </span>
+                    <span className="ws-acc-right">
+                      <span className="ws-acc-format">{w.format}</span>
+                      <span className={`ws-acc-tog${isOpen ? " open" : ""}`}>+</span>
+                    </span>
+                  </button>
+                  {isOpen && (
+                    <div className="ws-acc-body">
+                      <p>{w.body}</p>
+                      <dl className="ws-facets">
+                        {w.facets.map((f) => (
+                          <div className="ws-facet" key={f.dt}>
+                            <dt>{f.dt}</dt>
+                            <dd>{f.dd}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                    </div>
+                  )}
                 </div>
-                <div className="ws-facet">
-                  <dt>Researchers bring</dt>
-                  <dd>
-                    Data repositories for us to crawl for open-access content.
-                    Separately, any specific at-risk datasets you want
-                    preserved
-                  </dd>
-                </div>
-                <div className="ws-facet">
-                  <dt>Leave with</dt>
-                  <dd>
-                    Your data verifiably preserved on a decentralized network,
-                    plus a path to run resilient, sovereign storage at your
-                    institution on hardware as small as a Raspberry Pi
-                  </dd>
-                </div>
-                <div className="ws-facet">
-                  <dt>Format</dt>
-                  <dd>TBD</dd>
-                </div>
-              </dl>
-            </div>
-          </div>
-
-          <div className="ws-card cont">
-            <div className="num">∞</div>
-            <div>
-              <div className="kick">Continuous · All themes</div>
-              <h4>PICoding</h4>
-              <div className="by">Jonathan Starr · SciOS</div>
-              <p>
-                A live build line for the gaps the event surfaces. When the
-                four themes turn up open science tooling that's missing,
-                broken, or stuck on a wishlist, we'll spec it with the group
-                and build a working prototype on the spot, using a
-                multi-agent software-development harness. Drop in across the
-                four days; leave with real code addressing real gaps.
-              </p>
-              <dl className="ws-facets">
-                <div className="ws-facet">
-                  <dt>Technology</dt>
-                  <dd>Multi-agent software-development harness</dd>
-                </div>
-                <div className="ws-facet">
-                  <dt>Researchers bring</dt>
-                  <dd>
-                    Tooling pain points and missing pieces from your own work
-                  </dd>
-                </div>
-                <div className="ws-facet">
-                  <dt>Leave with</dt>
-                  <dd>Working prototype code addressing a real gap</dd>
-                </div>
-                <div className="ws-facet">
-                  <dt>Format</dt>
-                  <dd>Continuous · drop in across the four days</dd>
-                </div>
-              </dl>
-            </div>
-          </div>
-
-          <div className="ws-card cont">
-            <div className="num">00</div>
-            <div>
-              <div className="kick">Foundational · All themes</div>
-              <h4>Theory crafting</h4>
-              <div className="by">Ellie DeSota and the IOSP community</div>
-              <p>
-                Each year we revisit the theory of change behind IOSP. We'll
-                look at what's actually been built since last year, where this
-                year's workshops fit into the picture, what gaps still exist,
-                and priorities for the coming year. Leave with a shared read
-                on the substrate's current shape, and a call for action in the
-                year ahead.
-              </p>
-              <dl className="ws-facets">
-                <div className="ws-facet">
-                  <dt>Technology</dt>
-                  <dd>IOSP's theory-of-change framework</dd>
-                </div>
-                <div className="ws-facet">
-                  <dt>Researchers bring</dt>
-                  <dd>
-                    Observations from the year's themes and your own domain
-                  </dd>
-                </div>
-                <div className="ws-facet">
-                  <dt>Leave with</dt>
-                  <dd>
-                    A shared list of priorities and named gaps for the year
-                    ahead
-                  </dd>
-                </div>
-                <div className="ws-facet">
-                  <dt>Format</dt>
-                  <dd>Half-day · all participants</dd>
-                </div>
-              </dl>
-            </div>
+              );
+            })}
           </div>
         </div>
 
