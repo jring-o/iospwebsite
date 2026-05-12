@@ -94,9 +94,9 @@ const WORKSHOPS = [
   {
     num: "01",
     theme: "Modular Research Components",
-    title: "Map your research to MIRA — and reshape how your lab builds knowledge",
+    title: "Turn your research into composable atoms — and reshape how your lab builds knowledge",
     by: "Matthew Akamatsu · University of Washington",
-    body: "The June 2026 MIRA workshop refined the schema and built initial tool implementations. Now we bring it to researchers across disciplines. You'll decompose a real piece of your own work into MIRA's atomic elements — Question, Claim, Evidence, Study, Protocol — surfacing where the schema holds and where it breaks for your domain. Then we flip the frame: instead of writing papers and decomposing after the fact, how do you build research as MIRA elements from day one? You'll leave with both.",
+    body: "The June 2026 MIRA workshop refined the schema and built initial tool implementations. Now we bring it to researchers across disciplines. You'll decompose a real piece of your own work into MIRA's atomic elements — Question, Claim, Evidence, Study, Protocol — surfacing where the schema holds and where it breaks for your domain. Then we flip the frame: instead of writing papers and decomposing after the fact, how do you build research as MIRA elements from day one?",
     facets: [
       { dt: "Technology", dd: "MIRA schema · modular research components · composable research objects · attribution" },
       { dt: "Researchers bring", dd: "A piece of ongoing or published work — a paper, a notebook, an experiment series. The messier and harder to attribute, the better." },
