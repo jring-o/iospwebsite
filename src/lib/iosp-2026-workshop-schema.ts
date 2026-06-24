@@ -5,12 +5,14 @@ import { z } from 'zod'
 
 // The four IOSP 2026 themes — these are the "Track" options. The scrappy CSV used
 // working codenames (Resilient and Sovereign Data, Modular research, Funding, VOWELS);
-// these are the canonical, public-facing theme titles they map to.
+// these are the canonical, public-facing theme titles they map to. VOWELS is the
+// acronym for Assessment, Evaluation, Insights, Observability, & Utility (A-E-I-O-U)
+// and is surfaced as the public brand on the site; the full name is the stored value.
 export const TRACKS = [
   'Modular Research Components',
   'Funding Open Science & Open Source',
   'Resilient Data & Sovereign Infrastructure',
-  'Assessment, Evaluation & Insights',
+  'Assessment, Evaluation, Insights, Observability, & Utility',
 ] as const
 
 // Session length. Plan for 1.5h; a 3h slot is offered only if the schedule allows.

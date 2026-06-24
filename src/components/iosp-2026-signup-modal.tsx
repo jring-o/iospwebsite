@@ -28,7 +28,7 @@ const THEMES = [
   'Modular Research Components',
   'Funding Open Science & Open Source',
   'Resilient Data & PID Infrastructure',
-  'Assessment, Evaluation & Insights',
+  'Assessment, Evaluation, Insights, Observability, & Utility',
 ]
 
 const INTEREST_AREAS = ['Programming', 'Logistics', 'Outreach', 'Sponsorship', 'Other']

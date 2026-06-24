@@ -70,7 +70,7 @@ alter table public.iosp_2026_workshops
     'Modular Research Components',
     'Funding Open Science & Open Source',
     'Resilient Data & Sovereign Infrastructure',
-    'Assessment, Evaluation & Insights'
+    'Assessment, Evaluation, Insights, Observability, & Utility'
   ));
 
 -- 4. Indexes.

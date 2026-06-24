@@ -103,8 +103,8 @@ How money should actually move through an open ecosystem so the substrate gets b
 **Theme 03 — Resilient Data & Sovereign Infrastructure**
 Persistent identifiers, distributed preservation, and systems that don't depend on a single host. Local-first, self-hosted, decentralized — turning "someone else's server" into infrastructure the people who depend on it actually own.
 
-**Theme 04 — Assessment, Evaluation & Insights**
-How we measure, verify, and understand the impact of research and its infrastructure. Trust signals, attestations, and verification that travel with the artifact instead of the paper around it.
+**Theme 04 — VOWELS (Assessment, Evaluation, Insights, Observability, & Utility)**
+How we measure, verify, observe, and use research and its infrastructure. Trust signals, attestations, telemetry, and reuse that travel with the artifact instead of the paper around it.
 
 **Foundational — Theory →**
 The conceptual thread running beneath all four themes — the questions, frameworks, and critiques that ground production work in deeper understanding of open science as a system.
@@ -465,15 +465,19 @@ Sovereign infrastructure adds the question of control — who decides whether a 
 
 ---
 
-## Theme Modal — Theme 04 — Assessment, Evaluation, & Insights
+## Theme Modal — Theme 04 — VOWELS (Assessment, Evaluation, Insights, Observability, & Utility)
 
 **Eyebrow:** Theme 04
-**Title:** Assessment, Evaluation, & Insights
-**Description:** How we measure, verify, and understand the impact of research and the infrastructure supporting it.
+**Title:** VOWELS
+**Description:** Assessment, Evaluation, Insights, Observability, & Utility — how we measure, verify, observe, and use research and the infrastructure supporting it.
+
+Assessment, Evaluation, Insights, Observability, & Utility — VOWELS — covers two things: whether the research is sound, and whether the systems around it stay up and get used.
 
 JIF, h-index, and citation counts measure papers — not the things science actually depends on: replications, methods that hold up, datasets that get reused, software that doesn't break, reviews that catch errors. As research itself becomes modular, the question gets harder: how do you evaluate a method, a dataset, a claim, or a review on its own terms?
 
-**In Leiden:** We'll work alongside the projects rethinking research assessment — trust signals, attestations, and verification that travel with the artifact instead of the paper around it.
+Observability is the operational side: telemetry, dashboards, and health checks for infrastructure that has to stay up. Utility is the downstream side: whether a method, dataset, or tool gets reused and holds up in someone else's hands. Both treat evaluation as something you watch over time rather than a number you assign once.
+
+**In Leiden:** We'll work alongside the projects rethinking research assessment — trust signals, attestations, observability for live infrastructure, and verification that travels with the artifact instead of the paper around it.
 
 ---
 
@@ -589,7 +593,7 @@ The next substrate is already being built — persistent identifiers, schemas, p
 - Modular Research Components
 - Funding Open Science & Open Source
 - Resilient Data & PID Infrastructure
-- Assessment, Evaluation & Insights
+- Assessment, Evaluation, Insights, Observability, & Utility
 
 **Audience roles:**
 - Researcher (faculty / PI)

@@ -55,13 +55,15 @@ export const THEMES: readonly Theme[] = [
   },
   {
     n: "04",
-    title: "Assessment, Evaluation, & Insights",
-    desc: "How we measure, verify, and understand the impact of research and the infrastructure supporting it.",
+    title: "VOWELS",
+    desc: "Assessment, Evaluation, Insights, Observability, & Utility — how we measure, verify, observe, and use research and the infrastructure supporting it.",
     body: [
+      "Assessment, Evaluation, Insights, Observability, & Utility — VOWELS — covers two things: whether the research is sound, and whether the systems around it stay up and get used.",
       "JIF, h-index, and citation counts measure papers — not the things science actually depends on: replications, methods that hold up, datasets that get reused, software that doesn't break, reviews that catch errors. As research itself becomes modular, the question gets harder: how do you evaluate a method, a dataset, a claim, or a review on its own terms?",
+      "Observability is the operational side: telemetry, dashboards, and health checks for infrastructure that has to stay up. Utility is the downstream side: whether a method, dataset, or tool gets reused and holds up in someone else's hands. Both treat evaluation as something you watch over time rather than a number you assign once.",
     ],
     inLeiden:
-      "We'll work alongside the projects rethinking research assessment — trust signals, attestations, and verification that travel with the artifact instead of the paper around it.",
+      "We'll work alongside the projects rethinking research assessment — trust signals, attestations, observability for live infrastructure, and verification that travels with the artifact instead of the paper around it.",
   },
 ];
 

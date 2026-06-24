@@ -81,8 +81,8 @@ const THEME_CARDS: Array<{ key: ThemeKey; title: string; body: string }> = [
   },
   {
     key: "04",
-    title: "Assessment, Evaluation & Insights",
-    body: "How we measure, verify, and understand the impact of research and its infrastructure. Trust signals, attestations, and verification that travel with the artifact instead of the paper around it.",
+    title: "VOWELS",
+    body: "Assessment, Evaluation, Insights, Observability, & Utility — how we measure, verify, observe, and use research and its infrastructure. Trust signals, attestations, telemetry, and reuse that travel with the artifact instead of the paper around it.",
   },
 ];
 
