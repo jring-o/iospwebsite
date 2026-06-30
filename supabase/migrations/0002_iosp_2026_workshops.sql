@@ -13,6 +13,7 @@ create table if not exists public.iosp_2026_workshops (
   affiliation text,
   bio text,                 -- public
   headshot_url text,        -- public storage URL or a link the submitter pasted
+  co_presenters jsonb not null default '[]'::jsonb,  -- optional co-leads for joint sessions
 
   -- Session (public-facing unless noted)
   title text not null,      -- public
@@ -21,12 +22,14 @@ create table if not exists public.iosp_2026_workshops (
   outcome text,             -- public: what participants leave with
   target_audience text[] not null default '{}',
   audience_requirement text,
+  audience_requirement_detail text,  -- "technical in what?" when requirement = Technical
 
   -- Logistics
   length text not null,
   size text,
   needs_tech_facilitation boolean not null default false,
   av_needs text[] not null default '{}',
+  av_needs_other text,      -- free-text when "Other" is selected
   materials_needed text,
   run_of_show text,         -- PRIVATE: organizers only
 
@@ -39,13 +42,16 @@ alter table public.iosp_2026_workshops
   add column if not exists affiliation text,
   add column if not exists bio text,
   add column if not exists headshot_url text,
+  add column if not exists co_presenters jsonb not null default '[]'::jsonb,
   add column if not exists public_description text,
   add column if not exists outcome text,
   add column if not exists target_audience text[] not null default '{}',
   add column if not exists audience_requirement text,
+  add column if not exists audience_requirement_detail text,
   add column if not exists size text,
   add column if not exists needs_tech_facilitation boolean not null default false,
   add column if not exists av_needs text[] not null default '{}',
+  add column if not exists av_needs_other text,
   add column if not exists materials_needed text,
   add column if not exists run_of_show text,
   add column if not exists details jsonb not null default '{}'::jsonb;

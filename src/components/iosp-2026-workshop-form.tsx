@@ -1,10 +1,10 @@
 'use client'
 
 import { useState, useTransition } from 'react'
-import { useForm, Controller, type FieldErrors } from 'react-hook-form'
+import { useForm, useFieldArray, useWatch, Controller, type FieldErrors } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
-import { ArrowRight, Loader2, Upload, X, ImageIcon } from 'lucide-react'
+import { ArrowRight, Loader2, Upload, X, ImageIcon, Plus } from 'lucide-react'
 
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -34,16 +34,19 @@ function defaults(): WorkshopInput {
     affiliation: '',
     bio: '',
     headshotUrl: '',
+    coPresenters: [],
     title: '',
     track: '',
     publicDescription: '',
     outcome: '',
     targetAudience: [],
     audienceRequirement: '',
+    audienceRequirementDetail: '',
     length: '1.5h',
     size: '',
     needsTechFacilitation: false,
     avNeeds: [],
+    avNeedsOther: '',
     materialsNeeded: '',
     runOfShow: '',
   }
@@ -67,6 +70,10 @@ export function WorkshopForm() {
     formState: { errors },
     reset,
   } = form
+
+  // Conditional fields react to these selections.
+  const audienceReq = useWatch({ control, name: 'audienceRequirement' })
+  const avSelected = useWatch({ control, name: 'avNeeds' })
 
   const onSubmit = (data: WorkshopInput) => {
     setServerError(null)
@@ -140,6 +147,7 @@ export function WorkshopForm() {
           <Textarea id="bio" rows={3} {...register('bio')} />
         </Field>
         <HeadshotField control={control} />
+        <CoPresentersField control={control} register={register} />
       </Section>
 
       {/* --- Your session --- */}
@@ -201,6 +209,20 @@ export function WorkshopForm() {
           hint="How much prior knowledge someone needs to take part."
           columns={2}
         />
+        {audienceReq === 'Technical' && (
+          <Field
+            label="Technical in what?"
+            htmlFor="audienceRequirementDetail"
+            error={e.audienceRequirementDetail?.message}
+            hint="What should participants already be comfortable with?"
+          >
+            <Input
+              id="audienceRequirementDetail"
+              placeholder="e.g., Python, Git, and the command line"
+              {...register('audienceRequirementDetail')}
+            />
+          </Field>
+        )}
       </Section>
 
       {/* --- Logistics --- */}
@@ -212,7 +234,7 @@ export function WorkshopForm() {
           options={LENGTHS}
           error={e.length?.message}
           required
-          hint="Plan for 1.5 hours. If the schedule allows, we’ll offer you a 3-hour slot — but be ready to run the 1.5-hour version either way."
+          hint="If you select a 3-hour workshop, plan for 1.5 hours — if the schedule allows we’ll offer you the 3-hour slot, but be ready to run the 1.5-hour version either way."
         />
         <SelectField
           control={control}
@@ -250,6 +272,15 @@ export function WorkshopForm() {
           label="A/V needs"
           options={AV_NEEDS}
         />
+        {Array.isArray(avSelected) && avSelected.includes('Other') && (
+          <Field label="Other A/V needs" htmlFor="avNeedsOther" error={e.avNeedsOther?.message}>
+            <Input
+              id="avNeedsOther"
+              placeholder="Tell us what else you need"
+              {...register('avNeedsOther')}
+            />
+          </Field>
+        )}
         <Field
           label="Materials needed"
           htmlFor="materialsNeeded"
@@ -403,6 +434,52 @@ function HeadshotField({ control }: { control: FieldsControl }) {
         )
       }}
     />
+  )
+}
+
+/* --- co-presenters: optional, repeatable rows for joint submissions --- */
+
+function CoPresentersField({
+  control,
+  register,
+}: {
+  control: FieldsControl
+  register: FieldsControl
+}) {
+  const { fields, append, remove } = useFieldArray({ control, name: 'coPresenters' })
+  return (
+    <div className="space-y-3">
+      <Label>Co-presenters / co-leads</Label>
+      <p className="text-xs text-ink-soft leading-relaxed -mt-1">
+        Running this jointly? Add anyone leading it with you.
+      </p>
+      {fields.length > 0 && (
+        <div className="space-y-2">
+          {fields.map((f: { id: string }, i: number) => (
+            <div key={f.id} className="grid grid-cols-1 sm:grid-cols-[1fr_1fr_1fr_auto] gap-2">
+              <Input placeholder="Name" {...register(`coPresenters.${i}.name`)} />
+              <Input placeholder="Email" type="email" {...register(`coPresenters.${i}.email`)} />
+              <Input placeholder="Affiliation" {...register(`coPresenters.${i}.affiliation`)} />
+              <button
+                type="button"
+                onClick={() => remove(i)}
+                aria-label="Remove co-presenter"
+                className="inline-flex items-center justify-center h-10 px-3 border border-rule text-ink-mute hover:text-destructive hover:border-destructive transition-colors"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+      <button
+        type="button"
+        onClick={() => append({ name: '', email: '', affiliation: '' })}
+        className="inline-flex items-center gap-2 px-4 py-2 border border-rule bg-paper font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft hover:border-rule-strong transition-colors"
+      >
+        <Plus className="h-4 w-4" /> Add co-presenter
+      </button>
+    </div>
   )
 }
 

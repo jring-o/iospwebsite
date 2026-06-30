@@ -19,6 +19,15 @@ export async function submitWorkshop(input: unknown): Promise<WorkshopResult> {
     return t.length ? t : null
   }
 
+  // Drop blank co-presenter rows; keep any with a name or email.
+  const coPresenters = (d.coPresenters ?? [])
+    .map((cp) => ({
+      name: cp.name.trim(),
+      email: cp.email.trim().toLowerCase(),
+      affiliation: cp.affiliation.trim(),
+    }))
+    .filter((cp) => cp.name || cp.email)
+
   try {
     const supabase = getSupabaseServerClient()
     const { error } = await supabase.from('iosp_2026_workshops').insert({
@@ -27,16 +36,19 @@ export async function submitWorkshop(input: unknown): Promise<WorkshopResult> {
       affiliation: clean(d.affiliation),
       bio: clean(d.bio),
       headshot_url: clean(d.headshotUrl),
+      co_presenters: coPresenters,
       title: d.title,
       track: d.track,
       public_description: clean(d.publicDescription),
       outcome: clean(d.outcome),
       target_audience: d.targetAudience,
       audience_requirement: clean(d.audienceRequirement),
+      audience_requirement_detail: clean(d.audienceRequirementDetail),
       length: d.length,
       size: clean(d.size),
       needs_tech_facilitation: d.needsTechFacilitation,
       av_needs: d.avNeeds,
+      av_needs_other: clean(d.avNeedsOther),
       materials_needed: clean(d.materialsNeeded),
       run_of_show: clean(d.runOfShow),
     })
