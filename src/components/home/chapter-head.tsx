@@ -5,9 +5,15 @@ import { Reveal } from "@/components/reveal";
  * (e.g. leaving the event band and entering the institute story).
  * Echoes the masthead's royal gradient rule so chapters read as one motif.
  */
-export function ChapterHead({ title }: { title: string }) {
+export function ChapterHead({
+  title,
+  className = "",
+}: {
+  title: string;
+  className?: string;
+}) {
   return (
-    <div className="pt-24 md:pt-32">
+    <div className={`pt-24 md:pt-32 ${className}`}>
       <div className="wrap">
         <Reveal>
           <div className="relative pb-10">

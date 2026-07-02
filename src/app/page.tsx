@@ -18,6 +18,7 @@ export default function HomePage() {
     <>
       <TopNav />
       <Masthead />
+      <ChapterHead title="The Event" className="pb-14 md:pb-16" />
       <Iosp2026 />
       <ChapterHead title="The Institute" />
       <HowItWorks />
