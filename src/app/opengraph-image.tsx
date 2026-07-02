@@ -9,7 +9,7 @@ const PAPER = "#F6F7F9";
 const INK = "#14161D";
 const INK_SOFT = "#4B5162";
 const RULE = "rgba(20,22,29,0.14)";
-const ROYAL = "#3648C8";
+const ROYAL = "#1D2D8E";
 
 export default async function OgImage() {
   return new ImageResponse(
@@ -20,7 +20,7 @@ export default async function OgImage() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          background: `radial-gradient(ellipse 60% 50% at 20% 0%, rgba(120,140,255,0.22), transparent 70%), ${PAPER}`,
+          background: `radial-gradient(ellipse 60% 50% at 20% 0%, rgba(29,45,142,0.08), transparent 70%), ${PAPER}`,
           color: INK,
           padding: "72px 80px",
           borderTop: `4px solid ${ROYAL}`,
