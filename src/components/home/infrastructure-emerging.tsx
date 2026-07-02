@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/reveal";
+
 const CELLS: Array<{ title: string; body: string; mark?: boolean }> = [
   {
     title: "Storage & Preservation",
@@ -43,34 +45,65 @@ const CELLS: Array<{ title: string; body: string; mark?: boolean }> = [
   },
 ];
 
+// Asymmetrical bento spans on a 12-column grid; every row sums to 12.
+const SPANS = [
+  "lg:col-span-5",
+  "lg:col-span-4",
+  "lg:col-span-3",
+  "lg:col-span-3",
+  "lg:col-span-5",
+  "lg:col-span-4",
+  "lg:col-span-4",
+  "lg:col-span-3",
+  "lg:col-span-5",
+];
+
 export function InfrastructureEmerging() {
   return (
     <section
-      className="s"
+      className="sect"
       id="substrate"
       data-screen-label="Emerging infrastructure"
     >
       <div className="wrap">
-        <div className="s-head">
-          <div className="meta">
-            <div className="kicker">The Substrate</div>
-          </div>
-          <div>
-            <h2>Independent teams.<br />One substrate.</h2>
-            <p className="dek">
+        <Reveal>
+          <div className="mb-16 max-w-3xl">
+            <div className="eyebrow mb-6">The Substrate</div>
+            <h2 className="display m-0 text-[clamp(34px,5vw,64px)] text-ink">
+              Independent teams.
+              <br />
+              One substrate.
+            </h2>
+            <p className="mt-6 max-w-[64ch] text-[17px] leading-relaxed text-ink-soft">
               Across the ecosystem, independent teams are building components
               of a shared technical substrate for science. Science needs them to work together.
             </p>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="sub-grid">
-          {CELLS.map((c) => (
-            <div className="sub-cell" key={c.title}>
-              {c.mark ? <div className="badge">IOSP 2025</div> : null}
-              <h4>{c.title}</h4>
-              <p>{c.body}</p>
-            </div>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-12">
+          {CELLS.map((c, i) => (
+            <Reveal
+              key={c.title}
+              delay={(i % 3) * 80}
+              className={`flex ${SPANS[i]}`}
+            >
+              <div className="cell cell-hover flex w-full flex-col p-7">
+                <div className="mb-4 flex items-start justify-between gap-4">
+                  <h4 className="m-0 font-display text-[18px] font-semibold leading-snug tracking-tight text-ink">
+                    {c.title}
+                  </h4>
+                  {c.mark ? (
+                    <span className="mt-0.5 shrink-0 rounded-full bg-royal-soft px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.2em] text-royal ring-1 ring-inset ring-royal/20">
+                      IOSP 2025
+                    </span>
+                  ) : null}
+                </div>
+                <p className="m-0 text-[13px] leading-relaxed text-ink-soft">
+                  {c.body}
+                </p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>

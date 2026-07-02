@@ -1,34 +1,39 @@
 import type { Metadata } from "next";
-import { Newsreader, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import {
+  Bricolage_Grotesque,
+  Geist,
+  Geist_Mono,
+  Instrument_Serif,
+} from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "sonner";
 
-const newsreader = Newsreader({
+const display = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  display: "swap",
+  variable: "--font-display",
+});
+
+const sans = Geist({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans",
+});
+
+const mono = Geist_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono",
+});
+
+const serif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
   style: ["normal", "italic"],
   display: "swap",
-  variable: "--font-newsreader",
+  variable: "--font-serif",
 });
-
-const plexSans = IBM_Plex_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-  variable: "--font-plex-sans",
-});
-
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  display: "swap",
-  variable: "--font-plex-mono",
-});
-
-// Inline script: read localStorage["iosp-theme"] and apply data-theme on <html>
-// before paint, so the page never flashes the wrong theme on load.
-const themeScript = `(function(){try{var t=localStorage.getItem('iosp-theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();`;
 
 export const metadata: Metadata = {
   title: {
@@ -77,10 +82,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F7F7F5" },
-    { media: "(prefers-color-scheme: dark)", color: "#0E1018" },
-  ],
+  themeColor: "#050505",
 };
 
 export default function RootLayout({
@@ -91,13 +93,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${newsreader.variable} ${plexSans.variable} ${plexMono.variable}`}
-      suppressHydrationWarning
+      className={`${display.variable} ${sans.variable} ${mono.variable} ${serif.variable}`}
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
       <body className="bg-paper text-ink antialiased">
+        <div className="ether" aria-hidden="true" />
+        <div className="grain" aria-hidden="true" />
         <main>{children}</main>
         <Toaster
           position="bottom-right"
@@ -105,8 +105,8 @@ export default function RootLayout({
             unstyled: false,
             classNames: {
               toast:
-                "border border-rule bg-paper-card text-ink rounded-none shadow-md",
-              title: "font-serif text-ink",
+                "rounded-2xl border border-rule bg-paper-card text-ink shadow-2xl backdrop-blur-xl",
+              title: "font-medium text-ink",
               description: "text-ink-soft",
             },
           }}

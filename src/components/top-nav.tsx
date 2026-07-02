@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { useEffect, useState } from "react";
 
 const SECTIONS: Array<{ href: string; label: string }> = [
   { href: "#iosp2026", label: "IOSP 2026" },
@@ -13,7 +12,7 @@ const SECTIONS: Array<{ href: string; label: string }> = [
   { href: "#stay", label: "Newsletter" },
 ];
 
-const NAV_OFFSET = 56;
+const NAV_OFFSET = 96;
 
 function formatScreenLabel(raw: string | null): string {
   if (!raw) return "Since 2024";
@@ -25,26 +24,22 @@ function formatScreenLabel(raw: string | null): string {
 export function TopNav() {
   const [open, setOpen] = useState(false);
   const [currentLabel, setCurrentLabel] = useState<string | null>(null);
-  const wrapRef = useRef<HTMLSpanElement>(null);
 
+  // Escape closes the veil; scroll is locked while it's open.
   useEffect(() => {
     if (!open) return;
-    function onDocClick(e: MouseEvent) {
-      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    }
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") setOpen(false);
     }
-    document.addEventListener("mousedown", onDocClick);
     document.addEventListener("keydown", onKey);
+    document.documentElement.style.overflow = "hidden";
     return () => {
-      document.removeEventListener("mousedown", onDocClick);
       document.removeEventListener("keydown", onKey);
+      document.documentElement.style.overflow = "";
     };
   }, [open]);
 
+  // Track which section owns the viewport for the island's readout.
   useEffect(() => {
     const els = Array.from(
       document.querySelectorAll<HTMLElement>("[data-screen-label]"),
@@ -80,17 +75,17 @@ export function TopNav() {
   }, []);
 
   return (
-    <div className="mast-strip">
-      <div className="wrap">
-        <div className="mast-strip-inner mono">
-          <span className="mast-strip-lockup">
+    <>
+      <header className="pointer-events-none fixed inset-x-0 top-5 z-40 flex justify-center px-4">
+        <div className="pointer-events-auto flex items-center gap-3 rounded-full bg-white/[0.05] py-1.5 pl-4 pr-1.5 shadow-[0_16px_50px_-20px_rgba(0,0,0,0.9)] ring-1 ring-white/10 backdrop-blur-2xl sm:gap-4">
+          <span className="flex items-center gap-2.5">
             <svg
-              width="16"
-              height="16"
+              width="17"
+              height="17"
               viewBox="0 0 32 32"
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
-              className="mast-strip-mark"
+              className="shrink-0 text-ink"
             >
               <g transform="rotate(30 16 16)">
                 <path
@@ -100,44 +95,58 @@ export function TopNav() {
                   strokeWidth="3.5"
                   strokeLinecap="round"
                 />
-                <path
-                  d="M 24.75 14.5 L 26 17 L 27.75 14.5 Z"
-                  fill="var(--royal)"
-                />
+                <path d="M 24.75 14.5 L 26 17 L 27.75 14.5 Z" fill="var(--royal)" />
               </g>
             </svg>
-            Institute of Open Science Practices
+            <span className="hidden font-mono text-[10px] uppercase tracking-[0.22em] text-ink lg:inline">
+              Institute of Open Science Practices
+            </span>
           </span>
-          <span className="nav-current">{formatScreenLabel(currentLabel)}</span>
-          <span className="nav-menu" ref={wrapRef}>
-            <button
-              type="button"
-              className="nav-menu-trigger"
-              aria-haspopup="menu"
-              aria-expanded={open}
-              onClick={() => setOpen((v) => !v)}
-            >
-              Sections <span aria-hidden="true">{open ? "↑" : "↓"}</span>
-            </button>
-            {open && (
-              <ul className="nav-menu-panel" role="menu">
-                {SECTIONS.map((s) => (
-                  <li key={s.href} role="none">
-                    <a
-                      href={s.href}
-                      role="menuitem"
-                      onClick={() => setOpen(false)}
-                    >
-                      {s.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
+          <span
+            aria-hidden="true"
+            className="hidden h-4 w-px bg-white/10 sm:block"
+          />
+          <span className="hidden whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.22em] text-ink-soft tabular-nums sm:inline">
+            {formatScreenLabel(currentLabel)}
           </span>
-          <ThemeToggle />
+          <button
+            type="button"
+            className={`burger${open ? " open" : ""} grid h-9 w-9 place-items-center rounded-full bg-white/[0.07] text-ink ring-1 ring-white/10 transition-colors duration-500 ease-spring hover:bg-white/[0.12]`}
+            aria-haspopup="menu"
+            aria-expanded={open}
+            aria-label="Sections"
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span className="l1" aria-hidden="true" />
+            <span className="l2" aria-hidden="true" />
+          </button>
         </div>
+      </header>
+
+      <div className={`nav-veil${open ? " open" : ""}`} role="dialog" aria-modal="true">
+        <nav className="wrap">
+          <div className="eyebrow mb-8">Sections</div>
+          <ul className="m-0 list-none space-y-2 p-0">
+            {SECTIONS.map((s, i) => (
+              <li
+                key={s.href}
+                style={
+                  open
+                    ? { transitionDelay: `${120 + i * 55}ms` }
+                    : { transitionDelay: "0ms" }
+                }
+              >
+                <a href={s.href} onClick={() => setOpen(false)}>
+                  {s.label}
+                  <span className="arr" aria-hidden="true">
+                    →
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
-    </div>
+    </>
   );
 }

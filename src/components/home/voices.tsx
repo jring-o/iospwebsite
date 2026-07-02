@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/reveal";
+
 const VOICES: Array<{ q: string; nm: string; aff: string }> = [
   {
     q: "It felt like we started a movement! This event incorporated stakeholders and put us in a better position to build the next system for science and publishing that deliberately incorporates their needs and our values.",
@@ -58,34 +60,39 @@ const VOICES: Array<{ q: string; nm: string; aff: string }> = [
 
 export function Voices() {
   return (
-    <section
-      className="s voices"
-      id="voices"
-      data-screen-label="08 In Their Own Words"
-    >
+    <section className="sect" id="voices" data-screen-label="08 In Their Own Words">
       <div className="wrap">
-        <div className="s-head">
-          <div className="meta">
-            <div className="kicker">Letters page</div>
+        <Reveal>
+          <div className="mb-16 max-w-3xl">
+            <div className="eyebrow mb-6">Letters page</div>
+            <h2 className="display m-0 text-[clamp(34px,5vw,64px)] text-ink">
+              In their own words
+            </h2>
+            <p className="mt-6 text-[17px] leading-relaxed text-ink-soft">
+              What participants said after IOSP 2025.
+            </p>
           </div>
-          <div>
-            <h2>In their own words</h2>
-            <p className="dek">What participants said after IOSP 2025.</p>
-          </div>
-        </div>
+        </Reveal>
 
-        <ol>
-          {VOICES.map((v) => (
-            <li key={v.nm + v.q.slice(0, 24)}>
-              <p className="q">{v.q}</p>
-              <div className="by">
-                <span className="nm">{v.nm}</span>
-                <br />
-                {v.aff}
-              </div>
-            </li>
-          ))}
-        </ol>
+        <Reveal delay={80}>
+          <ol className="m-0 list-none gap-4 p-0 [column-fill:balance] md:columns-2 xl:columns-3">
+            {VOICES.map((v) => (
+              <li
+                key={v.nm + v.q.slice(0, 24)}
+                className="cell cell-hover mb-4 break-inside-avoid p-7"
+              >
+                <p className="m-0 font-serif text-[17.5px] italic leading-normal text-ink [text-wrap:pretty]">
+                  {v.q}
+                </p>
+                <div className="mt-5 border-t border-rule pt-4 font-mono text-[10.5px] tracking-[0.06em] text-ink-mute">
+                  <span className="font-medium text-ink">{v.nm}</span>
+                  <br />
+                  {v.aff}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
       </div>
     </section>
   );

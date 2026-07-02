@@ -1,7 +1,6 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: ["selector", '[data-theme="dark"]'],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,8 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // IOSP design tokens — read CSS custom properties so the data-theme
-        // toggle and the inverted IOSP-2026 palette swap atomically.
+        // IOSP design tokens — single dark "ethereal glass" palette, exposed
+        // as CSS custom properties so utilities and bespoke CSS stay in sync.
         paper: "var(--paper)",
         "paper-deep": "var(--paper-deep)",
         "paper-card": "var(--paper-card)",
@@ -23,8 +22,10 @@ const config: Config = {
         royal: "var(--royal)",
         "royal-deep": "var(--royal-deep)",
         "royal-soft": "var(--royal-soft)",
+        mint: "var(--mint)",
 
-        // inverted palette (IOSP 2026 section + interior cards)
+        // Elevated interior surfaces (kept for components that address the
+        // inner panel scale directly).
         "i-paper": "var(--i-paper)",
         "i-paper-hover": "var(--i-paper-hover)",
         "i-ink": "var(--i-ink)",
@@ -32,9 +33,9 @@ const config: Config = {
         "i-rule": "var(--i-rule)",
         "i-royal": "var(--i-royal)",
 
-        // shadcn-compatible semantic names mapped to the new palette so the
+        // shadcn-compatible semantic names mapped to the palette so the
         // existing UI primitives (Button, Input, Dialog, etc.) inherit the
-        // new system without per-component rewrites.
+        // system without per-component rewrites.
         background: "var(--paper)",
         foreground: "var(--ink)",
         card: {
@@ -62,7 +63,7 @@ const config: Config = {
           foreground: "var(--royal)",
         },
         destructive: {
-          DEFAULT: "#C23555",
+          DEFAULT: "#F0587E",
           foreground: "var(--paper)",
         },
         border: "var(--rule)",
@@ -70,16 +71,23 @@ const config: Config = {
         ring: "var(--royal)",
       },
       fontFamily: {
-        sans: ["var(--font-plex-sans)", "IBM Plex Sans", "system-ui", "sans-serif"],
-        serif: ["var(--font-newsreader)", "Newsreader", "Georgia", "serif"],
-        mono: ["var(--font-plex-mono)", "IBM Plex Mono", "monospace"],
+        sans: ["var(--font-sans)", "Geist", "system-ui", "sans-serif"],
+        display: [
+          "var(--font-display)",
+          "Bricolage Grotesque",
+          "system-ui",
+          "sans-serif",
+        ],
+        serif: ["var(--font-serif)", "Instrument Serif", "Georgia", "serif"],
+        mono: ["var(--font-mono)", "Geist Mono", "monospace"],
       },
       borderRadius: {
-        // Kill default shadcn radii — the system is intentionally squared.
-        // rounded-full still works (default Tailwind) for the avatar/dot cases.
-        lg: "0",
-        md: "0",
-        sm: "0",
+        lg: "1.25rem",
+        md: "0.875rem",
+        sm: "0.625rem",
+      },
+      transitionTimingFunction: {
+        spring: "cubic-bezier(0.32, 0.72, 0, 1)",
       },
     },
   },

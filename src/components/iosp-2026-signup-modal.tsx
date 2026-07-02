@@ -215,7 +215,7 @@ function SignupForm({
         <Button
           type="submit"
           disabled={isPending}
-          className="bg-royal text-paper hover:bg-royal-deep font-mono text-[11px] uppercase tracking-[0.18em] gap-2 px-5 py-3 h-auto"
+          className="rounded-full bg-royal text-paper hover:bg-royal-deep font-mono text-[11px] uppercase tracking-[0.18em] gap-2 px-6 py-3 h-auto transition-transform active:scale-[0.98]"
         >
           {isPending ? (
             <>

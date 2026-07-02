@@ -5,11 +5,11 @@ export const alt = "Institute of Open Science Practices";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const PAPER = "#F7F7F5";
-const INK = "#0E1018";
-const INK_SOFT = "#4A4D57";
-const RULE = "rgba(14,16,24,0.18)";
-const ROYAL = "#1D2D8E";
+const PAPER = "#050505";
+const INK = "#F4F5F8";
+const INK_SOFT = "#A2A7B8";
+const RULE = "rgba(244,245,248,0.14)";
+const ROYAL = "#97A7FF";
 
 export default async function OgImage() {
   return new ImageResponse(
@@ -20,10 +20,10 @@ export default async function OgImage() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          background: PAPER,
+          background: `radial-gradient(ellipse 60% 50% at 20% 0%, rgba(109,126,240,0.22), transparent 70%), ${PAPER}`,
           color: INK,
           padding: "72px 80px",
-          borderTop: `4px solid ${INK}`,
+          borderTop: `4px solid ${ROYAL}`,
           fontFamily: "Georgia, serif",
         }}
       >

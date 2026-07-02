@@ -14,7 +14,7 @@ export default function NotFound() {
         <div className="border-t border-rule pt-6">
           <a
             href="/"
-            className="font-mono text-[11px] uppercase tracking-[0.18em] bg-ink text-paper px-4 py-2 inline-block hover:bg-royal-deep transition-colors"
+            className="font-mono text-[11px] uppercase tracking-[0.18em] bg-ink text-paper px-5 py-2.5 inline-block rounded-full hover:bg-royal transition-colors"
           >
             ← Back to home
           </a>

@@ -2,94 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── IOSP design tokens ─────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════════════
+ * IOSP — Ethereal Glass design system
+ * A single, cinematic dark theme: OLED-black field, luminous indigo &
+ * teal mesh orbs, vantablack glass cards with hairline rings.
+ * ═══════════════════════════════════════════════════════════════════════ */
+
 @layer base {
   :root {
-    --paper: #F7F7F5;
-    --paper-deep: #EDEDEB;
-    --paper-card: #FFFFFF;
-    --ink: #0E1018;
-    --ink-soft: #4A4D57;
-    --ink-mute: #7A7D86;
-    --rule: rgba(14, 16, 24, 0.18);
-    --rule-strong: rgba(14, 16, 24, 0.45);
-    --royal: #1D2D8E;
-    --royal-deep: #13205F;
-    --royal-soft: #E7EAF6;
+    --paper: #050505;
+    --paper-deep: #0a0b10;
+    --paper-card: #0d0f16;
+    --ink: #f4f5f8;
+    --ink-soft: #a2a7b8;
+    --ink-mute: #61667a;
+    --rule: rgba(244, 245, 248, 0.08);
+    --rule-strong: rgba(244, 245, 248, 0.22);
+    --royal: #97a7ff;
+    --royal-deep: #6d7ef0;
+    --royal-soft: rgba(120, 138, 255, 0.13);
+    --mint: #63e5c8;
 
-    /* Card shadow per brand spec. Disabled in dark mode (cards lift via
-       tonal contrast there). */
-    --shadow-card: 0 8px 28px rgba(14, 16, 24, 0.16);
+    /* Elevated interior surfaces */
+    --i-paper: #0a0b10;
+    --i-paper-hover: #10121a;
+    --i-card-bg: #0d0f16;
+    --i-ink: #f4f5f8;
+    --i-ink-soft: #a2a7b8;
+    --i-rule: rgba(244, 245, 248, 0.08);
+    --i-royal: #97a7ff;
 
-    /* inverted palette for the IOSP-2026 section + alternating cards */
-    --i-paper: #EDEDEB;
-    --i-paper-hover: #E2E2DF;
-    --i-card-bg: #F7F7F5;
-    --i-ink: #0E1018;
-    --i-ink-soft: #4A4D57;
-    --i-rule: rgba(14, 16, 24, 0.18);
-    --i-royal: #1D2D8E;
-
-    --radius: 0;
-  }
-
-  html[data-theme="dark"] {
-    --paper: #0E1018;
-    --paper-deep: #14161F;
-    --paper-card: #181A24;
-    --ink: #F7F7F5;
-    --ink-soft: #B5B7BD;
-    --ink-mute: #7A7D86;
-    --rule: rgba(247, 247, 245, 0.18);
-    --rule-strong: rgba(247, 247, 245, 0.45);
-    --royal: #8A9BFF;
-    --royal-deep: #6677D6;
-    --royal-soft: #232A5A;
-    --shadow-card: none;
-
-    --i-paper: #1A1C24;
-    --i-paper-hover: #22242E;
-    --i-card-bg: #2A2D38;
-    --i-ink: #F7F7F5;
-    --i-ink-soft: #B5B7BD;
-    --i-rule: rgba(247, 247, 245, 0.18);
-    --i-royal: #8A9BFF;
+    --shadow-card: 0 32px 90px -40px rgba(0, 0, 0, 0.85);
+    --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
 
     color-scheme: dark;
   }
 
-  @media (prefers-color-scheme: dark) {
-    html:not([data-theme="light"]) {
-      --paper: #0E1018;
-      --paper-deep: #14161F;
-      --paper-card: #181A24;
-      --ink: #F7F7F5;
-      --ink-soft: #B5B7BD;
-      --ink-mute: #7A7D86;
-      --rule: rgba(247, 247, 245, 0.18);
-      --rule-strong: rgba(247, 247, 245, 0.45);
-      --royal: #8A9BFF;
-      --royal-deep: #6677D6;
-      --royal-soft: #232A5A;
-      --shadow-card: none;
-
-      --i-paper: #1A1C24;
-      --i-paper-hover: #22242E;
-      --i-card-bg: #2A2D38;
-      --i-ink: #F7F7F5;
-      --i-ink-soft: #B5B7BD;
-      --i-rule: rgba(247, 247, 245, 0.18);
-      --i-royal: #8A9BFF;
-
-      color-scheme: dark;
-    }
-  }
-}
-
-/* ─── base ─────────────────────────────── */
-@layer base {
   * {
     box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   html,
@@ -101,8 +55,8 @@
   body {
     background: var(--paper);
     color: var(--ink);
-    font-family: var(--font-plex-sans), "IBM Plex Sans", system-ui, sans-serif;
-    line-height: 1.55;
+    font-family: var(--font-sans), "Geist", system-ui, sans-serif;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -112,41 +66,231 @@
   }
 
   ::selection {
-    background: var(--royal-soft);
+    background: rgba(120, 138, 255, 0.35);
     color: var(--ink);
   }
+
+  :focus-visible {
+    outline: 1.5px solid var(--royal);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
 }
 
-/* ─── typography helpers ─────────────────────────────── */
+/* ─── atmosphere: fixed mesh orbs + film grain ─────────────────────────── */
+@layer base {
+  .ether {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        ellipse 52% 38% at 18% -6%,
+        rgba(109, 126, 240, 0.17),
+        transparent 68%
+      ),
+      radial-gradient(
+        ellipse 44% 34% at 88% 12%,
+        rgba(99, 229, 200, 0.07),
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 60% 44% at 50% 108%,
+        rgba(109, 126, 240, 0.1),
+        transparent 72%
+      ),
+      var(--paper);
+  }
+
+  .grain {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+  }
+}
+
+/* ─── glass primitives ─────────────────────────────────────────────────── */
 @layer components {
-  .iosp-mono {
-    font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
-    font-size: 11px;
-    letter-spacing: 0.18em;
+  /* Double-bezel shell: a machined outer tray… */
+  .gshell {
+    position: relative;
+    border-radius: 2rem;
+    padding: 0.375rem;
+    background: rgba(244, 245, 248, 0.03);
+    box-shadow:
+      inset 0 0 0 1px rgba(244, 245, 248, 0.08),
+      var(--shadow-card);
+  }
+
+  /* …holding a concentric glass core. */
+  .gcore {
+    position: relative;
+    border-radius: calc(2rem - 0.375rem);
+    background: linear-gradient(180deg, #0e1018 0%, #0a0b10 100%);
+    box-shadow:
+      inset 0 1px 1px rgba(244, 245, 248, 0.07),
+      inset 0 0 0 1px rgba(244, 245, 248, 0.04);
+    overflow: hidden;
+  }
+
+  /* Interior grid cell */
+  .cell {
+    position: relative;
+    border-radius: 1.25rem;
+    background: rgba(244, 245, 248, 0.03);
+    box-shadow:
+      inset 0 1px 1px rgba(244, 245, 248, 0.06),
+      inset 0 0 0 1px rgba(244, 245, 248, 0.07);
+    transition:
+      background 0.6s var(--ease-spring),
+      box-shadow 0.6s var(--ease-spring),
+      transform 0.6s var(--ease-spring);
+  }
+  .cell-hover:hover {
+    background: rgba(244, 245, 248, 0.055);
+    box-shadow:
+      inset 0 1px 1px rgba(244, 245, 248, 0.09),
+      inset 0 0 0 1px rgba(244, 245, 248, 0.13);
+    transform: translateY(-2px);
+  }
+
+  /* Eyebrow pill */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.3rem 0.85rem;
+    font-family: var(--font-mono), "Geist Mono", monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
+    color: var(--royal);
+    background: var(--royal-soft);
+    box-shadow: inset 0 0 0 1px rgba(120, 138, 255, 0.22);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 9999px;
+    background: currentColor;
+    opacity: 0.8;
   }
 
-  .iosp-serif {
-    font-family: var(--font-newsreader), "Newsreader", Georgia, serif;
+  /* Primary pill CTA — luminous plate w/ nested icon capsule */
+  .btn-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9rem;
+    border-radius: 9999px;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    background: var(--ink);
+    color: #0b0c12;
+    text-decoration: none;
+    border: 0;
+    cursor: pointer;
+    transition:
+      transform 0.5s var(--ease-spring),
+      box-shadow 0.5s var(--ease-spring);
+    box-shadow: 0 8px 40px -12px rgba(151, 167, 255, 0.35);
+  }
+  .btn-pill:hover {
+    box-shadow: 0 10px 52px -10px rgba(151, 167, 255, 0.5);
+  }
+  .btn-pill:active {
+    transform: scale(0.98);
   }
 
-  .iosp-wrap {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 56px;
+  /* Secondary pill — glass */
+  .btn-glass {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.9rem;
+    border-radius: 9999px;
+    padding: 0.4rem 0.4rem 0.4rem 1.25rem;
+    background: rgba(244, 245, 248, 0.04);
+    color: var(--ink);
+    text-decoration: none;
+    border: 0;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 1px rgba(244, 245, 248, 0.1);
+    transition:
+      background 0.5s var(--ease-spring),
+      box-shadow 0.5s var(--ease-spring),
+      transform 0.5s var(--ease-spring);
+  }
+  .btn-glass:hover {
+    background: rgba(244, 245, 248, 0.07);
+    box-shadow: inset 0 0 0 1px rgba(244, 245, 248, 0.18);
+  }
+  .btn-glass:active {
+    transform: scale(0.98);
   }
 
-  .iosp-wrap-narrow {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 0 56px;
+  /* Nested icon capsule (button-in-button) */
+  .icircle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    flex-shrink: 0;
+    background: rgba(5, 5, 5, 0.1);
+    transition: transform 0.5s var(--ease-spring);
+  }
+  .btn-glass .icircle {
+    background: rgba(244, 245, 248, 0.08);
+    color: var(--royal);
+  }
+  .btn-pill:hover .icircle,
+  .btn-glass:hover .icircle,
+  .group:hover .icircle {
+    transform: translate(3px, -1px) scale(1.05);
   }
 }
 
-/* ─── responsive overrides preserved from the design HTML ─────── */
-@media (max-width: 880px) {
-  .iosp-wrap,
-  .iosp-wrap-narrow {
-    padding: 0 28px;
+/* ─── scroll reveal ────────────────────────────────────────────────────── */
+@layer components {
+  .reveal {
+    opacity: 0;
+    transform: translateY(56px);
+    filter: blur(10px);
+    transition:
+      opacity 0.9s var(--ease-spring),
+      transform 0.9s var(--ease-spring),
+      filter 0.9s var(--ease-spring);
+  }
+  .reveal.is-in {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

@@ -17,7 +17,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      'fixed inset-0 z-50 bg-ink/70 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+      'fixed inset-0 z-50 bg-[#050505]/80 backdrop-blur-xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
       className,
     )}
     {...props}
@@ -34,16 +34,16 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        'fixed left-1/2 top-1/2 z-50 grid w-[calc(100vw-2rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 gap-5 border border-rule bg-paper-card p-6 md:p-8 shadow-md text-ink max-h-[90vh] overflow-y-auto data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+        'fixed left-1/2 top-1/2 z-50 grid w-[calc(100vw-2rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 gap-5 rounded-[2rem] bg-gradient-to-b from-[#10121a] to-[#0a0b10] p-6 md:p-9 text-ink shadow-[inset_0_1px_1px_rgba(244,245,248,0.08),inset_0_0_0_1px_rgba(244,245,248,0.1),0_40px_120px_-32px_rgba(0,0,0,0.9)] max-h-[90vh] overflow-y-auto data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95',
         className,
       )}
       {...props}
     >
       {/* royal accent line at the top edge */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-royal to-transparent" />
+      <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-royal/70 to-transparent" />
       {children}
-      <DialogPrimitive.Close className="absolute right-4 top-4 text-ink-soft hover:text-royal transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-royal">
-        <X className="h-5 w-5" />
+      <DialogPrimitive.Close className="absolute right-5 top-5 grid h-9 w-9 place-items-center rounded-full bg-white/[0.06] text-ink-soft ring-1 ring-inset ring-white/10 transition-colors hover:text-royal focus:outline-none focus-visible:ring-royal">
+        <X className="h-4 w-4" strokeWidth={1.5} />
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>
@@ -70,7 +70,7 @@ const DialogTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Title
     ref={ref}
-    className={cn('font-serif text-2xl md:text-3xl font-normal tracking-tight text-ink leading-tight', className)}
+    className={cn('font-display text-2xl md:text-3xl font-semibold tracking-tight text-ink leading-tight', className)}
     {...props}
   />
 ))

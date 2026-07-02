@@ -4,6 +4,7 @@ import { useState } from "react";
 import { IospSignupModal, type SignupKind } from "@/components/iosp-2026-signup-modal";
 import { ThemeModal, THEMES, type ThemeKey } from "@/components/theme-modal";
 import { TheoryModal } from "@/components/theory-modal";
+import { Reveal } from "@/components/reveal";
 
 const TAKEAWAYS = [
   {
@@ -149,6 +150,30 @@ const WORKSHOPS = [
   },
 ];
 
+function BlockHead({
+  kick,
+  title,
+  right,
+}: {
+  kick: string;
+  title: string;
+  right: string;
+}) {
+  return (
+    <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
+      <div>
+        <div className="eyebrow mb-5">{kick}</div>
+        <h3 className="display m-0 text-[clamp(30px,3.8vw,48px)] text-ink">
+          {title}
+        </h3>
+      </div>
+      <div className="pb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-ink-mute">
+        {right}
+      </div>
+    </div>
+  );
+}
+
 export function Iosp2026() {
   const [signup, setSignup] = useState<SignupKind>(null);
   const [activeTheme, setActiveTheme] = useState<ThemeKey | null>(null);
@@ -162,329 +187,415 @@ export function Iosp2026() {
     });
 
   return (
-    <section
-      className="iosp26"
-      id="iosp2026"
-      data-screen-label="IOSP 2026"
-    >
-      <div className="wrap i26">
-        <div className="strip mono">
-          <span>
-            <span className="dot" /> IOSP 2026 — Edition 02
-          </span>
-          <span>Oct 12–15, 2026</span>
-        </div>
+    <section className="sect" id="iosp2026" data-screen-label="IOSP 2026">
+      <div className="wrap">
+        {/* ── flagship panel: strip + hero + venue ─────────────────────── */}
+        <Reveal>
+          <div className="gshell">
+            <div className="gcore relative px-7 py-9 md:px-12 md:py-12">
+              <div
+                className="halo -top-24 right-[-10%] h-[320px] w-[480px] bg-royal-deep/20"
+                aria-hidden="true"
+              />
 
-        <div className="hero">
-          <div>
-            <div className="kick">Institute of Open Science Practices</div>
-            <h2 style={{ whiteSpace: "nowrap" }}>IOSP&nbsp;2026</h2>
-            <div className="dates">
-              <div className="num">
-                12 <span className="arr">→</span> 15
+              <div className="relative flex flex-wrap items-baseline justify-between gap-4 border-b border-rule pb-6 font-mono text-[10px] uppercase tracking-[0.24em] text-ink-soft">
+                <span className="inline-flex items-center gap-2.5">
+                  <span
+                    className="h-1.5 w-1.5 animate-pulse rounded-full bg-royal"
+                    aria-hidden="true"
+                  />
+                  IOSP 2026 — Edition 02
+                </span>
+                <span>Oct 12–15, 2026</span>
               </div>
-              <div className="label">October 2026</div>
-            </div>
-          </div>
-          <div className="venue">
-            <h6>Venue</h6>
-            <p>
-              <strong>
-                Poortgebouw, University of Leiden, and GO FAIR
-              </strong>{" "}
-              host us on Oct 12, 13, and 15. On Oct 14 we field-trip to the{" "}
-              <a
-                href="https://opensciencefestival.nl/"
-                target="_blank"
-                rel="noopener"
-              >
-                National Open Science Festival
-              </a>{" "}
-              in Delft, then reconvene for the final day.
-            </p>
-          </div>
-        </div>
 
-        {/* production-driven */}
-        <div className="pd">
-          <div className="pd-grid">
-            <div className="pd-stats">
-              <div className="kick mono">Production-driven</div>
-              <div className="row-1">
-                <div className="pct">
-                  10<span className="accent">%</span>
-                </div>
-                <div className="lbl">Talks + panels</div>
-              </div>
-              <div className="row-2">
-                <div className="pct">
-                  15<span className="accent">%</span>
-                </div>
-                <div className="lbl">Tooling showcase</div>
-              </div>
-              <div className="row-3">
-                <div className="pct">
-                  75<span className="accent">%</span>
-                </div>
-                <div className="lbl">Co-design + build</div>
-              </div>
-            </div>
-            <div className="pd-body">
-              <p className="pull">
-                Less talking. More collaboration. More building.
-              </p>
-              <p>
-                IOSP is built on a single working principle:{" "}
-                <em>
-                  the people who depend on open science infrastructure and the
-                  people building it should be in the same room
-                </em>
-                , working on the same problems, long enough to make real progress.
-              </p>
-              <p>
-                Researchers bring the domain knowledge and challenges that
-                shape what's worth building; tool-builders bring the systems
-                and expertise to build it.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* takeaways */}
-        <div className="takeaways">
-          <div className="kick mono">Goals</div>
-          <div className="ta-grid">
-            {TAKEAWAYS.map((t) => (
-              <div className="ta-card" key={t.title}>
-                <h4>{t.title}</h4>
-                <div className="body">{t.body}</div>
-                <div className="src">
-                  <div className="from mono">IOSP 2025</div>
-                  <div className="by">
-                    <span className="bar" />
-                    <div>
-                      <div className="nm">{t.name}</div>
-                      <div className="role">{t.role}</div>
+              <div className="relative grid gap-10 pt-10 md:grid-cols-[5fr_4fr] md:gap-14">
+                <div>
+                  <div className="eyebrow mb-8">
+                    Institute of Open Science Practices
+                  </div>
+                  <h2 className="display m-0 whitespace-nowrap text-[clamp(56px,8.5vw,124px)] text-ink">
+                    IOSP&nbsp;2026
+                  </h2>
+                  <div className="mt-8 flex flex-wrap items-baseline gap-6">
+                    <div className="font-mono text-[26px] tracking-tight text-ink">
+                      12{" "}
+                      <span className="px-1 text-royal" aria-hidden="true">
+                        →
+                      </span>{" "}
+                      15
+                    </div>
+                    <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-ink-soft">
+                      October 2026
                     </div>
                   </div>
-                  <div className="q">“{t.quote}”</div>
+                </div>
+
+                <div className="self-center border-t border-rule pt-8 md:border-l md:border-t-0 md:pl-10 md:pt-0">
+                  <h6 className="m-0 mb-4 font-mono text-[10px] font-medium uppercase tracking-[0.24em] text-ink-mute">
+                    Venue
+                  </h6>
+                  <p className="m-0 text-[15.5px] leading-relaxed text-ink-soft [&_a]:text-royal [&_a]:underline [&_a]:decoration-royal/30 [&_a]:underline-offset-4 [&_a:hover]:decoration-royal [&_strong]:font-medium [&_strong]:text-ink">
+                    <strong>
+                      Poortgebouw, University of Leiden, and GO FAIR
+                    </strong>{" "}
+                    host us on Oct 12, 13, and 15. On Oct 14 we field-trip to the{" "}
+                    <a
+                      href="https://opensciencefestival.nl/"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      National Open Science Festival
+                    </a>{" "}
+                    in Delft, then reconvene for the final day.
+                  </p>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* themes */}
-        <div className="themes">
-          <div className="themes-head">
-            <div>
-              <div
-                className="mono"
-                style={{ color: "var(--i-ink-soft)", marginBottom: 10 }}
-              >
-                Structure
-              </div>
-              <h3>IOSP 2026 Themes</h3>
             </div>
-            <div className="right">Parallel tracks</div>
           </div>
-          <div className="th-grid">
-            {THEME_CARDS.map((t) => (
-              <button
-                type="button"
-                className="th-card"
-                key={t.key}
-                onClick={() => setActiveTheme(t.key)}
-                aria-label={`Open theme: ${t.title}`}
-              >
-                <div>
-                  <h4>
-                    <span>{t.title}</span>
-                    <span className="arr">→</span>
+        </Reveal>
+
+        {/* ── production-driven ────────────────────────────────────────── */}
+        <Reveal className="mt-6">
+          <div className="gshell">
+            <div className="gcore grid gap-10 px-7 py-9 md:grid-cols-[2fr_3fr] md:gap-14 md:px-12 md:py-12">
+              <div>
+                <div className="eyebrow mb-8">Production-driven</div>
+                <div className="space-y-7">
+                  {[
+                    { pct: 10, lbl: "Talks + panels", size: "text-2xl" },
+                    { pct: 15, lbl: "Tooling showcase", size: "text-3xl" },
+                    { pct: 75, lbl: "Co-design + build", size: "text-6xl" },
+                  ].map((r) => (
+                    <div key={r.lbl}>
+                      <div
+                        className={`display ${r.size} leading-none text-ink`}
+                      >
+                        {r.pct}
+                        <span className="text-royal">%</span>
+                      </div>
+                      <div className="mt-2.5 h-1 w-full overflow-hidden rounded-full bg-white/[0.06]">
+                        <div
+                          className="h-full rounded-full bg-gradient-to-r from-royal-deep to-royal"
+                          style={{ width: `${r.pct}%` }}
+                          aria-hidden="true"
+                        />
+                      </div>
+                      <div className="mt-2 font-mono text-[9px] uppercase tracking-[0.24em] text-ink-mute">
+                        {r.lbl}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="self-center border-t border-rule pt-8 md:border-l md:border-t-0 md:pl-12 md:pt-0">
+                <p className="m-0 mb-6 font-serif text-[clamp(24px,2.6vw,32px)] italic leading-snug text-ink">
+                  Less talking. More collaboration. More building.
+                </p>
+                <p className="m-0 mb-4 text-[15.5px] leading-relaxed text-ink-soft [&_em]:font-serif [&_em]:text-[1.1em] [&_em]:italic [&_em]:text-royal">
+                  IOSP is built on a single working principle:{" "}
+                  <em>
+                    the people who depend on open science infrastructure and the
+                    people building it should be in the same room
+                  </em>
+                  , working on the same problems, long enough to make real progress.
+                </p>
+                <p className="m-0 text-[15.5px] leading-relaxed text-ink-soft">
+                  Researchers bring the domain knowledge and challenges that
+                  shape what's worth building; tool-builders bring the systems
+                  and expertise to build it.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* ── takeaways ────────────────────────────────────────────────── */}
+        <div className="mt-24">
+          <Reveal>
+            <div className="eyebrow mb-8">Goals</div>
+          </Reveal>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {TAKEAWAYS.map((t, i) => (
+              <Reveal key={t.title} delay={i * 70} className="flex">
+                <div className="cell cell-hover flex w-full flex-col p-7">
+                  <h4 className="m-0 mb-3 font-display text-[18px] font-semibold leading-snug tracking-tight text-ink">
+                    {t.title}
                   </h4>
-                  <p>{t.body}</p>
+                  <div className="text-[13.5px] leading-relaxed text-ink-soft [&_a]:font-medium [&_a]:text-royal [&_a]:no-underline [&_a:hover]:underline">
+                    {t.body}
+                  </div>
+                  <div className="mt-auto pt-6">
+                    <div className="border-t border-rule pt-4">
+                      <div className="mb-3 font-mono text-[9px] uppercase tracking-[0.24em] text-royal/80">
+                        IOSP 2025
+                      </div>
+                      <div className="mb-2.5 flex gap-3">
+                        <span
+                          className="w-px shrink-0 bg-royal/50"
+                          aria-hidden="true"
+                        />
+                        <div>
+                          <div className="text-[13px] font-medium text-ink">
+                            {t.name}
+                          </div>
+                          <div className="mt-0.5 font-mono text-[10px] text-ink-mute">
+                            {t.role}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="font-serif text-[14px] italic leading-normal text-ink-soft">
+                        “{t.quote}”
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </button>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        {/* ── themes ───────────────────────────────────────────────────── */}
+        <div className="mt-24">
+          <Reveal>
+            <BlockHead
+              kick="Structure"
+              title="IOSP 2026 Themes"
+              right="Parallel tracks"
+            />
+          </Reveal>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {THEME_CARDS.map((t, i) => (
+              <Reveal key={t.key} delay={i * 70} className="flex">
+                <button
+                  type="button"
+                  className="cell cell-hover group w-full cursor-pointer p-8 text-left"
+                  onClick={() => setActiveTheme(t.key)}
+                  aria-label={`Open theme: ${t.title}`}
+                >
+                  <h4 className="m-0 mb-3 flex items-start justify-between gap-5 font-display text-[21px] font-semibold leading-snug tracking-tight text-ink">
+                    <span>{t.title}</span>
+                    <span
+                      className="mt-1 text-[17px] text-ink-mute transition-all duration-500 ease-spring group-hover:translate-x-1 group-hover:text-royal"
+                      aria-hidden="true"
+                    >
+                      →
+                    </span>
+                  </h4>
+                  <p className="m-0 text-[14px] leading-relaxed text-ink-soft">
+                    {t.body}
+                  </p>
+                </button>
+              </Reveal>
             ))}
           </div>
 
-          <button
-            type="button"
-            className="theory-card"
-            onClick={() => setTheoryOpen(true)}
-            aria-label="Open: Theory of change"
-          >
-            <div>
-              <div className="kick">Foundational</div>
-              <h5>Theory →</h5>
-            </div>
-            <p>
-              The conceptual thread running beneath all four themes — the
-              questions, frameworks, and critiques that ground production work
-              in deeper understanding of open science as a system.
-            </p>
-          </button>
+          <Reveal delay={120} className="mt-4">
+            <button
+              type="button"
+              className="cell cell-hover group grid w-full cursor-pointer gap-6 p-8 text-left md:grid-cols-[220px_1fr] md:gap-10"
+              onClick={() => setTheoryOpen(true)}
+              aria-label="Open: Theory of change"
+            >
+              <div>
+                <div className="mb-2 font-mono text-[9px] uppercase tracking-[0.24em] text-royal/80">
+                  Foundational
+                </div>
+                <h5 className="m-0 font-display text-[21px] font-semibold tracking-tight text-ink transition-colors duration-500 ease-spring group-hover:text-royal">
+                  Theory →
+                </h5>
+              </div>
+              <p className="m-0 border-t border-rule pt-5 text-[14px] leading-relaxed text-ink-soft md:border-l md:border-t-0 md:pl-8 md:pt-0">
+                The conceptual thread running beneath all four themes — the
+                questions, frameworks, and critiques that ground production work
+                in deeper understanding of open science as a system.
+              </p>
+            </button>
+          </Reveal>
         </div>
 
-        {/* workshops */}
-        <div className="ws">
-          <div className="themes-head">
-            <div>
-              <div
-                className="mono"
-                style={{ color: "var(--i-ink-soft)", marginBottom: 10 }}
-              >
-                Programme
-              </div>
-              <h3>Workshops</h3>
+        {/* ── workshops ────────────────────────────────────────────────── */}
+        <div className="mt-24">
+          <Reveal>
+            <BlockHead kick="Programme" title="Workshops" right="Hands-on" />
+          </Reveal>
+
+          <Reveal>
+            <div className="mb-6 flex items-center justify-center gap-4 text-center font-mono text-[10px] uppercase tracking-[0.24em] text-ink-mute before:h-px before:w-8 before:bg-rule after:h-px after:w-8 after:bg-rule">
+              Programme in active planning · Check back for updates
             </div>
-            <div className="right">Hands-on</div>
-          </div>
+          </Reveal>
 
-          <div className="ws-status">
-            Programme in active planning · Check back for updates
-          </div>
-
-          <div className="ws-acc">
-            {WORKSHOPS.map((w) => {
+          <div className="space-y-3">
+            {WORKSHOPS.map((w, i) => {
               const isOpen = openWs.has(w.num);
               return (
-                <div className="ws-acc-item" key={w.num}>
-                  <button
-                    type="button"
-                    className="ws-acc-trigger"
-                    onClick={() => toggleWs(w.num)}
-                    aria-expanded={isOpen}
-                  >
-                    <span className="ws-acc-main">
-                      <span className="ws-acc-theme">{w.theme}</span>
-                      <span className="ws-acc-title">{w.title}</span>
-                      <span className="ws-acc-by">{w.by}</span>
-                    </span>
-                    <span className="ws-acc-right">
-                      <span className="ws-acc-format">{w.format}</span>
-                      <span className={`ws-acc-tog${isOpen ? " open" : ""}`}>+</span>
-                    </span>
-                  </button>
-                  {isOpen && (
-                    <div className="ws-acc-body">
-                      <p>{w.body}</p>
-                      <dl className="ws-facets">
-                        {w.facets.map((f) => (
-                          <div className="ws-facet" key={f.dt}>
-                            <dt>{f.dt}</dt>
-                            <dd>{f.dd}</dd>
-                          </div>
-                        ))}
-                      </dl>
-                    </div>
-                  )}
-                </div>
+                <Reveal key={w.num} delay={i * 60}>
+                  <div className="cell overflow-hidden">
+                    <button
+                      type="button"
+                      className="grid w-full cursor-pointer grid-cols-[1fr_auto] items-start gap-5 rounded-[inherit] p-6 text-left transition-colors duration-500 ease-spring hover:bg-white/[0.03] md:p-7"
+                      onClick={() => toggleWs(w.num)}
+                      aria-expanded={isOpen}
+                    >
+                      <span className="flex min-w-0 flex-col gap-1.5">
+                        <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-royal/80">
+                          {w.theme}
+                        </span>
+                        <span className="font-display text-[18px] font-semibold leading-snug tracking-tight text-ink">
+                          {w.title}
+                        </span>
+                        <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-mute">
+                          {w.by}
+                        </span>
+                      </span>
+                      <span className="mt-0.5 flex shrink-0 items-center gap-3">
+                        <span className="rounded-full bg-white/[0.05] px-3 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-ink-soft ring-1 ring-inset ring-white/10">
+                          {w.format}
+                        </span>
+                        <span
+                          className={`grid h-8 w-8 place-items-center rounded-full bg-white/[0.05] font-mono text-[16px] leading-none text-ink-soft ring-1 ring-inset ring-white/10 transition-transform duration-500 ease-spring${isOpen ? " rotate-45 text-royal" : ""}`}
+                          aria-hidden="true"
+                        >
+                          +
+                        </span>
+                      </span>
+                    </button>
+                    {isOpen && (
+                      <div className="ws-body-in px-6 pb-7 pt-1 md:px-7">
+                        <p className="m-0 text-[14px] leading-relaxed text-ink-soft">
+                          {w.body}
+                        </p>
+                        <dl className="m-0 mt-6 grid gap-5 border-t border-rule pt-5 md:grid-cols-2 md:gap-x-10">
+                          {w.facets.map((f) => (
+                            <div key={f.dt}>
+                              <dt className="mb-1.5 font-mono text-[9px] uppercase tracking-[0.24em] text-royal/80">
+                                {f.dt}
+                              </dt>
+                              <dd className="m-0 text-[13px] leading-relaxed text-ink">
+                                {f.dd}
+                              </dd>
+                            </div>
+                          ))}
+                        </dl>
+                      </div>
+                    )}
+                  </div>
+                </Reveal>
               );
             })}
           </div>
         </div>
 
-        {/* CTAs */}
-        <div className="cta">
-          <div className="themes-head">
-            <div>
-              <div
-                className="mono"
-                style={{ color: "var(--i-ink-soft)", marginBottom: 10 }}
+        {/* ── CTAs ─────────────────────────────────────────────────────── */}
+        <div className="mt-24">
+          <Reveal>
+            <BlockHead kick="Action" title="Get involved" right="Open calls" />
+          </Reveal>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {[
+              {
+                id: "cta-showcase" as const,
+                kind: "showcase" as const,
+                tag: "[ Showcase ]",
+                h: "Building a tool?",
+                p: "Working on tooling or infrastructure for one of the four themes? Submit it to the production showcase so we can stress-test and build on it in Leiden.",
+                action: "Submit to the showcase",
+              },
+              {
+                id: undefined,
+                kind: "committee" as const,
+                tag: "[ Committee ]",
+                h: "Help organize",
+                p: "We're opening the organizing committee — programming, logistics, outreach. Get in touch to join the planning conversations.",
+                action: "Get in touch",
+              },
+              {
+                id: "cta-sponsor" as const,
+                kind: "sponsor" as const,
+                tag: "[ Sponsor ]",
+                h: "Become a sponsor",
+                p: "IOSP is free to join. Every sponsor dollar funds a travel grant — last year in Denver, sponsors brought 10 people from 5 countries.",
+                action: "Send a participant to Leiden",
+              },
+            ].map((c, i) => (
+              <Reveal key={c.tag} delay={i * 70} className="flex">
+                <button
+                  type="button"
+                  id={c.id}
+                  className="cell cell-hover group flex w-full cursor-pointer flex-col p-8 text-left"
+                  onClick={() => setSignup(c.kind)}
+                >
+                  <div className="mb-5 font-mono text-[10px] uppercase tracking-[0.24em] text-royal/80">
+                    {c.tag}
+                  </div>
+                  <h4 className="m-0 mb-3 font-display text-[21px] font-semibold leading-tight tracking-tight text-ink">
+                    {c.h}
+                  </h4>
+                  <p className="m-0 mb-6 flex-1 text-[14px] leading-relaxed text-ink-soft">
+                    {c.p}
+                  </p>
+                  <div className="flex items-center justify-between border-t border-rule pt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-ink">
+                    <span>{c.action}</span>
+                    <span
+                      className="text-ink-mute transition-all duration-500 ease-spring group-hover:translate-x-1.5 group-hover:text-royal"
+                      aria-hidden="true"
+                    >
+                      →
+                    </span>
+                  </div>
+                </button>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* ── register interest ──────────────────────────────────────── */}
+          <Reveal delay={100} className="mt-10">
+            <div className="gshell">
+              <button
+                type="button"
+                id="cta-register"
+                className="gcore group relative block w-full cursor-pointer p-8 text-left md:p-12"
+                onClick={() => setSignup("participant")}
+                aria-label="Register your interest"
               >
-                Action
-              </div>
-              <h3>Get involved</h3>
+                <div
+                  className="halo -bottom-32 left-1/2 h-[300px] w-[560px] -translate-x-1/2 bg-royal-deep/25"
+                  aria-hidden="true"
+                />
+                <div className="relative">
+                  <div className="eyebrow mb-6">Participate</div>
+                  <h3 className="display m-0 mb-6 text-[clamp(30px,4vw,52px)] text-ink">
+                    Register your interest
+                  </h3>
+                  <div className="max-w-[68ch] space-y-4 text-[15.5px] leading-relaxed text-ink-soft [&_strong]:font-medium [&_strong]:text-ink">
+                    <p className="m-0">
+                      IOSP is a curated, highly facilitated event — we aim to convene
+                      a balanced mix of researchers, technologists, librarians,
+                      funders, and others across the global research ecosystem. Last
+                      year we received 425 registrations for an 80-person room; this
+                      year we have space for 100. Registering does <strong>not</strong>{" "}
+                      guarantee a seat.
+                    </p>
+                    <p className="m-0">
+                      <strong>IOSP is free to join</strong>, and every sponsorship
+                      dollar goes <strong>directly to travel grants</strong> so
+                      finances and location aren't a barrier for participants.
+                    </p>
+                    <p className="m-0">
+                      Actively pushing open science forward? Register and we'll do our
+                      best to find a way to get you in the room.
+                    </p>
+                  </div>
+                  <span className="btn-pill mt-8 px-6 py-3 font-mono text-[11px] uppercase tracking-[0.2em]">
+                    Register interest →
+                  </span>
+                </div>
+              </button>
             </div>
-            <div className="right">Open calls</div>
-          </div>
-
-          <div className="cta-grid">
-            <button
-              type="button"
-              id="cta-showcase"
-              className="cta-card"
-              onClick={() => setSignup("showcase")}
-            >
-              <div className="tag">[ Showcase ]</div>
-              <h4>Building a tool?</h4>
-              <p>
-                Working on tooling or infrastructure for one of the four
-                themes? Submit it to the production showcase so we can
-                stress-test and build on it in Leiden.
-              </p>
-              <div className="action">
-                <span>Submit to the showcase</span>
-                <span className="arr">→</span>
-              </div>
-            </button>
-            <button
-              type="button"
-              className="cta-card"
-              onClick={() => setSignup("committee")}
-            >
-              <div className="tag">[ Committee ]</div>
-              <h4>Help organize</h4>
-              <p>
-                We're opening the organizing committee — programming,
-                logistics, outreach. Get in touch to join the planning
-                conversations.
-              </p>
-              <div className="action">
-                <span>Get in touch</span>
-                <span className="arr">→</span>
-              </div>
-            </button>
-            <button
-              type="button"
-              id="cta-sponsor"
-              className="cta-card"
-              onClick={() => setSignup("sponsor")}
-            >
-              <div className="tag">[ Sponsor ]</div>
-              <h4>Become a sponsor</h4>
-              <p>
-                IOSP is free to join. Every sponsor dollar funds a travel
-                grant — last year in Denver, sponsors brought 10 people from 5
-                countries.
-              </p>
-              <div className="action">
-                <span>Send a participant to Leiden</span>
-                <span className="arr">→</span>
-              </div>
-            </button>
-          </div>
-
-          {/* register interest */}
-          <button
-            type="button"
-            id="cta-register"
-            className="reg"
-            onClick={() => setSignup("participant")}
-            aria-label="Register your interest"
-          >
-            <div className="kick">Participate</div>
-            <h3>Register your interest</h3>
-            <p>
-              IOSP is a curated, highly facilitated event — we aim to convene
-              a balanced mix of researchers, technologists, librarians,
-              funders, and others across the global research ecosystem. Last
-              year we received 425 registrations for an 80-person room; this
-              year we have space for 100. Registering does <strong>not</strong>{" "}
-              guarantee a seat.
-            </p>
-            <p>
-              <strong>IOSP is free to join</strong>, and every sponsorship
-              dollar goes <strong>directly to travel grants</strong> so
-              finances and location aren't a barrier for participants.
-            </p>
-            <p>
-              Actively pushing open science forward? Register and we'll do our
-              best to find a way to get you in the room.
-            </p>
-            <span className="btn">Register interest →</span>
-          </button>
+          </Reveal>
         </div>
       </div>
 
