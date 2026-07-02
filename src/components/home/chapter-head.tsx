@@ -7,13 +7,13 @@ import { Reveal } from "@/components/reveal";
  */
 export function ChapterHead({
   title,
-  className = "",
+  className = "pt-24 md:pt-32",
 }: {
   title: string;
   className?: string;
 }) {
   return (
-    <div className={`pt-24 md:pt-32 ${className}`}>
+    <div className={className}>
       <div className="wrap">
         <Reveal>
           <div className="relative pb-10">

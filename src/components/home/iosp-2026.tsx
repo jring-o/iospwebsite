@@ -187,7 +187,7 @@ export function Iosp2026() {
     });
 
   return (
-    <section className="sect zone-event" id="iosp2026" data-screen-label="IOSP 2026">
+    <section className="sect !pt-4 md:!pt-8" id="iosp2026" data-screen-label="IOSP 2026">
       <div className="wrap">
         {/* ── flagship panel: strip + hero + venue ─────────────────────── */}
         <Reveal>

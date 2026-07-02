@@ -19,9 +19,11 @@ export default function HomePage() {
     <>
       <TopNav />
       <Masthead />
-      <ChapterHead title="The Event" />
-      <EventActions />
-      <Iosp2026 />
+      <div className="zone-event" data-screen-label="IOSP 2026">
+        <ChapterHead title="The Event" className="pt-16 md:pt-24" />
+        <EventActions />
+        <Iosp2026 />
+      </div>
       <ChapterHead title="The Institute" />
       <HowItWorks />
       <ScienceShouldBe />
