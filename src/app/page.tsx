@@ -3,6 +3,7 @@ import { TopNav } from "@/components/top-nav";
 import { Masthead } from "@/components/home/masthead";
 import { Iosp2026 } from "@/components/home/iosp-2026";
 import { ChapterHead } from "@/components/home/chapter-head";
+import { EventActions } from "@/components/home/event-actions";
 import { HowItWorks } from "@/components/home/how-it-works";
 import { PullQuote } from "@/components/home/pull-quote";
 import { ScienceShouldBe } from "@/components/home/science-should-be";
@@ -18,7 +19,8 @@ export default function HomePage() {
     <>
       <TopNav />
       <Masthead />
-      <ChapterHead title="The Event" className="pb-14 md:pb-16" />
+      <ChapterHead title="The Event" />
+      <EventActions />
       <Iosp2026 />
       <ChapterHead title="The Institute" />
       <HowItWorks />

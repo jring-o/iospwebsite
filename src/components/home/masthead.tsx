@@ -32,63 +32,11 @@ export function Masthead() {
         </Reveal>
 
         <Reveal delay={90}>
-          <p className="m-0 py-9 text-center font-serif text-[clamp(19px,2.2vw,23px)] italic text-royal">
+          <p className="m-0 pt-9 text-center font-serif text-[clamp(19px,2.2vw,23px)] italic text-royal">
             “Build the infrastructure that makes open easy to practice.”
           </p>
         </Reveal>
 
-        {/* actions — royal primary block + three hairline CTAs, opened by a
-            royal gradient rule (as on the original) */}
-        <Reveal delay={160}>
-          <div className="relative grid grid-cols-1 gap-4 pt-7 md:grid-cols-[minmax(260px,1fr)_2fr]">
-            <span
-              aria-hidden="true"
-              className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-royal to-transparent"
-            />
-            <a
-              className="flex flex-col items-start justify-center gap-1.5 bg-royal px-7 py-6 text-paper no-underline transition-colors duration-500 ease-spring hover:bg-ink"
-              href="#iosp2026"
-            >
-              <span className="display text-[28px] leading-none">IOSP 2026</span>
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-80">
-                Oct 12–15, 2026 · Leiden
-              </span>
-            </a>
-
-            <ul className="m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-3">
-              <li className="flex">
-                <a className="btn-glass w-full" href="#cta-showcase">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.12em]">
-                    Submit to the tooling showcase
-                  </span>
-                  <span className="icircle">
-                    <span aria-hidden="true">→</span>
-                  </span>
-                </a>
-              </li>
-              <li className="flex">
-                <a className="btn-glass w-full" href="#cta-sponsor">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.12em]">
-                    Sponsor a travel grant
-                  </span>
-                  <span className="icircle">
-                    <span aria-hidden="true">→</span>
-                  </span>
-                </a>
-              </li>
-              <li className="flex">
-                <a className="btn-glass w-full" href="#cta-register">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.12em]">
-                    Attend
-                  </span>
-                  <span className="icircle">
-                    <span aria-hidden="true">→</span>
-                  </span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </Reveal>
       </div>
     </header>
   );
