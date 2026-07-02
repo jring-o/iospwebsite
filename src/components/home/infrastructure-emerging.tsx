@@ -94,7 +94,7 @@ export function InfrastructureEmerging() {
                     {c.title}
                   </h4>
                   {c.mark ? (
-                    <span className="mt-0.5 shrink-0 rounded-full bg-royal-soft px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.2em] text-royal ring-1 ring-inset ring-royal/20">
+                    <span className="mt-0.5 shrink-0 bg-royal-soft px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.2em] text-royal ring-1 ring-inset ring-royal/20">
                       IOSP 2025
                     </span>
                   ) : null}

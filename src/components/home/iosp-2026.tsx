@@ -187,7 +187,7 @@ export function Iosp2026() {
     });
 
   return (
-    <section className="sect" id="iosp2026" data-screen-label="IOSP 2026">
+    <section className="sect zone-event" id="iosp2026" data-screen-label="IOSP 2026">
       <div className="wrap">
         {/* ── flagship panel: strip + hero + venue ─────────────────────── */}
         <Reveal>
@@ -274,9 +274,9 @@ export function Iosp2026() {
                         {r.pct}
                         <span className="text-royal">%</span>
                       </div>
-                      <div className="mt-2.5 h-1 w-full overflow-hidden rounded-full bg-black/[0.06]">
+                      <div className="mt-2.5 h-1 w-full overflow-hidden bg-black/[0.06]">
                         <div
-                          className="h-full rounded-full bg-gradient-to-r from-royal-deep to-royal"
+                          className="h-full bg-gradient-to-r from-royal-deep to-royal"
                           style={{ width: `${r.pct}%` }}
                           aria-hidden="true"
                         />
@@ -451,11 +451,11 @@ export function Iosp2026() {
                         </span>
                       </span>
                       <span className="mt-0.5 flex shrink-0 items-center gap-3">
-                        <span className="rounded-full bg-black/[0.04] px-3 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-ink-soft ring-1 ring-inset ring-black/[0.08]">
+                        <span className="bg-black/[0.04] px-3 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-ink-soft ring-1 ring-inset ring-black/[0.08]">
                           {w.format}
                         </span>
                         <span
-                          className={`grid h-8 w-8 place-items-center rounded-full bg-black/[0.04] font-mono text-[16px] leading-none text-ink-soft ring-1 ring-inset ring-black/[0.08] transition-transform duration-500 ease-spring${isOpen ? " rotate-45 text-royal" : ""}`}
+                          className={`grid h-8 w-8 place-items-center bg-black/[0.04] font-mono text-[16px] leading-none text-ink-soft ring-1 ring-inset ring-black/[0.08] transition-transform duration-500 ease-spring${isOpen ? " rotate-45 text-royal" : ""}`}
                           aria-hidden="true"
                         >
                           +

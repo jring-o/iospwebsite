@@ -110,7 +110,7 @@ function PeopleGrid({ people }: { people: Array<{ name: string; aff: string }> }
 
 export function Recap2025() {
   return (
-    <section className="sect" id="iosp2025" data-screen-label="07 IOSP 2025 Recap">
+    <section className="sect zone-event" id="iosp2025" data-screen-label="07 IOSP 2025 Recap">
       <div className="wrap">
         <Reveal>
           <div className="mb-16 max-w-3xl">

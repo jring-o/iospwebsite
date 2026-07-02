@@ -105,7 +105,7 @@ export default function RootLayout({
             unstyled: false,
             classNames: {
               toast:
-                "rounded-2xl border border-rule bg-paper-card text-ink shadow-[0_16px_48px_-16px_rgba(20,26,74,0.2)] backdrop-blur-xl",
+                "rounded-none border border-rule bg-paper-card text-ink shadow-[0_16px_48px_-16px_rgba(20,26,74,0.2)] backdrop-blur-xl",
               title: "font-medium text-ink",
               description: "text-ink-soft",
             },

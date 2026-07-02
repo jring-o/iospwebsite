@@ -83,9 +83,9 @@ const config: Config = {
         mono: ["var(--font-mono)", "Geist Mono", "monospace"],
       },
       borderRadius: {
-        lg: "1.25rem",
-        md: "0.875rem",
-        sm: "0.625rem",
+        lg: "0",
+        md: "0",
+        sm: "0",
       },
       transitionTimingFunction: {
         spring: "cubic-bezier(0.32, 0.72, 0, 1)",
