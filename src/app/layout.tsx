@@ -82,7 +82,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  themeColor: "#050505",
+  themeColor: "#f6f7f9",
 };
 
 export default function RootLayout({
@@ -105,7 +105,7 @@ export default function RootLayout({
             unstyled: false,
             classNames: {
               toast:
-                "rounded-2xl border border-rule bg-paper-card text-ink shadow-2xl backdrop-blur-xl",
+                "rounded-2xl border border-rule bg-paper-card text-ink shadow-[0_16px_48px_-16px_rgba(20,26,74,0.2)] backdrop-blur-xl",
               title: "font-medium text-ink",
               description: "text-ink-soft",
             },

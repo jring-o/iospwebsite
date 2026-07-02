@@ -9,8 +9,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // IOSP design tokens — single dark "ethereal glass" palette, exposed
-        // as CSS custom properties so utilities and bespoke CSS stay in sync.
+        // IOSP design tokens — single light "ethereal glass · daylight"
+        // palette, exposed as CSS custom properties so utilities and bespoke
+        // CSS stay in sync.
         paper: "var(--paper)",
         "paper-deep": "var(--paper-deep)",
         "paper-card": "var(--paper-card)",
@@ -63,7 +64,7 @@ const config: Config = {
           foreground: "var(--royal)",
         },
         destructive: {
-          DEFAULT: "#F0587E",
+          DEFAULT: "#C81E4E",
           foreground: "var(--paper)",
         },
         border: "var(--rule)",

@@ -463,7 +463,7 @@ function SponsorFields({ control, register, errors }: FieldsProps) {
                     <span
                       className={cn(
                         'font-mono text-[10px] uppercase tracking-[0.2em]',
-                        selected ? 'text-royal/80' : 'text-ink-soft',
+                        selected ? 'text-royal' : 'text-ink-soft',
                       )}
                     >
                       {tier.dollars} · {tier.seats}

@@ -77,7 +77,7 @@ export function TopNav() {
   return (
     <>
       <header className="pointer-events-none fixed inset-x-0 top-5 z-40 flex justify-center px-4">
-        <div className="pointer-events-auto flex items-center gap-3 rounded-full bg-white/[0.05] py-1.5 pl-4 pr-1.5 shadow-[0_16px_50px_-20px_rgba(0,0,0,0.9)] ring-1 ring-white/10 backdrop-blur-2xl sm:gap-4">
+        <div className="pointer-events-auto flex items-center gap-3 rounded-full bg-white/70 py-1.5 pl-4 pr-1.5 shadow-[0_12px_40px_-16px_rgba(20,26,74,0.18)] ring-1 ring-black/[0.08] backdrop-blur-2xl sm:gap-4">
           <span className="flex items-center gap-2.5">
             <svg
               width="17"
@@ -104,14 +104,14 @@ export function TopNav() {
           </span>
           <span
             aria-hidden="true"
-            className="hidden h-4 w-px bg-white/10 sm:block"
+            className="hidden h-4 w-px bg-black/10 sm:block"
           />
           <span className="hidden whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.22em] text-ink-soft tabular-nums sm:inline">
             {formatScreenLabel(currentLabel)}
           </span>
           <button
             type="button"
-            className={`burger${open ? " open" : ""} grid h-9 w-9 place-items-center rounded-full bg-white/[0.07] text-ink ring-1 ring-white/10 transition-colors duration-500 ease-spring hover:bg-white/[0.12]`}
+            className={`burger${open ? " open" : ""} grid h-9 w-9 place-items-center rounded-full bg-black/[0.04] text-ink ring-1 ring-black/[0.08] transition-colors duration-500 ease-spring hover:bg-black/[0.06]`}
             aria-haspopup="menu"
             aria-expanded={open}
             aria-label="Sections"
