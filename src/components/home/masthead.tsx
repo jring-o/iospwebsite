@@ -15,7 +15,7 @@ export function Masthead() {
 
       <div className="wrap flex flex-col items-center text-center">
         <Reveal>
-          <span className="mb-10 inline-flex items-center justify-center bg-white p-5 shadow-[inset_0_0_0_1px_rgba(20,22,29,0.06),0_8px_24px_-10px_rgba(20,26,74,0.10),0_0_50px_-14px_rgba(54,72,200,0.22)]">
+          <span className="mb-10 inline-flex items-center justify-center bg-white p-5 shadow-[inset_0_0_0_1px_rgba(20,22,29,0.10)]">
             <Mark
               size={72}
               arcColor="var(--ink)"

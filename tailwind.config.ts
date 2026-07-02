@@ -73,12 +73,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-sans)", "Geist", "system-ui", "sans-serif"],
-        display: [
-          "var(--font-display)",
-          "Bricolage Grotesque",
-          "system-ui",
-          "sans-serif",
-        ],
+        display: ["var(--font-sans)", "Geist", "system-ui", "sans-serif"],
         serif: ["var(--font-serif)", "Instrument Serif", "Georgia", "serif"],
         mono: ["var(--font-mono)", "Geist Mono", "monospace"],
       },

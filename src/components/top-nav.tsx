@@ -12,7 +12,7 @@ const SECTIONS: Array<{ href: string; label: string }> = [
   { href: "#stay", label: "Newsletter" },
 ];
 
-const NAV_OFFSET = 96;
+const NAV_OFFSET = 64;
 
 function formatScreenLabel(raw: string | null): string {
   if (!raw) return "Since 2024";
@@ -76,8 +76,9 @@ export function TopNav() {
 
   return (
     <>
-      <header className="pointer-events-none fixed inset-x-0 top-5 z-40 flex justify-center px-4">
-        <div className="pointer-events-auto flex items-center gap-3 bg-white/70 py-1.5 pl-4 pr-1.5 shadow-[0_12px_40px_-16px_rgba(20,26,74,0.18)] ring-1 ring-black/[0.08] backdrop-blur-2xl sm:gap-4">
+      <header className="fixed inset-x-0 top-0 z-40 border-t-2 border-royal">
+        <div className="border-b border-black/[0.08] bg-white/85 backdrop-blur-xl">
+          <div className="wrap flex items-center justify-between gap-4 py-3">
           <span className="flex items-center gap-2.5">
             <svg
               width="17"
@@ -102,6 +103,7 @@ export function TopNav() {
               Institute of Open Science Practices
             </span>
           </span>
+          <span className="flex items-center gap-3 sm:gap-4">
           <span
             aria-hidden="true"
             className="hidden h-4 w-px bg-black/10 sm:block"
@@ -120,6 +122,8 @@ export function TopNav() {
             <span className="l1" aria-hidden="true" />
             <span className="l2" aria-hidden="true" />
           </button>
+          </span>
+          </div>
         </div>
       </header>
 

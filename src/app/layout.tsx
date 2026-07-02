@@ -1,19 +1,8 @@
 import type { Metadata } from "next";
-import {
-  Bricolage_Grotesque,
-  Geist,
-  Geist_Mono,
-  Instrument_Serif,
-} from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "sonner";
-
-const display = Bricolage_Grotesque({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-display",
-});
 
 const sans = Geist({
   subsets: ["latin"],
@@ -93,11 +82,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${display.variable} ${sans.variable} ${mono.variable} ${serif.variable}`}
+      className={`${sans.variable} ${mono.variable} ${serif.variable}`}
     >
       <body className="bg-paper text-ink antialiased">
-        <div className="ether" aria-hidden="true" />
-        <div className="grain" aria-hidden="true" />
         <main>{children}</main>
         <Toaster
           position="bottom-right"

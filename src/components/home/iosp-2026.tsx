@@ -276,7 +276,7 @@ export function Iosp2026() {
                       </div>
                       <div className="mt-2.5 h-1 w-full overflow-hidden bg-black/[0.06]">
                         <div
-                          className="h-full bg-gradient-to-r from-royal-deep to-royal"
+                          className="h-full bg-royal"
                           style={{ width: `${r.pct}%` }}
                           aria-hidden="true"
                         />
