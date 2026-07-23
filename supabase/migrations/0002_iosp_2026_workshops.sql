@@ -70,6 +70,12 @@ begin
   end loop;
 end$$;
 
+-- With the old constraint gone, migrate rows submitted before the VOWELS rename
+-- so the new constraint below validates against existing data.
+update public.iosp_2026_workshops
+  set track = 'Assessment, Evaluation, Insights, Observability, & Utility'
+  where track in ('Assessment, Evaluation & Insights', 'Assessment, Evaluation, & Insights');
+
 alter table public.iosp_2026_workshops
   add constraint iosp_2026_workshops_track_check
   check (track in (
