@@ -38,6 +38,9 @@ export const THEMES: readonly Theme[] = [
     ],
     inLeiden:
       "We'll dig into core and satellite, transitive funding, and what funding research looks like when science itself becomes modular.",
+    workshops: [
+      "Fund an entire domain through a core and its satellites — Jonathan Starr & Ellie DeSota, SciOS",
+    ],
   },
   {
     n: "03",
@@ -50,7 +53,9 @@ export const THEMES: readonly Theme[] = [
     inLeiden:
       "We'll convene the people already building and maintaining this layer, learn how to use it effectively, stress-test where it breaks under modular research workloads, and guide the projects extending it forward.",
     workshops: [
+      "Build a sovereign data node — Jonathan Starr, SciOS, in partnership with the IPFS Foundation",
       "Save your discipline's at-risk data — Cornelius Ihle, University of Göttingen",
+      "Own your research network — Ronen Tamari, Cosmik",
     ],
   },
   {
