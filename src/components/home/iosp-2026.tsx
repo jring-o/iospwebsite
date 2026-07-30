@@ -179,10 +179,10 @@ const WORKSHOPS = [
     theme: "Resilient Data & Sovereign Infrastructure",
     title: "Own your research network with AT Protocol",
     by: "Ronen Tamari · Cosmik, with Torsten Goerke, Ariel Lighty, Robin Berjon, Mathew Lowry, and Guido Jansen",
-    body: "AT Protocol, the open protocol behind the Bluesky social network, stores your data in a repository you own; apps read and write it there instead of locking it away in their own silos. You'll claim a researcher ID with Aster, then pick a station and start building. Stand up a personal research page with Sifa, turn your Zotero library into a living literature review with Semble, stream live data with Matadisco or Nebra, connect AI workflows to protocol data, or build Bluesky feeds and starter packs around your research topic. Bring your own use case instead and work through it with the room's experts. We'll close with quick demos of what everyone built.",
+    body: "AT Protocol, the open protocol behind the Bluesky social network, stores your data in a repository you own; apps read and write it there instead of locking it away in their own silos. A growing ecosystem of research apps already builds on the protocol. You'll claim a researcher ID with Aster, then pick a station and start building. Stand up a personal research page with Sifa, turn your Zotero library into a living literature review with Semble, stream live data with Matadisco or Nebra, connect AI workflows to protocol data, or build Bluesky feeds and starter packs around your research topic. Or bring your own use case instead and work through it with the room's experts. We'll close with quick demos of what everyone built.",
     facets: [
       { dt: "Technology", dd: "AT Protocol · Aster · Sifa · Semble · Matadisco · Nebra · Bluesky feeds and starter packs" },
-      { dt: "Researchers bring", dd: "A laptop; pain points from your research workflows and your professional presence online" },
+      { dt: "Researchers bring", dd: "A laptop; pain points from your research workflows and from maintaining your professional presence online" },
       { dt: "Leave with", dd: "Your own Aster researcher ID and AT Protocol account; one or more working artifacts built in the room and stored in your own data repository, whether a research page, a living literature review, a curated feed, or a live data stream; a working mental model of what owning your data means in practice" },
       { dt: "Format", dd: "3 hours" },
     ],
