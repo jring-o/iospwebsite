@@ -22,6 +22,16 @@ type Row = {
   value: string | null
 }
 
+type PinRow = {
+  scraped_at: string
+  cluster: Row['cluster']
+  cid: string
+  name: string | null
+  peer: string
+  peer_name: string
+  status: string
+}
+
 const CLUSTERS: { key: Row['cluster']; title: string; desc: string }[] = [
   {
     key: 'iosp-nodes',
@@ -60,6 +70,15 @@ export default async function DataNetworkPage() {
     .order('scraped_at', { ascending: false })
     .limit(20000)
 
+  // Pin-status matrix for the Datasets panel: newest-first, we only render the
+  // latest snapshot per cluster (history stays in the table for the study).
+  const { data: pinData } = await supabase
+    .from('datanetwork_pins')
+    .select('scraped_at,cluster,cid,name,peer,peer_name,status')
+    .gte('scraped_at', since)
+    .order('scraped_at', { ascending: false })
+    .limit(5000)
+
   const rows = ((data ?? []) as Row[]).reverse()
   const passes = [...new Set(rows.map((r) => r.scraped_at))].sort()
   const passIdx = new Map(passes.map((t, i) => [t, i]))
@@ -67,6 +86,7 @@ export default async function DataNetworkPage() {
 
   type Node = {
     cluster: Row['cluster']
+    peer: string
     name: string
     heard: Set<number>
     free: string | null
@@ -76,7 +96,13 @@ export default async function DataNetworkPage() {
     const key = r.cluster + '|' + r.peer
     const n =
       nodes.get(key) ??
-      ({ cluster: r.cluster, name: r.peer_name, heard: new Set(), free: null } as Node)
+      ({
+        cluster: r.cluster,
+        peer: r.peer,
+        name: r.peer_name,
+        heard: new Set(),
+        free: null,
+      } as Node)
     if (r.metric === 'ping') n.heard.add(passIdx.get(r.scraped_at)!)
     else n.free = r.value
     nodes.set(key, n)
@@ -85,6 +111,55 @@ export default async function DataNetworkPage() {
   const members = allNodes.filter((n) => n.name !== RECORDER_NAME)
   const recorder = allNodes.find((n) => n.name === RECORDER_NAME)
   const onlineNow = members.filter((n) => n.heard.has(latest)).length
+
+  // Latest pin snapshot per cluster, aggregated per CID. The denominator is
+  // the cluster's member roster from the heartbeat window — a member that has
+  // dropped out of the snapshot entirely still counts as not-serving, instead
+  // of shrinking the total. The recorder's copies in iosp-laptops are excluded
+  // from serving counts (observer-policy row).
+  type PinSummary = {
+    cid: string
+    name: string | null
+    served: number
+    total: number
+    trouble: string[]
+  }
+  const pinSnap = new Map<Row['cluster'], { at: string; pins: PinSummary[] }>()
+  for (const c of CLUSTERS) {
+    const cRows = ((pinData ?? []) as PinRow[]).filter((r) => r.cluster === c.key)
+    if (cRows.length === 0) continue
+    const at = cRows[0].scraped_at
+    const memberPeers = new Map(
+      allNodes
+        .filter((n) => n.cluster === c.key && n.name !== RECORDER_NAME)
+        .map((n) => [n.peer, n.name]),
+    )
+    const byCid = new Map<string, { name: string | null; seen: Map<string, PinRow> }>()
+    for (const r of cRows) {
+      if (r.scraped_at !== at) continue
+      const p = byCid.get(r.cid) ?? { name: r.name, seen: new Map<string, PinRow>() }
+      p.seen.set(r.peer, r)
+      byCid.set(r.cid, p)
+    }
+    const pins: PinSummary[] = [...byCid.entries()].map(([cid, p]) => {
+      let served = 0
+      const trouble: string[] = []
+      for (const r of p.seen.values()) {
+        if (r.peer_name === RECORDER_NAME) continue
+        if (r.status === 'pinned') served += 1
+        else trouble.push(`${r.peer_name}: ${r.status.replaceAll('_', ' ')}`)
+      }
+      for (const [peer, name] of memberPeers) {
+        if (!p.seen.has(peer)) trouble.push(`${name}: not reporting`)
+      }
+      const total = Math.max(memberPeers.size, served)
+      return { cid, name: p.name, served, total, trouble }
+    })
+    pinSnap.set(c.key, {
+      at,
+      pins: pins.sort((a, b) => (a.name ?? a.cid).localeCompare(b.name ?? b.cid)),
+    })
+  }
 
   return (
     <div className="mx-auto max-w-3xl px-5 py-16 sm:py-20">
@@ -220,6 +295,54 @@ export default async function DataNetworkPage() {
                     </div>
                   )}
 
+                  {(() => {
+                    const snap = pinSnap.get(c.key)
+                    if (!snap || snap.pins.length === 0) return null
+                    return (
+                      <div className="mt-5 border-t border-rule pt-4">
+                        <div className="flex items-baseline justify-between">
+                          <h3 className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-mute">
+                            Datasets · {snap.pins.length}
+                          </h3>
+                          <span className="font-mono text-[10px] tabular-nums text-ink-mute">
+                            sampled {hhmm(snap.at)}
+                          </span>
+                        </div>
+                        <div className="mt-2 flex flex-col gap-1.5">
+                          {snap.pins.map((p) => (
+                            <div
+                              key={p.cid}
+                              className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5"
+                            >
+                              <span
+                                className={
+                                  'h-1.5 w-1.5 self-center rounded-full ' +
+                                  (p.served === p.total && p.total > 0
+                                    ? 'bg-mint'
+                                    : p.served > 0
+                                      ? 'bg-royal'
+                                      : 'border border-ink-mute')
+                                }
+                              />
+                              <span className="text-sm text-ink">
+                                {p.name || 'unnamed'}
+                              </span>
+                              <span className="font-mono text-xs text-ink-mute">
+                                {p.cid.slice(0, 10)}…
+                              </span>
+                              <span
+                                className="ml-auto font-mono text-xs tabular-nums text-ink-soft"
+                                title={p.trouble.join(', ') || undefined}
+                              >
+                                {p.served}/{p.total} serving
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )
+                  })()}
+
                   {c.key === 'iosp-laptops' && recorder && (
                     <p className="mt-4 border-t border-rule pt-3 text-xs text-ink-mute">
                       Recorded by <span className="font-mono">node-00</span>{' '}
@@ -248,7 +371,11 @@ export default async function DataNetworkPage() {
             evidence, not evidence of absence. &ldquo;Free&rdquo; is each
             node&rsquo;s configured archive budget remaining, not its whole
             disk. Strips show the most recent {STRIP_PASSES} passes; uptime
-            percentages cover the window of passes the readout holds.
+            percentages cover the window of passes the readout holds. Dataset
+            rows come from each cluster&rsquo;s own pin tracker, sampled every
+            ~5 minutes: &ldquo;serving&rdquo; counts members whose node reports
+            the item pinned, and the observer&rsquo;s copies are not counted in
+            iosp-laptops.
           </p>
         </>
       )}
