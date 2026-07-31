@@ -16,7 +16,8 @@ export const signupSchema = z
     sector: z.string().trim().max(120).optional().default(''),
     region: z.string().trim().max(120).optional().default(''),
     // Pre-checked consent to include this response in aggregate stats shared with sponsors.
-    statsConsent: z.boolean().optional().default(true),
+    // Consent must be an explicit opt-in — never defaulted on.
+    statsConsent: z.boolean().optional().default(false),
     // showcase
     projectName: z.string().trim().max(200).optional().default(''),
     projectUrl: z.string().trim().max(500).optional().default(''),

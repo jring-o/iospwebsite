@@ -53,7 +53,7 @@ export async function submitIospSignup(input: unknown): Promise<SignupResult> {
       roles: audienceRoles,
       sector,
       region,
-      stats_consent: data.statsConsent !== false,
+      stats_consent: data.statsConsent === true,
       details,
     })
     if (error) {

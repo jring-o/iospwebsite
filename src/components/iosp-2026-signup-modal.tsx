@@ -235,12 +235,13 @@ function SignupForm({
 }
 
 function defaultsFor(kind: Exclude<SignupKind, null>): SignupInput {
-  // Shared across all kinds — audience-fingerprint fields are optional, consent is pre-checked.
+  // Shared across all kinds — audience-fingerprint fields are optional; consent
+  // starts unchecked (explicit opt-in).
   const audience = {
     audienceRoles: [] as string[],
     sector: '',
     region: '',
-    statsConsent: true,
+    statsConsent: false,
   }
   if (kind === 'showcase') {
     return {
@@ -280,7 +281,7 @@ function defaultsFor(kind: Exclude<SignupKind, null>): SignupInput {
       publicRecognition: true,
       interestedInServices: false,
       // Sponsors don't fill audience fields, but consent applies to them too.
-      statsConsent: true,
+      statsConsent: false,
     }
   }
   return {
@@ -598,7 +599,7 @@ function ConsentField({ control }: { control: FieldsProps['control'] }) {
       render={({ field }) => (
         <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-rule bg-paper cursor-pointer hover:border-royal transition-colors">
           <Checkbox
-            checked={field.value !== false}
+            checked={field.value === true}
             onCheckedChange={(v) => field.onChange(!!v)}
             className="mt-0.5"
           />
