@@ -26,12 +26,12 @@ const CLUSTERS: { key: Row['cluster']; title: string; desc: string }[] = [
   {
     key: 'iosp-nodes',
     title: 'iosp-nodes',
-    desc: 'Raspberry Pi nodes that went home with researchers — always-on, the durable backbone of the archive.',
+    desc: 'Raspberry Pi nodes that went home with researchers.',
   },
   {
     key: 'iosp-laptops',
     title: 'iosp-laptops',
-    desc: 'Researchers’ own laptops — nodes that come and go by design; the archive forgives absences.',
+    desc: 'Researchers’ own laptops.',
   },
 ]
 
