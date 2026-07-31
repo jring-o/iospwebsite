@@ -49,14 +49,18 @@ const gb = (v: string | null) =>
 export default async function DataNetworkPage() {
   const since = new Date(Date.now() - 24 * 3600 * 1000).toISOString()
   const supabase = getSupabaseServerClient()
+  // Newest first: Supabase caps responses at 1,000 rows regardless of .limit(),
+  // and ascending order made the page render the OLDEST slice of the window
+  // while fresh heartbeats accumulated unseen (frozen "Last heartbeat", 2026-07-31).
+  // Descending keeps the cap on the newest rows; reverse restores time order.
   const { data } = await supabase
     .from('datanetwork_heartbeats')
     .select('scraped_at,cluster,peer,peer_name,metric,value')
     .gte('scraped_at', since)
-    .order('scraped_at', { ascending: true })
+    .order('scraped_at', { ascending: false })
     .limit(20000)
 
-  const rows = (data ?? []) as Row[]
+  const rows = ((data ?? []) as Row[]).reverse()
   const passes = [...new Set(rows.map((r) => r.scraped_at))].sort()
   const passIdx = new Map(passes.map((t, i) => [t, i]))
   const latest = passes.length - 1
@@ -244,7 +248,7 @@ export default async function DataNetworkPage() {
             evidence, not evidence of absence. &ldquo;Free&rdquo; is each
             node&rsquo;s configured archive budget remaining, not its whole
             disk. Strips show the most recent {STRIP_PASSES} passes; uptime
-            percentages cover the last 24 hours.
+            percentages cover the window of passes the readout holds.
           </p>
         </>
       )}
