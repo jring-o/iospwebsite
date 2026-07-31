@@ -44,3 +44,6 @@ next-env.d.ts
 /screenshots
 /design_handoff_iosp_brand
 BiblioConSlides.pdf
+
+# workshop submissions (contain personal emails + private run-of-show)
+/submissions
