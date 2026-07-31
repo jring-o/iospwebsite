@@ -32,6 +32,14 @@ type PinRow = {
   status: string
 }
 
+type SpotRow = {
+  checked_at: string
+  cluster: Row['cluster']
+  cid: string
+  ok: boolean
+  target_name: string
+}
+
 const CLUSTERS: { key: Row['cluster']; title: string; desc: string }[] = [
   {
     key: 'iosp-nodes',
@@ -78,6 +86,14 @@ export default async function DataNetworkPage() {
     .gte('scraped_at', since)
     .order('scraped_at', { ascending: false })
     .limit(5000)
+
+  // Tier-3 retrieval probes: newest-first, latest verdict per (cluster, cid).
+  const { data: spotData } = await supabase
+    .from('datanetwork_spotchecks')
+    .select('checked_at,cluster,cid,ok,target_name')
+    .gte('checked_at', since)
+    .order('checked_at', { ascending: false })
+    .limit(2000)
 
   const rows = ((data ?? []) as Row[]).reverse()
   const passes = [...new Set(rows.map((r) => r.scraped_at))].sort()
@@ -159,6 +175,13 @@ export default async function DataNetworkPage() {
       at,
       pins: pins.sort((a, b) => (a.name ?? a.cid).localeCompare(b.name ?? b.cid)),
     })
+  }
+
+  // Latest probe verdict per (cluster, cid); rows arrive newest-first.
+  const spotLatest = new Map<string, SpotRow>()
+  for (const s of (spotData ?? []) as SpotRow[]) {
+    const k = s.cluster + '|' + s.cid
+    if (!spotLatest.has(k)) spotLatest.set(k, s)
   }
 
   return (
@@ -336,6 +359,27 @@ export default async function DataNetworkPage() {
                               >
                                 {p.served}/{p.total} serving
                               </span>
+                              {(() => {
+                                const s = spotLatest.get(c.key + '|' + p.cid)
+                                if (!s) return null
+                                return (
+                                  <span
+                                    className={
+                                      'font-mono text-[10px] tabular-nums ' +
+                                      (s.ok ? 'text-mint' : 'text-royal')
+                                    }
+                                    title={`retrieval probe: ${s.target_name} ${
+                                      s.ok
+                                        ? 'served a real block'
+                                        : 'did not serve'
+                                    } at ${hhmm(s.checked_at)}`}
+                                  >
+                                    {s.ok
+                                      ? `✓ served ${hhmm(s.checked_at)}`
+                                      : `✗ probe failed ${hhmm(s.checked_at)}`}
+                                  </span>
+                                )
+                              })()}
                             </div>
                           ))}
                         </div>
@@ -375,7 +419,11 @@ export default async function DataNetworkPage() {
             rows come from each cluster&rsquo;s own pin tracker, sampled every
             ~5 minutes: &ldquo;serving&rdquo; counts members whose node reports
             the item pinned, and the observer&rsquo;s copies are not counted in
-            iosp-laptops.
+            iosp-laptops. A &ldquo;✓ served&rdquo; mark is stronger than the
+            count: every 30 minutes the observer picks members and makes them
+            actually deliver a block of the dataset over the wire — proof of
+            serving, not a claim. The observer never probes its own copies, so
+            marks appear only where another member answered.
           </p>
         </>
       )}
