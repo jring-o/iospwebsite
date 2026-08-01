@@ -102,7 +102,7 @@ export function WorkshopForm() {
 
   if (done) {
     return (
-      <div className="border border-rule bg-paper-card px-6 py-10 text-center space-y-4">
+      <div className="border border-rule-strong bg-white-card px-6 py-10 text-center space-y-4">
         <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-royal">
           [ Received ]
         </div>
@@ -249,7 +249,7 @@ export function WorkshopForm() {
           render={({ field }) => (
             <div className="space-y-2">
               <Label>Technical facilitation support</Label>
-              <label className="flex items-start gap-3 px-4 py-3 border border-rule bg-paper cursor-pointer hover:border-rule-strong transition-colors">
+              <label className="flex items-start gap-3 px-4 py-3 border border-rule-strong bg-white cursor-pointer hover:border-rule-strong transition-colors">
                 <Checkbox
                   checked={!!field.value}
                   onCheckedChange={(v) => field.onChange(!!v)}
@@ -379,7 +379,7 @@ function HeadshotField({ control }: { control: FieldsControl }) {
             <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
               <label
                 className={cn(
-                  'inline-flex items-center gap-2 px-4 py-2 border border-rule bg-paper cursor-pointer',
+                  'inline-flex items-center gap-2 px-4 py-2 border border-rule-strong bg-white cursor-pointer',
                   'font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft',
                   'hover:border-rule-strong transition-colors',
                   uploading && 'opacity-60 pointer-events-none',
@@ -475,7 +475,7 @@ function CoPresentersField({
       <button
         type="button"
         onClick={() => append({ name: '', email: '', affiliation: '' })}
-        className="inline-flex items-center gap-2 px-4 py-2 border border-rule bg-paper font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft hover:border-rule-strong transition-colors"
+        className="inline-flex items-center gap-2 px-4 py-2 border border-rule-strong bg-white font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft hover:border-rule-strong transition-colors"
       >
         <Plus className="h-4 w-4" /> Add co-presenter
       </button>
@@ -610,12 +610,21 @@ function SelectField({
                   key={opt.value}
                   onClick={() => field.onChange(selected ? '' : opt.value)}
                   className={cn(
-                    'text-left text-xs font-mono uppercase tracking-wider px-3 py-2 border transition-colors',
+                    'flex items-center gap-2.5 text-left text-xs font-mono uppercase tracking-wider px-3 py-2 border cursor-pointer transition-colors',
                     selected
                       ? 'border-royal bg-royal-soft text-royal'
-                      : 'border-rule bg-paper text-ink-soft hover:border-rule-strong',
+                      : 'border-rule-strong bg-white text-ink-soft hover:border-royal/50',
                   )}
                 >
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      'grid h-3.5 w-3.5 shrink-0 place-items-center rounded-full border-[1.5px] bg-white',
+                      selected ? 'border-royal' : 'border-[rgba(20,22,29,0.5)]',
+                    )}
+                  >
+                    {selected && <span className="h-1.5 w-1.5 rounded-full bg-royal" />}
+                  </span>
                   {opt.label}
                 </button>
               )
@@ -672,7 +681,7 @@ function CheckboxGroupField({
                       'flex items-start gap-3 px-3 py-2 border cursor-pointer transition-colors',
                       checked
                         ? 'border-royal bg-royal-soft'
-                        : 'border-rule bg-paper hover:border-rule-strong',
+                        : 'border-rule-strong bg-white hover:border-royal/50',
                     )}
                   >
                     <Checkbox

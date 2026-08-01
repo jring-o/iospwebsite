@@ -392,7 +392,7 @@ function ParticipantFields({ control, register, errors }: FieldsProps) {
           control={control}
           name="needsTravelSupport"
           render={({ field }) => (
-            <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-rule bg-paper cursor-pointer hover:border-rule-strong transition-colors">
+            <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-rule-strong bg-white cursor-pointer hover:border-royal/50 transition-colors">
               <Checkbox
                 checked={!!field.value}
                 onCheckedChange={(v) => field.onChange(!!v)}
@@ -450,7 +450,7 @@ function SponsorFields({ control, register, errors }: FieldsProps) {
                       'text-left px-4 py-3 rounded-md border transition-colors flex flex-col gap-1',
                       selected
                         ? 'border-royal bg-royal-soft'
-                        : 'border-rule bg-paper hover:border-rule-strong',
+                        : 'border-rule-strong bg-white hover:border-royal/50',
                     )}
                   >
                     <span
@@ -526,7 +526,7 @@ function SponsorFields({ control, register, errors }: FieldsProps) {
         control={control}
         name="publicRecognition"
         render={({ field }) => (
-          <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-rule bg-paper cursor-pointer hover:border-rule-strong transition-colors">
+          <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-rule-strong bg-white cursor-pointer hover:border-royal/50 transition-colors">
             <Checkbox
               checked={field.value !== false}
               onCheckedChange={(v) => field.onChange(!!v)}
@@ -545,7 +545,7 @@ function SponsorFields({ control, register, errors }: FieldsProps) {
         control={control}
         name="interestedInServices"
         render={({ field }) => (
-          <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-rule bg-paper cursor-pointer hover:border-royal transition-colors">
+          <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-rule-strong bg-white cursor-pointer hover:border-royal transition-colors">
             <Checkbox
               checked={!!field.value}
               onCheckedChange={(v) => field.onChange(!!v)}
@@ -597,7 +597,7 @@ function ConsentField({ control }: { control: FieldsProps['control'] }) {
       control={control}
       name="statsConsent"
       render={({ field }) => (
-        <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-rule bg-paper cursor-pointer hover:border-royal transition-colors">
+        <label className="flex items-start gap-3 px-4 py-3 rounded-md border border-rule-strong bg-white cursor-pointer hover:border-royal transition-colors">
           <Checkbox
             checked={field.value === true}
             onCheckedChange={(v) => field.onChange(!!v)}
@@ -671,12 +671,21 @@ function SelectField({
                   key={opt}
                   onClick={() => field.onChange(selected ? '' : opt)}
                   className={cn(
-                    'text-left text-xs font-mono uppercase tracking-wider px-3 py-2 rounded-md border transition-colors',
+                    'flex items-center gap-2.5 text-left text-xs font-mono uppercase tracking-wider px-3 py-2 rounded-md border cursor-pointer transition-colors',
                     selected
                       ? 'border-royal bg-royal-soft text-royal'
-                      : 'border-rule bg-paper text-ink-soft hover:border-rule-strong',
+                      : 'border-rule-strong bg-white text-ink-soft hover:border-royal/50',
                   )}
                 >
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      'grid h-3.5 w-3.5 shrink-0 place-items-center rounded-full border-[1.5px] bg-white',
+                      selected ? 'border-royal' : 'border-[rgba(20,22,29,0.5)]',
+                    )}
+                  >
+                    {selected && <span className="h-1.5 w-1.5 rounded-full bg-royal" />}
+                  </span>
                   {opt}
                 </button>
               )
@@ -729,7 +738,7 @@ function CheckboxGroupField({
                       'flex items-start gap-3 px-3 py-2 rounded-md border cursor-pointer transition-colors',
                       checked
                         ? 'border-royal bg-royal-soft'
-                        : 'border-rule bg-paper hover:border-rule-strong',
+                        : 'border-rule-strong bg-white hover:border-royal/50',
                     )}
                   >
                     <Checkbox

@@ -92,46 +92,21 @@ Projects and collaborations started, sharpened, and stress-tested at IOSP seed w
 > "This put us in a better position to build the next system for science and publishing."
 > — **Matthew Akamatsu**, University of Washington
 
-### Structure — IOSP 2026 Themes (parallel tracks)
-
-**Theme 01 — Modular Research Components**
-The tools and frameworks for composable research. Every method, dataset, model, claim, and review becomes a first-class object with its own identifier, schema, and version history.
-
-**Theme 02 — Funding Open Science & Open Source**
-How money should actually move through an open ecosystem so the substrate gets built — and stays built. Core-and-satellite, transitive funding, modular funding.
-
-**Theme 03 — Resilient Data & Sovereign Infrastructure**
-Persistent identifiers, distributed preservation, and systems that don't depend on a single host. Local-first, self-hosted, decentralized — turning "someone else's server" into infrastructure the people who depend on it actually own.
-
-**Theme 04 — VOWELS (Assessment, Evaluation, Insights, Observability, & Utility)**
-How we measure, verify, observe, and use research and its infrastructure. Trust signals, attestations, telemetry, and reuse that travel with the artifact instead of the paper around it.
-
-**Foundational — Theory →**
-The conceptual thread running beneath all four themes — the questions, frameworks, and critiques that ground production work in deeper understanding of open science as a system.
-
-### Programme — Workshops (hands-on)
+### Programme — Workshops (Store → Share → Assess → Fund)
 
 Programme in active planning · Check back for updates.
 
-**01 — Modular Research Components — 1.5 hours**
-*Turn your research into composable atoms*
-Matthew Akamatsu · University of Washington
-The June 2026 MIRA workshop refined the schema and built initial tool implementations. Now we bring it to researchers across disciplines. You'll decompose a real piece of your own work into MIRA's atomic elements — Question, Claim, Evidence, Study, Protocol — surfacing where the schema holds and where it breaks for your domain. Then we flip the frame: instead of writing papers and decomposing after the fact, how do you build research as MIRA elements from day one?
-- **Technology:** MIRA schema · modular research components · composable research objects · attribution
-- **Researchers bring:** A piece of ongoing or published work — a paper, a notebook, an experiment series. The messier and harder to attribute, the better.
-- **Leave with:** Your research decomposed into shareable, attributable MIRA modules; a practical workflow for generating MIRA elements as you work so you never need to decompose a paper after the fact
-- **Format:** 1.5 hours
+Each stage header carries an "Explore the theme →" link opening that theme's modal; the Closing header carries "Read the theory of change →" opening the Theory modal. There is no separate themes grid.
 
-**02 — Funding Open Science & Open Source — 1.5 hours**
-*Fund an entire domain through a core and its satellites*
-Jonathan Starr & Ellie DeSota · SciOS
-The core-satellite model organizes a domain as a commons. A core of experts stewards the canonical artifacts a field depends on, and faster-moving satellite projects orbit it. Funders back the core and let it route resources within its domain under accountable rules instead of running bespoke due diligence across thousands of individual projects. A SciOS-led working session at UN Open Source Week in New York kickstarted the model this June, and pilot cores are now forming in modular science and research infrastructure. You'll work on the common schema, the machine-readable record every core surfaces so a funder can back it with confidence, a researcher can tell canonical from abandoned, and an AI agent can find a domain's vetted tools. We'll stress-test the draft against the pilot cores as they stand four months in, and surface what a funder or an agent still cannot read. The full model is published at [scios.tech/thoughts](https://www.scios.tech/thoughts#the-core-satellite-model).
-- **Technology:** Core-satellite model · common schema for domain commons · pilot cores
-- **Researchers bring:** A community, domain, or piece of infrastructure you want to make legible and fundable; or take the funder's seat and bring what you'd need to see before backing a commons
-- **Leave with:** A sharper v0.x of the core schema, carried forward by the model's working groups; the pilot cores rendered in it; a template for making your own field's commons readable
-- **Format:** 1.5 hours · funders and builders especially welcome
+The four stages run in order, each working on what the one before it produced. Store builds the infrastructure, Share publishes research onto it, Assess works out how that research earns trust, and Fund keeps the whole system alive.
 
-**03 — Resilient Data & Sovereign Infrastructure — 1.5 hours**
+#### Stage 01 · Store — Resilient Data & Sovereign Infrastructure — Oct 12 · Morning
+
+Researcher-owned storage, identity, and preservation, running in two rooms in parallel. Room 1 holds the node build, then the data rescue; Room 2 holds the AT Protocol session for the full morning.
+
+**Room 1**
+
+**Oct 12 · Morning — 1.5 hours**
 *Build a sovereign data node as part of a resilient data cluster*
 Jonathan Starr · SciOS, in partnership with the IPFS Foundation
 You'll stand up your own IPFS node, on a Raspberry Pi 5 kit we provide or on your own laptop, then network it with the room into a private data-sharing consortium owned entirely by its members. Every node is an equal peer, no cloud server sits anywhere in the system, and a shared membership credential holds the cluster together. The group decides replication policy and governance at the workshop itself. In the data-rescue workshop that follows, you'll save at-risk datasets from your own discipline onto the cluster you just built, so the rescued data lands on hardware you own. Ten of the twenty seats include a take-home Pi kit, allocated at sign-up to participants who commit to plugging the node in at home, where it keeps the consortium running after the event.
@@ -139,8 +114,9 @@ You'll stand up your own IPFS node, on a Raspberry Pi 5 kit we provide or on you
 - **Researchers bring:** A laptop; knowledge of at-risk datasets in your field, ready for the data-rescue workshop that follows; optionally, a willingness to open one port on your home router so your node can serve as a consortium meeting point
 - **Leave with:** Your own running IPFS node and membership in a live, researcher-owned data-sharing consortium; a reference build guide and agent skills so your lab can stand up more nodes without us
 - **Format:** 1.5 hours · directly before the data-rescue workshop · sign-up required · 20 seats, 10 take-home Raspberry Pi kits
+- **Sign up:** [iosp.science/resilient-data-signup](https://www.iosp.science/resilient-data-signup) (collapsed card shows a "20 seats · Sign-up required" badge; expanded card has a "Sign up for this workshop →" button)
 
-**03 — Resilient Data & Sovereign Infrastructure — 1.5 hours**
+**Oct 12 · Morning — 1.5 hours**
 *Save your discipline's at-risk data on infrastructure you control*
 Cornelius Ihle · University of Göttingen
 Bring any data repositories you know of. We'll crawl them for open-access content. Separately, bring any specific at-risk datasets you want preserved. We'll content-address every payload and replicate it across D-LOCKSS, a modern successor to LOCKSS built on IPFS. D-LOCKSS adds signed research objects, per-shard CRDT replication, and on-demand pinning contributed upstream to IPFS Kubo. Custody stays with the institutions. You leave with that data verifiably preserved on a decentralized network, plus a path to run a node on a single server, VM, or Raspberry Pi at your institution.
@@ -149,7 +125,9 @@ Bring any data repositories you know of. We'll crawl them for open-access conten
 - **Leave with:** Your data verifiably preserved on a decentralized network, plus a path to run resilient, sovereign storage at your institution on hardware as small as a Raspberry Pi
 - **Format:** 1.5 hours
 
-**03 — Resilient Data & Sovereign Infrastructure — 3 hours**
+**Room 2**
+
+**Oct 12 · Morning — 3 hours**
 *Own your research network with AT Protocol*
 Ronen Tamari · Cosmik, with Torsten Goerke, Ariel Lighty, Robin Berjon, Mathew Lowry, and Guido Jansen
 AT Protocol, the open protocol behind the Bluesky social network, stores your data in a repository you own; apps read and write it there instead of locking it away in their own silos. A growing ecosystem of research apps already builds on the protocol. You'll claim a researcher ID with Aster, then pick a station and start building. Stand up a personal research page with Sifa, turn your Zotero library into a living literature review with Semble, stream live data with Matadisco or Nebra, connect AI workflows to protocol data, or build Bluesky feeds and starter packs around your research topic. Or bring your own use case instead and work through it with the room's experts. We'll close with quick demos of what everyone built.
@@ -158,16 +136,56 @@ AT Protocol, the open protocol behind the Bluesky social network, stores your da
 - **Leave with:** Your own Aster researcher ID and AT Protocol account; one or more working artifacts built in the room and stored in your own data repository, whether a research page, a living literature review, a curated feed, or a live data stream; a working mental model of what owning your data means in practice
 - **Format:** 3 hours
 
-**∞ — Continuous · All themes — Continuous**
-*PICoding*
-Jonathan Starr · SciOS
-A live build line for the gaps the event surfaces. When the four themes turn up open science tooling that's missing, broken, or stuck on a wishlist, we'll spec it with the group and build a working prototype on the spot, using a multi-agent software-development harness. Drop in across the four days; leave with real code addressing real gaps.
-- **Technology:** Multi-agent software-development harness
-- **Researchers bring:** Tooling pain points and missing pieces from your own work
-- **Leave with:** Working prototype code addressing a real gap
-- **Format:** Continuous · drop in across the four days
+#### Stage 02 · Share — Modular Research Components — Oct 12 · Afternoon
 
-**00 — Foundational · All themes — 3 hours**
+Research moves onto the morning's infrastructure as modular, linked, attributable objects.
+
+**Room 1**
+
+**Oct 12 · Afternoon — 1.5 hours**
+*Turn your research into composable atoms*
+Matthew Akamatsu · University of Washington
+The June 2026 MIRA workshop refined the schema and built initial tool implementations. Now we bring it to researchers across disciplines. You'll decompose a real piece of your own work into MIRA's atomic elements — Question, Claim, Evidence, Study, Protocol — surfacing where the schema holds and where it breaks for your domain. Then we flip the frame: instead of writing papers and decomposing after the fact, how do you build research as MIRA elements from day one?
+- **Technology:** MIRA schema · modular research components · composable research objects · attribution
+- **Researchers bring:** A piece of ongoing or published work — a paper, a notebook, an experiment series. The messier and harder to attribute, the better.
+- **Leave with:** Your research decomposed into shareable, attributable MIRA modules; a practical workflow for generating MIRA elements as you work so you never need to decompose a paper after the fact
+- **Format:** 1.5 hours
+
+**Room 2** — Coming soon · session in development
+
+#### Stage 03 · Assess — VOWELS — Oct 13 · Morning
+
+How research objects and the infrastructure carrying them earn trust once shared.
+
+**Room 1** — Coming soon · session in development
+**Room 2** — Coming soon · session in development
+
+#### Stage 04 · Fund — Funding Open Science & Open Source — Oct 13 · Afternoon
+
+How money sustains the infrastructure and advances the research it carries.
+
+**Room 1**
+
+**Oct 13 · Afternoon — 1.5 hours**
+*Fund an entire domain through a core and its satellites*
+Jonathan Starr & Ellie DeSota · SciOS
+The core-satellite model organizes a domain as a commons. A core of experts stewards the canonical artifacts a field depends on, and faster-moving satellite projects orbit it. Funders back the core and let it route resources within its domain under accountable rules instead of running bespoke due diligence across thousands of individual projects. A SciOS-led working session at UN Open Source Week in New York kickstarted the model this June, and pilot cores are now forming in modular science and research infrastructure. You'll work on the common schema, the machine-readable record every core surfaces so a funder can back it with confidence, a researcher can tell canonical from abandoned, and an AI agent can find a domain's vetted tools. We'll stress-test the draft against the pilot cores as they stand four months in, and surface what a funder or an agent still cannot read. The full model is published at [scios.tech/thoughts](https://www.scios.tech/thoughts#the-core-satellite-model).
+- **Technology:** Core-satellite model · common schema for domain commons · pilot cores
+- **Researchers bring:** A community, domain, or piece of infrastructure you want to make legible and fundable; or take the funder's seat and bring what you'd need to see before backing a commons
+- **Leave with:** A sharper v0.x of the core schema, carried forward by the model's working groups; the pilot cores rendered in it; a template for making your own field's commons readable
+- **Format:** 1.5 hours · funders and builders especially welcome
+
+**Room 2** — Coming soon · session in development
+
+#### Community day — Leiden, Delft, and the Open Science Festival — Oct 14 · All day
+
+A mobile day outside the workshop rooms. Walking sessions, informal working groups, and a field trip to the National Open Science Festival in Delft.
+
+#### Closing — Theory of change — Oct 15 · Half day
+
+The whole room updates the community's shared theory of change against what the four stages produced.
+
+**Oct 15 · Half day — 3 hours**
 *Theory crafting*
 Ellie DeSota and the IOSP community
 Each year we revisit the theory of change behind IOSP. We'll look at what's actually been built since last year, where this year's workshops fit into the picture, what gaps still exist, and priorities for the coming year. Leave with a shared read on the substrate's current shape, and a call for action in the year ahead.
@@ -175,6 +193,19 @@ Each year we revisit the theory of change behind IOSP. We'll look at what's actu
 - **Researchers bring:** Observations from the year's themes and your own domain
 - **Leave with:** A shared list of priorities and named gaps for the year ahead
 - **Format:** 3 hours · all participants
+
+#### Continuous — Live prototyping — All four days
+
+A build line running through the whole event, prototyping whatever the workshops surface as missing.
+
+**All four days · Live — Continuous**
+*PICoding*
+Jonathan Starr · SciOS
+A live build line for the gaps the event surfaces. When the four themes turn up open science tooling that's missing, broken, or stuck on a wishlist, we'll spec it with the group and build a working prototype on the spot, using a multi-agent software-development harness. Drop in across the four days; leave with real code addressing real gaps.
+- **Technology:** Multi-agent software-development harness
+- **Researchers bring:** Tooling pain points and missing pieces from your own work
+- **Leave with:** Working prototype code addressing a real gap
+- **Format:** Continuous · drop in across the four days
 
 ### Action — Get involved (open calls)
 

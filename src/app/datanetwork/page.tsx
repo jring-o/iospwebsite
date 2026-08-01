@@ -44,12 +44,12 @@ const CLUSTERS: { key: Row['cluster']; title: string; desc: string }[] = [
   {
     key: 'iosp-nodes',
     title: 'iosp-nodes',
-    desc: 'Raspberry Pi nodes that went home with researchers.',
+    desc: 'Raspberry Pi nodes. Today the founding dry-run Pi; after the workshop, the Pis researchers take home.',
   },
   {
     key: 'iosp-laptops',
     title: 'iosp-laptops',
-    desc: 'Researchers’ own laptops.',
+    desc: 'Researchers’ own laptops. Today a single facilitator laptop; participants’ laptops join at the workshop.',
   },
 ]
 
@@ -195,9 +195,22 @@ export default async function DataNetworkPage() {
         </h1>
         <p className="mt-4 max-w-xl text-ink-soft">
           At-risk research datasets, archived on hardware researchers own and
-          run themselves — two small IPFS clusters started at the IOSP 2026
-          workshop. This page is the network&rsquo;s live health readout,
-          reported by the clusters&rsquo; own gossip.
+          run themselves. What this page shows today is the pre-workshop
+          network, a small demonstration we stood up ahead of IOSP 2026; at
+          the workshop in Leiden this October, up to 20 researchers stand up
+          their own nodes and grow it into the real thing. Everything below is
+          the network&rsquo;s live health readout, reported by the
+          clusters&rsquo; own gossip.
+        </p>
+        <p className="mt-3 max-w-xl text-sm text-ink-soft">
+          Want a node of yours in this readout?{' '}
+          <a
+            href="/resilient-data-signup"
+            className="text-royal underline decoration-royal/30 underline-offset-4 hover:decoration-royal"
+          >
+            Sign up for the workshop
+          </a>
+          .
         </p>
       </header>
 

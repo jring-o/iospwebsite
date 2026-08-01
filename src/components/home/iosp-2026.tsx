@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { IospSignupModal, type SignupKind } from "@/components/iosp-2026-signup-modal";
 import { ThemeModal, THEMES, type ThemeKey } from "@/components/theme-modal";
 import { TheoryModal } from "@/components/theory-modal";
@@ -62,39 +62,28 @@ const TAKEAWAYS = [
   },
 ];
 
-// Short card-body summaries for the four theme grid cells. Click opens a
-// <ThemeModal> with the longer copy from THEMES (in @/components/theme-modal).
-const THEME_CARDS: Array<{ key: ThemeKey; title: string; body: string }> = [
-  {
-    key: "01",
-    title: "Modular Research Components",
-    body: "The tools and frameworks for composable research. Every method, dataset, model, claim, and review becomes a first-class object with its own identifier, schema, and version history.",
-  },
-  {
-    key: "02",
-    title: "Funding Open Science & Open Source",
-    body: "How money should actually move through an open ecosystem so the substrate gets built — and stays built. Core-and-satellite, transitive funding, modular funding.",
-  },
-  {
-    key: "03",
-    title: "Resilient Data & Sovereign Infrastructure",
-    body: "Persistent identifiers, distributed preservation, and systems that don't depend on a single host. Local-first, self-hosted, decentralized — turning “someone else's server” into infrastructure the people who depend on it actually own.",
-  },
-  {
-    key: "04",
-    title: "VOWELS",
-    body: "Assessment, Evaluation, Insights, Observability, & Utility — how we measure, verify, observe, and use research and its infrastructure. Trust signals, attestations, telemetry, and reuse that travel with the artifact instead of the paper around it.",
-  },
-];
-
 // Reference THEMES so the import isn't unused even when its content is only
-// consumed by ThemeModal.
+// consumed by ThemeModal. The themes' deeper copy opens from the programme's
+// stage headers ("Explore the theme →"); there is no separate themes grid.
 void THEMES;
 
-const WORKSHOPS = [
+type Ws = {
+  num: string;
+  slot: string;
+  title: string;
+  by: string;
+  body: ReactNode;
+  facets: Array<{ dt: string; dd: string }>;
+  format: string;
+  // Royal pill under the by-line, for scarcity or access notes.
+  badge?: string;
+  cta?: { href: string; label: string };
+};
+
+const WORKSHOPS: Ws[] = [
   {
     num: "01",
-    theme: "Modular Research Components",
+    slot: "Oct 12 · Afternoon",
     title: "Turn your research into composable atoms",
     by: "Matthew Akamatsu · University of Washington",
     body: "The June 2026 MIRA workshop refined the schema and built initial tool implementations. Now we bring it to researchers across disciplines. You'll decompose a real piece of your own work into MIRA's atomic elements — Question, Claim, Evidence, Study, Protocol — surfacing where the schema holds and where it breaks for your domain. Then we flip the frame: instead of writing papers and decomposing after the fact, how do you build research as MIRA elements from day one?",
@@ -108,7 +97,7 @@ const WORKSHOPS = [
   },
   {
     num: "02",
-    theme: "Funding Open Science & Open Source",
+    slot: "Oct 13 · Afternoon",
     title: "Fund an entire domain through a core and its satellites",
     by: "Jonathan Starr & Ellie DeSota · SciOS",
     body: (
@@ -148,7 +137,7 @@ const WORKSHOPS = [
   },
   {
     num: "03a",
-    theme: "Resilient Data & Sovereign Infrastructure",
+    slot: "Oct 12 · Morning",
     title: "Build a sovereign data node as part of a resilient data cluster",
     by: "Jonathan Starr · SciOS, in partnership with the IPFS Foundation",
     body: "You'll stand up your own IPFS node, on a Raspberry Pi 5 kit we provide or on your own laptop, then network it with the room into a private data-sharing consortium owned entirely by its members. Every node is an equal peer, no cloud server sits anywhere in the system, and a shared membership credential holds the cluster together. The group decides replication policy and governance at the workshop itself. In the data-rescue workshop that follows, you'll save at-risk datasets from your own discipline onto the cluster you just built, so the rescued data lands on hardware you own. Ten of the twenty seats include a take-home Pi kit, allocated at sign-up to participants who commit to plugging the node in at home, where it keeps the consortium running after the event.",
@@ -159,10 +148,12 @@ const WORKSHOPS = [
       { dt: "Format", dd: "1.5 hours · directly before the data-rescue workshop · sign-up required · 20 seats, 10 take-home Raspberry Pi kits" },
     ],
     format: "1.5 hours",
+    badge: "20 seats · Sign-up required",
+    cta: { href: "/resilient-data-signup", label: "Sign up for this workshop" },
   },
   {
     num: "03",
-    theme: "Resilient Data & Sovereign Infrastructure",
+    slot: "Oct 12 · Morning",
     title: "Save your discipline's at-risk data on infrastructure you control",
     by: "Cornelius Ihle · University of Göttingen",
     body: "Bring any data repositories you know of. We'll crawl them for open-access content. Separately, bring any specific at-risk datasets you want preserved. We'll content-address every payload and replicate it across D-LOCKSS, a modern successor to LOCKSS built on IPFS. D-LOCKSS adds signed research objects, per-shard CRDT replication, and on-demand pinning contributed upstream to IPFS Kubo. Custody stays with the institutions. You leave with that data verifiably preserved on a decentralized network, plus a path to run a node on a single server, VM, or Raspberry Pi at your institution.",
@@ -176,7 +167,7 @@ const WORKSHOPS = [
   },
   {
     num: "03b",
-    theme: "Resilient Data & Sovereign Infrastructure",
+    slot: "Oct 12 · Morning",
     title: "Own your research network with AT Protocol",
     by: "Ronen Tamari · Cosmik, with Torsten Goerke, Ariel Lighty, Robin Berjon, Mathew Lowry, and Guido Jansen",
     body: "AT Protocol, the open protocol behind the Bluesky social network, stores your data in a repository you own; apps read and write it there instead of locking it away in their own silos. A growing ecosystem of research apps already builds on the protocol. You'll claim a researcher ID with Aster, then pick a station and start building. Stand up a personal research page with Sifa, turn your Zotero library into a living literature review with Semble, stream live data with Matadisco or Nebra, connect AI workflows to protocol data, or build Bluesky feeds and starter packs around your research topic. Or bring your own use case instead and work through it with the room's experts. We'll close with quick demos of what everyone built.",
@@ -190,7 +181,7 @@ const WORKSHOPS = [
   },
   {
     num: "∞",
-    theme: "Continuous · All themes",
+    slot: "All four days · Live",
     title: "PICoding",
     by: "Jonathan Starr · SciOS",
     body: "A live build line for the gaps the event surfaces. When the four themes turn up open science tooling that's missing, broken, or stuck on a wishlist, we'll spec it with the group and build a working prototype on the spot, using a multi-agent software-development harness. Drop in across the four days; leave with real code addressing real gaps.",
@@ -204,7 +195,7 @@ const WORKSHOPS = [
   },
   {
     num: "00",
-    theme: "Foundational · All themes",
+    slot: "Oct 15 · Half day",
     title: "Theory crafting",
     by: "Ellie DeSota and the IOSP community",
     body: "Each year we revisit the theory of change behind IOSP. We'll look at what's actually been built since last year, where this year's workshops fit into the picture, what gaps still exist, and priorities for the coming year. Leave with a shared read on the substrate's current shape, and a call for action in the year ahead.",
@@ -215,6 +206,111 @@ const WORKSHOPS = [
       { dt: "Format", dd: "3 hours · all participants" },
     ],
     format: "3 hours",
+  },
+];
+
+// The Programme renders the workshops as the Store → Share → Assess → Fund
+// pipeline, followed by the community day, the closing synthesis, and the
+// continuous build line — every block in the same header grammar. Cards are
+// looked up from WORKSHOPS by num so the entries above stay the single
+// source of truth.
+const WS = Object.fromEntries(WORKSHOPS.map((w) => [w.num, w]));
+
+const GROUPS: Array<{
+  key: string;
+  kick: string;
+  title: string;
+  when: string;
+  gloss: string;
+  // Stage headers link to their theme's modal; the closing header links to
+  // the theory-of-change modal.
+  themeKey?: ThemeKey;
+  theory?: boolean;
+  // Stage groups run two parallel rooms: columns on desktop, stacked on
+  // mobile. Reading order within a room is running order; a room marked
+  // `soon` renders a Coming-soon slot. The closing and continuous groups
+  // use full-width `workshops` instead; a group with neither is header-only.
+  rooms?: Array<{ label: string; workshops?: Ws[]; soon?: boolean }>;
+  workshops?: Ws[];
+}> = [
+  {
+    key: "store",
+    kick: "Stage 01 · Store",
+    title: "Resilient Data & Sovereign Infrastructure",
+    themeKey: "03",
+    when: "Oct 12 · Morning",
+    gloss:
+      "Researcher-owned storage, identity, and preservation, running in two rooms in parallel.",
+    rooms: [
+      { label: "Room 1", workshops: [WS["03a"], WS["03"]] },
+      { label: "Room 2", workshops: [WS["03b"]] },
+    ],
+  },
+  {
+    key: "share",
+    kick: "Stage 02 · Share",
+    title: "Modular Research Components",
+    themeKey: "01",
+    when: "Oct 12 · Afternoon",
+    gloss:
+      "Research moves onto the morning's infrastructure as modular, linked, attributable objects.",
+    rooms: [
+      { label: "Room 1", workshops: [WS["01"]] },
+      { label: "Room 2", soon: true },
+    ],
+  },
+  {
+    key: "assess",
+    kick: "Stage 03 · Assess",
+    title: "VOWELS",
+    themeKey: "04",
+    when: "Oct 13 · Morning",
+    gloss:
+      "How research objects and the infrastructure carrying them earn trust once shared.",
+    rooms: [
+      { label: "Room 1", soon: true },
+      { label: "Room 2", soon: true },
+    ],
+  },
+  {
+    key: "fund",
+    kick: "Stage 04 · Fund",
+    title: "Funding Open Science & Open Source",
+    themeKey: "02",
+    when: "Oct 13 · Afternoon",
+    gloss:
+      "How money sustains the infrastructure and advances the research it carries.",
+    rooms: [
+      { label: "Room 1", workshops: [WS["02"]] },
+      { label: "Room 2", soon: true },
+    ],
+  },
+  {
+    key: "community",
+    kick: "Community day",
+    title: "Leiden, Delft, and the Open Science Festival",
+    when: "Oct 14 · All day",
+    gloss:
+      "A mobile day outside the workshop rooms. Walking sessions, informal working groups, and a field trip to the National Open Science Festival in Delft.",
+  },
+  {
+    key: "closing",
+    kick: "Closing",
+    title: "Theory of change",
+    theory: true,
+    when: "Oct 15 · Half day",
+    gloss:
+      "The whole room updates the community's shared theory of change against what the four stages produced.",
+    workshops: [WS["00"]],
+  },
+  {
+    key: "continuous",
+    kick: "Continuous",
+    title: "Live prototyping",
+    when: "All four days",
+    gloss:
+      "A build line running through the whole event, prototyping whatever the workshops surface as missing.",
+    workshops: [WS["∞"]],
   },
 ];
 
@@ -253,6 +349,92 @@ export function Iosp2026() {
       next.has(num) ? next.delete(num) : next.add(num);
       return next;
     });
+
+  const renderWorkshopCard = (w: Ws, preview = false, fill = false) => {
+    const isOpen = openWs.has(w.num);
+    // A card alone in its room spans the whole block: it stretches to the
+    // column's height, and its collapsed content centers vertically. Fill is
+    // never applied to stacked cards, so expanding one card can't squeeze or
+    // clip its neighbor.
+    return (
+      <div
+        key={w.num}
+        className={`cell overflow-hidden${fill ? " flex flex-1 flex-col" : ""}${fill && !isOpen ? " justify-center" : ""}`}
+      >
+        <button
+          type="button"
+          className="grid w-full cursor-pointer grid-cols-[1fr_auto] items-start gap-5 rounded-[inherit] p-6 text-left transition-colors duration-500 ease-spring hover:bg-black/[0.02] md:p-7"
+          onClick={() => toggleWs(w.num)}
+          aria-expanded={isOpen}
+        >
+          <span className="flex min-w-0 flex-col gap-1.5">
+            <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-royal/80">
+              {w.slot}
+            </span>
+            <span className="font-display text-[18px] font-semibold leading-snug tracking-tight text-ink">
+              {w.title}
+            </span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-mute">
+              {w.by}
+            </span>
+            {w.badge && (
+              <span className="mt-1.5 self-start bg-royal/[0.06] px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-royal ring-1 ring-inset ring-royal/25">
+                {w.badge}
+              </span>
+            )}
+          </span>
+          <span className="mt-0.5 flex shrink-0 items-center gap-3">
+            <span className="bg-black/[0.04] px-3 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-ink-soft ring-1 ring-inset ring-black/[0.08]">
+              {w.format}
+            </span>
+            <span
+              className={`grid h-8 w-8 place-items-center bg-black/[0.04] font-mono text-[16px] leading-none text-ink-soft ring-1 ring-inset ring-black/[0.08] transition-transform duration-500 ease-spring${isOpen ? " rotate-45 text-royal" : ""}`}
+              aria-hidden="true"
+            >
+              +
+            </span>
+          </span>
+        </button>
+        {preview && !isOpen && (
+          /* Fixed-height teaser: the first few lines of the description,
+             fading out. Same treatment on every room card; replaced by the
+             full body when the card is expanded. */
+          <div aria-hidden="true" className="px-6 pb-6 pt-1 md:px-7">
+            <p className="m-0 line-clamp-4 text-[14px] leading-relaxed text-ink-soft [mask-image:linear-gradient(to_bottom,black_55%,transparent)]">
+              {w.body}
+            </p>
+          </div>
+        )}
+        {isOpen && (
+          <div className="ws-body-in px-6 pb-7 pt-1 md:px-7">
+            <p className="m-0 text-[14px] leading-relaxed text-ink-soft">
+              {w.body}
+            </p>
+            <dl className="m-0 mt-6 grid gap-5 border-t border-rule pt-5 md:grid-cols-2 md:gap-x-10">
+              {w.facets.map((f) => (
+                <div key={f.dt}>
+                  <dt className="mb-1.5 font-mono text-[9px] uppercase tracking-[0.24em] text-royal/80">
+                    {f.dt}
+                  </dt>
+                  <dd className="m-0 text-[13px] leading-relaxed text-ink">
+                    {f.dd}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            {w.cta && (
+              <a
+                href={w.cta.href}
+                className="btn-pill mt-6 inline-block px-5 py-2.5 font-mono text-[10px] uppercase tracking-[0.2em]"
+              >
+                {w.cta.label} →
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  };
 
   return (
     <section className="sect !pt-4 md:!pt-8" id="iosp2026" data-screen-label="IOSP 2026">
@@ -424,69 +606,14 @@ export function Iosp2026() {
           </div>
         </div>
 
-        {/* ── themes ───────────────────────────────────────────────────── */}
-        <div className="mt-24">
-          <Reveal>
-            <BlockHead
-              kick="Structure"
-              title="IOSP 2026 Themes"
-              right="Parallel tracks"
-            />
-          </Reveal>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            {THEME_CARDS.map((t, i) => (
-              <Reveal key={t.key} delay={i * 70} className="flex">
-                <button
-                  type="button"
-                  className="cell cell-hover group w-full cursor-pointer p-8 text-left"
-                  onClick={() => setActiveTheme(t.key)}
-                  aria-label={`Open theme: ${t.title}`}
-                >
-                  <h4 className="m-0 mb-3 flex items-start justify-between gap-5 font-display text-[21px] font-semibold leading-snug tracking-tight text-ink">
-                    <span>{t.title}</span>
-                    <span
-                      className="mt-1 text-[17px] text-ink-mute transition-all duration-500 ease-spring group-hover:translate-x-1 group-hover:text-royal"
-                      aria-hidden="true"
-                    >
-                      →
-                    </span>
-                  </h4>
-                  <p className="m-0 text-[14px] leading-relaxed text-ink-soft">
-                    {t.body}
-                  </p>
-                </button>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={120} className="mt-4">
-            <button
-              type="button"
-              className="cell cell-hover group grid w-full cursor-pointer gap-6 p-8 text-left md:grid-cols-[220px_1fr] md:gap-10"
-              onClick={() => setTheoryOpen(true)}
-              aria-label="Open: Theory of change"
-            >
-              <div>
-                <div className="mb-2 font-mono text-[9px] uppercase tracking-[0.24em] text-royal/80">
-                  Foundational
-                </div>
-                <h5 className="m-0 font-display text-[21px] font-semibold tracking-tight text-ink transition-colors duration-500 ease-spring group-hover:text-royal">
-                  Theory →
-                </h5>
-              </div>
-              <p className="m-0 border-t border-rule pt-5 text-[14px] leading-relaxed text-ink-soft md:border-l md:border-t-0 md:pl-8 md:pt-0">
-                The conceptual thread running beneath all four themes — the
-                questions, frameworks, and critiques that ground production work
-                in deeper understanding of open science as a system.
-              </p>
-            </button>
-          </Reveal>
-        </div>
-
         {/* ── workshops ────────────────────────────────────────────────── */}
         <div className="mt-24">
           <Reveal>
-            <BlockHead kick="Programme" title="Workshops" right="Hands-on" />
+            <BlockHead
+              kick="Programme"
+              title="Workshops"
+              right="Store → Share → Assess → Fund"
+            />
           </Reveal>
 
           <Reveal>
@@ -495,65 +622,97 @@ export function Iosp2026() {
             </div>
           </Reveal>
 
-          <div className="space-y-3">
-            {WORKSHOPS.map((w, i) => {
-              const isOpen = openWs.has(w.num);
-              return (
-                <Reveal key={w.num} delay={i * 60}>
-                  <div className="cell overflow-hidden">
-                    <button
-                      type="button"
-                      className="grid w-full cursor-pointer grid-cols-[1fr_auto] items-start gap-5 rounded-[inherit] p-6 text-left transition-colors duration-500 ease-spring hover:bg-black/[0.02] md:p-7"
-                      onClick={() => toggleWs(w.num)}
-                      aria-expanded={isOpen}
-                    >
-                      <span className="flex min-w-0 flex-col gap-1.5">
-                        <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-royal/80">
-                          {w.theme}
-                        </span>
-                        <span className="font-display text-[18px] font-semibold leading-snug tracking-tight text-ink">
-                          {w.title}
-                        </span>
-                        <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-mute">
-                          {w.by}
-                        </span>
-                      </span>
-                      <span className="mt-0.5 flex shrink-0 items-center gap-3">
-                        <span className="bg-black/[0.04] px-3 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-ink-soft ring-1 ring-inset ring-black/[0.08]">
-                          {w.format}
-                        </span>
+          <Reveal>
+            <p className="mx-auto mb-12 max-w-[72ch] text-center text-[15px] leading-relaxed text-ink-soft">
+              The four stages run in order, each working on what the one before
+              it produced. Store builds the infrastructure, Share publishes
+              research onto it, Assess works out how that research earns trust,
+              and Fund keeps the whole system alive.
+            </p>
+          </Reveal>
+
+          {GROUPS.map((s, si) => (
+            <Reveal key={s.key} delay={si * 40}>
+              <div className={si === 0 ? "" : "mt-14"}>
+                <div className="mb-4 flex flex-wrap items-end justify-between gap-x-6 gap-y-2 border-b border-rule pb-4">
+                  <div className="min-w-0">
+                    <div className="mb-2 font-mono text-[9px] uppercase tracking-[0.24em] text-royal/80">
+                      {s.kick}
+                    </div>
+                    <h4 className="m-0 font-display text-[22px] font-semibold leading-snug tracking-tight text-ink">
+                      {s.title}
+                    </h4>
+                    <p className="m-0 mt-1.5 max-w-[62ch] text-[13.5px] leading-relaxed text-ink-soft">
+                      {s.gloss}
+                    </p>
+                    {(s.themeKey || s.theory) && (
+                      <button
+                        type="button"
+                        onClick={() =>
+                          s.theory
+                            ? setTheoryOpen(true)
+                            : setActiveTheme(s.themeKey!)
+                        }
+                        className="group mt-2.5 inline-flex cursor-pointer items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-royal"
+                      >
+                        {s.theory
+                          ? "Read the theory of change"
+                          : "Explore the theme"}
                         <span
-                          className={`grid h-8 w-8 place-items-center bg-black/[0.04] font-mono text-[16px] leading-none text-ink-soft ring-1 ring-inset ring-black/[0.08] transition-transform duration-500 ease-spring${isOpen ? " rotate-45 text-royal" : ""}`}
                           aria-hidden="true"
+                          className="transition-transform duration-500 ease-spring group-hover:translate-x-1"
                         >
-                          +
+                          →
                         </span>
-                      </span>
-                    </button>
-                    {isOpen && (
-                      <div className="ws-body-in px-6 pb-7 pt-1 md:px-7">
-                        <p className="m-0 text-[14px] leading-relaxed text-ink-soft">
-                          {w.body}
-                        </p>
-                        <dl className="m-0 mt-6 grid gap-5 border-t border-rule pt-5 md:grid-cols-2 md:gap-x-10">
-                          {w.facets.map((f) => (
-                            <div key={f.dt}>
-                              <dt className="mb-1.5 font-mono text-[9px] uppercase tracking-[0.24em] text-royal/80">
-                                {f.dt}
-                              </dt>
-                              <dd className="m-0 text-[13px] leading-relaxed text-ink">
-                                {f.dd}
-                              </dd>
-                            </div>
-                          ))}
-                        </dl>
-                      </div>
+                      </button>
                     )}
                   </div>
-                </Reveal>
-              );
-            })}
-          </div>
+                  <div className="pb-1 font-mono text-[10px] uppercase tracking-[0.24em] text-ink-mute">
+                    {s.when}
+                  </div>
+                </div>
+                {s.rooms && (
+                  <div className="grid gap-4 md:grid-cols-2">
+                    {s.rooms.map((r) => {
+                      const ws = r.workshops ?? [];
+                      return (
+                        <div key={r.label} className="flex flex-col">
+                          <div className="mb-2 font-mono text-[9px] uppercase tracking-[0.24em] text-ink-mute">
+                            {r.label}
+                          </div>
+                          <div className="flex flex-1 flex-col gap-3">
+                            {r.soon ? (
+                              <div className="flex min-h-[140px] flex-1 flex-col items-center justify-center gap-1.5 border border-dashed border-rule-strong p-8 text-center">
+                                <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-ink-mute">
+                                  Coming soon
+                                </span>
+                                <span className="text-[13px] text-ink-soft">
+                                  Session in development
+                                </span>
+                              </div>
+                            ) : (
+                              ws.map((w) =>
+                                renderWorkshopCard(
+                                  w,
+                                  true,
+                                  ws.length === 1 && w.format === "3 hours",
+                                ),
+                              )
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+                {s.workshops && (
+                  <div className="space-y-3">
+                    {s.workshops.map((w) => renderWorkshopCard(w))}
+                  </div>
+                )}
+              </div>
+            </Reveal>
+          ))}
         </div>
 
         {/* ── CTAs ─────────────────────────────────────────────────────── */}
