@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ResilientDataSignupForm } from '@/components/resilient-data-signup-form'
+import rpiWithCheese from './rpi-with-cheese.jpg'
 
 // Flip to false to close sign-ups by hand (planned close: after September 10).
 // The page then shows a closed notice in place of the form.
@@ -70,6 +72,18 @@ export default function ResilientDataSignupPage() {
               network.
             </li>
           </ul>
+          <figure className="my-8 mx-auto max-w-sm">
+            <Image
+              src={rpiWithCheese}
+              alt="A Raspberry Pi 5 in its white case beside a block of Cabot Vermont sharp cheddar of roughly the same size"
+              placeholder="blur"
+              sizes="(max-width: 640px) 100vw, 384px"
+              className="w-full border border-rule"
+            />
+            <figcaption className="mt-2 text-center text-xs text-ink-mute">
+              For scale: the node, beside the block of Vermont cheddar.
+            </figcaption>
+          </figure>
           <p>
             Both networks are practically and nearly technically identical, and
             both hold identical copies of the data rescued later in the track.
