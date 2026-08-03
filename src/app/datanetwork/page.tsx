@@ -64,8 +64,16 @@ const hhmm = (iso: string) =>
 const gb = (v: string | null) =>
   v ? (Number(v) / 1e9).toFixed(1) + ' GB' : null
 
+// TEMPORARY freeze (added 2026-08-03): the pre-workshop network is offline, so
+// the readout is pinned to the last good evening instead of the rolling 24 h
+// window. Set FROZEN_AT to null to return to live.
+const FROZEN_AT: string | null = '2026-08-01T23:00:00Z' // Aug 1, 7:00 PM ET
+const FROZEN_LABEL = 'Aug 1, 7:00 PM ET (23:00 UTC)'
+
 export default async function DataNetworkPage() {
-  const since = new Date(Date.now() - 24 * 3600 * 1000).toISOString()
+  const end = FROZEN_AT ? Date.parse(FROZEN_AT) : Date.now()
+  const until = new Date(end).toISOString()
+  const since = new Date(end - 24 * 3600 * 1000).toISOString()
   const supabase = getSupabaseServerClient()
   // Newest first: Supabase caps responses at 1,000 rows regardless of .limit(),
   // and ascending order made the page render the OLDEST slice of the window
@@ -75,6 +83,7 @@ export default async function DataNetworkPage() {
     .from('datanetwork_heartbeats')
     .select('scraped_at,cluster,peer,peer_name,metric,value')
     .gte('scraped_at', since)
+    .lte('scraped_at', until)
     .order('scraped_at', { ascending: false })
     .limit(20000)
 
@@ -84,6 +93,7 @@ export default async function DataNetworkPage() {
     .from('datanetwork_pins')
     .select('scraped_at,cluster,cid,name,peer,peer_name,status')
     .gte('scraped_at', since)
+    .lte('scraped_at', until)
     .order('scraped_at', { ascending: false })
     .limit(5000)
 
@@ -92,6 +102,7 @@ export default async function DataNetworkPage() {
     .from('datanetwork_spotchecks')
     .select('checked_at,cluster,cid,ok,target_name')
     .gte('checked_at', since)
+    .lte('checked_at', until)
     .order('checked_at', { ascending: false })
     .limit(2000)
 
@@ -213,6 +224,21 @@ export default async function DataNetworkPage() {
           .
         </p>
       </header>
+
+      {FROZEN_AT && (
+        <div
+          className="mt-10 border border-rule bg-paper-card p-4"
+          style={{ boxShadow: 'var(--shadow-card)' }}
+        >
+          <p className="font-mono text-xs uppercase tracking-[0.14em] text-royal">
+            Network shut off for testing
+          </p>
+          <p className="mt-1 text-sm text-ink-soft">
+            The readout below is frozen at {FROZEN_LABEL}, the last snapshot
+            before shutdown. It resumes live when the network comes back.
+          </p>
+        </div>
+      )}
 
       {passes.length === 0 ? (
         <div
