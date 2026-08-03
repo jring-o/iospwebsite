@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { IospSignupModal, type SignupKind } from "@/components/iosp-2026-signup-modal";
 import { ThemeModal, THEMES, type ThemeKey } from "@/components/theme-modal";
 import { TheoryModal } from "@/components/theory-modal";
@@ -340,6 +340,30 @@ function BlockHead({
 
 export function Iosp2026() {
   const [signup, setSignup] = useState<SignupKind>(null);
+
+  // Deep links: ?signup=participant | showcase | sponsor | committee opens the
+  // matching modal on load. Closing it strips the param so a refresh or a
+  // copied URL doesn't reopen the form.
+  useEffect(() => {
+    const param = new URLSearchParams(window.location.search).get("signup");
+    if (
+      param === "participant" ||
+      param === "showcase" ||
+      param === "sponsor" ||
+      param === "committee"
+    ) {
+      setSignup(param);
+    }
+  }, []);
+
+  const closeSignup = () => {
+    setSignup(null);
+    const url = new URL(window.location.href);
+    if (url.searchParams.has("signup")) {
+      url.searchParams.delete("signup");
+      window.history.replaceState(null, "", url.toString());
+    }
+  };
   const [activeTheme, setActiveTheme] = useState<ThemeKey | null>(null);
   const [theoryOpen, setTheoryOpen] = useState(false);
   const [openWs, setOpenWs] = useState<Set<string>>(new Set());
@@ -826,7 +850,7 @@ export function Iosp2026() {
         </div>
       </div>
 
-      <IospSignupModal kind={signup} onClose={() => setSignup(null)} />
+      <IospSignupModal kind={signup} onClose={closeSignup} />
       <ThemeModal themeKey={activeTheme} onClose={() => setActiveTheme(null)} />
       <TheoryModal open={theoryOpen} onClose={() => setTheoryOpen(false)} />
     </section>
