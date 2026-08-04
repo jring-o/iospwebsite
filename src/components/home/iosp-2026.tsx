@@ -69,6 +69,8 @@ void THEMES;
 
 type Ws = {
   num: string;
+  // URL-safe handle: /workshops/<slug> deep-links to this card, expanded.
+  slug: string;
   slot: string;
   title: string;
   by: string;
@@ -83,6 +85,7 @@ type Ws = {
 const WORKSHOPS: Ws[] = [
   {
     num: "01",
+    slug: "mira",
     slot: "Oct 12 · Afternoon",
     title: "Turn your research into composable atoms",
     by: "Matthew Akamatsu · University of Washington",
@@ -97,6 +100,7 @@ const WORKSHOPS: Ws[] = [
   },
   {
     num: "02",
+    slug: "core-satellite",
     slot: "Oct 13 · Afternoon",
     title: "Fund an entire domain through a core and its satellites",
     by: "Jonathan Starr & Ellie DeSota · SciOS",
@@ -137,6 +141,7 @@ const WORKSHOPS: Ws[] = [
   },
   {
     num: "03a",
+    slug: "data-node",
     slot: "Oct 12 · Morning",
     title: "Build a sovereign data node as part of a resilient data cluster",
     by: "Jonathan Starr · SciOS, in partnership with the IPFS Foundation",
@@ -153,6 +158,7 @@ const WORKSHOPS: Ws[] = [
   },
   {
     num: "03",
+    slug: "data-rescue",
     slot: "Oct 12 · Morning",
     title: "Save your discipline's at-risk data on infrastructure you control",
     by: "Cornelius Ihle · University of Göttingen",
@@ -167,6 +173,7 @@ const WORKSHOPS: Ws[] = [
   },
   {
     num: "03b",
+    slug: "atproto",
     slot: "Oct 12 · Morning",
     title: "Own your research network with AT Protocol",
     by: "Ronen Tamari · Cosmik, with Torsten Goerke, Ariel Lighty, Robin Berjon, Mathew Lowry, and Guido Jansen",
@@ -181,6 +188,7 @@ const WORKSHOPS: Ws[] = [
   },
   {
     num: "∞",
+    slug: "picoding",
     slot: "All four days · Live",
     title: "PICoding",
     by: "Jonathan Starr · SciOS",
@@ -195,6 +203,7 @@ const WORKSHOPS: Ws[] = [
   },
   {
     num: "00",
+    slug: "theory-crafting",
     slot: "Oct 15 · Half day",
     title: "Theory crafting",
     by: "Ellie DeSota and the IOSP community",
@@ -367,12 +376,51 @@ export function Iosp2026() {
   const [activeTheme, setActiveTheme] = useState<ThemeKey | null>(null);
   const [theoryOpen, setTheoryOpen] = useState(false);
   const [openWs, setOpenWs] = useState<Set<string>>(new Set());
-  const toggleWs = (num: string) =>
+  const [copiedWs, setCopiedWs] = useState<string | null>(null);
+
+  // Deep links: ?ws=<slug> (the target of /workshops/<slug>) expands that
+  // workshop card on load and scrolls it under the fixed header.
+  useEffect(() => {
+    const slug = new URLSearchParams(window.location.search).get("ws");
+    const w = slug && WORKSHOPS.find((x) => x.slug === slug);
+    if (!w) return;
+    setOpenWs((prev) => new Set(prev).add(w.num));
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() =>
+        document
+          .getElementById(`ws-${w.slug}`)
+          ?.scrollIntoView({ behavior: "smooth", block: "start" }),
+      ),
+    );
+  }, []);
+
+  const toggleWs = (num: string) => {
+    // Collapsing the deep-linked card strips its ?ws param so a copied URL
+    // reflects what's on screen.
+    if (openWs.has(num)) {
+      const url = new URL(window.location.href);
+      const w = WORKSHOPS.find((x) => x.num === num);
+      if (w && url.searchParams.get("ws") === w.slug) {
+        url.searchParams.delete("ws");
+        window.history.replaceState(null, "", url.toString());
+      }
+    }
     setOpenWs((prev) => {
       const next = new Set(prev);
       next.has(num) ? next.delete(num) : next.add(num);
       return next;
     });
+  };
+
+  const copyWsLink = (w: Ws) => {
+    navigator.clipboard
+      ?.writeText(`${window.location.origin}/workshops/${w.slug}`)
+      .then(() => {
+        setCopiedWs(w.num);
+        setTimeout(() => setCopiedWs(null), 2000);
+      })
+      .catch(() => {});
+  };
 
   const renderWorkshopCard = (w: Ws, preview = false, fill = false) => {
     const isOpen = openWs.has(w.num);
@@ -383,7 +431,8 @@ export function Iosp2026() {
     return (
       <div
         key={w.num}
-        className={`cell overflow-hidden${fill ? " flex flex-1 flex-col" : ""}${fill && !isOpen ? " justify-center" : ""}`}
+        id={`ws-${w.slug}`}
+        className={`cell scroll-mt-24 overflow-hidden${fill ? " flex flex-1 flex-col" : ""}${fill && !isOpen ? " justify-center" : ""}`}
       >
         <button
           type="button"
@@ -446,14 +495,23 @@ export function Iosp2026() {
                 </div>
               ))}
             </dl>
-            {w.cta && (
-              <a
-                href={w.cta.href}
-                className="btn-pill mt-6 inline-block px-5 py-2.5 font-mono text-[10px] uppercase tracking-[0.2em]"
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              {w.cta && (
+                <a
+                  href={w.cta.href}
+                  className="btn-pill px-5 py-2.5 font-mono text-[10px] uppercase tracking-[0.2em]"
+                >
+                  {w.cta.label} →
+                </a>
+              )}
+              <button
+                type="button"
+                onClick={() => copyWsLink(w)}
+                className={`btn-glass px-5 py-2.5 font-mono text-[10px] uppercase tracking-[0.2em]${copiedWs === w.num ? " !text-royal" : ""}`}
               >
-                {w.cta.label} →
-              </a>
-            )}
+                {copiedWs === w.num ? "Link copied ✓" : "Copy link"}
+              </button>
+            </div>
           </div>
         )}
       </div>
@@ -631,7 +689,7 @@ export function Iosp2026() {
         </div>
 
         {/* ── workshops ────────────────────────────────────────────────── */}
-        <div className="mt-24">
+        <div id="workshops" className="mt-24 scroll-mt-24">
           <Reveal>
             <BlockHead
               kick="Programme"

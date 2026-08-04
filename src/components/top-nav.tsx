@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 const SECTIONS: Array<{ href: string; label: string }> = [
   { href: "#iosp2026", label: "IOSP 2026" },
+  { href: "#workshops", label: "Workshops" },
   { href: "#how", label: "Operating model" },
   { href: "#build", label: "Theory" },
   { href: "#substrate", label: "The Substrate" },
