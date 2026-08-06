@@ -64,11 +64,12 @@ const hhmm = (iso: string) =>
 const gb = (v: string | null) =>
   v ? (Number(v) / 1e9).toFixed(1) + ' GB' : null
 
-// TEMPORARY freeze (added 2026-08-03): the pre-workshop network is offline, so
-// the readout is pinned to the last good evening instead of the rolling 24 h
-// window. Set FROZEN_AT to null to return to live.
-const FROZEN_AT: string | null = '2026-08-01T23:00:00Z' // Aug 1, 7:00 PM ET
-const FROZEN_LABEL = 'Aug 1, 7:00 PM ET (23:00 UTC)'
+// Outage switch: set FROZEN_AT to an ISO timestamp (and FROZEN_LABEL to its
+// human-readable form) to pin the readout to the 24 h ending at that moment,
+// with a banner. null = live rolling window. Used 2026-08-03→06 during the
+// node-00 Wi-Fi outage.
+const FROZEN_AT: string | null = null
+const FROZEN_LABEL = ''
 
 export default async function DataNetworkPage() {
   const end = FROZEN_AT ? Date.parse(FROZEN_AT) : Date.now()
